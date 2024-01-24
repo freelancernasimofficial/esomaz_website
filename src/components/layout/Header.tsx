@@ -8,7 +8,7 @@ type Props = {};
 
 export default function Header({}: Props) {
   return (
-    <header className='h-16 bg-white border-b border-b-gray-200 sticky top-0'>
+    <header className='h-16 bg-white border-b border-b-gray-200 sticky top-0 z-10'>
       <div className='container h-full'>
         <div className='flex items-center justify-between h-full'>
           <div className='flex-1 min-w-32 shrink-0'>
