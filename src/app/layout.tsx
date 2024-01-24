@@ -2,14 +2,6 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/Header";
-import Link from "next/link";
-import IconHomeFilled from "@/components/icons/IconHomeFilled";
-import IconHomeOutline from "@/components/icons/IconHomeOutline";
-import IconUsers from "@/components/icons/IconUsers";
-import IconChat from "@/components/icons/IconChat";
-import IconVideo from "@/components/icons/IconVideo";
-import IconProject from "@/components/icons/IconProject";
-import IconBriefcase from "@/components/icons/IconBriefcase";
 
 const inter = Inter({ subsets: ["latin"] });
 
