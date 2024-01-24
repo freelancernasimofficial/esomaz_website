@@ -17,7 +17,7 @@ export default function Home() {
       <div className='flex justify-between'>
         <LeftSidebar />
         <div className='md:max-w-[300px] md2:max-w-[350px] lg:max-w-[450px] lg2:max-w-[600px] w-full'>
-          <PostForm />
+          <PostForm className='mt-0.5' />
           <PostCard />
           <PostCard />
           <PostCard />

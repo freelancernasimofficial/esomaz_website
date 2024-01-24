@@ -11,7 +11,7 @@ type Props = {};
 
 export default function PostCard({}: Props) {
   return (
-    <div className='bg-white p-4 rounded-lg mt-4'>
+    <div className='bg-white p-4 rounded-lg mt-4 shadow'>
       <div className='flex justify-between mb-1'>
         <div className='flex'>
           <div className='w-10 h-10 overflow-hidden shrink-0 rounded-full'>

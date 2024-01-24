@@ -1,12 +1,18 @@
 import IconImagesOutline from "@/components/icons/IconImagesOutline";
 import IconVideo from "@/components/icons/IconVideo";
-import React from "react";
+import React, { HTMLAttributes } from "react";
 
-type Props = {};
+type Props = {
+  className?: HTMLAttributes<HTMLDivElement>["className"];
+};
 
-export default function PostForm({}: Props) {
+export default function PostForm({ className }: Props) {
   return (
-    <div className='w-full items-center flex p-3 bg-white rounded-lg'>
+    <div
+      className={`w-full items-center flex  p-3 bg-white rounded-lg shadow ${
+        className ?? ""
+      }`}
+    >
       <div className='flex-1'>
         <input
           type='text'

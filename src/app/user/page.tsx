@@ -74,7 +74,7 @@ export default function page({}: Props) {
       <div className='centerCard  overflow-hidden mt-6'>
         <div className='flex w-full'>
           <div className='w-[450px] pr-6'>
-            <div className='w-full p-4 rounded-lg bg-white'>
+            <div className='w-full p-4 rounded-lg bg-white shadow'>
               <div className='mb-4 flex justify-between'>
                 <h2 className='font-bold text-xl'>Intro</h2>
                 <Link className='text-blue-700  text-sm2' href='#'>
@@ -103,7 +103,7 @@ export default function page({}: Props) {
                 <span className='font-semibold'>1,205,200 People</span>
               </div>
             </div>
-            <div className='w-full p-2 mt-6 rounded-lg bg-white'>
+            <div className='w-full p-2 mt-6 rounded-lg bg-white shadow'>
               <div className='px-3 pt-1.5 flex justify-between'>
                 <h2 className='font-bold text-xl'>Friends</h2>
                 <Link className='text-blue-700 text-sm2' href='#'>
