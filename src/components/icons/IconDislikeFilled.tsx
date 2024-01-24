@@ -1,0 +1,17 @@
+import * as React from "react";
+
+function IconDislikeFilled(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      viewBox='0 0 24 24'
+      fill='currentColor'
+      height='24px'
+      width='24px'
+      {...props}
+    >
+      <path d='M20 3h-1v13h1a2 2 0 002-2V5a2 2 0 00-2-2zM4 16h7l-1.122 3.368A2 2 0 0011.775 22H12l5-5.438V3H6l-3.937 8.649-.063.293V14a2 2 0 002 2z' />
+    </svg>
+  );
+}
+
+export default IconDislikeFilled;
