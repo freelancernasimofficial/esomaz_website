@@ -24,4 +24,13 @@
   .centerCard {
     @apply max-w-screen-lg mx-auto;
   }
+  .btn {
+    @apply h-9 px-4 rounded-md bg-gray-100 font-medium text-sm2 active:scale-95 transition-transform;
+  }
+  .btn-primary {
+    @apply bg-blue-600 text-white;
+  }
+  .btn-primary-transparent {
+    @apply bg-blue-100 text-blue-500;
+  }
 }
