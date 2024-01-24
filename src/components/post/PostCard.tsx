@@ -5,6 +5,7 @@ import IconLikeOutlined from "../icons/IconLikeOutlined";
 import IconShareOutline from "../icons/IconShareOutline";
 import IconComment from "../icons/IconComment";
 import IconChat from "../icons/IconChat";
+import Link from "next/link";
 
 type Props = {};
 
@@ -23,7 +24,9 @@ export default function PostCard({}: Props) {
             />
           </div>
           <div className='ml-2'>
-            <h4 className='font-medium'>Md Nasim</h4>
+            <Link href='/user' className='block'>
+              <h4 className='font-medium'>Md Nasim</h4>
+            </Link>
             <span className='block text-sm5 text-gray-500 leading-3'>
               05:30 AM, Dec 21, 2023
             </span>
