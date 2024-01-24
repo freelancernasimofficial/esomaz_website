@@ -1,4 +1,11 @@
+import IconBriefcase from "@/components/icons/IconBriefcase";
 import IconHorizontalDots from "@/components/icons/IconHorizontalDots";
+import IconLocationFilled from "@/components/icons/IconLocationFilled";
+import IconLocationOutline from "@/components/icons/IconLocationOutline";
+import IconRss from "@/components/icons/IconRss";
+import IconSchoolOutline from "@/components/icons/IconSchoolOutline";
+import PostCard from "@/components/post/PostCard";
+import PostForm from "@/components/post/PostForm";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -61,6 +68,45 @@ export default function page({}: Props) {
             <button className='svgCircleButton bg-gray-100 mr-4'>
               <IconHorizontalDots />
             </button>
+          </div>
+        </div>
+      </div>
+      <div className='centerCard  overflow-hidden mt-6'>
+        <div className='flex w-full'>
+          <div className='min-w-[450px] pr-6'>
+            <div className='w-full p-4 rounded-lg bg-white'>
+              <div className='mb-4 flex justify-between'>
+                <h2 className='font-bold text-xl'>Intro</h2>
+                <Link className='text-blue-700' href='#'>
+                  Edit
+                </Link>
+              </div>
+
+              <div className='text-sm2 flex items-center'>
+                <IconLocationOutline className='w-6 h-6 mr-1' />{" "}
+                <span className='mr-2'>Lives In</span>{" "}
+                <span className='font-semibold'>Cairo , Eygept</span>
+              </div>
+              <div className='text-sm2 flex items-center mt-4'>
+                <IconSchoolOutline className='w-6 h-6 mr-2' />{" "}
+                <span className='mr-2'>Studied at</span>{" "}
+                <span className='font-semibold'>University of Turkey</span>
+              </div>
+              <div className='text-sm2 flex items-center mt-4'>
+                <IconBriefcase className='w-5 h-5 mr-2 ml-0.5' />{" "}
+                <span className='mr-2'>Works at</span>{" "}
+                <span className='font-semibold'>Envato Market</span>
+              </div>
+              <div className='text-sm2 flex items-center mt-4'>
+                <IconRss className='w-5 h-5 mr-2 ml-0.5' />{" "}
+                <span className='mr-2'>Followd by</span>{" "}
+                <span className='font-semibold'>1,205,200 People</span>
+              </div>
+            </div>
+          </div>
+          <div className='flex-1'>
+            <PostForm />
+            <PostCard />
           </div>
         </div>
       </div>
