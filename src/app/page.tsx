@@ -5,9 +5,6 @@ import PostCard from "@/components/post/PostCard";
 import Model from "@/model/Model";
 
 export default async function Home() {
-  const users = await Model.prepare("SELECT * FROM Users WHERE id=?", [1]);
-  console.log(users);
-
   return (
     <div className='container'>
       <div className='flex justify-between'>
