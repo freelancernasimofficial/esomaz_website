@@ -13,8 +13,8 @@ type Props = {};
 export default function page({}: Props) {
   return (
     <div className='centerCard  overflow-hidden mt-6'>
-      <div className='flex w-full'>
-        <div className='w-[450px] pr-6'>
+      <div className='md:flex w-full'>
+        <div className='lg:w-[450px] md:w-[350px] w-full md:pr-6'>
           <div className='w-full p-4 rounded-lg bg-white shadow'>
             <div className='mb-4 flex justify-between'>
               <h2 className='font-bold text-xl'>Intro</h2>
@@ -56,9 +56,9 @@ export default function page({}: Props) {
                 return (
                   <div
                     key={index.toString()}
-                    className='w-28 h-32 text-center m-3 '
+                    className='w-24 h-28 sm:w-28 sm:h-32 text-center m-3 '
                   >
-                    <div className='overflow-hidden rounded-lg h-28 w-full'>
+                    <div className='overflow-hidden rounded-lg h-45 sm:h-28 w-full'>
                       {" "}
                       <Image
                         className='w-full h-full'
@@ -68,7 +68,9 @@ export default function page({}: Props) {
                         src='/images/static/avatars/avatar-1.jpg'
                       />
                     </div>
-                    <h2 className='mt-1 text-sm3 font-medium'>Sheikh Habib</h2>
+                    <h2 className='mt-1 text-sm5 sm:text-sm3 font-medium'>
+                      Sheikh Habib
+                    </h2>
                   </div>
                 );
               })}
