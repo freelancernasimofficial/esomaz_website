@@ -9,6 +9,9 @@
   input {
     @apply outline-none border-[1.9px] border-transparent bg-gray-100 h-10 rounded-lg px-2 focus:border-blue-700 focus-within:border-blue-700 focus:outline-none placeholder:text-slate-700 text-sm3 font-medium;
   }
+  a {
+    @apply text-sm2;
+  }
 }
 
 @layer components {

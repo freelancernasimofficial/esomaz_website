@@ -13,7 +13,7 @@ export default function page({}: Props) {
         <div className='flex flex-col w-full'>
           {[...Array(100)].map((item, index) => {
             return (
-              <div key={index.toString()} className='flex items-center mb-4'>
+              <div key={index.toString()} className='flex items-start mb-4'>
                 <div className='w-9 h-9 overflow-hidden shrink-0 rounded-full'>
                   <Image
                     className='w-full h-full'

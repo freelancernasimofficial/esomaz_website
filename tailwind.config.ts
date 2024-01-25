@@ -23,6 +23,8 @@ const config: Config = {
       screens: {
         xs: "420px",
         // => @media (min-width: 420px) { ... }
+        sm2: "500px",
+        // => @media (min-width: 500px) { ... }
 
         md2: "868px",
         // => @media (min-width: 868px) { ... }
