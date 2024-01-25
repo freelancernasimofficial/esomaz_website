@@ -6,6 +6,7 @@ import IconVideo from "@/components/icons/IconVideo";
 import Link from "next/link";
 import React from "react";
 import IconPersonWorkspace from "../icons/IconPersonWorkspace";
+import IconRss from "../icons/IconRss";
 
 type Props = {};
 
@@ -47,6 +48,15 @@ export default function LeftSidebar({}: Props) {
           <IconUsers className='w-6 h-6' />{" "}
           <span className='ml-3 block mt-0.5 font-medium text-sm2'>
             Friends
+          </span>
+        </Link>
+        <Link
+          href='#'
+          className='flex items-center w-full hover:text-blue-700  py-2'
+        >
+          <IconRss className='w-6 h-6' />{" "}
+          <span className='ml-3 block mt-0.5 font-medium text-sm2'>
+            Followers
           </span>
         </Link>
       </div>

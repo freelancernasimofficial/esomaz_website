@@ -1,7 +1,9 @@
 import IconBriefcase from "@/components/icons/IconBriefcase";
 import IconChat from "@/components/icons/IconChat";
 import IconHomeOutline from "@/components/icons/IconHomeOutline";
+import IconLogout from "@/components/icons/IconLogout";
 import IconPersonWorkspace from "@/components/icons/IconPersonWorkspace";
+import IconRss from "@/components/icons/IconRss";
 import IconSettings from "@/components/icons/IconSettings";
 import IconThreeUsersFilled from "@/components/icons/IconThreeUsersFilled";
 import IconUser from "@/components/icons/IconUser";
@@ -38,7 +40,7 @@ export default function page({}: Props) {
           </div>
           <div>
             <h2 className='font-bold text-base text-gray-400'>Balance</h2>
-            <div className='font-medium text-green-600'>
+            <div className='font-semibold text-green-600'>
               $25820.00 <span className='text-black font-semibold'>USD</span>
             </div>
           </div>
@@ -77,9 +79,9 @@ export default function page({}: Props) {
               href='#'
               className='flex items-center w-full  py-2 hover:text-blue-700'
             >
-              <IconSettings className='w-6 h-6' />{" "}
+              <IconRss className='w-6 h-6' />{" "}
               <span className='ml-3 block mt-0.5 font-medium text-sm2'>
-                Settings
+                Followers
               </span>
             </Link>
           </div>
@@ -103,6 +105,29 @@ export default function page({}: Props) {
               <IconPersonWorkspace className='w-5 h-5' />{" "}
               <span className='ml-3.5 block mt-0.5 font-medium text-sm2'>
                 Running Projects
+              </span>
+            </Link>
+          </div>
+        </div>
+        <div className='w-full bg-white rounded-lg p-6 mt-4'>
+          <h2 className='font-bold'>Account</h2>
+          <div className='mt-1'>
+            <Link
+              href='#'
+              className='flex items-center w-full  py-2 hover:text-blue-700'
+            >
+              <IconSettings className='w-5 h-5' />{" "}
+              <span className='ml-3.5 block mt-0.5 font-medium text-sm2'>
+                Settings
+              </span>
+            </Link>
+            <Link
+              href='#'
+              className='flex items-center w-full  py-2 hover:text-blue-700'
+            >
+              <IconLogout className='w-5 h-5' />{" "}
+              <span className='ml-3.5 block mt-0.5 font-medium text-sm2'>
+                Sign Out
               </span>
             </Link>
           </div>
