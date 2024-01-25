@@ -7,17 +7,17 @@ type Props = {};
 export default function RightSidebar({}: Props) {
   return (
     <div className='hidden lg:flex max-w-96 w-full full-height sticky top-20  flex-col pl-6'>
-      <div className='bg-white shadow p-4 rounded-lg overflow-y-scroll'>
-        <div className='flex justify-between'>
+      <div className='bg-white shadow p-4 rounded-lg overflow-hidden '>
+        <div className='flex justify-between pb-2'>
           <h2 className='font-semibold text-lg'>Active Friends</h2>
           <Link href='#' className='text-sm2 text-blue-700'>
             See All
           </Link>
         </div>
-        <div className='flex flex-col w-full'>
-          {[...Array(20)].map((item, index) => {
+        <div className='flex-1 w-full h-full overflow-y-scroll pb-10'>
+          {[...Array(15)].map((item, index) => {
             return (
-              <div key={index.toString()} className='flex justify-between mt-4'>
+              <div key={index.toString()} className='flex justify-between mb-4'>
                 <div className='flex'>
                   <div className='w-9 h-9 overflow-hidden shrink-0 rounded-full'>
                     <Image

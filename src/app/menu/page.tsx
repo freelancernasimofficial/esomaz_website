@@ -37,25 +37,37 @@ export default function page({}: Props) {
         <div className='w-full bg-white rounded-lg p-6 mt-4'>
           <h2 className='font-bold'>Social Media</h2>
           <div className='mt-2'>
-            <Link href='#' className='flex items-center w-full  rounded py-2'>
+            <Link
+              href='#'
+              className='flex items-center w-full  py-2 hover:text-blue-700'
+            >
               <IconUser className='w-6 h-6' />{" "}
               <span className='ml-3 block mt-0.5 font-medium text-sm2'>
                 My Profile
               </span>
             </Link>
-            <Link href='#' className='flex items-center w-full  rounded py-2'>
+            <Link
+              href='#'
+              className='flex items-center w-full  py-2 hover:text-blue-700'
+            >
               <IconChat className='w-6 h-6' />{" "}
               <span className='ml-3 block mt-0.5 font-medium text-sm2'>
                 Messages
               </span>
             </Link>
-            <Link href='#' className='flex items-center w-full  rounded py-2'>
+            <Link
+              href='#'
+              className='flex items-center w-full  py-2 hover:text-blue-700'
+            >
               <IconUsers className='w-6 h-6' />{" "}
               <span className='ml-3 block mt-0.5 font-medium text-sm2'>
                 Friends
               </span>
             </Link>
-            <Link href='#' className='flex items-center w-full  rounded py-2'>
+            <Link
+              href='#'
+              className='flex items-center w-full  py-2 hover:text-blue-700'
+            >
               <IconSettings className='w-6 h-6' />{" "}
               <span className='ml-3 block mt-0.5 font-medium text-sm2'>
                 Settings
@@ -66,13 +78,19 @@ export default function page({}: Props) {
         <div className='w-full bg-white rounded-lg p-6 mt-4'>
           <h2 className='font-bold'>Freelancing</h2>
           <div className='mt-2'>
-            <Link href='#' className='flex items-center w-full  rounded py-2'>
+            <Link
+              href='#'
+              className='flex items-center w-full  py-2 hover:text-blue-700'
+            >
               <IconBriefcase className='w-5 h-5' />{" "}
               <span className='ml-3.5 block mt-0.5 font-medium text-sm2'>
                 Post A Project
               </span>
             </Link>
-            <Link href='#' className='flex items-center w-full  rounded py-2'>
+            <Link
+              href='#'
+              className='flex items-center w-full  py-2 hover:text-blue-700'
+            >
               <IconPersonWorkspace className='w-5 h-5' />{" "}
               <span className='ml-3.5 block mt-0.5 font-medium text-sm2'>
                 Running Projects
