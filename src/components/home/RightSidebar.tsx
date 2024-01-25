@@ -1,27 +1,21 @@
-import IconBriefcase from "@/components/icons/IconBriefcase";
-import IconChat from "@/components/icons/IconChat";
-import IconHomeOutline from "@/components/icons/IconHomeOutline";
-import IconUsers from "@/components/icons/IconUsers";
-import IconVideo from "@/components/icons/IconVideo";
 import Link from "next/link";
 import React from "react";
-import IconHorizontalDots from "../icons/IconHorizontalDots";
 import Image from "next/image";
 
 type Props = {};
 
 export default function RightSidebar({}: Props) {
   return (
-    <div className='hidden lg:flex max-w-96 w-full h-full sticky top-20  flex-col pl-6'>
-      <div className='bg-white shadow p-4 rounded-lg'>
+    <div className='hidden lg:flex max-w-96 w-full full-height sticky top-20  flex-col pl-6'>
+      <div className='bg-white shadow p-4 rounded-lg overflow-y-scroll'>
         <div className='flex justify-between'>
-          <h2 className='font-semibold text-base'>People You May Know</h2>
+          <h2 className='font-semibold text-lg'>Active Friends</h2>
           <Link href='#' className='text-sm2 text-blue-700'>
             See All
           </Link>
         </div>
         <div className='flex flex-col w-full'>
-          {[...Array(5)].map((item, index) => {
+          {[...Array(20)].map((item, index) => {
             return (
               <div key={index.toString()} className='flex justify-between mt-4'>
                 <div className='flex'>
@@ -31,7 +25,7 @@ export default function RightSidebar({}: Props) {
                       height={40}
                       width={40}
                       alt='user avatar'
-                      src={`/images/static/avatars/avatar-${index + 1}.jpg`}
+                      src={`/images/static/avatars/avatar-1.jpg`}
                     />
                   </div>
                   <div className='ml-2'>
@@ -39,11 +33,11 @@ export default function RightSidebar({}: Props) {
                       <h4 className='font-medium text-sm2'>Md Nasim</h4>
                     </Link>
                     <span className='block text-sm5 text-gray-500 leading-3'>
-                      13k Followers
+                      Active Now
                     </span>
                   </div>
                 </div>
-                <button className='btn btn-primary-transparent'>Follow</button>
+                <button className='btn btn-primary-transparent'>Chat</button>
               </div>
             );
           })}

@@ -9,7 +9,7 @@ type Props = {
 export default function PostForm({ className }: Props) {
   return (
     <div
-      className={`w-full items-center flex  p-3 bg-white rounded-lg shadow ${
+      className={`w-full items-center mb-4 flex  p-3 bg-white rounded-lg shadow ${
         className ?? ""
       }`}
     >

@@ -10,8 +10,8 @@ type Props = {};
 
 export default function LeftSidebar({}: Props) {
   return (
-    <div className='sm:max-w-72 md2:max-w-96  w-full h-full sticky top-20 hidden sm:flex flex-col pr-6'>
-      <div className='bg-white shadow p-3 rounded-lg'>
+    <div className='sm:max-w-72 md2:max-w-96  w-full full-height sticky top-20 hidden sm:flex flex-col pr-6'>
+      <div className='bg-white shadow p-3 rounded-lg h-full'>
         <Link
           href='#'
           className='flex items-center w-full hover:bg-gray-200 rounded p-2 mb-1'

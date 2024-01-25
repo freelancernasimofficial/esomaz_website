@@ -15,8 +15,11 @@
 }
 
 @layer components {
+  .full-height {
+    @apply h-[calc(100vh-100px)];
+  }
   .container {
-    @apply w-[97%] max-w-[97%] 2xl:max-w-screen-xl;
+    @apply w-[96%] max-w-[96%] sm2:w-[97%] sm2:max-w-[97%] 2xl:max-w-screen-xl;
   }
   .svgCircleButton {
     @apply h-10 w-10 hover:bg-gray-100 border-2 border-transparent focus:border-blue-200 rounded-full flex justify-center items-center [&_svg]:w-6 [&_svg]:h-6  m-0 p-0 shrink-0 active:scale-95 transition-transform;

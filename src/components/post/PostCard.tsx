@@ -12,7 +12,7 @@ type Props = {
 
 export default function PostCard({ param }: Props) {
   return (
-    <div className='bg-white p-4 rounded-lg mt-4 shadow'>
+    <div className='bg-white p-4 rounded-lg mb-4 shadow'>
       <div className='flex justify-between mb-1'>
         <div className='flex'>
           <div className='w-10 h-10 overflow-hidden shrink-0 rounded-full'>
@@ -28,7 +28,7 @@ export default function PostCard({ param }: Props) {
             <Link href={`/user/${param ?? "1234"}`} className='block'>
               <h4 className='font-medium'>Md Nasim</h4>
             </Link>
-            <span className='block text-sm5 text-gray-500 leading-3'>
+            <span className='block text-sm5 text-gray-500 leading-4'>
               05:30 AM, Dec 21, 2023
             </span>
           </div>
