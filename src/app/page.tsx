@@ -1,17 +1,13 @@
-import IconBriefcase from "@/components/icons/IconBriefcase";
-import IconChat from "@/components/icons/IconChat";
-import IconHomeOutline from "@/components/icons/IconHomeOutline";
-import IconImagesOutline from "@/components/icons/IconImagesOutline";
-import IconUsers from "@/components/icons/IconUsers";
-import IconVideo from "@/components/icons/IconVideo";
-import Image from "next/image";
-import Link from "next/link";
 import LeftSidebar from "../components/home/LeftSidebar";
 import RightSidebar from "../components/home/RightSidebar";
 import PostForm from "@/components/post/PostForm";
 import PostCard from "@/components/post/PostCard";
+import Model from "@/model/Model";
 
-export default function Home() {
+export default async function Home() {
+  const users = await Model.prepare("SELECT * FROM Users WHERE id=?", [1]);
+  console.log(users);
+
   return (
     <div className='container'>
       <div className='flex justify-between'>
