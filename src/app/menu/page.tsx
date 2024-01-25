@@ -1,6 +1,10 @@
 import IconBriefcase from "@/components/icons/IconBriefcase";
 import IconChat from "@/components/icons/IconChat";
 import IconHomeOutline from "@/components/icons/IconHomeOutline";
+import IconPersonWorkspace from "@/components/icons/IconPersonWorkspace";
+import IconSettings from "@/components/icons/IconSettings";
+import IconThreeUsersFilled from "@/components/icons/IconThreeUsersFilled";
+import IconUser from "@/components/icons/IconUser";
 import IconUsers from "@/components/icons/IconUsers";
 import IconVideo from "@/components/icons/IconVideo";
 import Image from "next/image";
@@ -32,56 +36,46 @@ export default function page({}: Props) {
         </div>
         <div className='w-full bg-white rounded-lg p-6 mt-4'>
           <h2 className='font-bold'>Social Media</h2>
-          <div className='mt-4'>
-            <Link
-              href='#'
-              className='flex items-center w-full hover:bg-gray-200 rounded p-2 mb-1'
-            >
-              <IconHomeOutline className='w-6 h-6' />{" "}
+          <div className='mt-2'>
+            <Link href='#' className='flex items-center w-full  rounded py-2'>
+              <IconUser className='w-6 h-6' />{" "}
               <span className='ml-3 block mt-0.5 font-medium text-sm2'>
-                Newsfeed
+                My Profile
               </span>
             </Link>
-
-            <Link
-              href='#'
-              className='flex items-center w-full hover:bg-gray-200 rounded p-2 mb-1'
-            >
-              <IconVideo className='w-6 h-6' />{" "}
-              <span className='ml-3 block mt-0.5 font-medium text-sm2'>
-                Shorts
-              </span>
-            </Link>
-            <Link
-              href='#'
-              className='flex items-center w-full hover:bg-gray-200 rounded p-2 mb-1'
-            >
+            <Link href='#' className='flex items-center w-full  rounded py-2'>
               <IconChat className='w-6 h-6' />{" "}
               <span className='ml-3 block mt-0.5 font-medium text-sm2'>
                 Messages
               </span>
             </Link>
-            <Link
-              href='#'
-              className='flex items-center w-full hover:bg-gray-200 rounded p-2 mb-1'
-            >
+            <Link href='#' className='flex items-center w-full  rounded py-2'>
               <IconUsers className='w-6 h-6' />{" "}
               <span className='ml-3 block mt-0.5 font-medium text-sm2'>
                 Friends
+              </span>
+            </Link>
+            <Link href='#' className='flex items-center w-full  rounded py-2'>
+              <IconSettings className='w-6 h-6' />{" "}
+              <span className='ml-3 block mt-0.5 font-medium text-sm2'>
+                Settings
               </span>
             </Link>
           </div>
         </div>
         <div className='w-full bg-white rounded-lg p-6 mt-4'>
           <h2 className='font-bold'>Freelancing</h2>
-          <div className='mt-4'>
-            <Link
-              href='#'
-              className='flex items-center w-full hover:bg-gray-200 rounded p-2 mb-1'
-            >
+          <div className='mt-2'>
+            <Link href='#' className='flex items-center w-full  rounded py-2'>
               <IconBriefcase className='w-5 h-5' />{" "}
               <span className='ml-3.5 block mt-0.5 font-medium text-sm2'>
-                Projects
+                Post A Project
+              </span>
+            </Link>
+            <Link href='#' className='flex items-center w-full  rounded py-2'>
+              <IconPersonWorkspace className='w-5 h-5' />{" "}
+              <span className='ml-3.5 block mt-0.5 font-medium text-sm2'>
+                Running Projects
               </span>
             </Link>
           </div>
