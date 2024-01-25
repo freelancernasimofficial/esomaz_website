@@ -77,7 +77,7 @@ export default function page({}: Props) {
             </div>
           </div>
         </div>
-        <div className='flex-1'>
+        <div className='flex-1 md:mt-0 mt-6'>
           <PostForm />
           <PostCard />
           <PostCard />

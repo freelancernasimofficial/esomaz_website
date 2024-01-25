@@ -12,7 +12,7 @@ type Props = {};
 
 export default function RightSidebar({}: Props) {
   return (
-    <div className='max-w-96 w-full h-full sticky top-20 flex flex-col pl-6'>
+    <div className='hidden lg:flex max-w-96 w-full h-full sticky top-20  flex-col pl-6'>
       <div className='bg-white shadow p-4 rounded-lg'>
         <div className='flex justify-between'>
           <h2 className='font-semibold text-base'>People You May Know</h2>
