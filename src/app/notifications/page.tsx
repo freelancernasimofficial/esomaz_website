@@ -7,7 +7,7 @@ type Props = {};
 export default function page({}: Props) {
   return (
     <div className='container'>
-      <div className='centerCard bg-white rounded-lg p-4'>
+      <div className='centerCardSmall bg-white rounded-lg p-4'>
         <h2 className='font-bold text-xl mb-4'>Notifications</h2>
 
         <div className='flex flex-col w-full'>

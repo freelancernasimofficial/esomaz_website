@@ -42,7 +42,7 @@ export default function Header({}: Props) {
               </button>
             </Link>
             <Link
-              href='/menu'
+              href='/account'
               className='p-0 ml-4 h-10 w-10 overflow-hidden rounded-full'
             >
               <Image

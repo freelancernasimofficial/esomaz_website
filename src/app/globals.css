@@ -30,6 +30,9 @@
   .centerCard {
     @apply max-w-screen-lg mx-auto;
   }
+  .centerCardSmall {
+    @apply max-w-screen-md mx-auto;
+  }
   .btn {
     @apply h-9 px-4 rounded-md bg-gray-100 font-medium text-sm2 active:scale-95 transition-transform;
   }

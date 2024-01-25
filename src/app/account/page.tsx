@@ -16,21 +16,28 @@ type Props = {};
 export default function page({}: Props) {
   return (
     <div className='container'>
-      <div className='centerCard mb-4'>
-        <div className='w-full bg-white rounded-lg p-6'>
-          <div className='shrink-0 w-36 h-36 overflow-hidden border-4 border-blue-700 rounded-full mx-auto'>
-            <Image
-              className='w-full h-full'
-              width={150}
-              height={150}
-              alt=''
-              src='/images/static/avatars/avatar-1.jpg'
-            />
+      <div className='centerCardSmall mb-4'>
+        <div className='w-full bg-white rounded-lg p-6 flex items-center justify-between'>
+          <div className='flex items-center'>
+            {" "}
+            <div className='mr-4 shrink-0 w-12 h-12 overflow-hidden border-2 items-center border-blue-700 rounded-full mx-auto'>
+              <Image
+                className='w-full h-full'
+                width={150}
+                height={150}
+                alt=''
+                src='/images/static/avatars/avatar-1.jpg'
+              />
+            </div>
+            <div className=''>
+              <h2 className='font-semibold text-lg'>Md Nasim</h2>
+              <div className=' text-gray-500 leading-4'>Javascript Expert</div>
+            </div>
           </div>
-          <div className='text-center'>
-            <h2 className='font-semibold text-lg mt-2'>Md Nasim</h2>
-            <div className='text-center text-gray-500 leading-4'>
-              Javascript Expert
+          <div>
+            <h2 className='font-bold text-base'>Current Balance</h2>
+            <div className='font-medium text-green-600'>
+              $25820.00 <span className='text-black font-semibold'>USD</span>
             </div>
           </div>
         </div>
