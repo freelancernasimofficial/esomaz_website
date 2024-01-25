@@ -31,15 +31,13 @@ export default function page({}: Props) {
             </div>
             <div className=''>
               <h2 className='font-semibold text-lg'>Md Nasim</h2>
-              <div className=' text-gray-500 leading-4 text-sm2'>
+              <div className=' text-gray-500 leading-3 text-sm2'>
                 Javascript Expert
               </div>
             </div>
           </div>
           <div>
-            <h2 className='font-bold text-base text-gray-400'>
-              Current Balance
-            </h2>
+            <h2 className='font-bold text-base text-gray-400'>Balance</h2>
             <div className='font-medium text-green-600'>
               $25820.00 <span className='text-black font-semibold'>USD</span>
             </div>
@@ -47,7 +45,7 @@ export default function page({}: Props) {
         </div>
         <div className='w-full bg-white rounded-lg p-6 mt-4'>
           <h2 className='font-bold'>Social Media</h2>
-          <div className='mt-2'>
+          <div className='mt-1'>
             <Link
               href='#'
               className='flex items-center w-full  py-2 hover:text-blue-700'
@@ -88,7 +86,7 @@ export default function page({}: Props) {
         </div>
         <div className='w-full bg-white rounded-lg p-6 mt-4'>
           <h2 className='font-bold'>Freelancing</h2>
-          <div className='mt-2'>
+          <div className='mt-1'>
             <Link
               href='#'
               className='flex items-center w-full  py-2 hover:text-blue-700'
