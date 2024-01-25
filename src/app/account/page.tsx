@@ -20,7 +20,7 @@ export default function page({}: Props) {
         <div className='w-full bg-white rounded-lg p-6 flex items-center justify-between'>
           <div className='flex items-center'>
             {" "}
-            <div className='mr-4 shrink-0 w-12 h-12 overflow-hidden border-2 items-center border-blue-700 rounded-full mx-auto'>
+            <div className='mr-3 shrink-0 w-12 h-12 overflow-hidden border-2 items-center border-blue-700 rounded-full mx-auto'>
               <Image
                 className='w-full h-full'
                 width={150}
@@ -31,11 +31,15 @@ export default function page({}: Props) {
             </div>
             <div className=''>
               <h2 className='font-semibold text-lg'>Md Nasim</h2>
-              <div className=' text-gray-500 leading-4'>Javascript Expert</div>
+              <div className=' text-gray-500 leading-4 text-sm2'>
+                Javascript Expert
+              </div>
             </div>
           </div>
           <div>
-            <h2 className='font-bold text-base'>Current Balance</h2>
+            <h2 className='font-bold text-base text-gray-400'>
+              Current Balance
+            </h2>
             <div className='font-medium text-green-600'>
               $25820.00 <span className='text-black font-semibold'>USD</span>
             </div>
