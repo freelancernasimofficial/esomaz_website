@@ -31,12 +31,16 @@ export default function Header({}: Props) {
             />
           </div>
           <div className='flex-1 flex items-center justify-end'>
-            <button className='svgCircleButton bg-gray-100'>
-              <IconBell />
-            </button>
-            <button className='svgCircleButton bg-gray-100 ml-4'>
-              <IconChat />
-            </button>
+            <Link href='/notifications'>
+              <button className='svgCircleButton bg-gray-100'>
+                <IconBell />
+              </button>
+            </Link>
+            <Link href='/messages'>
+              <button className='svgCircleButton bg-gray-100 ml-4'>
+                <IconChat />
+              </button>
+            </Link>
             <button className='p-0 ml-4 h-10 w-10 overflow-hidden rounded-full'>
               <Image
                 className='w-full !h-full'
