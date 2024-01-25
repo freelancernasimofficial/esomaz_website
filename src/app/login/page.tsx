@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
@@ -7,6 +8,15 @@ export default function page({}: Props) {
   return (
     <div className='container'>
       <div className=' max-w-screen-sm2 mx-auto bg-white rounded-lg p-6 mt-20'>
+        <div className='text-center shrink-0 w-12 h-12 mx-auto mb-4'>
+          <Image
+            className='w-full h-full'
+            src='/images/static/logo.png'
+            height={80}
+            width={80}
+            alt='logo'
+          />
+        </div>
         <h2 className='font-bold text-xl'>eSomaz Login</h2>
         <div className='mt-4'>
           <input
