@@ -41,7 +41,10 @@ export default function Header({}: Props) {
                 <IconChat />
               </button>
             </Link>
-            <button className='p-0 ml-4 h-10 w-10 overflow-hidden rounded-full'>
+            <Link
+              href='/menu'
+              className='p-0 ml-4 h-10 w-10 overflow-hidden rounded-full'
+            >
               <Image
                 className='w-full !h-full'
                 height={40}
@@ -49,7 +52,7 @@ export default function Header({}: Props) {
                 alt='avatar'
                 src='/images/static/avatars/avatar-1.jpg'
               />
-            </button>
+            </Link>
           </div>
         </div>
       </div>
