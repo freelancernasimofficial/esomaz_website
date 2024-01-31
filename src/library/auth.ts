@@ -4,31 +4,28 @@ import Model from "../model/Model";
 type SessionType =
   | {
       id: number;
+      uuId: string;
       username: string;
-      avatar: string;
-      fname: string;
-      lname: string;
+      avatarId: string;
+      firstName: string;
+      lastName: string;
+      subtitle: string;
       email: string;
-      role: string;
     }
   | undefined;
 
 export default async function auth(): Promise<SessionType> {
   const token = cookies().get("__jwtsession")?.value;
-  if (token) {
-    try {
-      //@ts-ignore
-      const decoded = jwt.verify(token, process.env.NEXTAUTH_SECRET);
-      const user = await Model.prepare(
-        "SELECT id,username,fname,lname,avatar,email,role FROM users WHERE id=?",
-        [decoded.id],
-      );
+  try {
+    //@ts-ignore
+    const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+    const user = await Model.prepare(
+      "SELECT id,uuId,username,firstName,lastName,subtitle,avatarId,email FROM Users WHERE id=?",
+      [decoded.id],
+    );
 
-      return user[0];
-    } catch (error) {
-      return undefined;
-    }
-  } else {
+    return user[0];
+  } catch (error) {
     return undefined;
   }
 }

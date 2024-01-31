@@ -9,13 +9,16 @@ import IconThreeUsersFilled from "@/components/icons/IconThreeUsersFilled";
 import IconUser from "@/components/icons/IconUser";
 import IconUsers from "@/components/icons/IconUsers";
 import IconVideo from "@/components/icons/IconVideo";
+import auth from "@/library/auth";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
 type Props = {};
 
-export default function page({}: Props) {
+export default async function page({}: Props) {
+  const user = await auth();
+
   return (
     <div className='container'>
       <div className='centerCardSmall mb-4'>
