@@ -1,8 +1,7 @@
 import LeftSidebar from "../components/home/LeftSidebar";
 import RightSidebar from "../components/home/RightSidebar";
-import PostForm from "@/components/post/PostForm";
-import PostCard from "@/components/post/PostCard";
-import Model from "@/model/Model";
+import PostCard from "../components/post/PostCard";
+import PostForm from "../components/post/PostForm";
 
 export default async function Home() {
   return (

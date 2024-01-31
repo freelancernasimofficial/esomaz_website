@@ -1,31 +1,39 @@
+import loginAction from "@/actions/loginAction";
+import SubmitButton from "@/components/button/SubmitButton";
+import { cookies } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-
+import RedirectingMessage from "./RedirectingMessage";
 type Props = {};
 
-export default function page({}: Props) {
+export default async function page({}: Props) {
+  const error = cookies().get("error")?.value;
+  const success = cookies().get("success")?.value;
+
   return (
     <div className='container'>
       <div className=' max-w-screen-sm2 mx-auto bg-white rounded-lg p-6 mt-20'>
         <div className='text-center shrink-0 w-12 h-12 mx-auto mb-4'>
           <Image
             className='w-full h-full'
-            src='/images/static/logo.png'
+            src='/images/static/logo-icon.png'
             height={80}
             width={80}
             alt='logo'
           />
         </div>
         <h2 className='font-bold text-xl'>eSomaz Login</h2>
-        <div className='mt-4'>
+        <form action={loginAction} className='mt-4'>
           <input
+            name='email'
             type='text'
             placeholder='Enter Email or Username'
             className='block w-full mb-4'
           />
           <input
             type='text'
+            name='password'
             placeholder='Enter Password'
             className='block w-full mb-4'
           />
@@ -38,7 +46,11 @@ export default function page({}: Props) {
               Forgot Password?
             </Link>
           </div>
-          <button className='btn btn-primary w-full'>Sign In</button>
+          {error && <div className='errorCard'>{error}</div>}
+          {success && (
+            <RedirectingMessage message='Login Success. Redirecting...' />
+          )}
+          <SubmitButton className='btn btn-primary w-full' title='Sign In' />
           <div className='mt-3 flex justify-between items-center'>
             <div className='text-sm2 font-medium'>Need an account?</div>
             <div>
@@ -50,7 +62,7 @@ export default function page({}: Props) {
               </Link>
             </div>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   );

@@ -122,7 +122,7 @@ export default function page({}: Props) {
               </span>
             </Link>
             <Link
-              href='#'
+              href='/api/authorization/logout'
               className='flex items-center w-full  py-2 hover:text-blue-700'
             >
               <IconLogout className='w-5 h-5' />{" "}

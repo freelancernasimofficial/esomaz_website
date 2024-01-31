@@ -48,4 +48,10 @@
   .btn-error-transparent {
     @apply bg-rose-100 text-rose-500;
   }
+  .errorCard {
+    @apply p-2 border border-rose-700 bg-rose-100 text-rose-700 rounded-lg mb-4 font-medium;
+  }
+  .successCard {
+    @apply p-2 border border-green-700 bg-green-100 text-green-700 rounded-lg mb-4 font-medium;
+  }
 }

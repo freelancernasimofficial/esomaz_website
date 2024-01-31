@@ -10,7 +10,11 @@
     "push": "/usr/bin/git add . && /usr/bin/git commit -m 'update' && /usr/bin/git push"
   },
   "dependencies": {
-    "bcryptjs": "^2.4.3",
+    "@aws-sdk/client-ses": "^3.499.0",
+    "@types/bcrypt": "^5.0.2",
+    "@types/jsonwebtoken": "^9.0.5",
+    "bcrypt": "^5.1.1",
+    "jsonwebtoken": "^9.0.2",
     "mysql2": "^3.8.0",
     "next": "14.1.0",
     "react": "^18",
