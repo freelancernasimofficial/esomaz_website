@@ -45,23 +45,26 @@ export default function ProfileCard({}: Props) {
           
           '
         >
-          <Link className='block focus:border-b-blue-700' href='/user/12345'>
+          <Link
+            className='block focus:border-b-primary-main'
+            href='/user/12345'
+          >
             Timeline
           </Link>
           <Link
-            className='block focus:border-b-blue-700'
+            className='block focus:border-b-primary-main'
             href='/user/12456/friends'
           >
             Friends
           </Link>
           <Link
-            className='block focus:border-b-blue-700'
+            className='block focus:border-b-primary-main'
             href='/user/12345/photos'
           >
             Photos
           </Link>
           <Link
-            className='block focus:border-b-blue-700'
+            className='block focus:border-b-primary-main'
             href='/user/12345/videos'
           >
             Videos

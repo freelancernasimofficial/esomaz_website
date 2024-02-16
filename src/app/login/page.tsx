@@ -42,7 +42,10 @@ export default async function page({}: Props) {
               <input id='remember' className='mr-2 w-4 h-4' type='checkbox' />{" "}
               <label htmlFor='remember'>Remember Me</label>
             </div>
-            <Link href='/forgot_password' className='text-blue-700 font-medium'>
+            <Link
+              href='/forgot_password'
+              className='text-primary-main font-medium'
+            >
               Forgot Password?
             </Link>
           </div>
@@ -55,7 +58,7 @@ export default async function page({}: Props) {
             <div className='text-sm2 font-medium'>Need an account?</div>
             <div>
               <Link
-                className='text-sm2 font-medium text-blue-700'
+                className='text-sm2 font-medium text-primary-main'
                 href='/register'
               >
                 Register Now

@@ -25,7 +25,7 @@ export default async function page({}: Props) {
         <div className='w-full bg-white rounded-lg p-6 flex items-center justify-between'>
           <div className='flex items-center'>
             {" "}
-            <div className='mr-3 shrink-0 w-12 h-12 overflow-hidden border-2 items-center border-blue-700 rounded-full mx-auto'>
+            <div className='mr-3 shrink-0 w-12 h-12 overflow-hidden border-2 items-center border-primary-main rounded-full mx-auto'>
               <Image
                 className='w-full h-full'
                 width={150}
@@ -53,7 +53,7 @@ export default async function page({}: Props) {
           <div className='mt-1'>
             <Link
               href='#'
-              className='flex items-center w-full  py-2 hover:text-blue-700'
+              className='flex items-center w-full  py-2 hover:text-primary-main'
             >
               <IconUser className='w-6 h-6' />{" "}
               <span className='ml-3 block mt-0.5 font-medium text-sm2'>
@@ -62,7 +62,7 @@ export default async function page({}: Props) {
             </Link>
             <Link
               href='#'
-              className='flex items-center w-full  py-2 hover:text-blue-700'
+              className='flex items-center w-full  py-2 hover:text-primary-main'
             >
               <IconChat className='w-6 h-6' />{" "}
               <span className='ml-3 block mt-0.5 font-medium text-sm2'>
@@ -71,7 +71,7 @@ export default async function page({}: Props) {
             </Link>
             <Link
               href='#'
-              className='flex items-center w-full  py-2 hover:text-blue-700'
+              className='flex items-center w-full  py-2 hover:text-primary-main'
             >
               <IconUsers className='w-6 h-6' />{" "}
               <span className='ml-3 block mt-0.5 font-medium text-sm2'>
@@ -80,7 +80,7 @@ export default async function page({}: Props) {
             </Link>
             <Link
               href='#'
-              className='flex items-center w-full  py-2 hover:text-blue-700'
+              className='flex items-center w-full  py-2 hover:text-primary-main'
             >
               <IconRss className='w-6 h-6' />{" "}
               <span className='ml-3 block mt-0.5 font-medium text-sm2'>
@@ -94,7 +94,7 @@ export default async function page({}: Props) {
           <div className='mt-1'>
             <Link
               href='#'
-              className='flex items-center w-full  py-2 hover:text-blue-700'
+              className='flex items-center w-full  py-2 hover:text-primary-main'
             >
               <IconBriefcase className='w-5 h-5' />{" "}
               <span className='ml-3.5 block mt-0.5 font-medium text-sm2'>
@@ -103,7 +103,7 @@ export default async function page({}: Props) {
             </Link>
             <Link
               href='#'
-              className='flex items-center w-full  py-2 hover:text-blue-700'
+              className='flex items-center w-full  py-2 hover:text-primary-main'
             >
               <IconPersonWorkspace className='w-5 h-5' />{" "}
               <span className='ml-3.5 block mt-0.5 font-medium text-sm2'>
@@ -117,7 +117,7 @@ export default async function page({}: Props) {
           <div className='mt-1'>
             <Link
               href='#'
-              className='flex items-center w-full  py-2 hover:text-blue-700'
+              className='flex items-center w-full  py-2 hover:text-primary-main'
             >
               <IconSettings className='w-5 h-5' />{" "}
               <span className='ml-3.5 block mt-0.5 font-medium text-sm2'>
@@ -126,7 +126,7 @@ export default async function page({}: Props) {
             </Link>
             <Link
               href='/api/authorization/logout'
-              className='flex items-center w-full  py-2 hover:text-blue-700'
+              className='flex items-center w-full  py-2 hover:text-primary-main'
             >
               <IconLogout className='w-5 h-5' />{" "}
               <span className='ml-3.5 block mt-0.5 font-medium text-sm2'>

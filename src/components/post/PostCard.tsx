@@ -5,31 +5,31 @@ import IconLikeOutlined from "../icons/IconLikeOutlined";
 import IconShareOutline from "../icons/IconShareOutline";
 import IconChat from "../icons/IconChat";
 import Link from "next/link";
+import getFullName from "@/library/getFullName";
+import getRelativeTime from "@/library/getRelativeTime";
+import getUsername from "@/library/getUsername";
+import getCompactNumber from "@/library/getCompactNumber";
+import Avatar from "../user/Avatar";
 
 type Props = {
-  item?: string;
+  item: any;
+  fullText?: boolean;
 };
 
-export default function PostCard({ item }: Props) {
+export default function PostCard({ item, fullText }: Props) {
   return (
     <div className='bg-white p-4 rounded-lg mb-4 shadow'>
       <div className='flex justify-between mb-1'>
         <div className='flex'>
           <div className='w-10 h-10 overflow-hidden shrink-0 rounded-full'>
-            <Image
-              className='w-full h-full'
-              height={40}
-              width={40}
-              alt='user avatar'
-              src='/images/static/avatars/avatar-2.jpg'
-            />
+            <Avatar user={item?.User} />
           </div>
           <div className='ml-2'>
-            <Link href={`/user/${0}`} className='block'>
-              <h4 className='font-medium'>Md Nasim</h4>
+            <Link href={`/user/${getUsername(item?.User)}`} className='block'>
+              <h4 className='font-semibold'>{getFullName(item?.User)}</h4>
             </Link>
             <span className='block text-sm5 text-gray-500 leading-4'>
-              05:30 AM, Dec 21, 2023
+              {getRelativeTime(item?.createdAt)}
             </span>
           </div>
         </div>
@@ -39,12 +39,20 @@ export default function PostCard({ item }: Props) {
       </div>
 
       <div className='mb-1.5'>
-        <p className='text-sm2'>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ut assumenda
-          repellendus, alias, nihil enim earum non neque quo quam sequi
-          doloribus deleniti sapiente. Dolores accusamus ratione reprehenderit
-          reiciendis maxime consectetur.
-        </p>
+        <div className='text-sm2'>
+          {fullText ? (
+            item?.text
+          ) : item?.text.length > 100 ? (
+            <div>
+              {item.text.substring(0, 100)}...{" "}
+              <Link className='text-primary-main' href={`/posts/${item?.uuId}`}>
+                See More
+              </Link>
+            </div>
+          ) : (
+            item?.text
+          )}
+        </div>
       </div>
       <div className='overflow-hidden rounded'>
         <Image
@@ -60,19 +68,30 @@ export default function PostCard({ item }: Props) {
           <button className='svgCircleButtonSmall'>
             <IconLikeOutlined />
           </button>
-          <div className='font-medium text-sm4 ml-1.5'>12.3k</div>
+          <div className='font-medium text-sm4 ml-1.5'>
+            {getCompactNumber(item?.Reactions)}
+          </div>
         </div>
         <div className='flex items-center flex-1 justify-center'>
-          <button className='svgCircleButtonSmall'>
-            <IconChat />
-          </button>
-          <div className='font-medium text-sm4 ml-1.5'>12.3k</div>
+          <Link href={`/posts/${item?.uuId}`}>
+            <button className='svgCircleButtonSmall'>
+              <IconChat />
+            </button>
+          </Link>
+          <div className='font-medium text-sm4 ml-1.5'>
+            {" "}
+            {getCompactNumber(item?.TotalComments)}
+          </div>
         </div>
 
         <div className='flex items-center flex-1 justify-end'>
           <button className='svgCircleButtonSmall'>
             <IconShareOutline />
           </button>
+          <div className='font-medium text-sm4 ml-1.5'>
+            {" "}
+            {getCompactNumber(item?.TotalShares)}
+          </div>
         </div>
       </div>
     </div>

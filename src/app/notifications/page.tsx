@@ -28,7 +28,7 @@ export default function page({}: Props) {
                     <span className='font-medium text-sm2'>
                       Md Nasim{" "}
                       <span className='font-normal'>commented on your</span>{" "}
-                      <Link className='text-blue-700 !font-normal' href='/'>
+                      <Link className='text-primary-main !font-normal' href='/'>
                         post
                       </Link>
                     </span>

@@ -10,7 +10,7 @@ export default function RightSidebar({}: Props) {
       <div className='bg-white shadow p-4 rounded-lg overflow-hidden '>
         <div className='flex justify-between items-center pb-2'>
           <h2 className='font-semibold text-lg'>Active Friends</h2>
-          <Link href='#' className='text-sm2 text-blue-700'>
+          <Link href='#' className='text-sm2 text-primary-main'>
             See All
           </Link>
         </div>

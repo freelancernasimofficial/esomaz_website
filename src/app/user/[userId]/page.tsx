@@ -18,7 +18,7 @@ export default function page({}: Props) {
           <div className='w-full p-4 rounded-lg bg-white shadow'>
             <div className='mb-4 flex justify-between'>
               <h2 className='font-bold text-xl'>Intro</h2>
-              <Link className='text-blue-700  text-sm2' href='#'>
+              <Link className='text-primary-main  text-sm2' href='#'>
                 Edit
               </Link>
             </div>
@@ -47,7 +47,7 @@ export default function page({}: Props) {
           <div className='w-full p-2 mt-6 rounded-lg bg-white shadow'>
             <div className='px-3 pt-1.5 flex justify-between'>
               <h2 className='font-bold text-xl'>Friends</h2>
-              <Link className='text-blue-700 text-sm2' href='#'>
+              <Link className='text-primary-main text-sm2' href='#'>
                 View All
               </Link>
             </div>

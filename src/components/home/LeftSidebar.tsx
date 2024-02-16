@@ -17,7 +17,7 @@ export default function LeftSidebar({}: Props) {
         <h2 className='mb-1 font-bold  pt-1 text-lg'>Social Media</h2>
         <Link
           href='#'
-          className='flex items-center w-full hover:text-blue-700  py-2'
+          className='flex items-center w-full hover:text-primary-main  py-2'
         >
           <IconHomeOutline className='w-6 h-6' />{" "}
           <span className='ml-3 block mt-0.5 font-medium text-sm2'>
@@ -27,14 +27,14 @@ export default function LeftSidebar({}: Props) {
 
         <Link
           href='#'
-          className='flex items-center w-full hover:text-blue-700  py-2'
+          className='flex items-center w-full hover:text-primary-main  py-2'
         >
           <IconVideo className='w-6 h-6' />{" "}
           <span className='ml-3 block mt-0.5 font-medium text-sm2'>Shorts</span>
         </Link>
         <Link
           href='#'
-          className='flex items-center w-full hover:text-blue-700  py-2'
+          className='flex items-center w-full hover:text-primary-main  py-2'
         >
           <IconChat className='w-6 h-6' />{" "}
           <span className='ml-3 block mt-0.5 font-medium text-sm2'>
@@ -43,7 +43,7 @@ export default function LeftSidebar({}: Props) {
         </Link>
         <Link
           href='#'
-          className='flex items-center w-full hover:text-blue-700  py-2'
+          className='flex items-center w-full hover:text-primary-main  py-2'
         >
           <IconUsers className='w-6 h-6' />{" "}
           <span className='ml-3 block mt-0.5 font-medium text-sm2'>
@@ -52,7 +52,7 @@ export default function LeftSidebar({}: Props) {
         </Link>
         <Link
           href='#'
-          className='flex items-center w-full hover:text-blue-700  py-2'
+          className='flex items-center w-full hover:text-primary-main  py-2'
         >
           <IconRss className='w-6 h-6' />{" "}
           <span className='ml-3 block mt-0.5 font-medium text-sm2'>
@@ -65,7 +65,7 @@ export default function LeftSidebar({}: Props) {
 
         <Link
           href='#'
-          className='flex items-center w-full hover:text-blue-700  py-2'
+          className='flex items-center w-full hover:text-primary-main  py-2'
         >
           <IconBriefcase className='w-5 h-5' />{" "}
           <span className='ml-3.5 block mt-0.5 font-medium text-sm2'>
@@ -74,7 +74,7 @@ export default function LeftSidebar({}: Props) {
         </Link>
         <Link
           href='#'
-          className='flex items-center w-full hover:text-blue-700  py-2'
+          className='flex items-center w-full hover:text-primary-main  py-2'
         >
           <IconPersonWorkspace className='w-5 h-5' />{" "}
           <span className='ml-3 block mt-0.5 font-medium text-sm2'>
