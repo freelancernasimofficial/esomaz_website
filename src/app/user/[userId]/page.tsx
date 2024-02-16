@@ -4,13 +4,18 @@ import IconRss from "@/components/icons/IconRss";
 import IconSchoolOutline from "@/components/icons/IconSchoolOutline";
 import PostCard from "@/components/post/PostCard";
 import PostForm from "@/components/post/PostForm";
+import Model from "@/model/Model";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-type Props = {};
+type Props = {
+  params: {
+    userId: string;
+  };
+};
 
-export default function page({}: Props) {
+export default async function page({ params }: Props) {
   return (
     <div className='centerCard  overflow-hidden mt-6'>
       <div className='md:flex w-full'>
@@ -79,13 +84,6 @@ export default function page({}: Props) {
         </div>
         <div className='flex-1 md:mt-0 mt-6'>
           <PostForm />
-          <PostCard />
-          <PostCard />
-          <PostCard />
-          <PostCard />
-          <PostCard />
-          <PostCard />
-          <PostCard />
         </div>
       </div>
     </div>

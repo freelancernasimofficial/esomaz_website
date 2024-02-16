@@ -19,7 +19,6 @@ export default async function FewCommentReplies({ commentId }: Props) {
       "C.userId",
     )}) AS User FROM Comments C WHERE C.parentId=${commentId}`,
   );
-  console.log(replies);
 
   return replies.length ? (
     <div>
@@ -34,9 +33,9 @@ export default async function FewCommentReplies({ commentId }: Props) {
                     {" "}
                     <Link
                       href={`/user/${getUsername(item?.User)}`}
-                      className='block'
+                      className='inline-block'
                     >
-                      <h4 className='font-semibold'>
+                      <h4 className='font-semibold inline-block'>
                         {getFullName(item?.User)}
                       </h4>
                     </Link>
@@ -44,7 +43,9 @@ export default async function FewCommentReplies({ commentId }: Props) {
                       {getRelativeTime(item?.createdAt)}
                     </span>
                   </div>
-                  <div className='mt-1 text-sm3'>{item?.text}</div>
+                  <div className='mt-1 text-sm3 bg-gray-100 p-2 rounded-lg inline-block'>
+                    {item?.text}
+                  </div>
                 </div>
               </div>
               <button className='svgCircleButton -mt-2'>

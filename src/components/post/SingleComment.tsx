@@ -20,14 +20,21 @@ export default function SingleComment({ item }: Props) {
           <div className='ml-2 flex-1'>
             <div>
               {" "}
-              <Link href={`/user/${getUsername(item?.User)}`} className='block'>
-                <h4 className='font-semibold'>{getFullName(item?.User)}</h4>
+              <Link
+                href={`/user/${getUsername(item?.User)}`}
+                className='inline-block'
+              >
+                <h4 className='font-semibold inline-block'>
+                  {getFullName(item?.User)}
+                </h4>
               </Link>
               <span className='block text-sm5 text-gray-500 leading-4'>
                 {getRelativeTime(item?.createdAt)}
               </span>
             </div>
-            <div className='mt-1 text-sm3 mb-3'>{item?.text}</div>
+            <div className='mt-1 text-sm3 mb-3 bg-gray-100 p-2 rounded-lg inline-block'>
+              {item?.text}
+            </div>
             <div>
               <FewCommentReplies commentId={item.id} />
             </div>
