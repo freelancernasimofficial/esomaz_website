@@ -68,30 +68,38 @@ export default function PostCard({ item, fullText }: Props) {
           <button className='svgCircleButtonSmall'>
             <IconLikeOutlined />
           </button>
-          <div className='font-medium text-sm4 ml-1.5'>
-            {getCompactNumber(item?.Reactions)}
-          </div>
+          {item?.Reactions > 0 && (
+            <div className='font-medium text-sm4 ml-1.5'>
+              {getCompactNumber(item?.Reactions)}
+            </div>
+          )}
         </div>
-        <div className='flex items-center flex-1 justify-center'>
-          <Link href={`/posts/${item?.uuId}`}>
-            <button className='svgCircleButtonSmall'>
-              <IconChat />
-            </button>
-          </Link>
-          <div className='font-medium text-sm4 ml-1.5'>
-            {" "}
-            {getCompactNumber(item?.TotalComments)}
-          </div>
-        </div>
+        <Link
+          href={`/posts/${item?.uuId}`}
+          className='flex items-center flex-1 justify-center'
+        >
+          <button className='svgCircleButtonSmall'>
+            <IconChat />
+          </button>
+
+          {item?.TotalComments > 0 && (
+            <div className='font-medium text-sm4 ml-1.5'>
+              {" "}
+              {getCompactNumber(item?.TotalComments)}
+            </div>
+          )}
+        </Link>
 
         <div className='flex items-center flex-1 justify-end'>
           <button className='svgCircleButtonSmall'>
             <IconShareOutline />
           </button>
-          <div className='font-medium text-sm4 ml-1.5'>
-            {" "}
-            {getCompactNumber(item?.TotalShares)}
-          </div>
+          {item?.TotalShares > 0 && (
+            <div className='font-medium text-sm4 ml-1.5'>
+              {" "}
+              {getCompactNumber(item?.TotalShares)}
+            </div>
+          )}
         </div>
       </div>
     </div>

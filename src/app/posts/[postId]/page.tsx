@@ -1,5 +1,7 @@
 import IconHorizontalDots from "@/components/icons/IconHorizontalDots";
 import PostCard from "@/components/post/PostCard";
+import SingleComment from "@/components/post/SingleComment";
+import Avatar from "@/components/user/Avatar";
 import getFullName from "@/library/getFullName";
 import getRelativeTime from "@/library/getRelativeTime";
 import getUserByObjectQuery from "@/library/getUserByObjectQuery";
@@ -45,39 +47,7 @@ export default async function page({ params }: Props) {
             Comments ({post?.TotalComments})
           </h1>
           {comments?.map((item: any, index: number) => {
-            return (
-              <div key={item?.uuId} className='mb-4'>
-                <div className='flex justify-between mb-1'>
-                  <div className='flex'>
-                    <div className='w-10 h-10 overflow-hidden shrink-0 rounded-full'>
-                      <Image
-                        className='w-full h-full'
-                        height={40}
-                        width={40}
-                        alt='user avatar'
-                        src='/images/static/avatars/avatar-2.jpg'
-                      />
-                    </div>
-                    <div className='ml-2'>
-                      <Link
-                        href={`/user/${getUsername(item?.User)}`}
-                        className='block'
-                      >
-                        <h4 className='font-semibold'>
-                          {getFullName(item?.User)}
-                        </h4>
-                      </Link>
-                      <span className='block text-sm5 text-gray-500 leading-4'>
-                        {getRelativeTime(item?.createdAt)}
-                      </span>
-                    </div>
-                  </div>
-                  <button className='svgCircleButton -mt-2'>
-                    <IconHorizontalDots />
-                  </button>
-                </div>
-              </div>
-            );
+            return <SingleComment key={item?.uuId} item={item} />;
           })}
         </div>
       </div>
