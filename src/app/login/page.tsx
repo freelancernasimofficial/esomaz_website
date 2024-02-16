@@ -32,7 +32,7 @@ export default async function page({}: Props) {
             className='block w-full mb-4'
           />
           <input
-            type='text'
+            type='password'
             name='password'
             placeholder='Enter Password'
             className='block w-full mb-4'

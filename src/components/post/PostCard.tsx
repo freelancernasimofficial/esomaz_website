@@ -7,10 +7,10 @@ import IconChat from "../icons/IconChat";
 import Link from "next/link";
 
 type Props = {
-  param?: string;
+  item?: string;
 };
 
-export default function PostCard({ param }: Props) {
+export default function PostCard({ item }: Props) {
   return (
     <div className='bg-white p-4 rounded-lg mb-4 shadow'>
       <div className='flex justify-between mb-1'>
@@ -25,7 +25,7 @@ export default function PostCard({ param }: Props) {
             />
           </div>
           <div className='ml-2'>
-            <Link href={`/user/${param ?? "1234"}`} className='block'>
+            <Link href={`/user/${0}`} className='block'>
               <h4 className='font-medium'>Md Nasim</h4>
             </Link>
             <span className='block text-sm5 text-gray-500 leading-4'>
