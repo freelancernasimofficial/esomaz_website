@@ -6,7 +6,6 @@ type SessionType =
       id: number;
       uuId: string;
       username: string;
-      avatarId: string;
       firstName: string;
       lastName: string;
       subtitle: string;
@@ -20,7 +19,7 @@ export default async function auth(): Promise<SessionType> {
     //@ts-ignore
     const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
     const user = await Model.prepare(
-      "SELECT id,uuId,username,firstName,lastName,subtitle,avatarId,email FROM Users WHERE id=?",
+      "SELECT id,uuId,username,firstName,lastName,subtitle,email FROM Users WHERE id=?",
       [decoded.id],
     );
 

@@ -41,7 +41,7 @@ export default function ProfileCard({ user }: Props) {
         </div>
       </div>
       <div className='pt-[105px] flex flex-col items-center pb-6 border-b'>
-        <h2 className='font-semibold text-2xl'>{getFullName(user)}</h2>
+        <h2 className='font-semibold text-xl'>{getFullName(user)}</h2>
         <span className='block text-base font-medium text-gray-500 leading-5'>
           {user?.subtitle}
         </span>

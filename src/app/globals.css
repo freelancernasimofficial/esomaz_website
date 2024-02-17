@@ -55,3 +55,33 @@
     @apply p-2 border border-success-hover bg-success-transparent1 text-success-hover rounded-lg mb-4 font-medium;
   }
 }
+
+.slick-prev {
+  left: 10px !important;
+  z-index: 1 !important;
+  font-size: 100px !important;
+}
+
+.slick-prev::before {
+  font-size: 36px !important;
+  color: black !important;
+}
+
+.slick-next {
+  right: 25px !important;
+  z-index: 1 !important;
+  font-size: 100px !important;
+}
+
+.slick-next::before {
+  font-size: 36px !important;
+  color: black !important;
+}
+
+ul.slick-dots {
+  bottom: 10px !important;
+}
+
+ul.slick-dots li button:before {
+  font-size: 16px !important;
+}

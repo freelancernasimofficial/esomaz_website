@@ -29,36 +29,44 @@ export default async function UserIntro({ userId }: Props) {
 
       <div className='text-sm2 flex items-center'>
         <IconLocationOutline className='w-6 h-6 mr-1 shrink-0' />{" "}
-        <span className='mr-2'>Lives In</span>{" "}
-        <span className='font-semibold'>
-          {userInfos?.city +
-            ", " +
-            userInfos?.state +
-            ", " +
-            userInfos?.country}
-        </span>
+        <span className='mr-2'>
+          Lives In{" "}
+          <span className='font-semibold'>
+            {userInfos?.city +
+              ", " +
+              userInfos?.state +
+              ", " +
+              userInfos?.country}
+          </span>
+        </span>{" "}
       </div>
-      <div className='text-sm2 flex items-center mt-4'>
+      <div className='text-sm2 flex items-center mt-3'>
         <IconSchoolOutline className='w-6 h-6 mr-2 shrink-0' />{" "}
-        <span className='mr-2'>Studied at</span>{" "}
-        <span className='font-semibold'>
-          {userInfos?.studyLevel + ", " + userInfos?.instituteName}
-        </span>
+        <span className='mr-2'>
+          Studied at{" "}
+          <span className='font-semibold'>
+            {userInfos?.studyLevel + ", " + userInfos?.instituteName}
+          </span>
+        </span>{" "}
       </div>
-      <div className='text-sm2 flex items-center mt-4'>
+      <div className='text-sm2 flex items-center mt-3'>
         <IconBriefcase className='w-5 h-5 mr-2 ml-0.5 shrink-0' />{" "}
-        <span className='mr-2'>Works at</span>{" "}
-        <span className='font-semibold'>
-          {" "}
-          {userInfos?.workDesignation + ", " + userInfos?.workingCompany}
-        </span>
+        <span className='mr-2'>
+          Works at{" "}
+          <span className='font-semibold'>
+            {" "}
+            {userInfos?.workDesignation + ", " + userInfos?.workingCompany}
+          </span>
+        </span>{" "}
       </div>
-      <div className='text-sm2 flex items-center mt-4'>
+      <div className='text-sm2 flex items-center mt-3'>
         <IconRss className='w-5 h-5 mr-2 ml-0.5 shrink-0' />{" "}
-        <span className='mr-2'>Followed by</span>{" "}
-        <span className='font-semibold'>
-          {userInfos?.totalFollowers} People
-        </span>
+        <span className='mr-2'>
+          Followed by{" "}
+          <span className='font-semibold'>
+            {userInfos?.totalFollowers} People
+          </span>
+        </span>{" "}
       </div>
     </div>
   );

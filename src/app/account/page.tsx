@@ -10,6 +10,7 @@ import IconUser from "@/components/icons/IconUser";
 import IconUsers from "@/components/icons/IconUsers";
 import IconVideo from "@/components/icons/IconVideo";
 import auth from "@/library/auth";
+import getUsername from "@/library/getUsername";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -35,7 +36,12 @@ export default async function page({}: Props) {
               />
             </div>
             <div className=''>
-              <h2 className='font-semibold text-lg'>Md Nasim</h2>
+              <Link
+                href={`/user/${getUsername(user)}`}
+                className='font-semibold inline-block text-lg'
+              >
+                Md Nasim
+              </Link>
               <div className=' text-gray-500 leading-3 text-sm2'>
                 Javascript Expert
               </div>
@@ -52,7 +58,7 @@ export default async function page({}: Props) {
           <h2 className='font-bold'>Social Media</h2>
           <div className='mt-1'>
             <Link
-              href='#'
+              href={`/user/${getUsername(user)}`}
               className='flex items-center w-full  py-2 hover:text-primary-main'
             >
               <IconUser className='w-6 h-6' />{" "}

@@ -43,7 +43,7 @@ export default async function page({ params }: Props) {
       <div className='centerCardSmall bg-white rounded-lg'>
         <div className='px-4 py-2'>
           {" "}
-          <h1 className='font-bold text-lg  mb-4'>
+          <h1 className='font-bold text-lg  mb-4 mt-1'>
             Comments ({post?.TotalComments})
           </h1>
           {comments?.map((item: any, index: number) => {

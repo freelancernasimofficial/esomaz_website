@@ -10,6 +10,7 @@ import getRelativeTime from "@/library/getRelativeTime";
 import getUsername from "@/library/getUsername";
 import getCompactNumber from "@/library/getCompactNumber";
 import Avatar from "../user/Avatar";
+import PostPhotos from "./PostPhotoSlider";
 
 type Props = {
   item: any;
@@ -18,8 +19,8 @@ type Props = {
 
 export default function PostCard({ item, fullText }: Props) {
   return (
-    <div className='bg-white p-4 rounded-lg mb-4 shadow'>
-      <div className='flex justify-between mb-1'>
+    <div className='bg-white rounded-lg mb-4 shadow'>
+      <div className='flex justify-between mb-1 px-4 pt-4'>
         <div className='flex'>
           <div className='w-10 h-10 overflow-hidden shrink-0 rounded-full'>
             <Avatar user={item?.User} />
@@ -38,11 +39,11 @@ export default function PostCard({ item, fullText }: Props) {
         </button>
       </div>
 
-      <div className='mb-1.5'>
+      <div className='mb-1.5 px-4'>
         <div className='text-sm2'>
           {fullText ? (
             item?.text
-          ) : item?.text.length > 100 ? (
+          ) : item?.text?.length > 100 ? (
             <div>
               {item.text.substring(0, 100)}...{" "}
               <Link className='text-primary-main' href={`/posts/${item?.uuId}`}>
@@ -54,16 +55,10 @@ export default function PostCard({ item, fullText }: Props) {
           )}
         </div>
       </div>
-      <div className='overflow-hidden rounded'>
-        <Image
-          className='w-full'
-          height={400}
-          width={600}
-          alt='post image'
-          src='/images/static/post/img-2.jpg'
-        />
+      <div className='w-full'>
+        <PostPhotos photos={item?.Photos} />
       </div>
-      <div className='mt-3 flex justify-between'>
+      <div className='mt-3 flex justify-between px-4 pb-3'>
         <div className='flex items-center flex-1'>
           <button className='svgCircleButtonSmall'>
             <IconLikeOutlined />
