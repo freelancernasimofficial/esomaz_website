@@ -7,7 +7,7 @@ type Props = {};
 export default function FriendsCard({}: Props) {
   return (
     <div className='w-full p-2 mt-6 rounded-lg bg-white shadow'>
-      <div className='px-3 pt-1.5 flex justify-between'>
+      <div className='px-3 pt-1.5 mb-1 flex justify-between'>
         <h2 className='font-bold text-xl'>Friends</h2>
         <Link className='text-primary-main text-sm2' href='#'>
           View All
@@ -18,9 +18,9 @@ export default function FriendsCard({}: Props) {
           return (
             <div
               key={index.toString()}
-              className='w-24 h-28 sm:w-28 sm:h-32 text-center m-3 '
+              className='w-24 h-28 sm:w-28 sm:h-32 lg:w-24  text-center mx-3 my-1 '
             >
-              <div className='overflow-hidden rounded-lg h-45 sm:h-28 w-full'>
+              <div className='overflow-hidden rounded-lg  sm:h-28 lg:h-24 w-full'>
                 {" "}
                 <Image
                   className='w-full h-full'
