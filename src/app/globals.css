@@ -64,7 +64,7 @@
 
 .slick-prev::before {
   font-size: 36px !important;
-  color: black !important;
+  color: rgb(0, 0, 0) !important;
 }
 
 .slick-next {
@@ -75,7 +75,7 @@
 
 .slick-next::before {
   font-size: 36px !important;
-  color: black !important;
+  color: rgb(0, 0, 0) !important;
 }
 
 ul.slick-dots {
@@ -84,6 +84,8 @@ ul.slick-dots {
 
 ul.slick-dots li button:before {
   font-size: 16px !important;
+  color: white !important;
+  opacity: 1 !important;
 }
 
 button.slick-arrow {
@@ -91,4 +93,15 @@ button.slick-arrow {
   height: 36px !important;
   display: inline-block !important;
   overflow: hidden !important;
+}
+
+.slick-dots li.slick-active button:before {
+  color: yellow !important;
+}
+
+.slick-track {
+  background: rgb(34, 37, 50);
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 }

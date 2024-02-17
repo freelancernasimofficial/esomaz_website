@@ -4,8 +4,6 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Image from "next/image";
-import IconChevronLeft from "../icons/IconChevronLeft";
-import IconArrowBack from "../icons/IconArrowBack";
 
 type PostPhotosType = {
   photos: any;
@@ -16,10 +14,10 @@ const PostPhotos = ({ photos }: PostPhotosType) => {
       return (
         <Image
           className='w-full'
-          height={400}
-          width={600}
+          height={photos[0].height}
+          width={photos[0].width}
           alt='post image'
-          src='/images/static/post/img-2.jpg'
+          src={`/uploads/photos/${photos[0]?.filename}`}
         />
       );
     } else {
@@ -34,60 +32,18 @@ const PostPhotos = ({ photos }: PostPhotosType) => {
           infinite={true}
           swipeToSlide={true}
         >
-          <div>
-            <Image
-              className='w-full h-full'
-              height={400}
-              width={600}
-              alt='post image'
-              src='/images/static/post/img-2.jpg'
-            />
-          </div>
-          <div>
-            <Image
-              className='w-full'
-              height={400}
-              width={600}
-              alt='post image'
-              src='/images/static/post/img-2.jpg'
-            />
-          </div>
-          <div>
-            <Image
-              className='w-full'
-              height={400}
-              width={600}
-              alt='post image'
-              src='/images/static/post/img-2.jpg'
-            />
-          </div>
-          <div>
-            <Image
-              className='w-full'
-              height={400}
-              width={600}
-              alt='post image'
-              src='/images/static/post/img-2.jpg'
-            />
-          </div>
-          <div>
-            <Image
-              className='w-full'
-              height={400}
-              width={600}
-              alt='post image'
-              src='/images/static/post/img-2.jpg'
-            />
-          </div>
-          <div>
-            <Image
-              className='w-full'
-              height={400}
-              width={600}
-              alt='post image'
-              src='/images/static/post/img-2.jpg'
-            />
-          </div>
+          {photos?.map((photo: any, index: number) => {
+            return (
+              <Image
+                key={photo?.id.toString()}
+                className='w-full'
+                height={photo?.height}
+                width={photo?.width}
+                alt='post image'
+                src={`/uploads/photos/${photo?.filename}`}
+              />
+            );
+          })}
         </Slider>
       );
     }
