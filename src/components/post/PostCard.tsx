@@ -11,6 +11,7 @@ import getUsername from "@/library/getUsername";
 import getCompactNumber from "@/library/getCompactNumber";
 import Avatar from "../user/Avatar";
 import PostPhotos from "./PostPhotoSlider";
+import IconEarth from "../icons/IconEarth";
 
 type Props = {
   item: any;
@@ -29,9 +30,15 @@ export default function PostCard({ item, fullText }: Props) {
             <Link href={`/user/${getUsername(item?.User)}`} className='block'>
               <h4 className='font-semibold'>{getFullName(item?.User)}</h4>
             </Link>
-            <span className='block text-sm5 text-gray-500 leading-4'>
-              {getRelativeTime(item?.createdAt)}
-            </span>
+            <div className='flex items-center'>
+              <IconEarth className='w-3.5 h-3.5 mr-1 text-gray-500' />
+              <Link
+                href={`/posts/${item?.uuId}`}
+                className='block text-sm5 text-gray-500 leading-4 hover:underline hover:text-gray-900'
+              >
+                {getRelativeTime(item?.createdAt)}
+              </Link>
+            </div>
           </div>
         </div>
         <button className='svgCircleButton -mt-2'>
