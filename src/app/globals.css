@@ -85,3 +85,10 @@ ul.slick-dots {
 ul.slick-dots li button:before {
   font-size: 16px !important;
 }
+
+button.slick-arrow {
+  width: 36px !important;
+  height: 36px !important;
+  display: inline-block !important;
+  overflow: hidden !important;
+}

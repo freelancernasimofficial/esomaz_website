@@ -32,6 +32,7 @@ const PostPhotos = ({ photos }: PostPhotosType) => {
           slidesToShow={1}
           speed={500}
           infinite={true}
+          swipeToSlide={true}
         >
           <div>
             <Image
