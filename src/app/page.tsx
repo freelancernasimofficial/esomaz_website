@@ -16,7 +16,7 @@ export default async function Home() {
     <div className='container'>
       <div className='flex justify-between'>
         <LeftSidebar />
-        <div className='lg2:max-w-[600px] w-full'>
+        <div className='lg2:max-w-[600px] w-full overflow-hidden'>
           <PostForm className='mt-1' />
           {posts.map((item: any, index: number) => {
             return <PostCard key={item.uuId} item={item} />;
