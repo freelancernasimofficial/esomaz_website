@@ -12,6 +12,7 @@ import getCompactNumber from "@/library/getCompactNumber";
 import Avatar from "../user/Avatar";
 import PostPhotos from "./PostPhotoSlider";
 import IconEarth from "../icons/IconEarth";
+import DropdownMenu from "../dropdown/DropdownMenu";
 
 type Props = {
   item: any;
@@ -28,7 +29,7 @@ export default function PostCard({ item, fullText }: Props) {
           </div>
           <div className='ml-2'>
             <Link href={`/user/${getUsername(item?.User)}`} className='block'>
-              <h4 className='font-semibold'>{getFullName(item?.User)}</h4>
+              <h4 className='font-medium'>{getFullName(item?.User)}</h4>
             </Link>
             <div className='flex items-center'>
               <IconEarth className='w-3.5 h-3.5 mr-1 text-gray-500' />
@@ -41,9 +42,8 @@ export default function PostCard({ item, fullText }: Props) {
             </div>
           </div>
         </div>
-        <button className='svgCircleButton -mt-2'>
-          <IconHorizontalDots />
-        </button>
+
+        <DropdownMenu />
       </div>
 
       <div className='mb-1.5 px-4'>
@@ -65,6 +65,7 @@ export default function PostCard({ item, fullText }: Props) {
       <div className='w-full'>
         <PostPhotos photos={item?.Photos} />
       </div>
+
       <div className='mt-3 flex justify-between px-4 pb-3'>
         <div className='flex items-center flex-1'>
           <button className='svgCircleButtonSmall'>

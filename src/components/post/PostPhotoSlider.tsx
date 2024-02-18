@@ -24,7 +24,7 @@ const PostPhotos = ({ photos }: PostPhotosType) => {
       return (
         <Slider
           className=''
-          arrows={true}
+          arrows={false}
           dots={true}
           slidesToScroll={1}
           slidesToShow={1}

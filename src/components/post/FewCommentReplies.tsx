@@ -17,33 +17,44 @@ export default async function FewCommentReplies({ commentId }: Props) {
   const replies = await Model.query(
     `SELECT *,(${getUserByObjectQuery(
       "C.userId",
-    )}) AS User FROM Comments C WHERE C.parentId=${commentId}`,
+    )}) AS User,(SELECT JSON_OBJECT('User',(SELECT JSON_OBJECT('id',TCU.id,'uuId',TCU.uuId,'username',TCU.username,'firstName',TCU.firstName,'lastName',TCU.lastName) FROM Users TCU WHERE TCU.id=TC.userId)) FROM Comments TC WHERE TC.id=C.targetedCommentId AND NOT TC.userId=C.userId) AS targetedComment FROM Comments C WHERE C.parentId=${commentId} ORDER BY C.id ASC`,
   );
 
   return replies.length ? (
     <div>
       {replies?.map((item: any, index: number) => {
         return (
-          <div key={item?.uuId} className='my-4'>
+          <div key={item?.uuId} className='my-1'>
             <div className='flex justify-between'>
               <div className='flex'>
-                <Avatar user={item?.User} />
+                <Avatar className='w-8 h-8' user={item?.User} />
                 <div className='ml-2'>
                   <div>
                     {" "}
                     <Link
                       href={`/user/${getUsername(item?.User)}`}
-                      className='inline-block'
+                      className='inline-block text-sm4'
                     >
                       <h4 className='font-semibold inline-block'>
                         {getFullName(item?.User)}
                       </h4>
                     </Link>
-                    <span className='block text-sm5 text-gray-500 leading-4'>
+                    <span className='block text-sm5 text-gray-500 leading-3'>
                       {getRelativeTime(item?.createdAt)}
                     </span>
                   </div>
                   <div className='mt-1 text-sm3 bg-gray-100 p-2 rounded-lg inline-block'>
+                    {item?.targetedComment ? (
+                      <Link
+                        href={`/user/${getUsername(
+                          item?.targetedComment?.User,
+                        )}`}
+                        className='font-semibold mr-1 text-primary-main'
+                      >
+                        {getFullName(item?.targetedComment?.User)}
+                      </Link>
+                    ) : null}
+
                     {item?.text}
                   </div>
                 </div>

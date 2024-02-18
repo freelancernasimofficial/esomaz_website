@@ -13,10 +13,10 @@ type Props = {
 
 export default function SingleComment({ item }: Props) {
   return (
-    <div className='mb-4'>
+    <div className='mb-2'>
       <div className='flex justify-between'>
         <div className='flex flex-1'>
-          <Avatar user={item?.User} />
+          <Avatar className='w-8 h-8' user={item?.User} />
           <div className='ml-2 flex-1'>
             <div>
               {" "}
@@ -24,11 +24,11 @@ export default function SingleComment({ item }: Props) {
                 href={`/user/${getUsername(item?.User)}`}
                 className='inline-block'
               >
-                <h4 className='font-semibold inline-block'>
+                <h4 className='font-semibold inline-block text-sm4'>
                   {getFullName(item?.User)}
                 </h4>
               </Link>
-              <span className='block text-sm5 text-gray-500 leading-4'>
+              <span className='block text-sm5 text-gray-500 leading-3'>
                 {getRelativeTime(item?.createdAt)}
               </span>
             </div>
