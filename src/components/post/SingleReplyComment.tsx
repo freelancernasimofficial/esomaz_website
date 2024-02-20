@@ -19,13 +19,12 @@ export default function SingleReplyComment({ item }: Props) {
   });
 
   return (
-    <div key={item?.uuId} className='my-1'>
+    <div key={item?.uuId} className='my-2'>
       <div className='flex justify-between'>
         <div className='flex'>
-          <Avatar className='w-8 h-8' user={item?.User} />
-          <div className='ml-2'>
-            <div>
-              {" "}
+          <Avatar className='w-6 h-6' user={item?.User} />
+          <div className='mx-2'>
+            <div className='inline-block bg-gray-100 px-2 py-1.5 rounded-xl'>
               <Link
                 href={`/user/${getUsername(item?.User)}`}
                 className='inline-block text-sm4'
@@ -37,19 +36,20 @@ export default function SingleReplyComment({ item }: Props) {
               <span className='block text-sm5 text-gray-500 leading-3'>
                 {getRelativeTime(item?.createdAt)}
               </span>
-            </div>
-            <div className='mt-1 text-sm3 bg-gray-100 p-2 rounded-lg inline-block'>
-              {item?.targetedComment ? (
-                <Link
-                  href={`/user/${getUsername(item?.targetedComment?.User)}`}
-                  className='font-semibold mr-1 text-primary-main'
-                >
-                  {getFullName(item?.targetedComment?.User)}
-                </Link>
-              ) : null}
+              <div className='mt-1 text-sm3'>
+                {item?.targetedComment ? (
+                  <Link
+                    href={`/user/${getUsername(item?.targetedComment?.User)}`}
+                    className='font-semibold mr-1 text-primary-main'
+                  >
+                    {getFullName(item?.targetedComment?.User)}
+                  </Link>
+                ) : null}
 
-              {item?.text}
+                {item?.text}
+              </div>
             </div>
+
             <div className='flex items-center'>
               <ReactionCard
                 action={commentReactionAction}
