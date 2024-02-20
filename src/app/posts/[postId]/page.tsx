@@ -1,7 +1,10 @@
+import postCommentAction from "@/actions/postCommentAction";
+import SubmitButton from "@/components/button/SubmitButton";
 import IconHorizontalDots from "@/components/icons/IconHorizontalDots";
 import PostCard from "@/components/post/PostCard";
 import SingleComment from "@/components/post/SingleComment";
 import Avatar from "@/components/user/Avatar";
+import CookieStore from "@/library/CookieStore";
 import auth from "@/library/auth";
 import getFullName from "@/library/getFullName";
 import getRelativeTime from "@/library/getRelativeTime";
@@ -38,11 +41,31 @@ export default async function page({ params }: Props) {
     } AND CMT.parentId IS NULL ORDER BY CMT.id DESC`,
   );
 
+  const bindPostCommentAction = postCommentAction?.bind(null, post?.id);
+  const error = CookieStore.getState("error");
+  const success = CookieStore.getState("success");
+
   return (
     <div className='container pb-10'>
       {" "}
       <div className='centerCardSmall bg-white rounded-lg'>
         <PostCard fullText={true} item={post} />
+      </div>
+      <div className='centerCardSmall bg-white rounded-lg p-4 mb-4'>
+        <form action={bindPostCommentAction} className='flex flex-col'>
+          <textarea
+            placeholder='Enter comment'
+            className='w-full block bg-gray-100 rounded-lg mb-3 p-2'
+            name='comment'
+            id=''
+            cols={30}
+            rows={3}
+          ></textarea>
+
+          {error && <div className='errorCard w-full mb-3'>{error}</div>}
+          {success && <div className='successCard w-full mb-3'>{success}</div>}
+          <SubmitButton title='Comment' className='btn btn-primary w-full' />
+        </form>
       </div>
       <div className='centerCardSmall bg-white rounded-lg'>
         <div className='px-4 py-2'>
