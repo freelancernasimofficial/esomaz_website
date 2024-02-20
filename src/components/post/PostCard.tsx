@@ -77,9 +77,9 @@ export default function PostCard({ item, fullText }: Props) {
       </div>
 
       <div className='mt-3 flex justify-between px-4 pb-3'>
-        <div className='flex items-center flex-1'>
+        <div className='flex items-center flex-1 group'>
           <div className='relative'>
-            <div className='bg-gray-100 p-2 rounded-lg  absolute left-0 bottom-full drop-shadow-lg'>
+            <div className='bg-gray-100 p-2 rounded-lg  absolute left-0 bottom-full drop-shadow-lg scale-0 origin-bottom-left transition-transform group-hover:scale-100'>
               <div className='flex items-center'>
                 <form action=''>
                   <input type='hidden' name='reactionType' value='thumbsup' />
