@@ -22,6 +22,10 @@ type Props = {
 };
 
 export default function PostCard({ item, fullText }: Props) {
+  const postReactionAction = reactionAction?.bind(null, {
+    itemId: item?.id,
+    itemType: "post",
+  });
   return (
     <div className='bg-white rounded-lg mb-4 shadow'>
       <div className='flex justify-between mb-1 px-4 pt-4'>
@@ -80,7 +84,10 @@ export default function PostCard({ item, fullText }: Props) {
 
       <div className='mt-3 flex justify-between px-4 pb-3'>
         <div className='flex items-center flex-1'>
-          <ReactionCard action={reactionAction} />
+          <ReactionCard
+            currentReaction={item?.myReactionType}
+            action={postReactionAction}
+          />
           {item?.Reactions > 0 && (
             <div className='font-medium text-sm4 ml-1.5'>
               {getCompactNumber(item?.Reactions)}

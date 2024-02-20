@@ -2,6 +2,7 @@ import IconHorizontalDots from "@/components/icons/IconHorizontalDots";
 import PostCard from "@/components/post/PostCard";
 import SingleComment from "@/components/post/SingleComment";
 import Avatar from "@/components/user/Avatar";
+import auth from "@/library/auth";
 import getFullName from "@/library/getFullName";
 import getRelativeTime from "@/library/getRelativeTime";
 import getUserByObjectQuery from "@/library/getUserByObjectQuery";
@@ -18,10 +19,13 @@ type Props = {
 };
 
 export default async function page({ params }: Props) {
+  const user = await auth();
   const [post] = await Model.query(
     `SELECT *,(${getUserByObjectQuery(
       "P.userId",
-    )}) AS User,(SELECT JSON_ARRAYAGG(JSON_OBJECT('id',PH.id,'height',PH.height,'width',PH.width,'filename',PH.filename)) FROM Photos AS PH WHERE P.id=PH.postId) AS Photos,(SELECT COUNT(*) FROM Reactions R WHERE R.postId=P.id) AS Reactions,(SELECT COUNT(*) FROM Comments C WHERE C.postId=P.id) AS TotalComments,(SELECT COUNT(*) FROM Posts S WHERE S.sharedId=P.id) AS TotalShares FROM Posts AS P WHERE P.uuId=${
+    )}) AS User,(SELECT JSON_ARRAYAGG(JSON_OBJECT('id',PH.id,'height',PH.height,'width',PH.width,'filename',PH.filename)) FROM Photos AS PH WHERE P.id=PH.postId) AS Photos,(SELECT COUNT(*) FROM Reactions R WHERE R.postId=P.id) AS Reactions,(SELECT COUNT(*) FROM Comments C WHERE C.postId=P.id) AS TotalComments,(SELECT COUNT(*) FROM Posts S WHERE S.sharedId=P.id) AS TotalShares,(SELECT type FROM Reactions MR WHERE MR.userId=${
+      user?.id
+    } AND P.id=MR.postId) AS myReactionType FROM Posts AS P WHERE P.uuId=${
       params.postId
     }`,
   );

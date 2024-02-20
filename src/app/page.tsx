@@ -4,12 +4,16 @@ import RightSidebar from "../components/home/RightSidebar";
 import PostCard from "../components/post/PostCard";
 import PostForm from "../components/post/PostForm";
 import getUserByObjectQuery from "@/library/getUserByObjectQuery";
+import auth from "@/library/auth";
 
 export default async function Home() {
+  const user = await auth();
   const posts = await Model.query(
     `SELECT *,(${getUserByObjectQuery(
       "P.userId",
-    )}) AS User,(SELECT JSON_ARRAYAGG(JSON_OBJECT('id',PH.id,'height',PH.height,'width',PH.width,'filename',PH.filename)) FROM Photos AS PH WHERE P.id=PH.postId) AS Photos,(SELECT COUNT(*) FROM Reactions R WHERE R.postId=P.id) AS Reactions,(SELECT COUNT(*) FROM Comments C WHERE C.postId=P.id) AS TotalComments,(SELECT COUNT(*) FROM Posts S WHERE S.sharedId=P.id) AS TotalShares FROM Posts AS P ORDER BY P.id DESC LIMIT 100`,
+    )}) AS User,(SELECT JSON_ARRAYAGG(JSON_OBJECT('id',PH.id,'height',PH.height,'width',PH.width,'filename',PH.filename)) FROM Photos AS PH WHERE P.id=PH.postId) AS Photos,(SELECT COUNT(*) FROM Reactions R WHERE R.postId=P.id) AS Reactions,(SELECT COUNT(*) FROM Comments C WHERE C.postId=P.id) AS TotalComments,(SELECT COUNT(*) FROM Posts S WHERE S.sharedId=P.id) AS TotalShares,(SELECT type FROM Reactions MR WHERE MR.userId=${
+      user?.id
+    } AND P.id=MR.postId) AS myReactionType FROM Posts AS P ORDER BY P.id DESC LIMIT 100`,
   );
 
   return (

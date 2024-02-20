@@ -3,10 +3,11 @@ import React, { FormHTMLAttributes } from "react";
 import IconLikeOutlined from "../icons/IconLikeOutlined";
 
 type Props = {
+  currentReaction?: any;
   action?: FormHTMLAttributes<HTMLFormElement>["action"];
 };
 
-export default function ReactionCard({ action }: Props) {
+export default function ReactionCard({ currentReaction, action }: Props) {
   return (
     <div className='relative group'>
       <div className='bg-gray-100 p-2 rounded-lg  absolute left-0 bottom-full drop-shadow-lg scale-0 origin-bottom-left transition-transform group-hover:scale-100'>
@@ -136,7 +137,7 @@ export default function ReactionCard({ action }: Props) {
         </div>
         <div className='flex items-center'>
           <form action={action}>
-            <input type='hidden' name='reactionType' value='manfacepalming' />
+            <input type='hidden' name='reactionType' value='facepalming' />
             <button
               className='w-10 h-10 p-2 bg-white rounded-full overflow-hidden  hover:bg-primary-transparent2 hover:scale-110 transition-transform '
               type='submit'
@@ -146,12 +147,12 @@ export default function ReactionCard({ action }: Props) {
                 height={100}
                 width={100}
                 alt='thumbsup'
-                src='/reactions/manfacepalming.png'
+                src='/reactions/facepalming.png'
               />
             </button>
           </form>
           <form action={action} className='mx-2'>
-            <input type='hidden' name='reactionType' value='manshrugging' />
+            <input type='hidden' name='reactionType' value='shrugging' />
             <button
               className='w-10 h-10 p-2 bg-white hover:bg-primary-transparent2 hover:scale-110 transition-transform rounded-full overflow-hidden'
               type='submit'
@@ -161,7 +162,7 @@ export default function ReactionCard({ action }: Props) {
                 height={100}
                 width={100}
                 alt='thumbsup'
-                src='/reactions/manshrugging.png'
+                src='/reactions/shrugging.png'
               />
             </button>
           </form>
@@ -181,7 +182,7 @@ export default function ReactionCard({ action }: Props) {
             </button>
           </form>
           <form action={action} className='ml-2'>
-            <input type='hidden' name='reactionType' value='cry' />
+            <input type='hidden' name='reactionType' value='crying' />
             <button
               className='w-10 h-10 p-2 bg-white rounded-full overflow-hidden  hover:bg-primary-transparent2 hover:scale-110 transition-transform '
               type='submit'
@@ -191,17 +192,34 @@ export default function ReactionCard({ action }: Props) {
                 height={100}
                 width={100}
                 alt='thumbsup'
-                src='/reactions/cry.png'
+                src='/reactions/crying.png'
               />
             </button>
           </form>
         </div>
       </div>
       <form action={action}>
-        <input type='hidden' name='reactionType' value='removeReaction' />
-        <button type='submit' className='svgCircleButtonSmall'>
-          <IconLikeOutlined />
-        </button>
+        {currentReaction?.length ? (
+          <React.Fragment>
+            <input type='hidden' name='reactionType' value='removeReaction' />
+            <button type='submit' className='svgCircleButtonSmall'>
+              <Image
+                className='w-5'
+                alt='current Reaction'
+                width={100}
+                height={100}
+                src={`/reactions/${currentReaction}.png`}
+              />
+            </button>
+          </React.Fragment>
+        ) : (
+          <React.Fragment>
+            <input type='hidden' name='reactionType' value='thumbsup' />
+            <button type='submit' className='svgCircleButtonSmall'>
+              <IconLikeOutlined />
+            </button>
+          </React.Fragment>
+        )}
       </form>
     </div>
   );
