@@ -90,7 +90,7 @@ export default function PostCard({ item, fullText }: Props) {
           />
           {item?.Reactions > 0 && (
             <div className='font-medium text-sm4 ml-1.5'>
-              {getCompactNumber(item?.Reactions)}
+              {getCompactNumber(item?.Reactions)} People
             </div>
           )}
         </div>

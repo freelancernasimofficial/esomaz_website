@@ -36,7 +36,9 @@ export default async function page({ params }: Props) {
   const comments = await Model.query(
     `SELECT *,(${getUserByObjectQuery(
       "CMT.userId",
-    )}) AS User FROM Comments CMT WHERE CMT.postId=${
+    )}) AS User,(SELECT type FROM Reactions MR WHERE MR.userId=${
+      user?.id
+    } AND MR.commentId=CMT.id) AS myReactionType,(SELECT COUNT(*) FROM Reactions R WHERE R.commentId=CMT.id) AS totalReactions FROM Comments CMT WHERE CMT.postId=${
       post?.id
     } AND CMT.parentId IS NULL ORDER BY CMT.id DESC`,
   );
@@ -55,7 +57,7 @@ export default async function page({ params }: Props) {
         <form action={bindPostCommentAction} className='flex flex-col'>
           <textarea
             placeholder='Enter comment'
-            className='w-full block bg-gray-100 rounded-lg mb-3 p-2'
+            className='w-full block bg-gray-100 rounded-lg mb-3 p-2 text-sm3'
             name='comment'
             id=''
             cols={30}

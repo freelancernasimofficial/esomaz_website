@@ -7,14 +7,22 @@ import IconHorizontalDots from "../icons/IconHorizontalDots";
 import Avatar from "../user/Avatar";
 import FewCommentReplies from "./FewCommentReplies";
 import DropdownMenu from "../dropdown/DropdownMenu";
+import ReactionCard from "./ReactionCard";
+import reactionAction from "@/actions/reactionAction";
+import getCompactNumber from "@/library/getCompactNumber";
 
 type Props = {
   item: any;
 };
 
 export default function SingleComment({ item }: Props) {
+  const commentReactionAction = reactionAction?.bind(null, {
+    itemId: item?.id,
+    itemType: "comment",
+  });
+
   return (
-    <div className='mb-2'>
+    <div className='mb-3'>
       <div className='flex justify-between'>
         <div className='flex flex-1'>
           <Avatar className='w-8 h-8' user={item?.User} />
@@ -32,8 +40,19 @@ export default function SingleComment({ item }: Props) {
                 {getRelativeTime(item?.createdAt)}
               </span>
             </div>
-            <div className='mt-1 text-sm3 mb-3 bg-gray-100 p-2 rounded-lg inline-block'>
+            <div className='mt-1 text-sm3 a bg-gray-100 p-2 rounded-lg inline-block'>
               {item?.text}
+            </div>
+            <div className='flex items-center'>
+              <ReactionCard
+                action={commentReactionAction}
+                currentReaction={item?.myReactionType}
+              />{" "}
+              {item?.totalReactions > 0 ? (
+                <div className='text-sm4 ml-1.5 font-medium'>
+                  {getCompactNumber(item?.totalReactions)} People
+                </div>
+              ) : null}
             </div>
             <div>
               <FewCommentReplies commentId={item.id} />
