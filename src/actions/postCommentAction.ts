@@ -13,6 +13,8 @@ export default async function postCommentAction(postId: number, formData: any) {
   try {
     if (comment.length > 2000) {
       throw new Error("Comment is too big!");
+    } else if (!comment.length) {
+      return null;
     } else {
       const mkuuId = await makeUniqueId("Comments");
       await Model.prepare(
