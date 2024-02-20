@@ -89,7 +89,7 @@ export default function PostCard({ item, fullText }: Props) {
             action={postReactionAction}
           />
           {item?.Reactions > 0 && (
-            <div className='font-medium text-sm4 ml-1.5'>
+            <div className='font-medium text-sm4 ml-1.5 mt-1'>
               {getCompactNumber(item?.Reactions)} People
             </div>
           )}

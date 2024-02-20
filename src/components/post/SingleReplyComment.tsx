@@ -3,36 +3,34 @@ import getRelativeTime from "@/library/getRelativeTime";
 import getUsername from "@/library/getUsername";
 import Link from "next/link";
 import React from "react";
-import IconHorizontalDots from "../icons/IconHorizontalDots";
-import Avatar from "../user/Avatar";
-import FewCommentReplies from "./FewCommentReplies";
 import DropdownMenu from "../dropdown/DropdownMenu";
+import Avatar from "../user/Avatar";
 import ReactionCard from "./ReactionCard";
 import reactionAction from "@/actions/reactionAction";
-import getCompactNumber from "@/library/getCompactNumber";
 
 type Props = {
   item: any;
 };
 
-export default function SingleComment({ item }: Props) {
+export default function SingleReplyComment({ item }: Props) {
   const commentReactionAction = reactionAction?.bind(null, {
     itemId: item?.id,
     itemType: "comment",
   });
 
   return (
-    <div className='mb-3'>
+    <div key={item?.uuId} className='my-1'>
       <div className='flex justify-between'>
-        <div className='flex flex-1'>
+        <div className='flex'>
           <Avatar className='w-8 h-8' user={item?.User} />
-          <div className='ml-2 flex-1'>
+          <div className='ml-2'>
             <div>
+              {" "}
               <Link
                 href={`/user/${getUsername(item?.User)}`}
-                className='inline-block'
+                className='inline-block text-sm4'
               >
-                <h4 className='font-semibold inline-block text-sm4'>
+                <h4 className='font-semibold inline-block'>
                   {getFullName(item?.User)}
                 </h4>
               </Link>
@@ -40,7 +38,16 @@ export default function SingleComment({ item }: Props) {
                 {getRelativeTime(item?.createdAt)}
               </span>
             </div>
-            <div className='mt-1 text-sm3 a bg-gray-100 p-2 rounded-lg inline-block'>
+            <div className='mt-1 text-sm3 bg-gray-100 p-2 rounded-lg inline-block'>
+              {item?.targetedComment ? (
+                <Link
+                  href={`/user/${getUsername(item?.targetedComment?.User)}`}
+                  className='font-semibold mr-1 text-primary-main'
+                >
+                  {getFullName(item?.targetedComment?.User)}
+                </Link>
+              ) : null}
+
               {item?.text}
             </div>
             <div className='flex items-center'>
@@ -50,12 +57,9 @@ export default function SingleComment({ item }: Props) {
               />{" "}
               {item?.totalReactions > 0 ? (
                 <div className='text-sm4 ml-1.5 font-medium mt-1'>
-                  {getCompactNumber(item?.totalReactions)} People
+                  {item?.totalReactions} People
                 </div>
               ) : null}
-            </div>
-            <div>
-              <FewCommentReplies commentId={item.id} />
             </div>
           </div>
         </div>
