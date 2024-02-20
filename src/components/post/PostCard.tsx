@@ -84,7 +84,7 @@ export default function PostCard({ item, fullText }: Props) {
                 <form action=''>
                   <input type='hidden' name='reactionType' value='thumbsup' />
                   <button
-                    className='w-9 h-9 p-2 bg-white rounded-full overflow-hidden  hover:bg-primary-transparent2 '
+                    className='w-10 h-10 p-2 bg-white rounded-full overflow-hidden  hover:bg-primary-transparent2 hover:scale-110 transition-transform '
                     type='submit'
                   >
                     <Image
@@ -99,7 +99,7 @@ export default function PostCard({ item, fullText }: Props) {
                 <form action='' className='mx-2'>
                   <input type='hidden' name='reactionType' value='thumbsup' />
                   <button
-                    className='w-9 h-9 p-2 bg-white hover:bg-primary-transparent2 rounded-full overflow-hidden'
+                    className='w-10 h-10 p-2 bg-white hover:bg-primary-transparent2 hover:scale-110 transition-transform rounded-full overflow-hidden'
                     type='submit'
                   >
                     <Image
@@ -107,14 +107,14 @@ export default function PostCard({ item, fullText }: Props) {
                       height={100}
                       width={100}
                       alt='thumbsup'
-                      src='/reactions/thumbsup.png'
+                      src='/reactions/thumbsdown.png'
                     />
                   </button>
                 </form>
                 <form action=''>
                   <input type='hidden' name='reactionType' value='thumbsup' />
                   <button
-                    className='w-9 h-9 p-2 bg-white rounded-full overflow-hidden  hover:bg-primary-transparent2 '
+                    className='w-10 h-10 p-2 bg-white rounded-full overflow-hidden  hover:bg-primary-transparent2 hover:scale-110 transition-transform '
                     type='submit'
                   >
                     <Image
@@ -122,14 +122,14 @@ export default function PostCard({ item, fullText }: Props) {
                       height={100}
                       width={100}
                       alt='thumbsup'
-                      src='/reactions/thumbsup.png'
+                      src='/reactions/heart.png'
                     />
                   </button>
                 </form>
                 <form action='' className='ml-2'>
                   <input type='hidden' name='reactionType' value='thumbsup' />
                   <button
-                    className='w-9 h-9 p-2 bg-white rounded-full overflow-hidden  hover:bg-primary-transparent2 '
+                    className='w-10 h-10 p-2 bg-white rounded-full overflow-hidden  hover:bg-primary-transparent2 hover:scale-110 transition-transform '
                     type='submit'
                   >
                     <Image
@@ -137,7 +137,7 @@ export default function PostCard({ item, fullText }: Props) {
                       height={100}
                       width={100}
                       alt='thumbsup'
-                      src='/reactions/thumbsup.png'
+                      src='/reactions/care.png'
                     />
                   </button>
                 </form>
@@ -146,7 +146,7 @@ export default function PostCard({ item, fullText }: Props) {
                 <form action=''>
                   <input type='hidden' name='reactionType' value='thumbsup' />
                   <button
-                    className='w-9 h-9 p-2 bg-white rounded-full overflow-hidden  hover:bg-primary-transparent2 '
+                    className='w-10 h-10 p-2 bg-white rounded-full overflow-hidden  hover:bg-primary-transparent2 hover:scale-110 transition-transform '
                     type='submit'
                   >
                     <Image
@@ -154,14 +154,14 @@ export default function PostCard({ item, fullText }: Props) {
                       height={100}
                       width={100}
                       alt='thumbsup'
-                      src='/reactions/thumbsup.png'
+                      src='/reactions/claps.png'
                     />
                   </button>
                 </form>
                 <form action='' className='mx-2'>
                   <input type='hidden' name='reactionType' value='thumbsup' />
                   <button
-                    className='w-9 h-9 p-2 bg-white hover:bg-primary-transparent2 rounded-full overflow-hidden'
+                    className='w-10 h-10 p-2 bg-white hover:bg-primary-transparent2 hover:scale-110 transition-transform rounded-full overflow-hidden'
                     type='submit'
                   >
                     <Image
@@ -169,14 +169,14 @@ export default function PostCard({ item, fullText }: Props) {
                       height={100}
                       width={100}
                       alt='thumbsup'
-                      src='/reactions/thumbsup.png'
+                      src='/reactions/woow.png'
                     />
                   </button>
                 </form>
                 <form action=''>
                   <input type='hidden' name='reactionType' value='thumbsup' />
                   <button
-                    className='w-9 h-9 p-2 bg-white rounded-full overflow-hidden  hover:bg-primary-transparent2 '
+                    className='w-10 h-10 p-2 bg-white rounded-full overflow-hidden  hover:bg-primary-transparent2 hover:scale-110 transition-transform '
                     type='submit'
                   >
                     <Image
@@ -184,14 +184,14 @@ export default function PostCard({ item, fullText }: Props) {
                       height={100}
                       width={100}
                       alt='thumbsup'
-                      src='/reactions/thumbsup.png'
+                      src='/reactions/haha.png'
                     />
                   </button>
                 </form>
                 <form action='' className='ml-2'>
                   <input type='hidden' name='reactionType' value='thumbsup' />
                   <button
-                    className='w-9 h-9 p-2 bg-white rounded-full overflow-hidden  hover:bg-primary-transparent2 '
+                    className='w-10 h-10 p-2 bg-white rounded-full overflow-hidden  hover:bg-primary-transparent2 hover:scale-110 transition-transform '
                     type='submit'
                   >
                     <Image
@@ -199,7 +199,7 @@ export default function PostCard({ item, fullText }: Props) {
                       height={100}
                       width={100}
                       alt='thumbsup'
-                      src='/reactions/thumbsup.png'
+                      src='/reactions/brokenheart.png'
                     />
                   </button>
                 </form>
@@ -208,7 +208,7 @@ export default function PostCard({ item, fullText }: Props) {
                 <form action=''>
                   <input type='hidden' name='reactionType' value='thumbsup' />
                   <button
-                    className='w-9 h-9 p-2 bg-white rounded-full overflow-hidden  hover:bg-primary-transparent2 '
+                    className='w-10 h-10 p-2 bg-white rounded-full overflow-hidden  hover:bg-primary-transparent2 hover:scale-110 transition-transform '
                     type='submit'
                   >
                     <Image
@@ -216,14 +216,14 @@ export default function PostCard({ item, fullText }: Props) {
                       height={100}
                       width={100}
                       alt='thumbsup'
-                      src='/reactions/thumbsup.png'
+                      src='/reactions/manfacepalming.png'
                     />
                   </button>
                 </form>
                 <form action='' className='mx-2'>
                   <input type='hidden' name='reactionType' value='thumbsup' />
                   <button
-                    className='w-9 h-9 p-2 bg-white hover:bg-primary-transparent2 rounded-full overflow-hidden'
+                    className='w-10 h-10 p-2 bg-white hover:bg-primary-transparent2 hover:scale-110 transition-transform rounded-full overflow-hidden'
                     type='submit'
                   >
                     <Image
@@ -231,14 +231,14 @@ export default function PostCard({ item, fullText }: Props) {
                       height={100}
                       width={100}
                       alt='thumbsup'
-                      src='/reactions/thumbsup.png'
+                      src='/reactions/manshrugging.png'
                     />
                   </button>
                 </form>
                 <form action=''>
                   <input type='hidden' name='reactionType' value='thumbsup' />
                   <button
-                    className='w-9 h-9 p-2 bg-white rounded-full overflow-hidden  hover:bg-primary-transparent2 '
+                    className='w-10 h-10 p-2 bg-white rounded-full overflow-hidden  hover:bg-primary-transparent2 hover:scale-110 transition-transform '
                     type='submit'
                   >
                     <Image
@@ -253,7 +253,7 @@ export default function PostCard({ item, fullText }: Props) {
                 <form action='' className='ml-2'>
                   <input type='hidden' name='reactionType' value='thumbsup' />
                   <button
-                    className='w-9 h-9 p-2 bg-white rounded-full overflow-hidden  hover:bg-primary-transparent2 '
+                    className='w-10 h-10 p-2 bg-white rounded-full overflow-hidden  hover:bg-primary-transparent2 hover:scale-110 transition-transform '
                     type='submit'
                   >
                     <Image
@@ -261,7 +261,7 @@ export default function PostCard({ item, fullText }: Props) {
                       height={100}
                       width={100}
                       alt='thumbsup'
-                      src='/reactions/thumbsup.png'
+                      src='/reactions/cry.png'
                     />
                   </button>
                 </form>
