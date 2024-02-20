@@ -43,7 +43,17 @@ export default function PostCard({ item, fullText }: Props) {
           </div>
         </div>
 
-        <DropdownMenu />
+        <DropdownMenu>
+          <Link href='/account' className='block mb-2'>
+            Unfollow Profile
+          </Link>
+          <Link href='#' className='block mb-2'>
+            Bookmark Post
+          </Link>
+          <Link href='#' className='block  text-error-main'>
+            Report Post
+          </Link>
+        </DropdownMenu>
       </div>
 
       <div className='mb-1.5 px-4'>
@@ -68,9 +78,201 @@ export default function PostCard({ item, fullText }: Props) {
 
       <div className='mt-3 flex justify-between px-4 pb-3'>
         <div className='flex items-center flex-1'>
-          <button className='svgCircleButtonSmall'>
-            <IconLikeOutlined />
-          </button>
+          <div className='relative'>
+            <div className='bg-gray-100 p-2 rounded-lg  absolute left-0 bottom-full drop-shadow-lg'>
+              <div className='flex items-center'>
+                <form action=''>
+                  <input type='hidden' name='reactionType' value='thumbsup' />
+                  <button
+                    className='w-9 h-9 p-2 bg-white rounded-full overflow-hidden  hover:bg-primary-transparent2 '
+                    type='submit'
+                  >
+                    <Image
+                      className='w-full h-full'
+                      height={100}
+                      width={100}
+                      alt='thumbsup'
+                      src='/reactions/thumbsup.png'
+                    />
+                  </button>
+                </form>
+                <form action='' className='mx-2'>
+                  <input type='hidden' name='reactionType' value='thumbsup' />
+                  <button
+                    className='w-9 h-9 p-2 bg-white hover:bg-primary-transparent2 rounded-full overflow-hidden'
+                    type='submit'
+                  >
+                    <Image
+                      className='w-full h-full'
+                      height={100}
+                      width={100}
+                      alt='thumbsup'
+                      src='/reactions/thumbsup.png'
+                    />
+                  </button>
+                </form>
+                <form action=''>
+                  <input type='hidden' name='reactionType' value='thumbsup' />
+                  <button
+                    className='w-9 h-9 p-2 bg-white rounded-full overflow-hidden  hover:bg-primary-transparent2 '
+                    type='submit'
+                  >
+                    <Image
+                      className='w-full h-full'
+                      height={100}
+                      width={100}
+                      alt='thumbsup'
+                      src='/reactions/thumbsup.png'
+                    />
+                  </button>
+                </form>
+                <form action='' className='ml-2'>
+                  <input type='hidden' name='reactionType' value='thumbsup' />
+                  <button
+                    className='w-9 h-9 p-2 bg-white rounded-full overflow-hidden  hover:bg-primary-transparent2 '
+                    type='submit'
+                  >
+                    <Image
+                      className='w-full h-full'
+                      height={100}
+                      width={100}
+                      alt='thumbsup'
+                      src='/reactions/thumbsup.png'
+                    />
+                  </button>
+                </form>
+              </div>
+              <div className='flex items-center my-2'>
+                <form action=''>
+                  <input type='hidden' name='reactionType' value='thumbsup' />
+                  <button
+                    className='w-9 h-9 p-2 bg-white rounded-full overflow-hidden  hover:bg-primary-transparent2 '
+                    type='submit'
+                  >
+                    <Image
+                      className='w-full h-full'
+                      height={100}
+                      width={100}
+                      alt='thumbsup'
+                      src='/reactions/thumbsup.png'
+                    />
+                  </button>
+                </form>
+                <form action='' className='mx-2'>
+                  <input type='hidden' name='reactionType' value='thumbsup' />
+                  <button
+                    className='w-9 h-9 p-2 bg-white hover:bg-primary-transparent2 rounded-full overflow-hidden'
+                    type='submit'
+                  >
+                    <Image
+                      className='w-full h-full'
+                      height={100}
+                      width={100}
+                      alt='thumbsup'
+                      src='/reactions/thumbsup.png'
+                    />
+                  </button>
+                </form>
+                <form action=''>
+                  <input type='hidden' name='reactionType' value='thumbsup' />
+                  <button
+                    className='w-9 h-9 p-2 bg-white rounded-full overflow-hidden  hover:bg-primary-transparent2 '
+                    type='submit'
+                  >
+                    <Image
+                      className='w-full h-full'
+                      height={100}
+                      width={100}
+                      alt='thumbsup'
+                      src='/reactions/thumbsup.png'
+                    />
+                  </button>
+                </form>
+                <form action='' className='ml-2'>
+                  <input type='hidden' name='reactionType' value='thumbsup' />
+                  <button
+                    className='w-9 h-9 p-2 bg-white rounded-full overflow-hidden  hover:bg-primary-transparent2 '
+                    type='submit'
+                  >
+                    <Image
+                      className='w-full h-full'
+                      height={100}
+                      width={100}
+                      alt='thumbsup'
+                      src='/reactions/thumbsup.png'
+                    />
+                  </button>
+                </form>
+              </div>
+              <div className='flex items-center'>
+                <form action=''>
+                  <input type='hidden' name='reactionType' value='thumbsup' />
+                  <button
+                    className='w-9 h-9 p-2 bg-white rounded-full overflow-hidden  hover:bg-primary-transparent2 '
+                    type='submit'
+                  >
+                    <Image
+                      className='w-full h-full'
+                      height={100}
+                      width={100}
+                      alt='thumbsup'
+                      src='/reactions/thumbsup.png'
+                    />
+                  </button>
+                </form>
+                <form action='' className='mx-2'>
+                  <input type='hidden' name='reactionType' value='thumbsup' />
+                  <button
+                    className='w-9 h-9 p-2 bg-white hover:bg-primary-transparent2 rounded-full overflow-hidden'
+                    type='submit'
+                  >
+                    <Image
+                      className='w-full h-full'
+                      height={100}
+                      width={100}
+                      alt='thumbsup'
+                      src='/reactions/thumbsup.png'
+                    />
+                  </button>
+                </form>
+                <form action=''>
+                  <input type='hidden' name='reactionType' value='thumbsup' />
+                  <button
+                    className='w-9 h-9 p-2 bg-white rounded-full overflow-hidden  hover:bg-primary-transparent2 '
+                    type='submit'
+                  >
+                    <Image
+                      className='w-full h-full'
+                      height={100}
+                      width={100}
+                      alt='thumbsup'
+                      src='/reactions/thumbsup.png'
+                    />
+                  </button>
+                </form>
+                <form action='' className='ml-2'>
+                  <input type='hidden' name='reactionType' value='thumbsup' />
+                  <button
+                    className='w-9 h-9 p-2 bg-white rounded-full overflow-hidden  hover:bg-primary-transparent2 '
+                    type='submit'
+                  >
+                    <Image
+                      className='w-full h-full'
+                      height={100}
+                      width={100}
+                      alt='thumbsup'
+                      src='/reactions/thumbsup.png'
+                    />
+                  </button>
+                </form>
+              </div>
+            </div>
+            <form action=''>
+              <button type='submit' className='svgCircleButtonSmall'>
+                <IconLikeOutlined />
+              </button>
+            </form>
+          </div>
           {item?.Reactions > 0 && (
             <div className='font-medium text-sm4 ml-1.5'>
               {getCompactNumber(item?.Reactions)}

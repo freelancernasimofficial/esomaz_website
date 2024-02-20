@@ -8,6 +8,7 @@ import getUsername from "@/library/getUsername";
 import Link from "next/link";
 import IconHorizontalDots from "../icons/IconHorizontalDots";
 import Avatar from "../user/Avatar";
+import DropdownMenu from "../dropdown/DropdownMenu";
 
 type Props = {
   commentId: number;
@@ -59,9 +60,17 @@ export default async function FewCommentReplies({ commentId }: Props) {
                   </div>
                 </div>
               </div>
-              <button className='svgCircleButton -mt-2'>
-                <IconHorizontalDots />
-              </button>
+              <DropdownMenu>
+                <Link href='/account' className='block mb-2'>
+                  Unfollow Profile
+                </Link>
+                <Link href='#' className='block mb-2'>
+                  Bookmark Post
+                </Link>
+                <Link href='#' className='block  text-error-main'>
+                  Report Post
+                </Link>
+              </DropdownMenu>
             </div>
           </div>
         );

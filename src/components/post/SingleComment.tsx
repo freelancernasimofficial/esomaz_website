@@ -6,6 +6,7 @@ import React from "react";
 import IconHorizontalDots from "../icons/IconHorizontalDots";
 import Avatar from "../user/Avatar";
 import FewCommentReplies from "./FewCommentReplies";
+import DropdownMenu from "../dropdown/DropdownMenu";
 
 type Props = {
   item: any;
@@ -19,7 +20,6 @@ export default function SingleComment({ item }: Props) {
           <Avatar className='w-8 h-8' user={item?.User} />
           <div className='ml-2 flex-1'>
             <div>
-              {" "}
               <Link
                 href={`/user/${getUsername(item?.User)}`}
                 className='inline-block'
@@ -40,9 +40,17 @@ export default function SingleComment({ item }: Props) {
             </div>
           </div>
         </div>
-        <button className='svgCircleButton -mt-2'>
-          <IconHorizontalDots />
-        </button>
+        <DropdownMenu>
+          <Link href='/account' className='block mb-2'>
+            Unfollow Profile
+          </Link>
+          <Link href='#' className='block mb-2'>
+            Bookmark Post
+          </Link>
+          <Link href='#' className='block  text-error-main'>
+            Report Post
+          </Link>
+        </DropdownMenu>
       </div>
     </div>
   );
