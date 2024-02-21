@@ -60,6 +60,7 @@ export default function SingleReplyComment({ item }: Props) {
                 {item?.text}
               </div>
             </div>
+
             {activeReplyCommentId === item?.id ? (
               <ReplyCommentReplyForm item={item} />
             ) : null}
