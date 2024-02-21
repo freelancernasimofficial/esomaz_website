@@ -3,13 +3,15 @@ import getRelativeTime from "@/library/getRelativeTime";
 import getUsername from "@/library/getUsername";
 import Link from "next/link";
 import React from "react";
-import IconHorizontalDots from "../icons/IconHorizontalDots";
 import Avatar from "../user/Avatar";
 import FewCommentReplies from "./FewCommentReplies";
 import DropdownMenu from "../dropdown/DropdownMenu";
 import ReactionCard from "./ReactionCard";
 import reactionAction from "@/actions/reactionAction";
 import getCompactNumber from "@/library/getCompactNumber";
+import MainCommentReplyForm from "./MainCommentReplyForm";
+import mainCommentReplyButtonAction from "@/actions/mainCommentReplyButtonAction";
+import CookieStore from "@/library/CookieStore";
 
 type Props = {
   item: any;
@@ -20,6 +22,12 @@ export default function SingleComment({ item }: Props) {
     itemId: item?.id,
     itemType: "comment",
   });
+  const bindMainCommentReplyButton = mainCommentReplyButtonAction?.bind(
+    null,
+    item?.id,
+  );
+
+  const activeMainCommentId = CookieStore.getState("mcr_id");
 
   return (
     <div className='mb-3'>
@@ -43,20 +51,28 @@ export default function SingleComment({ item }: Props) {
             <div className='text-sm3 mt-1 inline-block'>{item?.text}</div>
           </div>
 
-          <div className='flex'>
+          {activeMainCommentId === item?.id ? <MainCommentReplyForm /> : null}
+
+          <div className='flex items-center'>
             <ReactionCard
               action={commentReactionAction}
               currentReaction={item?.myReactionType}
             />{" "}
             {item?.totalReactions > 0 ? (
-              <div className='ml-1.5 mt-2 text-sm4 font-medium'>
+              <div className='ml-1.5  text-sm4 font-medium'>
                 {getCompactNumber(item?.totalReactions)} People
               </div>
             ) : null}
+            <form action={bindMainCommentReplyButton} className='ml-6'>
+              <button
+                className='m-0 p-0 h-auto text-sm4 font-medium'
+                type='submit'
+              >
+                Reply
+              </button>
+            </form>
           </div>
-          <div className=''>
-            <FewCommentReplies commentId={item.id} />
-          </div>
+          <FewCommentReplies commentId={item.id} />
         </div>
         <DropdownMenu>
           <Link href='/account' className='block mb-2'>

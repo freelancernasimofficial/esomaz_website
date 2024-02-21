@@ -1,7 +1,4 @@
 import React from "react";
-import IconHorizontalDots from "../icons/IconHorizontalDots";
-import Image from "next/image";
-import IconLikeOutlined from "../icons/IconLikeOutlined";
 import IconShareOutline from "../icons/IconShareOutline";
 import IconChat from "../icons/IconChat";
 import Link from "next/link";
@@ -89,7 +86,7 @@ export default function PostCard({ item, fullText }: Props) {
             action={postReactionAction}
           />
           {item?.Reactions > 0 && (
-            <div className='font-medium text-sm4 ml-1.5 mt-1'>
+            <div className='font-medium text-sm4 ml-1.5 mt-0.5'>
               {getCompactNumber(item?.Reactions)} People
             </div>
           )}
