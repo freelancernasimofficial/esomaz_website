@@ -51,7 +51,9 @@ export default function SingleComment({ item }: Props) {
             <div className='text-sm3 mt-1 inline-block'>{item?.text}</div>
           </div>
 
-          {activeMainCommentId === item?.id ? <MainCommentReplyForm /> : null}
+          {activeMainCommentId === item?.id ? (
+            <MainCommentReplyForm item={item} />
+          ) : null}
 
           <div className='flex items-center'>
             <ReactionCard

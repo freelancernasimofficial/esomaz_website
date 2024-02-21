@@ -1,19 +1,20 @@
 import React from "react";
 import SubmitButton from "../button/SubmitButton";
-import mainCommentReplyAction from "@/actions/mainCommentReplyAction";
+import replyCommentReplyAction from "@/actions/replyCommentReplyAction";
 
 type Props = {
   item: any;
 };
 
-export default function MainCommentReply({ item }: Props) {
-  const bindMainCommentReply = mainCommentReplyAction?.bind(null, {
+export default function ReplyCommentReplyForm({ item }: Props) {
+  const bindReplyCommentReply = replyCommentReplyAction?.bind(null, {
     postId: item?.postId,
-    commentId: item?.id,
+    parentCommentId: item?.parentId,
+    targetedCommentId: item.id,
   });
 
   return (
-    <form action={bindMainCommentReply} className='my-2'>
+    <form action={bindReplyCommentReply} className='my-2'>
       <textarea
         name='comment'
         placeholder='Enter reply'

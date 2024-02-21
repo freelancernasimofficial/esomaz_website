@@ -7,6 +7,10 @@ import DropdownMenu from "../dropdown/DropdownMenu";
 import Avatar from "../user/Avatar";
 import ReactionCard from "./ReactionCard";
 import reactionAction from "@/actions/reactionAction";
+import CookieStore from "@/library/CookieStore";
+import replyCommentReplyButtonAction from "@/actions/replyCommentReplyButtonAction";
+import getCompactNumber from "@/library/getCompactNumber";
+import ReplyCommentReplyForm from "./ReplyCommentReplyForm";
 
 type Props = {
   item: any;
@@ -18,12 +22,19 @@ export default function SingleReplyComment({ item }: Props) {
     itemType: "comment",
   });
 
+  const bindReplyCommentReplyButton = replyCommentReplyButtonAction?.bind(
+    null,
+    item?.id,
+  );
+
+  const activeReplyCommentId = CookieStore.getState("rcr_id");
+
   return (
     <div key={item?.uuId} className='my-2'>
       <div className='flex justify-between'>
-        <div className='flex'>
+        <div className='flex w-full'>
           <Avatar className='w-6 h-6' user={item?.User} />
-          <div className='mx-2'>
+          <div className='mx-2 w-full'>
             <div className='inline-block bg-gray-100 px-2 py-1.5 rounded-xl'>
               <Link
                 href={`/user/${getUsername(item?.User)}`}
@@ -49,17 +60,27 @@ export default function SingleReplyComment({ item }: Props) {
                 {item?.text}
               </div>
             </div>
-
+            {activeReplyCommentId === item?.id ? (
+              <ReplyCommentReplyForm item={item} />
+            ) : null}
             <div className='flex items-center'>
               <ReactionCard
                 action={commentReactionAction}
                 currentReaction={item?.myReactionType}
               />{" "}
               {item?.totalReactions > 0 ? (
-                <div className='text-sm4 ml-1.5 font-medium mt-1'>
-                  {item?.totalReactions} People
+                <div className='text-sm4 ml-1.5 font-medium'>
+                  {getCompactNumber(item?.totalReactions)} People
                 </div>
               ) : null}
+              <form action={bindReplyCommentReplyButton} className='ml-6'>
+                <button
+                  className='m-0 p-0 h-auto text-sm4 font-medium'
+                  type='submit'
+                >
+                  Reply
+                </button>
+              </form>
             </div>
           </div>
         </div>
