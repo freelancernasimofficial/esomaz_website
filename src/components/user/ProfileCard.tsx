@@ -45,7 +45,32 @@ export default function ProfileCard({ user }: Props) {
         <span className='block text-base font-medium text-gray-500 leading-5'>
           {user?.subtitle}
         </span>
+
+        <div className='container mt-4'>
+          <div className='flex flex-col justify-center items-center'>
+            <div className='flex items-center flex-1 text-sm2'>
+              <div className='text-center'>
+                <div className='font-bold text-lg'>2.5k</div>
+                <div className='leading-3'>Friends</div>
+              </div>
+              <div className='text-center mx-5'>
+                <div className='font-bold text-lg'>2.5k</div>
+                <div className='leading-3'>Followers</div>
+              </div>
+              <div className='text-center'>
+                <div className='font-bold text-lg'>2.5k</div>
+                <div className='leading-3'>Following</div>
+              </div>
+            </div>
+            <div className='flex-1 flex items-center mt-4'>
+              <button className='btn btn-primary'>Add Friend</button>
+              <button className='btn btn-primary mx-2'>Follow</button>
+              <button className='btn'>Message</button>
+            </div>
+          </div>
+        </div>
       </div>
+
       <div className='flex justify-between items-center'>
         <div
           id='profileNavigation'
