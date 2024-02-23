@@ -18,7 +18,7 @@ const query = async (query: string) => {
       return undefined;
     }
   } catch (error: any) {
-    return error.message;
+    return console.log(error.message);
   }
 };
 const prepare = async (query: string, values: any[]) => {

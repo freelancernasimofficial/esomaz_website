@@ -3,11 +3,15 @@ import React from "react";
 import IconHorizontalDots from "../icons/IconHorizontalDots";
 import Image from "next/image";
 import getFullName from "@/library/getFullName";
+import addFriendAction from "@/actions/addFriendAction";
+import addFollowAction from "@/actions/addFollowAction";
 type Props = {
   user: any;
 };
 
-export default function ProfileCard({ user }: Props) {
+export default async function ProfileCard({ user }: Props) {
+  const bindAddFriend = addFriendAction?.bind(null, user?.id);
+  const bindFollow = addFollowAction?.bind(null, user?.id);
   return (
     <div className='centerCard bg-white rounded-lg overflow-hidden shadow-sm'>
       <div className='w-full max-h-72 min-h-48  relative'>
@@ -63,8 +67,12 @@ export default function ProfileCard({ user }: Props) {
               </div>
             </div>
             <div className='flex-1 flex items-center mt-4'>
-              <button className='btn btn-primary'>Add Friend</button>
-              <button className='btn btn-primary mx-2'>Follow</button>
+              <form action={bindAddFriend}>
+                <button className='btn btn-primary'>Add Friend</button>
+              </form>
+              <form action={bindFollow}>
+                <button className='btn btn-primary mx-2'>Follow</button>
+              </form>
               <button className='btn'>Message</button>
             </div>
           </div>
