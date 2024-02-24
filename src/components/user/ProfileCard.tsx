@@ -12,6 +12,7 @@ type Props = {
 export default async function ProfileCard({ user }: Props) {
   const bindAddFriend = addFriendAction?.bind(null, user?.id);
   const bindFollow = addFollowAction?.bind(null, user?.id);
+
   return (
     <div className='centerCard bg-white rounded-lg overflow-hidden shadow-sm'>
       <div className='w-full max-h-72 min-h-48  relative'>
@@ -67,9 +68,19 @@ export default async function ProfileCard({ user }: Props) {
               </div>
             </div>
             <div className='flex-1 flex items-center mt-4'>
-              <form action={bindAddFriend}>
-                <button className='btn btn-primary'>Add Friend</button>
-              </form>
+              {user?.isFriends > 0 ? (
+                <form action={bindAddFriend}>
+                  <button className='btn btn-error'>Unfriend</button>
+                </form>
+              ) : user?.meRequestSent > 0 ? (
+                <form action={bindAddFriend}>
+                  <button className='btn btn-success'>Requested</button>
+                </form>
+              ) : user?.heRequestSent > 0 ? (
+                <form action={bindAddFriend}>
+                  <button className='btn btn-error'>Reject</button>
+                </form>
+              ) : null}
               <form action={bindFollow}>
                 <button className='btn btn-primary mx-2'>Follow</button>
               </form>

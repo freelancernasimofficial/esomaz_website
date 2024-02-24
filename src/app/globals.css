@@ -42,6 +42,12 @@
   .btn-primary-transparent {
     @apply bg-primary-transparent2 text-primary-hover;
   }
+  .btn-success {
+    @apply bg-success-main text-white;
+  }
+  .btn-success-transparent {
+    @apply bg-success-transparent2 text-success-hover;
+  }
   .btn-error {
     @apply bg-error-main text-white;
   }
