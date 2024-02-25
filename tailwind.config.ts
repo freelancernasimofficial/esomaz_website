@@ -14,7 +14,7 @@ const config: Config = {
     extend: {
       colors: {
         primary: {
-          main: "#154aff",
+          main: "#0B4FFF",
           hover: "#113fd9",
           transparent1: "#eff6ff",
           transparent2: "#dbeafe",

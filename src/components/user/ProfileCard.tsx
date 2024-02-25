@@ -1,17 +1,102 @@
 import Link from "next/link";
-import React from "react";
+import React, { use } from "react";
 import IconHorizontalDots from "../icons/IconHorizontalDots";
 import Image from "next/image";
 import getFullName from "@/library/getFullName";
-import addFriendAction from "@/actions/addFriendAction";
-import addFollowAction from "@/actions/addFollowAction";
+import addFriendAction, {
+  rejectFriendAction,
+  unFriendAction,
+} from "@/actions/addFriendAction";
+import addFollowAction, {
+  followBackAction,
+  unFollowAction,
+} from "@/actions/addFollowAction";
+import getCompactNumber from "@/library/getCompactNumber";
+import auth from "@/library/auth";
 type Props = {
   user: any;
 };
 
 export default async function ProfileCard({ user }: Props) {
+  const currentUser = await auth();
   const bindAddFriend = addFriendAction?.bind(null, user?.id);
+  const bindUnFriend = unFriendAction?.bind(null, user?.id);
+  const bindRejectFriend = rejectFriendAction?.bind(null, user?.id);
   const bindFollow = addFollowAction?.bind(null, user?.id);
+  const bindUnfollow = unFollowAction?.bind(null, user?.id);
+  const bindFollowBack = followBackAction?.bind(null, user?.id);
+
+  const GetFriendButton = () => {
+    if (Number(currentUser?.id) === Number(user?.id)) {
+      return null;
+    } else if (user?.isFriends > 0) {
+      return (
+        <form action={bindAddFriend}>
+          <button className='btn btn-error'>Unfriend</button>
+        </form>
+      );
+    } else if (user?.meRequestSent > 0) {
+      return (
+        <form action={bindUnFriend}>
+          <button className='btn btn-success'>Requested</button>
+        </form>
+      );
+    } else if (user?.heRequestSent > 0) {
+      return (
+        <form action={bindRejectFriend}>
+          <button className='btn btn-error'>Reject</button>
+        </form>
+      );
+    } else {
+      return (
+        <form action={bindAddFriend}>
+          <button className='btn btn-primary'>Add Friend</button>
+        </form>
+      );
+    }
+  };
+
+  const GetFollowButton = () => {
+    if (currentUser?.id === user?.id) {
+      return null;
+    } else if (user?.isHeFollowing > 0) {
+      return (
+        <form action={bindFollowBack}>
+          <button type='submit' className='btn btn-primary mx-2'>
+            Follow Back
+          </button>
+        </form>
+      );
+    } else if (user?.isMeFollowing > 0) {
+      return (
+        <form action={bindUnfollow}>
+          <button type='submit' className='btn btn-error mx-2'>
+            unFollow
+          </button>
+        </form>
+      );
+    } else if (user?.isMeFollowing === 1 && user?.isHeFollowing === 1) {
+      return (
+        <form action={bindFollow}>
+          <button type='submit' className='btn btn-primary mx-2'>
+            Following
+          </button>
+        </form>
+      );
+    } else {
+      return (
+        <>
+          {" "}
+          <form action={bindFollow}>
+            <button type='submit' className='btn btn-primary mx-2'>
+              Follow
+            </button>
+          </form>
+          <button className='btn'>Message</button>
+        </>
+      );
+    }
+  };
 
   return (
     <div className='centerCard bg-white rounded-lg overflow-hidden shadow-sm'>
@@ -55,36 +140,27 @@ export default async function ProfileCard({ user }: Props) {
           <div className='flex flex-col justify-center items-center'>
             <div className='flex items-center flex-1 text-sm2'>
               <div className='text-center'>
-                <div className='font-bold text-lg'>2.5k</div>
+                <div className='font-bold text-lg'>
+                  {getCompactNumber(user?.totalFriends)}
+                </div>
                 <div className='leading-3'>Friends</div>
               </div>
               <div className='text-center mx-5'>
-                <div className='font-bold text-lg'>2.5k</div>
+                <div className='font-bold text-lg'>
+                  {getCompactNumber(user?.totalFollowers)}
+                </div>
                 <div className='leading-3'>Followers</div>
               </div>
               <div className='text-center'>
-                <div className='font-bold text-lg'>2.5k</div>
+                <div className='font-bold text-lg'>
+                  {getCompactNumber(user?.totalFollowing)}
+                </div>
                 <div className='leading-3'>Following</div>
               </div>
             </div>
             <div className='flex-1 flex items-center mt-4'>
-              {user?.isFriends > 0 ? (
-                <form action={bindAddFriend}>
-                  <button className='btn btn-error'>Unfriend</button>
-                </form>
-              ) : user?.meRequestSent > 0 ? (
-                <form action={bindAddFriend}>
-                  <button className='btn btn-success'>Requested</button>
-                </form>
-              ) : user?.heRequestSent > 0 ? (
-                <form action={bindAddFriend}>
-                  <button className='btn btn-error'>Reject</button>
-                </form>
-              ) : null}
-              <form action={bindFollow}>
-                <button className='btn btn-primary mx-2'>Follow</button>
-              </form>
-              <button className='btn'>Message</button>
+              <GetFriendButton />
+              <GetFollowButton />
             </div>
           </div>
         </div>
