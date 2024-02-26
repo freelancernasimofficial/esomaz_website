@@ -4,8 +4,9 @@ import IconHorizontalDots from "../icons/IconHorizontalDots";
 import Image from "next/image";
 import getFullName from "@/library/getFullName";
 import addFriendAction, {
+  acceptFriendAction,
+  cancelFriendAction,
   rejectFriendAction,
-  unFriendAction,
 } from "@/actions/addFriendAction";
 import addFollowAction, {
   followBackAction,
@@ -13,6 +14,7 @@ import addFollowAction, {
 } from "@/actions/addFollowAction";
 import getCompactNumber from "@/library/getCompactNumber";
 import auth from "@/library/auth";
+import UserStatistics from "./UserStatistics";
 type Props = {
   user: any;
 };
@@ -20,7 +22,8 @@ type Props = {
 export default async function ProfileCard({ user }: Props) {
   const currentUser = await auth();
   const bindAddFriend = addFriendAction?.bind(null, user?.id);
-  const bindUnFriend = unFriendAction?.bind(null, user?.id);
+  const bindCancelFriend = cancelFriendAction?.bind(null, user?.id);
+  const bindAcceptFriendAction = acceptFriendAction?.bind(null, user?.id);
   const bindRejectFriend = rejectFriendAction?.bind(null, user?.id);
   const bindFollow = addFollowAction?.bind(null, user?.id);
   const bindUnfollow = unFollowAction?.bind(null, user?.id);
@@ -29,37 +32,81 @@ export default async function ProfileCard({ user }: Props) {
   const GetFriendButton = () => {
     if (Number(currentUser?.id) === Number(user?.id)) {
       return null;
-    } else if (user?.isFriends > 0) {
+    }
+    if (user?.isFriends > 0) {
       return (
         <form action={bindAddFriend}>
-          <button className='btn btn-error'>Unfriend</button>
-        </form>
-      );
-    } else if (user?.meRequestSent > 0) {
-      return (
-        <form action={bindUnFriend}>
-          <button className='btn btn-success'>Requested</button>
-        </form>
-      );
-    } else if (user?.heRequestSent > 0) {
-      return (
-        <form action={bindRejectFriend}>
-          <button className='btn btn-error'>Reject</button>
-        </form>
-      );
-    } else {
-      return (
-        <form action={bindAddFriend}>
-          <button className='btn btn-primary'>Add Friend</button>
+          <button className='btn btn-success'>Friends</button>
         </form>
       );
     }
+    if (
+      user?.meRequestSent > 0 &&
+      user?.heRequestSent === 0 &&
+      user?.isFriends === 0
+    ) {
+      return (
+        <form action={bindCancelFriend}>
+          <button type='submit' className='btn btn-info'>
+            Requested
+          </button>
+        </form>
+      );
+    }
+    if (
+      user?.heRequestSent === 1 &&
+      user?.isFriends === 0 &&
+      user?.meRequestSent === 0
+    ) {
+      return (
+        <div className='relative group' tabIndex={-1}>
+          <button className='btn btn-info'>Respond</button>
+          <div className='absolute bottom-0 left-0 w-full hidden group-focus:block group-focus-within:block drop-shadow-lg'>
+            <form className='w-full mb-2' action={bindRejectFriend}>
+              <button type='submit' className='btn btn-error w-full'>
+                Reject
+              </button>
+            </form>
+            <form className='w-full' action={bindAcceptFriendAction}>
+              <button type='submit' className='btn btn-success w-full'>
+                Accept
+              </button>
+            </form>
+          </div>
+        </div>
+      );
+    }
+
+    if (
+      user?.heRequestSent === 0 &&
+      user?.heRequestSent === 0 &&
+      user?.isFriends === 0
+    )
+      return (
+        <form action={bindAddFriend}>
+          <button type='submit' className='btn btn-primary'>
+            Add Friend
+          </button>
+        </form>
+      );
   };
 
   const GetFollowButton = () => {
     if (currentUser?.id === user?.id) {
       return null;
-    } else if (user?.isHeFollowing > 0) {
+    }
+
+    if (user?.isMeFollowing === 1 && user?.isHeFollowing === 1) {
+      return (
+        <form action={bindUnfollow}>
+          <button type='submit' className='btn btn-primary mx-2'>
+            Followers
+          </button>
+        </form>
+      );
+    }
+
+    if (user?.isMeFollowing === 0 && user?.isHeFollowing === 1) {
       return (
         <form action={bindFollowBack}>
           <button type='submit' className='btn btn-primary mx-2'>
@@ -67,35 +114,25 @@ export default async function ProfileCard({ user }: Props) {
           </button>
         </form>
       );
-    } else if (user?.isMeFollowing > 0) {
+    }
+
+    if (user?.isMeFollowing === 1 && user?.isHeFollowing === 0) {
       return (
         <form action={bindUnfollow}>
-          <button type='submit' className='btn btn-error mx-2'>
-            unFollow
-          </button>
-        </form>
-      );
-    } else if (user?.isMeFollowing === 1 && user?.isHeFollowing === 1) {
-      return (
-        <form action={bindFollow}>
-          <button type='submit' className='btn btn-primary mx-2'>
+          <button type='submit' className='btn btn-success mx-2'>
             Following
           </button>
         </form>
       );
-    } else {
-      return (
-        <>
-          {" "}
-          <form action={bindFollow}>
-            <button type='submit' className='btn btn-primary mx-2'>
-              Follow
-            </button>
-          </form>
-          <button className='btn'>Message</button>
-        </>
-      );
     }
+
+    return (
+      <form action={bindFollow}>
+        <button type='submit' className='btn btn-primary mx-2'>
+          Follow
+        </button>
+      </form>
+    );
   };
 
   return (
@@ -139,28 +176,12 @@ export default async function ProfileCard({ user }: Props) {
         <div className='container mt-4'>
           <div className='flex flex-col justify-center items-center'>
             <div className='flex items-center flex-1 text-sm2'>
-              <div className='text-center'>
-                <div className='font-bold text-lg'>
-                  {getCompactNumber(user?.totalFriends)}
-                </div>
-                <div className='leading-3'>Friends</div>
-              </div>
-              <div className='text-center mx-5'>
-                <div className='font-bold text-lg'>
-                  {getCompactNumber(user?.totalFollowers)}
-                </div>
-                <div className='leading-3'>Followers</div>
-              </div>
-              <div className='text-center'>
-                <div className='font-bold text-lg'>
-                  {getCompactNumber(user?.totalFollowing)}
-                </div>
-                <div className='leading-3'>Following</div>
-              </div>
+              <UserStatistics user={user} />
             </div>
             <div className='flex-1 flex items-center mt-4'>
               <GetFriendButton />
               <GetFollowButton />
+              <button className='btn'>Message</button>
             </div>
           </div>
         </div>
