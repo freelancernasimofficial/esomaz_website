@@ -32,19 +32,13 @@ export default async function page({ params }: Props) {
   );
 
   return (
-    <div className='centerCard  overflow-hidden mt-6'>
-      <div className='md:flex w-full'>
-        <div className='md:w-5/12 w-full md:pr-6'>
-          <UserIntro userId={user?.id} />
-          <FriendsCard />
-        </div>
-        <div className='md:w-7/12 w-full md:mt-0 mt-6'>
-          <PostForm />
-          {posts?.map((item: any, index: number) => {
-            return <PostCard key={item?.uuId} item={item} />;
-          })}
-        </div>
+    <React.Fragment>
+      <div className='mt-4 md:mt-0'>
+        <PostForm />
       </div>
-    </div>
+      {posts?.map((item: any, index: number) => {
+        return <PostCard key={item?.uuId} item={item} />;
+      })}
+    </React.Fragment>
   );
 }

@@ -10,6 +10,8 @@ import IconUser from "@/components/icons/IconUser";
 import IconUsers from "@/components/icons/IconUsers";
 import IconVideo from "@/components/icons/IconVideo";
 import auth from "@/library/auth";
+import getFullName from "@/library/getFullName";
+import getSubtitle from "@/library/getSubtitle";
 import getUsername from "@/library/getUsername";
 import Image from "next/image";
 import Link from "next/link";
@@ -23,7 +25,7 @@ export default async function page({}: Props) {
   return (
     <div className='container'>
       <div className='centerCardSmall mb-4'>
-        <div className='w-full bg-white rounded-lg p-6 flex items-center justify-between'>
+        <div className='w-full bg-white rounded-lg p-4 flex items-center justify-between'>
           <div className='flex items-center'>
             {" "}
             <div className='mr-3 shrink-0 w-12 h-12 overflow-hidden border-2 items-center border-primary-main rounded-full mx-auto'>
@@ -38,23 +40,23 @@ export default async function page({}: Props) {
             <div className=''>
               <Link
                 href={`/user/${getUsername(user)}`}
-                className='font-semibold inline-block text-lg'
+                className='font-semibold leading-5 inline-block text-lg'
               >
-                Md Nasim
+                {getFullName(user)}
               </Link>
-              <div className=' text-gray-500 leading-3 text-sm2'>
-                Javascript Expert
+              <div className=' text-gray-500 leading-3 text-sm4 font-semibold'>
+                {getSubtitle(user)}
               </div>
             </div>
           </div>
           <div>
-            <h2 className='font-bold text-base text-gray-400'>Balance</h2>
-            <div className='font-semibold text-green-600'>
-              $25820.00 <span className='text-black font-semibold'>USD</span>
+            <h2 className='font-bold text-sm3 text-gray-400'>Balance</h2>
+            <div className='font-bold text-sm3 text-green-600'>
+              $25820.00 <span className='text-black font-bold'>USD</span>
             </div>
           </div>
         </div>
-        <div className='w-full bg-white rounded-lg p-6 mt-4'>
+        <div className='w-full bg-white rounded-lg p-4 mt-4'>
           <h2 className='font-bold'>Social Media</h2>
           <div className='mt-1'>
             <Link
@@ -95,7 +97,7 @@ export default async function page({}: Props) {
             </Link>
           </div>
         </div>
-        <div className='w-full bg-white rounded-lg p-6 mt-4'>
+        <div className='w-full bg-white rounded-lg p-4 mt-4'>
           <h2 className='font-bold'>Freelancing</h2>
           <div className='mt-1'>
             <Link
@@ -118,7 +120,7 @@ export default async function page({}: Props) {
             </Link>
           </div>
         </div>
-        <div className='w-full bg-white rounded-lg p-6 mt-4'>
+        <div className='w-full bg-white rounded-lg p-4 mt-4'>
           <h2 className='font-bold'>Account</h2>
           <div className='mt-1'>
             <Link

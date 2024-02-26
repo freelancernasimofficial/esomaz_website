@@ -6,7 +6,7 @@ type Props = {};
 
 export default function FriendsCard({}: Props) {
   return (
-    <div className='w-full p-4 mt-6 rounded-lg bg-white shadow'>
+    <div className='w-full p-4 mt-4 rounded-lg bg-white shadow'>
       <div className='mb-2 flex justify-between'>
         <h2 className='font-bold text-xl'>Friends</h2>
         <Link className='text-primary-main text-sm2' href='#'>

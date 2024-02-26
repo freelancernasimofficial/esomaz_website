@@ -13,9 +13,9 @@ import addFollowAction, {
   followBackAction,
   unFollowAction,
 } from "@/actions/addFollowAction";
-import getCompactNumber from "@/library/getCompactNumber";
 import auth from "@/library/auth";
 import UserStatistics from "./UserStatistics";
+import getSubtitle from "@/library/getSubtitle";
 type Props = {
   user: any;
 };
@@ -147,17 +147,16 @@ export default async function ProfileCard({ user }: Props) {
 
   return (
     <div className='centerCard bg-white rounded-lg overflow-hidden shadow-sm'>
-      <div className='w-full max-h-72 min-h-48  relative'>
-        <div
-          style={{
-            backgroundImage: user?.coverPhoto?.filename
-              ? `url(/uploads/photos/${user?.coverPhoto?.filename})`
-              : "url(/images/static/avatars/default-cover.webp)",
-            backgroundPosition: "center center",
-          }}
-          className='md:max-h-80 md:min-h-80 max-h-72 min-h-72 overflow-hidden rounded-t-lg bg-no-repeat bg-cover'
-        ></div>
-        <div className='w-48 h-48 overflow-hidden rounded-full absolute left-2/4 -translate-x-2/4 bottom-0 translate-y-2/4 border-4 border-blue-500'>
+      <div
+        style={{
+          backgroundImage: user?.coverPhoto?.filename
+            ? `url(/uploads/photos/${user?.coverPhoto?.filename})`
+            : "url(/images/static/avatars/default-cover.webp)",
+          backgroundPosition: "center center",
+        }}
+        className='md:max-h-80 md:min-h-80 max-h-72 min-h-72  rounded-t-lg bg-no-repeat bg-cover relative'
+      >
+        <div className='w-48 h-48 overflow-hidden rounded-full absolute left-2/4 -translate-x-2/4 bottom-0  border-8 translate-y-2/4 border-white'>
           {user?.avatar ? (
             <Image
               width={200}
@@ -177,10 +176,11 @@ export default async function ProfileCard({ user }: Props) {
           )}
         </div>
       </div>
+
       <div className='pt-[105px] flex flex-col items-center pb-6 border-b'>
         <h2 className='font-semibold text-xl'>{getFullName(user)}</h2>
         <span className='block text-base font-medium text-gray-500 leading-5'>
-          {user?.subtitle}
+          {getSubtitle(user)}
         </span>
 
         <div className='container mt-4'>
@@ -191,7 +191,9 @@ export default async function ProfileCard({ user }: Props) {
             <div className='flex-1 flex items-center mt-4'>
               <GetFriendButton />
               <GetFollowButton />
-              <button className='btn'>Message</button>
+              {currentUser?.id !== user?.id && (
+                <button className='btn'>Message</button>
+              )}
             </div>
           </div>
         </div>

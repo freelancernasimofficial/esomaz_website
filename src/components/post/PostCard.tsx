@@ -32,7 +32,7 @@ export default function PostCard({ item, fullText }: Props) {
           </div>
           <div className='ml-2'>
             <Link href={`/user/${getUsername(item?.User)}`} className='block'>
-              <h4 className='font-medium'>{getFullName(item?.User)}</h4>
+              <h4 className='font-semibold'>{getFullName(item?.User)}</h4>
             </Link>
             <div className='flex items-center'>
               <IconEarth className='w-3.5 h-3.5 mr-1 text-gray-500' />
@@ -75,9 +75,9 @@ export default function PostCard({ item, fullText }: Props) {
           )}
         </div>
       </div>
-      <div className='w-full'>
+      <Link href={`/posts/${item?.uuId}`} className='block w-full'>
         <PostPhotos photos={item?.Photos} />
-      </div>
+      </Link>
 
       <div className='mt-3 flex justify-between px-4 pb-3'>
         <div className='flex items-center flex-1'>

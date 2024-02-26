@@ -4,6 +4,8 @@ import Model from "@/model/Model";
 import { headers } from "next/headers";
 import React from "react";
 import bcrypt from "bcrypt";
+import FriendsCard from "@/components/user/FriendsCard";
+import UserIntro from "@/components/user/UserIntro";
 type Props = {
   children: any;
   params?: {
@@ -19,8 +21,16 @@ export default async function UserLayout({ params, children }: Props) {
 
   return (
     <div className='container'>
-      <ProfileCard user={user} />
-      {children}
+      <div className='centerCard'>
+        <div className='md:flex'>
+          <div className='w-full md:w-6/12 md:pr-6'>
+            <ProfileCard user={user} />
+            <UserIntro userId={user?.id} />
+            <FriendsCard />
+          </div>
+          <div className='w-full md:w-6/12'> {children}</div>
+        </div>
+      </div>
     </div>
   );
 }

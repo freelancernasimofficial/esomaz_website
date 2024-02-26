@@ -40,25 +40,25 @@
     @apply bg-primary-main text-white hover:bg-primary-hover;
   }
   .btn-primary-transparent {
-    @apply bg-primary-transparent2 text-primary-hover;
+    @apply bg-primary-transparent2 hover:bg-primary-transparent1 text-primary-hover;
   }
   .btn-success {
     @apply bg-success-main text-white hover:bg-success-hover;
   }
   .btn-success-transparent {
-    @apply bg-success-transparent2 text-success-hover;
+    @apply bg-success-transparent2 hover:bg-success-transparent1 text-success-hover;
   }
   .btn-info {
     @apply bg-info-main hover:bg-info-hover text-white;
   }
   .btn-info-transparent {
-    @apply bg-info-transparent2 text-info-hover;
+    @apply bg-info-transparent2 hover:bg-info-transparent1 text-info-hover;
   }
   .btn-error {
     @apply bg-error-main hover:bg-error-hover text-white;
   }
   .btn-error-transparent {
-    @apply bg-error-transparent1 text-error-hover;
+    @apply bg-error-transparent2 hover:bg-error-transparent1 text-error-hover;
   }
   .errorCard {
     @apply p-2 border border-error-hover bg-error-transparent1 text-error-hover rounded-lg mb-4 font-medium;
