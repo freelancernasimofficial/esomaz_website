@@ -7,6 +7,7 @@ import addFriendAction, {
   acceptFriendAction,
   cancelFriendAction,
   rejectFriendAction,
+  unFriendAction,
 } from "@/actions/addFriendAction";
 import addFollowAction, {
   followBackAction,
@@ -24,6 +25,7 @@ export default async function ProfileCard({ user }: Props) {
   const bindAddFriend = addFriendAction?.bind(null, user?.id);
   const bindCancelFriend = cancelFriendAction?.bind(null, user?.id);
   const bindAcceptFriendAction = acceptFriendAction?.bind(null, user?.id);
+  const bindUnFriend = unFriendAction?.bind(null, user?.id);
   const bindRejectFriend = rejectFriendAction?.bind(null, user?.id);
   const bindFollow = addFollowAction?.bind(null, user?.id);
   const bindUnfollow = unFollowAction?.bind(null, user?.id);
@@ -33,11 +35,19 @@ export default async function ProfileCard({ user }: Props) {
     if (Number(currentUser?.id) === Number(user?.id)) {
       return null;
     }
-    if (user?.isFriends > 0) {
+    if (user?.isFriends === 1) {
       return (
-        <form action={bindAddFriend}>
-          <button className='btn btn-success'>Friends</button>
-        </form>
+        <div tabIndex={-1} className='relative group '>
+          <button className='btn btn-success  group-focus:hidden'>
+            Friends
+          </button>
+          <form
+            className='hidden group-focus-within:block group-focus:block absolute left-0 top-0'
+            action={bindUnFriend}
+          >
+            <button className='btn btn-error'>Remove</button>
+          </form>
+        </div>
       );
     }
     if (
@@ -62,12 +72,12 @@ export default async function ProfileCard({ user }: Props) {
         <div className='relative group' tabIndex={-1}>
           <button className='btn btn-info'>Respond</button>
           <div className='absolute bottom-0 left-0 w-full hidden group-focus:block group-focus-within:block drop-shadow-lg'>
-            <form className='w-full mb-2' action={bindRejectFriend}>
+            <form className='mb-2' action={bindRejectFriend}>
               <button type='submit' className='btn btn-error w-full'>
                 Reject
               </button>
             </form>
-            <form className='w-full' action={bindAcceptFriendAction}>
+            <form action={bindAcceptFriendAction}>
               <button type='submit' className='btn btn-success w-full'>
                 Accept
               </button>
@@ -99,7 +109,7 @@ export default async function ProfileCard({ user }: Props) {
     if (user?.isMeFollowing === 1 && user?.isHeFollowing === 1) {
       return (
         <form action={bindUnfollow}>
-          <button type='submit' className='btn btn-primary mx-2'>
+          <button type='submit' className='btn btn-primary mx-3'>
             Followers
           </button>
         </form>
@@ -109,7 +119,7 @@ export default async function ProfileCard({ user }: Props) {
     if (user?.isMeFollowing === 0 && user?.isHeFollowing === 1) {
       return (
         <form action={bindFollowBack}>
-          <button type='submit' className='btn btn-primary mx-2'>
+          <button type='submit' className='btn btn-primary mx-3'>
             Follow Back
           </button>
         </form>
@@ -119,7 +129,7 @@ export default async function ProfileCard({ user }: Props) {
     if (user?.isMeFollowing === 1 && user?.isHeFollowing === 0) {
       return (
         <form action={bindUnfollow}>
-          <button type='submit' className='btn btn-success mx-2'>
+          <button type='submit' className='btn btn-info mx-3'>
             Following
           </button>
         </form>
@@ -128,7 +138,7 @@ export default async function ProfileCard({ user }: Props) {
 
     return (
       <form action={bindFollow}>
-        <button type='submit' className='btn btn-primary mx-2'>
+        <button type='submit' className='btn btn-primary mx-3'>
           Follow
         </button>
       </form>
