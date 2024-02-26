@@ -10,7 +10,7 @@ type Props = {
 export default function ReactionCard({ currentReaction, action }: Props) {
   return (
     <div className='relative group'>
-      <div className='bg-gray-100 p-2 rounded-lg  absolute left-0 bottom-full drop-shadow-lg scale-0 origin-bottom-left transition-transform group-hover:scale-100'>
+      <div className='bg-gray-100 p-2 rounded-lg  absolute left-0 bottom-full drop-shadow-lg scale-0 origin-bottom-left transition-transform group-hover:scale-100 z-20'>
         <div className='flex items-center'>
           <form action={action}>
             <input type='hidden' name='reactionType' value='thumbsup' />
