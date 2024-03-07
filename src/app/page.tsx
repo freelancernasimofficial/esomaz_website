@@ -14,8 +14,13 @@ export default async function Home() {
       "P.userId",
     )}) AS User,(SELECT JSON_ARRAYAGG(JSON_OBJECT('id',PH.id,'height',PH.height,'width',PH.width,'filename',PH.filename)) FROM Photos AS PH WHERE P.id=PH.postId) AS Photos,(SELECT COUNT(*) FROM Reactions R WHERE R.postId=P.id) AS Reactions,(SELECT COUNT(*) FROM Comments C WHERE C.postId=P.id) AS TotalComments,(SELECT COUNT(*) FROM Posts S WHERE S.sharedId=P.id) AS TotalShares,(SELECT type FROM Reactions MR WHERE MR.userId=${
       user?.id
-    } AND P.id=MR.postId) AS myReactionTyp FROM Posts AS P ORDER BY P.id DESC LIMIT 100`,
+    } AND P.id=MR.postId) AS myReactionTyp,(SELECT COUNT(*) FROM Followers MFLW WHERE MFLW.followerId=${
+      user?.id
+    } AND MFLW.userId=P.userId ) AS isMeFollowing,(SELECT COUNT(*) FROM Followers HFLW WHERE HFLW.followerId=P.userId AND HFLW.userId=${
+      user?.id
+    } ) AS isHeFollowing FROM Posts AS P ORDER BY P.id DESC LIMIT 100`,
   );
+  console.log(posts[0]);
 
   return (
     <div className='container'>

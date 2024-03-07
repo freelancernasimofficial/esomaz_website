@@ -28,7 +28,6 @@ export default async function page({ params }: Props) {
       user?.id
     } ) AS isHeFollowing FROM Posts AS P WHERE P.uuId=${params.postId}`,
   );
-  console.log(post);
 
   const comments = await Model.query(
     `SELECT *,(${getUserByObjectQuery(

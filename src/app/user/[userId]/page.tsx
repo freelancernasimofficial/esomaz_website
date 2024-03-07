@@ -26,10 +26,15 @@ export default async function page({ params }: Props) {
       "P.userId",
     )}) AS User,(SELECT JSON_ARRAYAGG(JSON_OBJECT('id',PH.id,'height',PH.height,'width',PH.width,'filename',PH.filename)) FROM Photos AS PH WHERE P.id=PH.postId) AS Photos,(SELECT COUNT(*) FROM Reactions R WHERE R.postId=P.id) AS Reactions,(SELECT COUNT(*) FROM Comments C WHERE C.postId=P.id) AS TotalComments,(SELECT COUNT(*) FROM Posts S WHERE S.sharedId=P.id) AS TotalShares,(SELECT type FROM Reactions MR WHERE MR.userId=${
       currentUser?.id
-    } AND P.id=MR.postId) AS myReactionType FROM Posts AS P WHERE P.userId=${
+    } AND P.id=MR.postId) AS myReactionType,(SELECT COUNT(*) FROM Followers MFLW WHERE MFLW.followerId=${
+      currentUser?.id
+    } AND MFLW.userId=P.userId ) AS isMeFollowing,(SELECT COUNT(*) FROM Followers HFLW WHERE HFLW.followerId=P.userId AND HFLW.userId=${
+      currentUser?.id
+    } ) AS isHeFollowing FROM Posts AS P WHERE P.userId=${
       user?.id
     } ORDER BY P.id DESC LIMIT 100`,
   );
+  console.log(posts);
 
   return (
     <React.Fragment>
