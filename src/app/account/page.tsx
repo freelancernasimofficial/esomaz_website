@@ -44,13 +44,13 @@ export default async function page({}: Props) {
               >
                 {getFullName(user)}
               </Link>
-              <div className=' text-gray-500 leading-3 text-sm4 font-semibold'>
+              <div className=' text-slate-400 leading-3 text-sm4 font-semibold'>
                 {getSubtitle(user)}
               </div>
             </div>
           </div>
           <div>
-            <h2 className='font-bold text-sm3 text-gray-400'>Balance</h2>
+            <h2 className='font-semibold text-sm3 text-slate-400'>Balance</h2>
             <div className='font-bold text-sm3 text-green-600'>
               $25820.00 <span className='text-black font-bold'>USD</span>
             </div>

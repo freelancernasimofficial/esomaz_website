@@ -1,18 +1,12 @@
 import postCommentAction from "@/actions/postCommentAction";
 import SubmitButton from "@/components/button/SubmitButton";
-import IconHorizontalDots from "@/components/icons/IconHorizontalDots";
 import PostCard from "@/components/post/PostCard";
 import SingleComment from "@/components/post/SingleComment";
-import Avatar from "@/components/user/Avatar";
 import CookieStore from "@/library/CookieStore";
 import auth from "@/library/auth";
-import getFullName from "@/library/getFullName";
-import getRelativeTime from "@/library/getRelativeTime";
 import getUserByObjectQuery from "@/library/getUserByObjectQuery";
-import getUsername from "@/library/getUsername";
 import Model from "@/model/Model";
-import Image from "next/image";
-import Link from "next/link";
+
 import React from "react";
 
 type Props = {
@@ -28,10 +22,13 @@ export default async function page({ params }: Props) {
       "P.userId",
     )}) AS User,(SELECT JSON_ARRAYAGG(JSON_OBJECT('id',PH.id,'height',PH.height,'width',PH.width,'filename',PH.filename)) FROM Photos AS PH WHERE P.id=PH.postId) AS Photos,(SELECT COUNT(*) FROM Reactions R WHERE R.postId=P.id) AS Reactions,(SELECT COUNT(*) FROM Comments C WHERE C.postId=P.id) AS TotalComments,(SELECT COUNT(*) FROM Posts S WHERE S.sharedId=P.id) AS TotalShares,(SELECT type FROM Reactions MR WHERE MR.userId=${
       user?.id
-    } AND P.id=MR.postId) AS myReactionType FROM Posts AS P WHERE P.uuId=${
-      params.postId
-    }`,
+    } AND P.id=MR.postId) AS myReactionType,(SELECT COUNT(*) FROM Followers MFLW WHERE MFLW.followerId=${
+      user?.id
+    } AND MFLW.userId=P.userId ) AS isMeFollowing,(SELECT COUNT(*) FROM Followers HFLW WHERE HFLW.followerId=P.userId AND HFLW.userId=${
+      user?.id
+    } ) AS isHeFollowing FROM Posts AS P WHERE P.uuId=${params.postId}`,
   );
+  console.log(post);
 
   const comments = await Model.query(
     `SELECT *,(${getUserByObjectQuery(

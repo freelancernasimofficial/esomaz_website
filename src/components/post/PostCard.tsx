@@ -12,6 +12,7 @@ import IconEarth from "../icons/IconEarth";
 import DropdownMenu from "../dropdown/DropdownMenu";
 import ReactionCard from "./ReactionCard";
 import reactionAction from "@/actions/reactionAction";
+import addFollowAction from "@/actions/addFollowAction";
 
 type Props = {
   item: any;
@@ -23,6 +24,8 @@ export default function PostCard({ item, fullText }: Props) {
     itemId: item?.id,
     itemType: "post",
   });
+
+  const bindFollowUser = addFollowAction?.bind(null, item?.userId);
   return (
     <div className='bg-white rounded-lg mb-4 shadow'>
       <div className='flex justify-between mb-1 px-4 pt-4'>
@@ -32,7 +35,9 @@ export default function PostCard({ item, fullText }: Props) {
           </div>
           <div className='ml-2'>
             <Link href={`/user/${getUsername(item?.User)}`} className='block'>
-              <h4 className='font-semibold'>{getFullName(item?.User)}</h4>
+              <h4 className='font-semibold capitalize'>
+                {getFullName(item?.User)}
+              </h4>
             </Link>
             <div className='flex items-center'>
               <IconEarth className='w-3.5 h-3.5 mr-1 text-gray-500' />
@@ -47,12 +52,15 @@ export default function PostCard({ item, fullText }: Props) {
         </div>
 
         <DropdownMenu>
-          <Link href='/account' className='block mb-2'>
-            Unfollow Profile
-          </Link>
-          <Link href='#' className='block mb-2'>
-            Bookmark Post
-          </Link>
+          <form action={bindFollowUser}>
+            <button
+              type='submit'
+              className='block mb-2 hover:!text-primary-main !text-sm2'
+            >
+              Unfollow Profile
+            </button>
+          </form>
+
           <Link href='#' className='block  text-error-main'>
             Report Post
           </Link>
@@ -86,9 +94,12 @@ export default function PostCard({ item, fullText }: Props) {
             action={postReactionAction}
           />
           {item?.Reactions > 0 && (
-            <div className='font-medium text-sm4 ml-1.5 mt-0.5'>
-              {getCompactNumber(item?.Reactions)} People
-            </div>
+            <Link
+              href={`/posts/${item?.uuId}/reactions`}
+              className='font-medium block text-slate-800 text-sm4 ml-1 mt-0.5'
+            >
+              {getCompactNumber(item?.Reactions)}
+            </Link>
           )}
         </div>
         <Link
@@ -100,7 +111,7 @@ export default function PostCard({ item, fullText }: Props) {
           </button>
 
           {item?.TotalComments > 0 && (
-            <div className='font-medium text-sm4 ml-1.5'>
+            <div className='font-medium text-slate-800 text-sm4 ml-1'>
               {" "}
               {getCompactNumber(item?.TotalComments)}
             </div>
@@ -112,7 +123,7 @@ export default function PostCard({ item, fullText }: Props) {
             <IconShareOutline />
           </button>
           {item?.TotalShares > 0 && (
-            <div className='font-medium text-sm4 ml-1.5'>
+            <div className='font-medium text-slate-800 text-sm4 ml-1'>
               {" "}
               {getCompactNumber(item?.TotalShares)}
             </div>
