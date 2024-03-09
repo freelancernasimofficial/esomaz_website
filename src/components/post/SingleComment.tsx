@@ -14,6 +14,7 @@ import mainCommentReplyButtonAction from "@/actions/mainCommentReplyButtonAction
 import CookieStore from "@/library/CookieStore";
 import addFollowAction, { unFollowAction } from "@/actions/addFollowAction";
 import auth from "@/library/auth";
+import deleteCommentAction from "@/actions/deleteCommentAction";
 
 type Props = {
   item: any;
@@ -34,6 +35,7 @@ export default async function SingleComment({ item }: Props) {
 
   const bindFollowUser = addFollowAction?.bind(null, item?.userId);
   const bindUnFollowFollowUser = unFollowAction?.bind(null, item?.userId);
+  const bindDeleteAction = deleteCommentAction?.bind(null, item?.id);
 
   return (
     <div className='mb-3'>
@@ -80,7 +82,10 @@ export default async function SingleComment({ item }: Props) {
               </button>
             </form>
           </div>
-          <FewCommentReplies commentId={item.id} />
+          <FewCommentReplies
+            postOwnerId={item.postOwnerId}
+            commentId={item.id}
+          />
         </div>
         <DropdownMenu>
           {item?.userId !== currentUser?.id ? (
@@ -131,17 +136,20 @@ export default async function SingleComment({ item }: Props) {
             </React.Fragment>
           ) : null}
           {item?.userId === currentUser?.id ? (
-            <React.Fragment>
-              <Link href='#' className='block mb-1 font-medium text-sm3'>
-                Edit Comment
-              </Link>
-              <Link
-                href='#'
-                className='block font-medium text-error-main text-sm3'
+            <Link href='#' className='block mb-1 font-medium text-sm3'>
+              Edit Comment
+            </Link>
+          ) : null}
+          {item?.userId === currentUser?.id ||
+          item?.postOwnerId === currentUser?.id ? (
+            <form action={bindDeleteAction}>
+              <button
+                type='submit'
+                className='block font-medium text-error-main text-sm3 p-0 m-0'
               >
                 Delete Comment
-              </Link>
-            </React.Fragment>
+              </button>
+            </form>
           ) : null}
         </DropdownMenu>
       </div>

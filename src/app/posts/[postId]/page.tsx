@@ -38,7 +38,9 @@ export default async function page({ params }: Props) {
       user?.id
     } AND MFLW.userId=CMT.userId ) AS isMeFollowing,(SELECT COUNT(*) FROM Followers HFLW WHERE HFLW.followerId=CMT.userId AND HFLW.userId=${
       user?.id
-    } ) AS isHeFollowing FROM Comments CMT WHERE CMT.postId=${
+    } ) AS isHeFollowing,(SELECT ${
+      post?.userId
+    }) AS postOwnerId FROM Comments CMT WHERE CMT.postId=${
       post?.id
     } AND CMT.parentId IS NULL ORDER BY CMT.id DESC`,
   );

@@ -13,9 +13,13 @@ import SingleReplyComment from "./SingleReplyComment";
 
 type Props = {
   commentId: number;
+  postOwnerId: number;
 };
 
-export default async function FewCommentReplies({ commentId }: Props) {
+export default async function FewCommentReplies({
+  commentId,
+  postOwnerId,
+}: Props) {
   const user = await auth();
   const replies = await Model.query(
     `SELECT *,(${getUserByObjectQuery(
@@ -26,7 +30,7 @@ export default async function FewCommentReplies({ commentId }: Props) {
       user?.id
     } AND MFLW.userId=C.userId ) AS isMeFollowing,(SELECT COUNT(*) FROM Followers HFLW WHERE HFLW.followerId=C.userId AND HFLW.userId=${
       user?.id
-    } ) AS isHeFollowing  FROM Comments C WHERE C.parentId=${commentId} ORDER BY C.id ASC`,
+    } ) AS isHeFollowing,(SELECT ${postOwnerId}) AS postOwnerId  FROM Comments C WHERE C.parentId=${commentId} ORDER BY C.id ASC`,
   );
 
   return replies.length ? (
