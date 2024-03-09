@@ -14,11 +14,13 @@ import SingleReplyComment from "./SingleReplyComment";
 type Props = {
   commentId: number;
   postOwnerId: number;
+  params: any;
 };
 
 export default async function FewCommentReplies({
   commentId,
   postOwnerId,
+  params,
 }: Props) {
   const user = await auth();
   const replies = await Model.query(
@@ -36,7 +38,9 @@ export default async function FewCommentReplies({
   return replies.length ? (
     <div>
       {replies?.map((item: any, index: number) => {
-        return <SingleReplyComment key={item?.uuId} item={item} />;
+        return (
+          <SingleReplyComment params={params} key={item?.uuId} item={item} />
+        );
       })}
     </div>
   ) : null;

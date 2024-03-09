@@ -18,9 +18,10 @@ import deleteCommentAction from "@/actions/deleteCommentAction";
 
 type Props = {
   item: any;
+  params: any;
 };
 
-export default async function SingleComment({ item }: Props) {
+export default async function SingleComment({ params, item }: Props) {
   const currentUser = await auth();
   const commentReactionAction = reactionAction?.bind(null, {
     itemId: item?.id,
@@ -83,6 +84,7 @@ export default async function SingleComment({ item }: Props) {
             </form>
           </div>
           <FewCommentReplies
+            params={params}
             postOwnerId={item.postOwnerId}
             commentId={item.id}
           />
@@ -128,7 +130,7 @@ export default async function SingleComment({ item }: Props) {
                 </form>
               )}
               <Link
-                href={`/posts/${item?.uuId}/report_comment/${item?.id}`}
+                href={`/posts/${params?.postId}/report_comment/${item?.id}`}
                 className='block mb-2  font-medium text-sm3 text-error-main'
               >
                 Report Comment

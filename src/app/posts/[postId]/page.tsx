@@ -78,7 +78,9 @@ export default async function page({ params }: Props) {
             Comments ({post?.TotalComments})
           </h1>
           {comments?.map((item: any, index: number) => {
-            return <SingleComment key={item?.uuId} item={item} />;
+            return (
+              <SingleComment params={params} key={item?.uuId} item={item} />
+            );
           })}
         </div>
       </div>
