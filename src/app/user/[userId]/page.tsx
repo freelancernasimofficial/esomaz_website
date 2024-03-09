@@ -34,7 +34,6 @@ export default async function page({ params }: Props) {
       user?.id
     } ORDER BY P.id DESC LIMIT 100`,
   );
-  console.log(posts);
 
   return (
     <React.Fragment>

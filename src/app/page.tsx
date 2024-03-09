@@ -20,7 +20,6 @@ export default async function Home() {
       user?.id
     } ) AS isHeFollowing FROM Posts AS P ORDER BY P.id DESC LIMIT 100`,
   );
-  console.log(posts[0]);
 
   return (
     <div className='container'>

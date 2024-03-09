@@ -12,7 +12,7 @@ import IconEarth from "../icons/IconEarth";
 import DropdownMenu from "../dropdown/DropdownMenu";
 import ReactionCard from "./ReactionCard";
 import reactionAction from "@/actions/reactionAction";
-import addFollowAction from "@/actions/addFollowAction";
+import addFollowAction, { unFollowAction } from "@/actions/addFollowAction";
 
 type Props = {
   item: any;
@@ -26,6 +26,7 @@ export default function PostCard({ item, fullText }: Props) {
   });
 
   const bindFollowUser = addFollowAction?.bind(null, item?.userId);
+  const bindUnFollowFollowUser = unFollowAction?.bind(null, item?.userId);
   return (
     <div className='bg-white rounded-lg mb-4 shadow'>
       <div className='flex justify-between mb-1 px-4 pt-4'>
@@ -52,14 +53,43 @@ export default function PostCard({ item, fullText }: Props) {
         </div>
 
         <DropdownMenu>
-          <form action={bindFollowUser}>
-            <button
-              type='submit'
-              className='block mb-2 hover:!text-primary-main !text-sm2'
-            >
-              Unfollow Profile
-            </button>
-          </form>
+          {item?.isHeFollowing && item?.isMeFollowing ? (
+            <form action={bindUnFollowFollowUser}>
+              <button
+                type='submit'
+                className='block mb-2 text-success-main hover:!text-primary-main p-0 font-medium text-sm2'
+              >
+                You are Followers
+              </button>
+            </form>
+          ) : item?.isHeFollowing && !item?.isMeFollowing ? (
+            <form action={bindFollowUser}>
+              <button
+                type='submit'
+                className='block text-success-main mb-2 hover:!text-primary-main p-0 font-medium text-sm2'
+              >
+                Follow Back
+              </button>
+            </form>
+          ) : item?.isMeFollowing && !item.isHeFollowing ? (
+            <form action={bindUnFollowFollowUser}>
+              <button
+                type='submit'
+                className='block text-info-main mb-2 hover:!text-primary-main p-0 font-medium text-sm2'
+              >
+                Following
+              </button>
+            </form>
+          ) : (
+            <form action={bindFollowUser}>
+              <button
+                type='submit'
+                className='block mb-2 hover:!text-primary-main p-0 font-medium text-sm2'
+              >
+                Follow Profile
+              </button>
+            </form>
+          )}
 
           <Link href='#' className='block  text-error-main'>
             Report Post
