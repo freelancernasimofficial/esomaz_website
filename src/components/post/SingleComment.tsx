@@ -32,9 +32,6 @@ export default async function SingleComment({ item }: Props) {
 
   const activeMainCommentId = CookieStore.getState("mcr_id");
 
-  if (item.id === 47940) {
-    console.log(item);
-  }
   const bindFollowUser = addFollowAction?.bind(null, item?.userId);
   const bindUnFollowFollowUser = unFollowAction?.bind(null, item?.userId);
 

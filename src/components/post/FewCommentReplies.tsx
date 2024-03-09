@@ -22,7 +22,11 @@ export default async function FewCommentReplies({ commentId }: Props) {
       "C.userId",
     )}) AS User,(SELECT JSON_OBJECT('User',(SELECT JSON_OBJECT('id',TCU.id,'uuId',TCU.uuId,'username',TCU.username,'firstName',TCU.firstName,'lastName',TCU.lastName) FROM Users TCU WHERE TCU.id=TC.userId)) FROM Comments TC WHERE TC.id=C.targetedCommentId AND NOT TC.userId=C.userId) AS targetedComment,(SELECT type FROM Reactions MR WHERE MR.userId=${
       user?.id
-    } AND MR.commentId=C.id) AS myReactionType,(SELECT COUNT(*) FROM Reactions R WHERE R.commentId=C.id) AS totalReactions  FROM Comments C WHERE C.parentId=${commentId} ORDER BY C.id ASC`,
+    } AND MR.commentId=C.id) AS myReactionType,(SELECT COUNT(*) FROM Reactions R WHERE R.commentId=C.id) AS totalReactions,(SELECT COUNT(*) FROM Followers MFLW WHERE MFLW.followerId=${
+      user?.id
+    } AND MFLW.userId=C.userId ) AS isMeFollowing,(SELECT COUNT(*) FROM Followers HFLW WHERE HFLW.followerId=C.userId AND HFLW.userId=${
+      user?.id
+    } ) AS isHeFollowing  FROM Comments C WHERE C.parentId=${commentId} ORDER BY C.id ASC`,
   );
 
   return replies.length ? (
