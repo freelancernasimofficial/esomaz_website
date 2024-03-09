@@ -99,7 +99,7 @@ export default async function SingleReplyComment({ item }: Props) {
                 <form action={bindUnFollowFollowUser}>
                   <button
                     type='submit'
-                    className='block mb-1 text-success-main hover:!text-primary-main p-0 font-medium text-sm3'
+                    className='block mb-2 text-success-main hover:!text-primary-main p-0 font-medium text-sm3'
                   >
                     You are Followers
                   </button>
@@ -108,7 +108,7 @@ export default async function SingleReplyComment({ item }: Props) {
                 <form action={bindFollowUser}>
                   <button
                     type='submit'
-                    className='block text-success-main mb-1 hover:!text-primary-main p-0 font-medium text-sm3'
+                    className='block text-success-main mb-2 hover:!text-primary-main p-0 font-medium text-sm3'
                   >
                     Follow Back
                   </button>
@@ -117,7 +117,7 @@ export default async function SingleReplyComment({ item }: Props) {
                 <form action={bindUnFollowFollowUser}>
                   <button
                     type='submit'
-                    className='block text-info-main mb-1 hover:!text-primary-main p-0 font-medium text-sm3'
+                    className='block text-info-main mb-2 hover:!text-primary-main p-0 font-medium text-sm3'
                   >
                     Following
                   </button>
@@ -126,22 +126,22 @@ export default async function SingleReplyComment({ item }: Props) {
                 <form action={bindFollowUser}>
                   <button
                     type='submit'
-                    className='block mb-1 hover:!text-primary-main p-0 font-medium text-sm3'
+                    className='block mb-2 hover:!text-primary-main p-0 font-medium text-sm3'
                   >
                     Follow Profile
                   </button>
                 </form>
               )}
               <Link
-                href='#'
-                className='block mb-1 font-medium text-sm3 text-error-main'
+                href={`/posts/${item?.uuId}/report_comment/${item?.id}`}
+                className='block mb-2  font-medium text-sm3 text-error-main'
               >
                 Report Comment
               </Link>
             </React.Fragment>
           ) : null}
           {item?.userId === currentUser?.id ? (
-            <Link href='#' className='block mb-1 font-medium text-sm3'>
+            <Link href='#' className='block mb-2 font-medium text-sm3'>
               Edit Comment
             </Link>
           ) : null}

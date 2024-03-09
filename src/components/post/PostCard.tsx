@@ -61,7 +61,7 @@ export default async function PostCard({ item, fullText }: Props) {
                 <form action={bindUnFollowFollowUser}>
                   <button
                     type='submit'
-                    className='block mb-1 text-success-main hover:!text-primary-main p-0 font-medium text-sm3'
+                    className='block mb-2 text-success-main hover:!text-primary-main p-0 font-medium text-sm3'
                   >
                     You are Followers
                   </button>
@@ -70,7 +70,7 @@ export default async function PostCard({ item, fullText }: Props) {
                 <form action={bindFollowUser}>
                   <button
                     type='submit'
-                    className='block text-success-main mb-1 hover:!text-primary-main p-0 font-medium text-sm3'
+                    className='block text-success-main mb-2 hover:!text-primary-main p-0 font-medium text-sm3'
                   >
                     Follow Back
                   </button>
@@ -79,7 +79,7 @@ export default async function PostCard({ item, fullText }: Props) {
                 <form action={bindUnFollowFollowUser}>
                   <button
                     type='submit'
-                    className='block text-info-main mb-1 hover:!text-primary-main p-0 font-medium text-sm3'
+                    className='block text-info-main mb-2 hover:!text-primary-main p-0 font-medium text-sm3'
                   >
                     Following
                   </button>
@@ -88,15 +88,15 @@ export default async function PostCard({ item, fullText }: Props) {
                 <form action={bindFollowUser}>
                   <button
                     type='submit'
-                    className='block mb-1 hover:!text-primary-main p-0 font-medium text-sm3'
+                    className='block mb-2 hover:!text-primary-main p-0 font-medium text-sm3'
                   >
                     Follow Profile
                   </button>
                 </form>
               )}
               <Link
-                href='#'
-                className='block text-sm3 mb-1 font-medium  text-error-main'
+                href={`/posts/${item?.uuId}/report_post/${item?.id}`}
+                className='block text-sm3 mb-2 font-medium  text-error-main'
               >
                 Report Post
               </Link>
@@ -104,12 +104,12 @@ export default async function PostCard({ item, fullText }: Props) {
           ) : null}
           {item?.userId === currentUser?.id ? (
             <React.Fragment>
-              <Link href='#' className='block text-sm3 mb-1 font-medium'>
+              <Link href='#' className='block text-sm3 mb-2 font-medium'>
                 Edit Post
               </Link>
               <Link
                 href='#'
-                className='block text-sm3 mb-1  text-error-main font-medium'
+                className='block text-sm3   text-error-main font-medium'
               >
                 Delete Post
               </Link>
