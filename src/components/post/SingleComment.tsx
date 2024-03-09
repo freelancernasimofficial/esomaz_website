@@ -12,12 +12,15 @@ import getCompactNumber from "@/library/getCompactNumber";
 import MainCommentReplyForm from "./MainCommentReplyForm";
 import mainCommentReplyButtonAction from "@/actions/mainCommentReplyButtonAction";
 import CookieStore from "@/library/CookieStore";
+import addFollowAction, { unFollowAction } from "@/actions/addFollowAction";
+import auth from "@/library/auth";
 
 type Props = {
   item: any;
 };
 
-export default function SingleComment({ item }: Props) {
+export default async function SingleComment({ item }: Props) {
+  const currentUser = await auth();
   const commentReactionAction = reactionAction?.bind(null, {
     itemId: item?.id,
     itemType: "comment",
@@ -28,6 +31,12 @@ export default function SingleComment({ item }: Props) {
   );
 
   const activeMainCommentId = CookieStore.getState("mcr_id");
+
+  if (item.id === 47940) {
+    console.log(item);
+  }
+  const bindFollowUser = addFollowAction?.bind(null, item?.userId);
+  const bindUnFollowFollowUser = unFollowAction?.bind(null, item?.userId);
 
   return (
     <div className='mb-3'>
@@ -77,17 +86,66 @@ export default function SingleComment({ item }: Props) {
           <FewCommentReplies commentId={item.id} />
         </div>
         <DropdownMenu>
-          <Link href='/account' className='block mb-2'>
-            Unfollow Profile
-          </Link>
-
-          <Link href='#' className='block mb-2'>
-            Bookmark Post
-          </Link>
-
-          <Link href='#' className='block  text-error-main'>
-            Report Post
-          </Link>
+          {item?.userId !== currentUser?.id ? (
+            <React.Fragment>
+              {item?.isHeFollowing && item?.isMeFollowing ? (
+                <form action={bindUnFollowFollowUser}>
+                  <button
+                    type='submit'
+                    className='block mb-1 text-success-main hover:!text-primary-main p-0 font-medium text-sm3'
+                  >
+                    You are Followers
+                  </button>
+                </form>
+              ) : item?.isHeFollowing && !item?.isMeFollowing ? (
+                <form action={bindFollowUser}>
+                  <button
+                    type='submit'
+                    className='block text-success-main mb-1 hover:!text-primary-main p-0 font-medium text-sm3'
+                  >
+                    Follow Back
+                  </button>
+                </form>
+              ) : item?.isMeFollowing && !item.isHeFollowing ? (
+                <form action={bindUnFollowFollowUser}>
+                  <button
+                    type='submit'
+                    className='block text-info-main mb-1 hover:!text-primary-main p-0 font-medium text-sm3'
+                  >
+                    Following
+                  </button>
+                </form>
+              ) : (
+                <form action={bindFollowUser}>
+                  <button
+                    type='submit'
+                    className='block mb-1 hover:!text-primary-main p-0 font-medium text-sm3'
+                  >
+                    Follow Profile
+                  </button>
+                </form>
+              )}
+              <Link
+                href='#'
+                className='block mb-1 font-medium text-sm3 text-error-main'
+              >
+                Report Comment
+              </Link>
+            </React.Fragment>
+          ) : null}
+          {item?.userId === currentUser?.id ? (
+            <React.Fragment>
+              <Link href='#' className='block mb-1 font-medium text-sm3'>
+                Edit Comment
+              </Link>
+              <Link
+                href='#'
+                className='block font-medium text-error-main text-sm3'
+              >
+                Delete Comment
+              </Link>
+            </React.Fragment>
+          ) : null}
         </DropdownMenu>
       </div>
     </div>

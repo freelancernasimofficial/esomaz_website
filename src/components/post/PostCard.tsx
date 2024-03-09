@@ -13,13 +13,15 @@ import DropdownMenu from "../dropdown/DropdownMenu";
 import ReactionCard from "./ReactionCard";
 import reactionAction from "@/actions/reactionAction";
 import addFollowAction, { unFollowAction } from "@/actions/addFollowAction";
+import auth from "@/library/auth";
 
 type Props = {
   item: any;
   fullText?: boolean;
 };
 
-export default function PostCard({ item, fullText }: Props) {
+export default async function PostCard({ item, fullText }: Props) {
+  const currentUser = await auth();
   const postReactionAction = reactionAction?.bind(null, {
     itemId: item?.id,
     itemType: "post",
@@ -53,47 +55,66 @@ export default function PostCard({ item, fullText }: Props) {
         </div>
 
         <DropdownMenu>
-          {item?.isHeFollowing && item?.isMeFollowing ? (
-            <form action={bindUnFollowFollowUser}>
-              <button
-                type='submit'
-                className='block mb-2 text-success-main hover:!text-primary-main p-0 font-medium text-sm2'
+          {item?.userId !== currentUser?.id ? (
+            <React.Fragment>
+              {item?.isHeFollowing && item?.isMeFollowing ? (
+                <form action={bindUnFollowFollowUser}>
+                  <button
+                    type='submit'
+                    className='block mb-1 text-success-main hover:!text-primary-main p-0 font-medium text-sm3'
+                  >
+                    You are Followers
+                  </button>
+                </form>
+              ) : item?.isHeFollowing && !item?.isMeFollowing ? (
+                <form action={bindFollowUser}>
+                  <button
+                    type='submit'
+                    className='block text-success-main mb-1 hover:!text-primary-main p-0 font-medium text-sm3'
+                  >
+                    Follow Back
+                  </button>
+                </form>
+              ) : item?.isMeFollowing && !item.isHeFollowing ? (
+                <form action={bindUnFollowFollowUser}>
+                  <button
+                    type='submit'
+                    className='block text-info-main mb-1 hover:!text-primary-main p-0 font-medium text-sm3'
+                  >
+                    Following
+                  </button>
+                </form>
+              ) : (
+                <form action={bindFollowUser}>
+                  <button
+                    type='submit'
+                    className='block mb-1 hover:!text-primary-main p-0 font-medium text-sm3'
+                  >
+                    Follow Profile
+                  </button>
+                </form>
+              )}
+              <Link
+                href='#'
+                className='block text-sm3 mb-1 font-medium  text-error-main'
               >
-                You are Followers
-              </button>
-            </form>
-          ) : item?.isHeFollowing && !item?.isMeFollowing ? (
-            <form action={bindFollowUser}>
-              <button
-                type='submit'
-                className='block text-success-main mb-2 hover:!text-primary-main p-0 font-medium text-sm2'
+                Report Post
+              </Link>
+            </React.Fragment>
+          ) : null}
+          {item?.userId === currentUser?.id ? (
+            <React.Fragment>
+              <Link href='#' className='block text-sm3 mb-1 font-medium'>
+                Edit Post
+              </Link>
+              <Link
+                href='#'
+                className='block text-sm3 mb-1  text-error-main font-medium'
               >
-                Follow Back
-              </button>
-            </form>
-          ) : item?.isMeFollowing && !item.isHeFollowing ? (
-            <form action={bindUnFollowFollowUser}>
-              <button
-                type='submit'
-                className='block text-info-main mb-2 hover:!text-primary-main p-0 font-medium text-sm2'
-              >
-                Following
-              </button>
-            </form>
-          ) : (
-            <form action={bindFollowUser}>
-              <button
-                type='submit'
-                className='block mb-2 hover:!text-primary-main p-0 font-medium text-sm2'
-              >
-                Follow Profile
-              </button>
-            </form>
-          )}
-
-          <Link href='#' className='block  text-error-main'>
-            Report Post
-          </Link>
+                Delete Post
+              </Link>
+            </React.Fragment>
+          ) : null}
         </DropdownMenu>
       </div>
 
