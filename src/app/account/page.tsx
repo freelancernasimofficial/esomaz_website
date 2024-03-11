@@ -28,7 +28,10 @@ export default async function page({}: Props) {
         <div className='w-full bg-white rounded-lg p-4 flex items-center justify-between'>
           <div className='flex items-center'>
             {" "}
-            <div className='mr-3 shrink-0 w-12 h-12 overflow-hidden border-2 items-center border-primary-main rounded-full mx-auto'>
+            <Link
+              href={`/user/${getUsername(user)}`}
+              className='block mr-3 shrink-0 w-11 h-11 overflow-hidden border-2 items-center border-primary-main rounded-full mx-auto'
+            >
               <Image
                 className='w-full h-full'
                 width={150}
@@ -36,7 +39,7 @@ export default async function page({}: Props) {
                 alt=''
                 src={`/uploads/photos/${user?.avatar}`}
               />
-            </div>
+            </Link>
             <div className=''>
               <Link
                 href={`/user/${getUsername(user)}`}

@@ -7,7 +7,7 @@ type Props = {};
 
 export default function page({}: Props) {
   return (
-    <div className='centerCard mt-6'>
+    <div className='centerCard'>
       <div className='bg-white shadow p-4 rounded-lg mb-8'>
         <div className='flex justify-between mb-4'>
           <h2 className='font-bold text-xl'>Videos (424)</h2>
