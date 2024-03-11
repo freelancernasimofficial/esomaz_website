@@ -13,7 +13,6 @@ export default async function addReportAction(
   formData: any,
 ) {
   const message = formData.get("message");
-  console.log(reportInfo);
 
   try {
     if (!message.length) {

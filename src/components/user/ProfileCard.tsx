@@ -16,6 +16,7 @@ import addFollowAction, {
 import auth from "@/library/auth";
 import UserStatistics from "./UserStatistics";
 import getSubtitle from "@/library/getSubtitle";
+import getUsername from "@/library/getUsername";
 type Props = {
   user: any;
 };
@@ -202,7 +203,7 @@ export default async function ProfileCard({ user }: Props) {
       <div className='flex justify-between items-center'>
         <div
           id='profileNavigation'
-          className='flex-1 flex items-center
+          className='flex-1 flex items-center justify-between
           [&>a]:p-4
           [&>a]:border-b-2
           [&>a]:border-b-transparent
@@ -213,33 +214,36 @@ export default async function ProfileCard({ user }: Props) {
         >
           <Link
             className='block focus:border-b-primary-main'
-            href='/user/12345'
+            href={`/user/${getUsername(user)}`}
           >
             Timeline
           </Link>
           <Link
             className='block focus:border-b-primary-main'
-            href='/user/12456/friends'
+            href={`/user/${getUsername(user)}/friends`}
           >
             Friends
           </Link>
           <Link
             className='block focus:border-b-primary-main'
-            href='/user/12345/photos'
+            href={`/user/${getUsername(user)}/photos`}
           >
             Photos
           </Link>
           <Link
             className='block focus:border-b-primary-main'
-            href='/user/12345/videos'
+            href={`/user/${getUsername(user)}/videos`}
           >
             Videos
           </Link>
-        </div>
-        <div>
-          <button className='svgCircleButton bg-gray-100 mr-4'>
-            <IconHorizontalDots />
-          </button>
+          {currentUser?.id !== user?.id ? (
+            <Link
+              className='block focus:border-b-primary-main text-error-main'
+              href={`/user/${getUsername(user)}/report_user`}
+            >
+              Report
+            </Link>
+          ) : null}
         </div>
       </div>
     </div>
