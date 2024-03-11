@@ -14,6 +14,7 @@ import ReactionCard from "./ReactionCard";
 import reactionAction from "@/actions/reactionAction";
 import addFollowAction, { unFollowAction } from "@/actions/addFollowAction";
 import auth from "@/library/auth";
+import deletePostAction from "@/actions/deletePostAction";
 
 type Props = {
   item: any;
@@ -29,6 +30,7 @@ export default async function PostCard({ item, fullText }: Props) {
 
   const bindFollowUser = addFollowAction?.bind(null, item?.userId);
   const bindUnFollowFollowUser = unFollowAction?.bind(null, item?.userId);
+  const bindDeletePost = deletePostAction?.bind(null, item?.id);
   return (
     <div className='bg-white rounded-lg mb-4 shadow'>
       <div className='flex justify-between mb-1 px-4 pt-4'>
@@ -111,12 +113,14 @@ export default async function PostCard({ item, fullText }: Props) {
               >
                 Edit Post
               </Link>
-              <Link
-                href='#'
-                className='block text-sm3   text-error-main font-medium'
-              >
-                Delete Post
-              </Link>
+              <form action={bindDeletePost}>
+                <button
+                  type='submit'
+                  className='block text-sm3   text-error-main font-medium m-0 p-0'
+                >
+                  Delete Post
+                </button>
+              </form>
             </React.Fragment>
           ) : null}
         </DropdownMenu>

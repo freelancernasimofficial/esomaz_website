@@ -90,7 +90,7 @@ export default async function SingleComment({ params, item }: Props) {
           />
         </div>
 
-        <DropdownMenu>
+        <DropdownMenu tabIndex={item?.id}>
           {item?.userId !== currentUser?.id ? (
             <React.Fragment>
               {item?.isHeFollowing && item?.isMeFollowing ? (

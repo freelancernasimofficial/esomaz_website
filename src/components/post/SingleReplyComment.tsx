@@ -93,7 +93,7 @@ export default async function SingleReplyComment({ item, params }: Props) {
             </div>
           </div>
         </div>
-        <DropdownMenu>
+        <DropdownMenu tabIndex={item?.id}>
           {item?.userId !== currentUser?.id ? (
             <React.Fragment>
               {item?.isHeFollowing && item?.isMeFollowing ? (

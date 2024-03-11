@@ -4,12 +4,13 @@ import Link from "next/link";
 
 type Props = {
   children: React.ReactNode;
+  tabIndex?: number;
 };
 
-export default function DropdownMenu({ children }: Props) {
+export default function DropdownMenu({ tabIndex, children }: Props) {
   return (
     <div
-      tabIndex={-1}
+      tabIndex={tabIndex ?? -1}
       className='m-0 p-0 w-9 h-9 rounded-full focus:bg-gray-100 focus-within:bg-gray-100 hover:bg-gray-100 flex flex-col items-center justify-center relative group shrink-0 '
     >
       <IconHorizontalDots />
