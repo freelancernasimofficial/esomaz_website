@@ -26,7 +26,7 @@ export default async function UserLayout({ params, children }: Props) {
           <div className='w-full md:w-6/12 md:pr-6'>
             <ProfileCard user={user} />
             <UserIntro userId={user?.id} />
-            <FriendsCard />
+            <FriendsCard userId={user?.id} />
           </div>
           <div className='w-full md:w-6/12'> {children}</div>
         </div>
