@@ -18,7 +18,6 @@ export default async function ReportForm({ title, reportType, itemId }: Props) {
   const error = CookieStore.getState("error");
   const headerList = headers();
   const backUrl = headerList.get("referer")?.split("report")[0] ?? "/";
-  console.log(backUrl);
 
   return (
     <div className='p-4'>

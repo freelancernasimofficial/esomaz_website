@@ -6,6 +6,7 @@ import CookieStore from "@/library/CookieStore";
 import auth from "@/library/auth";
 import getUserByObjectQuery from "@/library/getUserByObjectQuery";
 import Model from "@/model/Model";
+import { redirect } from "next/navigation";
 
 import React from "react";
 
@@ -29,6 +30,9 @@ export default async function page({ params }: Props) {
     } ) AS isHeFollowing FROM Posts AS P WHERE P.uuId=${params.postId}`,
   );
 
+  if (!post?.id) {
+    redirect("/");
+  }
   const comments = await Model.query(
     `SELECT *,(${getUserByObjectQuery(
       "CMT.userId",

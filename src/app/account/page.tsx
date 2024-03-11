@@ -34,7 +34,7 @@ export default async function page({}: Props) {
                 width={150}
                 height={150}
                 alt=''
-                src='/images/static/avatars/avatar-1.jpg'
+                src={`/uploads/photos/${user?.avatar}`}
               />
             </div>
             <div className=''>

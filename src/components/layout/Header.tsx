@@ -4,10 +4,13 @@ import IconSearch from "../icons/IconSearch";
 import IconBell from "../icons/IconBell";
 import IconChat from "../icons/IconChat";
 import Link from "next/link";
+import auth from "@/library/auth";
 
 type Props = {};
 
-export default function Header({}: Props) {
+export default async function Header({}: Props) {
+  const currentUser = await auth();
+
   return (
     <header className='h-16 bg-white border-b border-b-gray-200 sticky top-0 z-10'>
       <div className='container h-full'>
@@ -50,7 +53,7 @@ export default function Header({}: Props) {
                 height={40}
                 width={40}
                 alt='avatar'
-                src='/images/static/avatars/avatar-1.jpg'
+                src={`/uploads/photos/${currentUser?.avatar}`}
               />
             </Link>
           </div>

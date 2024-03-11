@@ -142,7 +142,10 @@ export default async function SingleReplyComment({ item, params }: Props) {
             </React.Fragment>
           ) : null}
           {item?.userId === currentUser?.id ? (
-            <Link href='#' className='block mb-2 font-medium text-sm3'>
+            <Link
+              href={`/posts/${params?.postId}/edit_comment/${item?.id}`}
+              className='block mb-2 font-medium text-sm3'
+            >
               Edit Comment
             </Link>
           ) : null}
