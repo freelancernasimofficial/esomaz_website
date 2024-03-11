@@ -1,12 +1,11 @@
 import editCommentAction from "@/actions/editCommentAction";
+import editPostAction from "@/actions/editPostAction";
 import SubmitButton from "@/components/button/SubmitButton";
 import CookieStore from "@/library/CookieStore";
 import Model from "@/model/Model";
-
 import { headers } from "next/headers";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { comment } from "postcss";
 import React from "react";
 
 type Props = {
@@ -15,24 +14,23 @@ type Props = {
 
 export default async function page({ params }: Props) {
   const headerList = headers();
-  const backUrl = headerList.get("referer")?.split("edit")[0] ?? "/";
-  const [getComment] = await Model.prepare(
-    `SELECT * FROM Comments WHERE id=?`,
-    [Number(params.commentId)],
-  );
+  const backUrl = headerList.get("referer")?.split("edit_post")[0] ?? "/";
+  const [getPost] = await Model.prepare(`SELECT * FROM Posts WHERE uuId=?`, [
+    Number(params.postId),
+  ]);
 
-  if (!getComment?.id) {
+  if (!getPost?.id) {
     return redirect(backUrl);
   }
 
   const error = CookieStore.getState("error");
   const success = CookieStore.getState("success");
-  const bindEditComment = editCommentAction?.bind(null, params?.commentId);
+  const bindEditPost = editPostAction?.bind(null, getPost?.id);
 
   return (
     <div className='container'>
       <div className='centerCardSmall bg-white rounded-lg p-4'>
-        <h1 className='font-semibold text-sm2'>Edit Comment</h1>
+        <h1 className='font-semibold text-sm2'>Edit Post</h1>
         {success ? (
           <div>
             <div className='successCard mt-2'>{success}</div>
@@ -44,19 +42,19 @@ export default async function page({ params }: Props) {
             </Link>
           </div>
         ) : (
-          <form action={bindEditComment}>
+          <form action={bindEditPost}>
             <textarea
               className='mt-3 w-full rounded p-2 bg-gray-100 font-medium text-sm2'
-              name='comment'
+              name='text'
               id=''
               cols={30}
               rows={5}
               placeholder='Edit comment...'
-              defaultValue={getComment?.text}
+              defaultValue={getPost?.text}
             ></textarea>
 
             {error ? <div className='errorCard mt-2 mb-2'>{error}</div> : null}
-            <SubmitButton className=' btn btn-primary' title='Edit Comment' />
+            <SubmitButton className=' btn btn-primary' title='Edit Post' />
           </form>
         )}
       </div>

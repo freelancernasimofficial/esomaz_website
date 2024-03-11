@@ -140,6 +140,7 @@ export default async function SingleComment({ params, item }: Props) {
           ) : null}
           {item?.userId === currentUser?.id ? (
             <Link
+              prefetch={false}
               href={`/posts/${params?.postId}/edit_comment/${item?.id}`}
               className='block mb-2 font-medium text-sm3'
             >

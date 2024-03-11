@@ -104,7 +104,11 @@ export default async function PostCard({ item, fullText }: Props) {
           ) : null}
           {item?.userId === currentUser?.id ? (
             <React.Fragment>
-              <Link href='#' className='block text-sm3 mb-2 font-medium'>
+              <Link
+                prefetch={false}
+                href={`/posts/${item?.uuId}/edit_post`}
+                className='block text-sm3 mb-2 font-medium'
+              >
                 Edit Post
               </Link>
               <Link

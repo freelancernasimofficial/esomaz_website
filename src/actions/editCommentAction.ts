@@ -3,6 +3,7 @@
 import CookieStore from "@/library/CookieStore";
 import auth from "@/library/auth";
 import Model from "@/model/Model";
+import { revalidatePath } from "next/cache";
 
 export default async function editCommentAction(
   commentId: number,
@@ -22,6 +23,7 @@ export default async function editCommentAction(
         [comment, commentId, currentUser?.id],
       );
       CookieStore.setState("success", "Comment updated successfully");
+      revalidatePath("/");
     }
   } catch (error: any) {
     CookieStore.setState("error", error?.message);
