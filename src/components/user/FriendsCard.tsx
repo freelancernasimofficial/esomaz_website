@@ -8,21 +8,26 @@ import React from "react";
 import Avatar from "./Avatar";
 
 type Props = {
-  userId: number;
+  user: any;
 };
 
-export default async function FriendsCard({ userId }: Props) {
+export default async function FriendsCard({ user }: Props) {
   const getFriends = await Model.query(
     `SELECT *,(${getUserByObjectQuery(
       "F.senderUserId",
-    )}) AS Friend FROM Friends F WHERE F.receiverUserId=${userId} AND F.isAccepted=${true} ORDER BY F.id DESC LIMIT 5`,
+    )}) AS Friend FROM Friends F WHERE F.receiverUserId=${
+      user?.id
+    } AND F.isAccepted=${true} ORDER BY F.id DESC LIMIT 5`,
   );
 
   return (
     <div className='w-full p-4 my-4 rounded-lg bg-white shadow hidden md:block'>
       <div className='mb-2 flex justify-between'>
         <h2 className='font-bold text-xl'>Friends</h2>
-        <Link className='text-primary-main text-sm2' href='#'>
+        <Link
+          className='text-primary-main text-sm2'
+          href={`/user/${getUsername(user)}/friends`}
+        >
           View All
         </Link>
       </div>
