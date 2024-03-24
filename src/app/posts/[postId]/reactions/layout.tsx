@@ -17,7 +17,7 @@ export default function layout({ children, params }: Props) {
           <Link
             href={`/posts/${params?.postId}/reactions`}
             tabIndex={-1}
-            className='focus:bg-transparent w-10 h-10 shrink-0 flex items-center justify-center  rounded-full bg-gray-100 mr-2'
+            className='focus:bg-gray-600 w-10 h-10 shrink-0 flex items-center justify-center  rounded-full mr-2'
           >
             <Image
               className='w-7 h-7 shrink-0'
@@ -30,7 +30,7 @@ export default function layout({ children, params }: Props) {
           <Link
             href={`/posts/${params?.postId}/reactions/thumbsup`}
             tabIndex={-1}
-            className='focus:bg-transparent w-10 h-10 shrink-0 flex items-center justify-center  rounded-full bg-gray-100 mx-2'
+            className='focus:bg-gray-600 w-10 h-10 shrink-0 flex items-center justify-center  rounded-full mx-2'
           >
             <Image
               className='w-7 h-7 shrink-0'
@@ -43,7 +43,7 @@ export default function layout({ children, params }: Props) {
           <Link
             href={`/posts/${params?.postId}/reactions/thumbsdown`}
             tabIndex={-1}
-            className='focus:bg-transparent w-10 h-10 shrink-0 flex items-center justify-center  rounded-full bg-gray-100 mx-2'
+            className='focus:bg-gray-600 w-10 h-10 shrink-0 flex items-center justify-center  rounded-full mx-2'
           >
             <Image
               className='w-7 h-7 shrink-0'
@@ -53,114 +53,123 @@ export default function layout({ children, params }: Props) {
               alt=''
             />
           </Link>{" "}
-          <div
+          <Link
+            href={`/posts/${params?.postId}/reactions/heart`}
             tabIndex={-1}
-            className='focus:bg-transparent w-10 h-10 shrink-0 flex items-center justify-center  rounded-full bg-gray-100 mx-2'
+            className='focus:bg-gray-600 w-10 h-10 shrink-0 flex items-center justify-center  rounded-full mx-2'
           >
             <Image
               className='w-7 h-7 shrink-0'
               height={100}
               width={100}
-              src='/reactions/thumbsup.png'
+              src='/reactions/heart.png'
               alt=''
             />
-          </div>{" "}
-          <div
+          </Link>{" "}
+          <Link
+            href={`/posts/${params?.postId}/reactions/care`}
             tabIndex={-1}
-            className='focus:bg-transparent w-10 h-10 shrink-0 flex items-center justify-center  rounded-full bg-gray-100 mx-2'
+            className='focus:bg-gray-600 w-10 h-10 shrink-0 flex items-center justify-center  rounded-full mx-2'
           >
             <Image
               className='w-7 h-7 shrink-0'
               height={100}
               width={100}
-              src='/reactions/thumbsup.png'
+              src='/reactions/care.png'
               alt=''
             />
-          </div>{" "}
-          <div
+          </Link>{" "}
+          <Link
+            href={`/posts/${params?.postId}/reactions/claps`}
             tabIndex={-1}
-            className='focus:bg-transparent w-10 h-10 shrink-0 flex items-center justify-center  rounded-full bg-gray-100 mx-2'
+            className='focus:bg-gray-600 w-10 h-10 shrink-0 flex items-center justify-center  rounded-full mx-2'
           >
             <Image
               className='w-7 h-7 shrink-0'
               height={100}
               width={100}
-              src='/reactions/thumbsup.png'
+              src='/reactions/claps.png'
               alt=''
             />
-          </div>{" "}
-          <div
+          </Link>{" "}
+          <Link
+            href={`/posts/${params?.postId}/reactions/woow`}
             tabIndex={-1}
-            className='focus:bg-transparent w-10 h-10 shrink-0 flex items-center justify-center  rounded-full bg-gray-100 mx-2'
+            className='focus:bg-gray-600 w-10 h-10 shrink-0 flex items-center justify-center  rounded-full mx-2'
           >
             <Image
               className='w-7 h-7 shrink-0'
               height={100}
               width={100}
-              src='/reactions/thumbsup.png'
+              src='/reactions/woow.png'
               alt=''
             />
-          </div>{" "}
-          <div
+          </Link>{" "}
+          <Link
+            href={`/posts/${params?.postId}/reactions/facepalming`}
             tabIndex={-1}
-            className='focus:bg-transparent w-10 h-10 shrink-0 flex items-center justify-center  rounded-full bg-gray-100 mx-2'
+            className='focus:bg-gray-600 w-10 h-10 shrink-0 flex items-center justify-center  rounded-full mx-2'
           >
             <Image
               className='w-7 h-7 shrink-0'
               height={100}
               width={100}
-              src='/reactions/thumbsup.png'
+              src='/reactions/facepalming.png'
               alt=''
             />
-          </div>{" "}
-          <div
+          </Link>{" "}
+          <Link
+            href={`/posts/${params?.postId}/reactions/shrugging`}
             tabIndex={-1}
-            className='focus:bg-transparent w-10 h-10 shrink-0 flex items-center justify-center  rounded-full bg-gray-100 mx-2'
+            className='focus:bg-gray-600 w-10 h-10 shrink-0 flex items-center justify-center  rounded-full mx-2'
           >
             <Image
               className='w-7 h-7 shrink-0'
               height={100}
               width={100}
-              src='/reactions/thumbsup.png'
+              src='/reactions/shrugging.png'
               alt=''
             />
-          </div>{" "}
-          <div
+          </Link>{" "}
+          <Link
+            href={`/posts/${params?.postId}/reactions/crying`}
             tabIndex={-1}
-            className='focus:bg-transparent w-10 h-10 shrink-0 flex items-center justify-center  rounded-full bg-gray-100 mx-2'
+            className='focus:bg-gray-600 w-10 h-10 shrink-0 flex items-center justify-center  rounded-full mx-2'
           >
             <Image
               className='w-7 h-7 shrink-0'
               height={100}
               width={100}
-              src='/reactions/thumbsup.png'
+              src='/reactions/crying.png'
               alt=''
             />
-          </div>{" "}
-          <div
+          </Link>{" "}
+          <Link
+            href={`/posts/${params?.postId}/reactions/haha`}
             tabIndex={-1}
-            className='focus:bg-transparent w-10 h-10 shrink-0 flex items-center justify-center  rounded-full bg-gray-100 mx-2'
+            className='focus:bg-gray-600 w-10 h-10 shrink-0 flex items-center justify-center  rounded-full mx-2'
           >
             <Image
               className='w-7 h-7 shrink-0'
               height={100}
               width={100}
-              src='/reactions/thumbsup.png'
+              src='/reactions/haha.png'
               alt=''
             />
-          </div>{" "}
-          <div
+          </Link>{" "}
+          <Link
+            href={`/posts/${params?.postId}/reactions/angry`}
             tabIndex={-1}
-            className='focus:bg-transparent w-10 h-10 shrink-0 flex items-center justify-center  rounded-full bg-gray-100 ml-2'
+            className='focus:bg-gray-600 w-10 h-10 shrink-0 flex items-center justify-center  rounded-full ml-2'
           >
             <Image
               className='w-7 h-7 shrink-0'
               height={100}
               width={100}
-              src='/reactions/thumbsup.png'
+              src='/reactions/angry.png'
               alt=''
             />
-          </div>
+          </Link>
         </div>
         <div> {children}</div>
       </div>
