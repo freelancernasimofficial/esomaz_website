@@ -11,7 +11,7 @@ type Props = {};
 export default async function Header({}: Props) {
   const currentUser = await auth();
 
-  return (
+  return currentUser ? (
     <header className='h-16 bg-white border-b border-b-gray-200 sticky top-0 z-10'>
       <div className='container h-full'>
         <div className='flex items-center justify-between h-full'>
@@ -60,5 +60,5 @@ export default async function Header({}: Props) {
         </div>
       </div>
     </header>
-  );
+  ) : null;
 }

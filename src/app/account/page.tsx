@@ -1,14 +1,11 @@
 import IconBriefcase from "@/components/icons/IconBriefcase";
 import IconChat from "@/components/icons/IconChat";
-import IconHomeOutline from "@/components/icons/IconHomeOutline";
 import IconLogout from "@/components/icons/IconLogout";
 import IconPersonWorkspace from "@/components/icons/IconPersonWorkspace";
 import IconRss from "@/components/icons/IconRss";
 import IconSettings from "@/components/icons/IconSettings";
-import IconThreeUsersFilled from "@/components/icons/IconThreeUsersFilled";
 import IconUser from "@/components/icons/IconUser";
 import IconUsers from "@/components/icons/IconUsers";
-import IconVideo from "@/components/icons/IconVideo";
 import auth from "@/library/auth";
 import getFullName from "@/library/getFullName";
 import getSubtitle from "@/library/getSubtitle";
@@ -25,7 +22,7 @@ export default async function page({}: Props) {
   return (
     <div className='container'>
       <div className='centerCardSmall mb-4'>
-        <div className='w-full bg-white rounded-lg p-4 flex items-center justify-between'>
+        <div className='w-full bg-white rounded-lg p-4 flex items-center justify-between border-b border-b-gray-200'>
           <div className='flex items-center'>
             {" "}
             <Link
@@ -136,6 +133,7 @@ export default async function page({}: Props) {
               </span>
             </Link>
             <Link
+              prefetch={false}
               href='/api/authorization/logout'
               className='flex items-center w-full  py-2 hover:text-primary-main'
             >

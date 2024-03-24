@@ -31,10 +31,10 @@
     @apply max-w-screen-lg mx-auto;
   }
   .centerCardSmall {
-    @apply max-w-screen-md mx-auto;
+    @apply max-w-screen-md mx-auto bg-white rounded-lg;
   }
   .btn {
-    @apply h-9 px-3 rounded-md bg-gray-100 hover:bg-gray-300 font-semibold text-sm3 active:scale-95 transition-transform cursor-pointer;
+    @apply h-10 px-3 rounded-md bg-gray-100 hover:bg-gray-300 font-semibold text-sm3 active:scale-95 transition-transform cursor-pointer;
   }
   .btn-primary {
     @apply bg-primary-main text-white hover:bg-primary-hover;

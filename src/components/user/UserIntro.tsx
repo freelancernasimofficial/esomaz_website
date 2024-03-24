@@ -5,6 +5,7 @@ import IconLocationOutline from "../icons/IconLocationOutline";
 import IconRss from "../icons/IconRss";
 import IconSchoolOutline from "../icons/IconSchoolOutline";
 import Model from "@/model/Model";
+import getCompactNumber from "@/library/getCompactNumber";
 
 type Props = {
   userId: number;
@@ -25,7 +26,7 @@ export default async function UserIntro({ userId }: Props) {
         </Link>
       </div>
 
-      <div className='mb-3 text-sm2 text-gray-600'>{userInfos?.shortBio}</div>
+      <div className='mb-3 text-sm3 text-gray-600'>{userInfos?.shortBio}</div>
 
       <div className='text-sm2 flex items-center'>
         <IconLocationOutline className='w-6 h-6 mr-1 shrink-0' />{" "}
@@ -64,7 +65,7 @@ export default async function UserIntro({ userId }: Props) {
         <span className='mr-2'>
           Followed by{" "}
           <span className='font-semibold'>
-            {userInfos?.totalFollowers} People
+            {getCompactNumber(userInfos?.totalFollowers)} People
           </span>
         </span>{" "}
       </div>

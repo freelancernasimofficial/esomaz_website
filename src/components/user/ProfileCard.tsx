@@ -236,6 +236,12 @@ export default async function ProfileCard({ user }: Props) {
           >
             Videos
           </Link>
+          <Link
+            className='block focus:border-b-primary-main'
+            href={`/user/${getUsername(user)}/followers`}
+          >
+            Followers
+          </Link>
           {currentUser?.id !== user?.id ? (
             <Link
               className='block focus:border-b-primary-main text-error-main'

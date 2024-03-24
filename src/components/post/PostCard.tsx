@@ -157,7 +157,7 @@ export default async function PostCard({ item, fullText }: Props) {
               href={`/posts/${item?.uuId}/reactions`}
               className='font-medium block text-slate-800 text-sm4 ml-1 mt-0.5'
             >
-              {getCompactNumber(item?.Reactions)}
+              {getCompactNumber(item?.Reactions)} People
             </Link>
           )}
         </div>
@@ -171,21 +171,26 @@ export default async function PostCard({ item, fullText }: Props) {
 
           {item?.TotalComments > 0 && (
             <div className='font-medium text-slate-800 text-sm4 ml-1'>
-              {" "}
-              {getCompactNumber(item?.TotalComments)}
+              {getCompactNumber(item?.TotalComments)} Comments
             </div>
           )}
         </Link>
 
         <div className='flex items-center flex-1 justify-end'>
-          <button className='svgCircleButtonSmall'>
+          <Link
+            href={`/posts/${item?.uuId}/share_post`}
+            className='svgCircleButtonSmall'
+          >
             <IconShareOutline />
-          </button>
+          </Link>
           {item?.TotalShares > 0 && (
-            <div className='font-medium text-slate-800 text-sm4 ml-1'>
+            <Link
+              href={`/posts/${item?.uuId}/all_shares`}
+              className='font-medium text-slate-800 text-sm4 ml-1'
+            >
               {" "}
-              {getCompactNumber(item?.TotalShares)}
-            </div>
+              {getCompactNumber(item?.TotalShares)} Shares
+            </Link>
           )}
         </div>
       </div>

@@ -14,11 +14,9 @@ export default function PostForm({ className }: Props) {
       }`}
     >
       <div className='flex-1'>
-        <input
-          type='text'
-          placeholder="What's on your mind?"
-          className='w-full'
-        />
+        <div className='bg-gray-100 rounded-full text-sm3 font-medium p-2.5'>
+          What's on your mind?
+        </div>
       </div>
       <button className='svgCircleButton ml-4'>
         <IconImagesOutline className='text-green-500' />
