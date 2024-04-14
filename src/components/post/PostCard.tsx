@@ -31,6 +31,7 @@ export default async function PostCard({ item, fullText }: Props) {
   const bindFollowUser = addFollowAction?.bind(null, item?.userId);
   const bindUnFollowFollowUser = unFollowAction?.bind(null, item?.userId);
   const bindDeletePost = deletePostAction?.bind(null, item?.id);
+
   return (
     <div className='bg-white rounded-lg mb-4 shadow'>
       <div className='flex justify-between mb-1 px-4 pt-4'>
