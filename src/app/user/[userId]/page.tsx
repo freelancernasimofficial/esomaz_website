@@ -1,5 +1,6 @@
 import PostCard from "@/components/post/PostCard";
 import PostForm from "@/components/post/PostForm";
+import SharedPostCard from "@/components/post/SharedPostCard";
 import FriendsCard from "@/components/user/FriendsCard";
 import UserIntro from "@/components/user/UserIntro";
 import auth from "@/library/auth";
@@ -30,7 +31,9 @@ export default async function page({ params }: Props) {
       currentUser?.id
     } AND MFLW.userId=P.userId ) AS isMeFollowing,(SELECT COUNT(*) FROM Followers HFLW WHERE HFLW.followerId=P.userId AND HFLW.userId=${
       currentUser?.id
-    } ) AS isHeFollowing FROM Posts AS P WHERE P.userId=${
+    } ) AS isHeFollowing,(SELECT JSON_OBJECT('id',SP.id,'uuId',SP.uuId,'text',SP.text,'createdAt',SP.createdAt,'User',(${getUserByObjectQuery(
+      "SP.userId",
+    )}),'Photos',(SELECT JSON_ARRAYAGG(JSON_OBJECT('id',SPH.id,'height',SPH.height,'width',SPH.width,'filename',SPH.filename)) FROM Photos AS SPH WHERE SPH.postId=SP.id)) FROM Posts SP WHERE SP.id=P.sharedId) AS SharedPost FROM Posts AS P WHERE P.userId=${
       user?.id
     } ORDER BY P.id DESC LIMIT 100`,
   );
@@ -41,7 +44,11 @@ export default async function page({ params }: Props) {
         <PostForm />
       </div>
       {posts?.map((item: any, index: number) => {
-        return <PostCard key={item?.uuId} item={item} />;
+        return item?.SharedPost ? (
+          <SharedPostCard key={item.uuId} item={item} />
+        ) : (
+          <PostCard key={item.uuId} item={item} />
+        );
       })}
     </React.Fragment>
   );

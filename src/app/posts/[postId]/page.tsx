@@ -1,6 +1,7 @@
 import postCommentAction from "@/actions/postCommentAction";
 import SubmitButton from "@/components/button/SubmitButton";
 import PostCard from "@/components/post/PostCard";
+import SharedPostCard from "@/components/post/SharedPostCard";
 import SingleComment from "@/components/post/SingleComment";
 import CookieStore from "@/library/CookieStore";
 import auth from "@/library/auth";
@@ -27,7 +28,11 @@ export default async function page({ params }: Props) {
       user?.id
     } AND MFLW.userId=P.userId ) AS isMeFollowing,(SELECT COUNT(*) FROM Followers HFLW WHERE HFLW.followerId=P.userId AND HFLW.userId=${
       user?.id
-    } ) AS isHeFollowing FROM Posts AS P WHERE P.uuId=${params.postId}`,
+    } ) AS isHeFollowing,(SELECT JSON_OBJECT('id',SP.id,'uuId',SP.uuId,'text',SP.text,'createdAt',SP.createdAt,'User',(${getUserByObjectQuery(
+      "SP.userId",
+    )}),'Photos',(SELECT JSON_ARRAYAGG(JSON_OBJECT('id',SPH.id,'height',SPH.height,'width',SPH.width,'filename',SPH.filename)) FROM Photos AS SPH WHERE SPH.postId=SP.id)) FROM Posts SP WHERE SP.id=P.sharedId) AS SharedPost FROM Posts AS P WHERE P.uuId=${
+      params.postId
+    }`,
   );
 
   if (!post?.id) {
@@ -57,7 +62,11 @@ export default async function page({ params }: Props) {
     <div className='container pb-10'>
       {" "}
       <div className='centerCardSmall bg-white rounded-lg'>
-        <PostCard fullText={true} item={post} />
+        {post?.SharedPost ? (
+          <SharedPostCard item={post} />
+        ) : (
+          <PostCard fullText={true} item={post} />
+        )}
       </div>
       <div className='centerCardSmall bg-white rounded-lg p-4 mb-4'>
         <form action={bindPostCommentAction} className='flex flex-col'>

@@ -217,7 +217,7 @@ export default async function SharedPostCard({ item, fullText }: Props) {
 
         <div className='flex items-center flex-1 justify-end'>
           <Link
-            href={`/posts/${item?.uuId}/share_post`}
+            href={`/posts/${item?.SharedPost?.uuId}/share_post`}
             className='svgCircleButtonSmall'
           >
             <IconShareOutline />
