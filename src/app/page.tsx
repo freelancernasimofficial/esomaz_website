@@ -6,6 +6,7 @@ import PostForm from "../components/post/PostForm";
 import getUserByObjectQuery from "@/library/getUserByObjectQuery";
 import auth from "@/library/auth";
 import PostCard from "@/components/post/PostCard";
+import SharedPostCard from "@/components/post/SharedPostCard";
 
 export default async function Home() {
   const user = await auth();
@@ -18,7 +19,9 @@ export default async function Home() {
       user?.id
     } AND MFLW.userId=P.userId ) AS isMeFollowing,(SELECT COUNT(*) FROM Followers HFLW WHERE HFLW.followerId=P.userId AND HFLW.userId=${
       user?.id
-    } ) AS isHeFollowing,(SELECT JSON_OBJECT('id',SP.id,'text',SP.text,'Photos',(SELECT JSON_ARRAYAGG(JSON_OBJECT('id',SPH.id,'height',SPH.height,'width',SPH.width,'filename',SPH.filename)) FROM Photos AS SPH WHERE SPH.postId=SP.id)) FROM Posts SP WHERE SP.id=P.sharedId) AS SharedPost FROM Posts AS P ORDER BY P.id DESC LIMIT 100`,
+    } ) AS isHeFollowing,(SELECT JSON_OBJECT('id',SP.id,'uuId',SP.uuId,'text',SP.text,'createdAt',SP.createdAt,'User',(${getUserByObjectQuery(
+      "SP.userId",
+    )}),'Photos',(SELECT JSON_ARRAYAGG(JSON_OBJECT('id',SPH.id,'height',SPH.height,'width',SPH.width,'filename',SPH.filename)) FROM Photos AS SPH WHERE SPH.postId=SP.id)) FROM Posts SP WHERE SP.id=P.sharedId) AS SharedPost FROM Posts AS P ORDER BY P.id DESC LIMIT 100`,
   );
 
   return (
@@ -28,7 +31,11 @@ export default async function Home() {
         <div className='lg2:max-w-[600px] w-full overflow-hidden'>
           <PostForm className='mt-1' />
           {posts.map((item: any, index: number) => {
-            return <PostCard key={item.uuId} item={item} />;
+            return item?.SharedPost ? (
+              <SharedPostCard key={item.uuId} item={item} />
+            ) : (
+              <PostCard key={item.uuId} item={item} />
+            );
           })}
         </div>
         <RightSidebar />
