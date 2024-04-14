@@ -63,7 +63,7 @@ export default async function page({ params }: Props) {
       {" "}
       <div className='centerCardSmall bg-white rounded-lg'>
         {post?.SharedPost ? (
-          <SharedPostCard item={post} />
+          <SharedPostCard fullText={true} item={post} />
         ) : (
           <PostCard fullText={true} item={post} />
         )}

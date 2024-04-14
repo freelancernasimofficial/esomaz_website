@@ -146,29 +146,36 @@ export default async function SharedPostCard({ item, fullText }: Props) {
       </div>
       <div className='block w-full px-4'>
         <div className='border border-gray-200 rounded-lg'>
-          <div className='flex mb-2'>
-            <div className='w-10 h-10 overflow-hidden shrink-0 rounded-full'>
-              <Avatar user={item?.SharedPost?.User} />
-            </div>
-            <div className='ml-2'>
-              <Link
-                href={`/user/${getUsername(item?.SharedPost?.User)}`}
-                className='block'
-              >
-                <h4 className='font-semibold capitalize'>
-                  {getFullName(item?.SharedPost?.User)}
-                </h4>
-              </Link>
-              <div className='flex items-center'>
-                <IconEarth className='w-3.5 h-3.5 mr-1 text-gray-500' />
+          <div className='flex justify-between'>
+            <div className='flex p-2'>
+              <div className='w-10 h-10 overflow-hidden shrink-0 rounded-full'>
+                <Avatar user={item?.SharedPost?.User} />
+              </div>
+              <div className='ml-2'>
                 <Link
-                  href={`/posts/${item?.SharedPost?.uuId}`}
-                  className='block text-sm5 text-gray-500 leading-4 hover:underline hover:text-gray-900'
+                  href={`/user/${getUsername(item?.SharedPost?.User)}`}
+                  className='block'
                 >
-                  {getRelativeTime(item?.SharedPost?.createdAt)}
+                  <h4 className='font-semibold capitalize'>
+                    {getFullName(item?.SharedPost?.User)}
+                  </h4>
                 </Link>
+                <div className='flex items-center'>
+                  <IconEarth className='w-3.5 h-3.5 mr-1 text-gray-500' />
+                  <Link
+                    href={`/posts/${item?.SharedPost?.uuId}`}
+                    className='block text-sm5 text-gray-500 leading-4 hover:underline hover:text-gray-900'
+                  >
+                    {getRelativeTime(item?.SharedPost?.createdAt)}
+                  </Link>
+                </div>
               </div>
             </div>
+            <Link className='p-2' href={`/posts/${item?.SharedPost?.uuId}`}>
+              <button className='btn btn-primary-transparent !text-sm3 !p-2 !h-auto'>
+                View
+              </button>
+            </Link>
           </div>
           <div className='px-2'>
             {item?.SharedPost?.text.substring(0, 50)}...{" "}
