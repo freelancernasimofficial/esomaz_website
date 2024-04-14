@@ -42,7 +42,8 @@ export default async function PostCard({ item, fullText }: Props) {
           <div className='ml-2'>
             <Link href={`/user/${getUsername(item?.User)}`} className='block'>
               <h4 className='font-semibold capitalize'>
-                {getFullName(item?.User)}
+                {getFullName(item?.User)}{" "}
+                <span className='font-normal lowercase'>shared a post</span>
               </h4>
             </Link>
             <div className='flex items-center'>

@@ -18,7 +18,7 @@ export default async function Home() {
       user?.id
     } AND MFLW.userId=P.userId ) AS isMeFollowing,(SELECT COUNT(*) FROM Followers HFLW WHERE HFLW.followerId=P.userId AND HFLW.userId=${
       user?.id
-    } ) AS isHeFollowing FROM Posts AS P ORDER BY P.id DESC LIMIT 100`,
+    } ) AS isHeFollowing,(SELECT JSON_OBJECT('id',SP.id,'text',SP.text,'Photos',(SELECT JSON_ARRAYAGG(JSON_OBJECT('id',SPH.id,'height',SPH.height,'width',SPH.width,'filename',SPH.filename)) FROM Photos AS SPH WHERE SPH.postId=SP.id)) FROM Posts SP WHERE SP.id=P.sharedId) AS SharedPost FROM Posts AS P ORDER BY P.id DESC LIMIT 100`,
   );
 
   return (
