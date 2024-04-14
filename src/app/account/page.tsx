@@ -2,6 +2,7 @@ import IconBriefcase from "@/components/icons/IconBriefcase";
 import IconChat from "@/components/icons/IconChat";
 import IconLogout from "@/components/icons/IconLogout";
 import IconPersonWorkspace from "@/components/icons/IconPersonWorkspace";
+import IconProject from "@/components/icons/IconProject";
 import IconRss from "@/components/icons/IconRss";
 import IconSettings from "@/components/icons/IconSettings";
 import IconUser from "@/components/icons/IconUser";
@@ -57,6 +58,38 @@ export default async function page({}: Props) {
           </div>
         </div>
         <div className='w-full bg-white rounded-lg p-4 mt-4'>
+          <h2 className='font-bold'>Freelancing</h2>
+          <div className='mt-1'>
+            <Link
+              href='#'
+              className='flex items-center w-full  py-2 hover:text-primary-main'
+            >
+              <IconBriefcase className='w-5 h-5' />{" "}
+              <span className='ml-3.5 block mt-0.5 font-medium text-sm2'>
+                Find Jobs
+              </span>
+            </Link>
+            <Link
+              href='#'
+              className='flex items-center w-full  py-2 hover:text-primary-main'
+            >
+              <IconPersonWorkspace className='w-5 h-5' />{" "}
+              <span className='ml-3.5 block mt-0.5 font-medium text-sm2'>
+                Running Jobs
+              </span>
+            </Link>
+            <Link
+              href='#'
+              className='flex items-center w-full  py-2 hover:text-primary-main'
+            >
+              <IconProject className='w-6 h-6' />{" "}
+              <span className='ml-3.5 block mt-0.5 font-medium text-sm2'>
+                Post A Job
+              </span>
+            </Link>
+          </div>
+        </div>
+        <div className='w-full bg-white rounded-lg px-4'>
           <h2 className='font-bold'>Social Media</h2>
           <div className='mt-1'>
             <Link
@@ -69,7 +102,7 @@ export default async function page({}: Props) {
               </span>
             </Link>
             <Link
-              href='#'
+              href='/messages'
               className='flex items-center w-full  py-2 hover:text-primary-main'
             >
               <IconChat className='w-6 h-6' />{" "}
@@ -78,7 +111,7 @@ export default async function page({}: Props) {
               </span>
             </Link>
             <Link
-              href='#'
+              href={`/user/${getUsername(user)}/friends`}
               className='flex items-center w-full  py-2 hover:text-primary-main'
             >
               <IconUsers className='w-6 h-6' />{" "}
@@ -87,7 +120,7 @@ export default async function page({}: Props) {
               </span>
             </Link>
             <Link
-              href='#'
+              href={`/user/${getUsername(user)}/followers`}
               className='flex items-center w-full  py-2 hover:text-primary-main'
             >
               <IconRss className='w-6 h-6' />{" "}
@@ -97,30 +130,8 @@ export default async function page({}: Props) {
             </Link>
           </div>
         </div>
-        <div className='w-full bg-white rounded-lg p-4 mt-4'>
-          <h2 className='font-bold'>Freelancing</h2>
-          <div className='mt-1'>
-            <Link
-              href='#'
-              className='flex items-center w-full  py-2 hover:text-primary-main'
-            >
-              <IconBriefcase className='w-5 h-5' />{" "}
-              <span className='ml-3.5 block mt-0.5 font-medium text-sm2'>
-                Post A Project
-              </span>
-            </Link>
-            <Link
-              href='#'
-              className='flex items-center w-full  py-2 hover:text-primary-main'
-            >
-              <IconPersonWorkspace className='w-5 h-5' />{" "}
-              <span className='ml-3.5 block mt-0.5 font-medium text-sm2'>
-                Running Projects
-              </span>
-            </Link>
-          </div>
-        </div>
-        <div className='w-full bg-white rounded-lg p-4 mt-4'>
+
+        <div className='w-full bg-white rounded-lg px-4 mt-4'>
           <h2 className='font-bold'>Account</h2>
           <div className='mt-1'>
             <Link
