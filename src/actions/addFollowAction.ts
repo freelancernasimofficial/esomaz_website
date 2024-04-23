@@ -34,7 +34,7 @@ export async function followBackAction(userId: number, formData: any) {
     currentUser?.id,
     userId,
   ]);
-  //notify
+  //notify the user
   await Model.prepare(
     "INSERT INTO Notifications (actionType,senderUserId,receiverUserId)VALUES(?,?,?)",
     ["FOLLOW_BACK", currentUser?.id, userId],
