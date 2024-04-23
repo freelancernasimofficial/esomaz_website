@@ -24,7 +24,7 @@ export default async function replyCommentReplyAction(
       return null;
     } else {
       const mkuuId = await makeUniqueId("Comments");
-      await Model.prepare(
+      const replyTheComment = await Model.prepare(
         "INSERT INTO Comments (uuId,text,postId,parentId,targetedCommentId,userId)VALUES(?,?,?,?,?,?)",
         [
           mkuuId,
@@ -35,6 +35,23 @@ export default async function replyCommentReplyAction(
           user?.id,
         ],
       );
+
+      const [theTargetedComment] = await Model.prepare(
+        "SELECT * FROM Comments WHERE id=?",
+        [itemInfo.targetedCommentId],
+      );
+      if (theTargetedComment.userId !== user?.id) {
+        await Model.prepare(
+          "INSERT INTO Notifications(actionType,receiverUserId,senderUserId,postId,replyCommentId)VALUES(?,?,?,?,?)",
+          [
+            "NEW_REPLY_COMMENT_REPLY",
+            theTargetedComment.userId,
+            user?.id,
+            theTargetedComment.postId,
+            replyTheComment.insertId,
+          ],
+        );
+      }
     }
   } catch (error: any) {
     CookieStore.setState("error", error?.message);
