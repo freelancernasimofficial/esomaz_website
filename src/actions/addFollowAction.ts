@@ -10,6 +10,11 @@ export default async function addFollowAction(userId: number, formData: any) {
     currentUser?.id,
     userId,
   ]);
+  //notify
+  await Model.prepare(
+    "INSERT INTO Notifications (actionType,senderUserId,receiverUserId)VALUES(?,?,?)",
+    ["FOLLOW", currentUser?.id, userId],
+  );
   revalidatePath("/");
 }
 
@@ -29,5 +34,10 @@ export async function followBackAction(userId: number, formData: any) {
     currentUser?.id,
     userId,
   ]);
+  //notify
+  await Model.prepare(
+    "INSERT INTO Notifications (actionType,senderUserId,receiverUserId)VALUES(?,?,?)",
+    ["FOLLOW_BACK", currentUser?.id, userId],
+  );
   revalidatePath("/");
 }

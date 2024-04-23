@@ -32,10 +32,28 @@ export default async function reactionAction(
           [reactionType, user?.id, itemInfo?.itemId],
         );
       } else {
-        await Model.prepare(
+        const reactPost = await Model.prepare(
           "INSERT INTO Reactions (type,userId,postId) VALUES(?,?,?)",
           [reactionType, user?.id, itemInfo?.itemId],
         );
+
+        const [getThePost] = await Model.prepare(
+          "SELECT * FROM Posts WHERE id=?",
+          [itemInfo.itemId],
+        );
+        if (getThePost.userId !== user?.id) {
+          //send notification
+          await Model.prepare(
+            "INSERT INTO Notifications (actionType,receiverUserId,senderUserId,postId,postReactionId)VALUES(?,?,?,?,?)",
+            [
+              "POST_REACTION",
+              getThePost.userId,
+              user?.id,
+              getThePost.id,
+              reactPost.insertId,
+            ],
+          );
+        }
       }
     }
   } else if (itemInfo.itemType === "comment") {
@@ -55,10 +73,30 @@ export default async function reactionAction(
           [reactionType, user?.id, itemInfo?.itemId],
         );
       } else {
-        await Model.prepare(
+        const reactComment = await Model.prepare(
           "INSERT INTO Reactions (type,userId,commentId) VALUES(?,?,?)",
           [reactionType, user?.id, itemInfo?.itemId],
         );
+
+        const [getTheComment] = await Model.prepare(
+          "SELECT * FROM Comments WHERE id=?",
+          [itemInfo.itemId],
+        );
+        //notify
+        if (getTheComment.userId !== user?.id) {
+          const n = await Model.prepare(
+            "INSERT INTO Notifications (actionType,receiverUserId,senderUserId,postId,commentId,commentReactionId)VALUES(?,?,?,?,?,?)",
+            [
+              "NEW_COMMENT_REACTION",
+              getTheComment.userId,
+              user?.id,
+              getTheComment.postId,
+              itemInfo.itemId,
+              reactComment.insertId,
+            ],
+          );
+          console.log(n);
+        }
       }
     }
   }

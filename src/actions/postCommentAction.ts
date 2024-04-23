@@ -17,10 +17,29 @@ export default async function postCommentAction(postId: number, formData: any) {
       return null;
     } else {
       const mkuuId = await makeUniqueId("Comments");
-      await Model.prepare(
+      const postComment = await Model.prepare(
         "INSERT INTO Comments (uuId,text,postId,userId)VALUES(?,?,?,?)",
         [mkuuId, comment, postId, user?.id],
       );
+
+      const [getThePost] = await Model.prepare(
+        "SELECT * FROM Posts WHERE id=?",
+        [postId],
+      );
+
+      if (getThePost.userId !== user?.id) {
+        //insert Notification
+        await Model.prepare(
+          "INSERT INTO Notifications (actionType,receiverUserId,senderUserId,commentId,postId)VALUES(?,?,?,?,?)",
+          [
+            "POST_COMMENT",
+            getThePost.userId,
+            user?.id,
+            postComment.insertId,
+            getThePost.id,
+          ],
+        );
+      }
     }
   } catch (error: any) {
     CookieStore.setState("error", error?.message);

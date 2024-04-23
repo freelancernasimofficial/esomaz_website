@@ -10,6 +10,11 @@ export default async function addFriendAction(userId: number, formData: any) {
     "INSERT INTO Friends (senderUserId,receiverUserId)VALUES(?,?)",
     [currentUser?.id, userId],
   );
+  //notify
+  await Model.prepare(
+    "INSERT INTO Notifications (actionType,receiverUserId,senderUserId)VALUES(?,?,?)",
+    ["FRIEND_REQUEST", userId, currentUser?.id],
+  );
   revalidatePath("/");
 }
 export async function cancelFriendAction(userId: number, formData: any) {
@@ -26,6 +31,12 @@ export async function acceptFriendAction(userId: number, formData: any) {
   await Model.prepare(
     "UPDATE Friends SET isAccepted=? WHERE senderUserId=? AND receiverUserId=?",
     [true, userId, currentUser?.id],
+  );
+
+  //notify
+  await Model.prepare(
+    "INSERT INTO Notifications (actionType,receiverUserId,senderUserId)VALUES(?,?,?)",
+    ["CONFIRM_FRIEND_REQUEST", userId, currentUser?.id],
   );
   revalidatePath("/");
 }

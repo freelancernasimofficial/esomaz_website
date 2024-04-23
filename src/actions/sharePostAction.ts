@@ -17,9 +17,24 @@ export default async function sharePostAction(postId: any, formData: any) {
       return null;
     } else {
       const mkuuId = await makeUniqueId("Posts");
-      await Model.prepare(
+      const sharePost = await Model.prepare(
         "INSERT INTO Posts (uuId,text,sharedId,userId)VALUES(?,?,?,?)",
         [mkuuId, text, postId, user?.id],
+      );
+      //send notification
+      const [getThePost] = await Model.prepare(
+        "SELECT * FROM Posts WHERE id=?",
+        [postId],
+      );
+      const notify = await Model.prepare(
+        "INSERT INTO Notifications (actionType,receiverUserId,senderUserId,postId,sharedPostId)VALUES(?,?,?,?,?)",
+        [
+          "NEW_POST_SHARE",
+          getThePost.userId,
+          user?.id,
+          postId,
+          sharePost.insertId,
+        ],
       );
       CookieStore.setState("success", "Post shared successfully");
     }

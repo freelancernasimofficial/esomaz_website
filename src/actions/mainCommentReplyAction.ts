@@ -23,10 +23,28 @@ export default async function mainCommentReplyAction(
       return null;
     } else {
       const mkuuId = await makeUniqueId("Comments");
-      await Model.prepare(
+      const postReply = await Model.prepare(
         "INSERT INTO Comments (uuId,text,postId,parentId,userId)VALUES(?,?,?,?,?)",
         [mkuuId, comment, itemInfo.postId, itemInfo.commentId, user?.id],
       );
+      const [getTheComment] = await Model.prepare(
+        "SELECT * FROM Comments WHERE id=?",
+        [itemInfo.commentId],
+      );
+
+      if (getTheComment.userId !== user?.id) {
+        //insert Notification
+        await Model.prepare(
+          "INSERT INTO Notifications (actionType,receiverUserId,senderUserId,commentId,postId)VALUES(?,?,?,?,?)",
+          [
+            "NEW_COMMENT_REPLY",
+            getTheComment.userId,
+            user?.id,
+            postReply.insertId,
+            itemInfo.postId,
+          ],
+        );
+      }
     }
   } catch (error: any) {
     CookieStore.setState("error", error?.message);
