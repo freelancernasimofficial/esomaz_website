@@ -10,19 +10,19 @@ export default function getNotificationMessage(type: string) {
   } else if (type === "NEW_COMMENT_REACTION") {
     return "Reacted on your comment";
   } else if (type === "POST_REACTION") {
-    return "Reacted on your post";
+    return "Reacted on your";
   } else if (type === "NEW_COMMENT_REPLY") {
     return "Replied to your comment";
   } else if (type === "POST_COMMENT") {
-    return "Commented on your post";
+    return "Commented on your";
   } else if (type === "CONFIRM_FRIEND_REQUEST") {
     return "Accepted your friend request";
   } else if (type === "NEW_REPLY_COMMENT_REPLY") {
     return "added to your reply comment";
   } else if (type === "NEW_POST_COMMENT") {
-    return "Commented on your post";
+    return "Commented on your";
   } else if (type === "NEW_POST_SHARE") {
-    return "Shared your post";
+    return "Shared your";
   } else {
     return "NOT_FOUND " + type;
   }
