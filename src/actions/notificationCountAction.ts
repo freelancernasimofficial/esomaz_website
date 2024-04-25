@@ -7,7 +7,7 @@ import { revalidatePath } from "next/cache";
 export default async function notificationsCountAction() {
   const currentUser = await auth();
   const [countNotification] = await Model.query(
-    `SELECT COUNT(*) AS total FROM Notifications WHERE receiverUserId=${currentUser?.id}`,
+    `SELECT COUNT(*) AS total FROM Notifications WHERE receiverUserId=${currentUser?.id} AND isSeen=0`,
   );
   revalidatePath("/");
   return countNotification;

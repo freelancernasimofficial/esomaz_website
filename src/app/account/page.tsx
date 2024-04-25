@@ -57,7 +57,7 @@ export default async function page({}: Props) {
             </div>
           </div>
         </div>
-        <div className='w-full bg-white rounded-lg p-4 mt-4'>
+        <div className='w-full bg-white rounded-lg p-4'>
           <h2 className='font-bold'>Freelancing</h2>
           <div className='mt-1'>
             <Link
@@ -131,7 +131,7 @@ export default async function page({}: Props) {
           </div>
         </div>
 
-        <div className='w-full bg-white rounded-lg px-4 mt-4'>
+        <div className='w-full bg-white rounded-lg px-4 pb-4 mt-4'>
           <h2 className='font-bold'>Account</h2>
           <div className='mt-1'>
             <Link

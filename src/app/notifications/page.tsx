@@ -6,13 +6,14 @@ import getNotificationMessage from "@/library/getNotificationMessage";
 import getUsername from "@/library/getUsername";
 import moment from "moment";
 import Link from "next/link";
+
 import React from "react";
 
 type Props = {};
 
 export default async function page({}: Props) {
-  const notif = await getNotificationsAction();
   await seenAllNotificationsAction();
+  const notif = await getNotificationsAction();
 
   return (
     <div className='container'>

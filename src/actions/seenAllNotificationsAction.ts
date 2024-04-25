@@ -8,7 +8,7 @@ export default async function seenAllNotificationsAction() {
   const currentUser = await auth();
   await Model.prepare(
     `UPDATE Notifications SET isSeen=? WHERE isSeen=? AND receiverUserId=?`,
-    [1, 0, currentUser?.id],
+    [true, false, currentUser?.id],
   );
 
   revalidatePath("/");

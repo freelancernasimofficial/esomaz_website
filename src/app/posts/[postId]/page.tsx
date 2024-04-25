@@ -61,40 +61,53 @@ export default async function page({ params }: Props) {
   return (
     <div className='container pb-10'>
       {" "}
-      <div className='centerCardSmall bg-white rounded-lg'>
-        {post?.SharedPost ? (
-          <SharedPostCard fullText={true} item={post} />
-        ) : (
-          <PostCard fullText={true} item={post} />
-        )}
-      </div>
-      <div className='centerCardSmall bg-white rounded-lg p-4 mb-4'>
-        <form action={bindPostCommentAction} className='flex flex-col'>
-          <textarea
-            placeholder='Enter comment'
-            className='w-full block bg-gray-100 rounded-lg mb-3 p-2 text-sm3'
-            name='comment'
-            id=''
-            cols={30}
-            rows={3}
-          ></textarea>
+      <div className='md:flex centerCard'>
+        <div className='centerCardMobile md:w-2/4'>
+          <div className='md:pr-2'>
+            {" "}
+            {post?.SharedPost ? (
+              <SharedPostCard fullText={true} item={post} />
+            ) : (
+              <PostCard fullText={true} item={post} />
+            )}
+            <div className='bg-white rounded-lg p-4 mb-4'>
+              <form action={bindPostCommentAction} className='flex flex-col'>
+                <textarea
+                  placeholder='Enter comment'
+                  className='w-full block bg-gray-100 rounded-lg mb-3 p-2 text-sm3'
+                  name='comment'
+                  id=''
+                  cols={30}
+                  rows={3}
+                ></textarea>
 
-          {error && <div className='errorCard w-full mb-3'>{error}</div>}
-          {success && <div className='successCard w-full mb-3'>{success}</div>}
-          <SubmitButton title='Comment' className='btn btn-primary w-full' />
-        </form>
-      </div>
-      <div className='centerCardSmall bg-white rounded-lg'>
-        <div className='px-4 py-2'>
+                {error && <div className='errorCard w-full mb-3'>{error}</div>}
+                {success && (
+                  <div className='successCard w-full mb-3'>{success}</div>
+                )}
+                <SubmitButton
+                  title='Comment'
+                  className='btn btn-primary w-full'
+                />
+              </form>
+            </div>
+          </div>
+        </div>
+        <div className='centerCardMobile md:pl-2 md:w-2/4'>
           {" "}
-          <h1 className='font-bold text-lg  mb-4 mt-1'>
-            Comments ({post?.TotalComments})
-          </h1>
-          {comments?.map((item: any, index: number) => {
-            return (
-              <SingleComment params={params} key={item?.uuId} item={item} />
-            );
-          })}
+          <div className='bg-white rounded-lg'>
+            <div className='px-4 py-2'>
+              {" "}
+              <h1 className='font-bold text-lg  mb-4 mt-1'>
+                Comments ({post?.TotalComments})
+              </h1>
+              {comments?.map((item: any, index: number) => {
+                return (
+                  <SingleComment params={params} key={item?.uuId} item={item} />
+                );
+              })}
+            </div>
+          </div>
         </div>
       </div>
     </div>
