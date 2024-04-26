@@ -7,6 +7,7 @@ import IconRss from "@/components/icons/IconRss";
 import IconSettings from "@/components/icons/IconSettings";
 import IconUser from "@/components/icons/IconUser";
 import IconUsers from "@/components/icons/IconUsers";
+import Avatar from "@/components/user/Avatar";
 import auth from "@/library/auth";
 import getFullName from "@/library/getFullName";
 import getSubtitle from "@/library/getSubtitle";
@@ -23,41 +24,33 @@ export default async function page({}: Props) {
   return (
     <div className='container'>
       <div className='centerCardSmall mb-4'>
-        <div className='w-full bg-white rounded-lg p-4 flex items-center justify-between border-b border-b-gray-200'>
-          <div className='flex items-center'>
+        <div className='w-full bg-white rounded-lg p-4 flex flex-col items-center justify-center border-b border-b-gray-200'>
+          <div className='flex flex-col justify-center items-center'>
             {" "}
-            <Link
-              href={`/user/${getUsername(user)}`}
-              className='block mr-3 shrink-0 w-11 h-11 overflow-hidden border-2 items-center border-primary-main rounded-full mx-auto'
-            >
-              <Image
-                className='w-full h-full'
-                width={150}
-                height={150}
-                alt=''
-                src={`/uploads/photos/${user?.avatar}`}
-              />
-            </Link>
-            <div className=''>
+            <Avatar
+              className='w-40 h-40 border-gray-400 border-4'
+              user={user}
+            />
+            <div className='mt-3'>
               <Link
                 href={`/user/${getUsername(user)}`}
                 className='font-semibold leading-5 inline-block text-lg'
               >
                 {getFullName(user)}
               </Link>
-              <div className=' text-slate-400 leading-3 text-sm4 font-semibold'>
-                {getSubtitle(user)}
-              </div>
             </div>
           </div>
-          <div>
-            <h2 className='font-semibold text-sm3 text-slate-400'>Balance</h2>
-            <div className='font-bold text-sm3 text-green-600'>
-              $25820.00 <span className='text-black font-bold'>USD</span>
+          <div className='flex items-center mt-2'>
+            <h2 className='font-medium text-base text-slate-400 mr-2'>
+              Balance:
+            </h2>
+            <div className='font-medium text-base text-green-600'>
+              $25820.00{" "}
+              <span className='text-black text-base font-medium'>USD</span>
             </div>
           </div>
         </div>
-        <div className='w-full bg-white rounded-lg p-4'>
+        <div className='w-full bg-white rounded-lg p-4 my-4'>
           <h2 className='font-bold'>Freelancing</h2>
           <div className='mt-1'>
             <Link
@@ -89,7 +82,7 @@ export default async function page({}: Props) {
             </Link>
           </div>
         </div>
-        <div className='w-full bg-white rounded-lg px-4'>
+        <div className='w-full bg-white rounded-lg p-4'>
           <h2 className='font-bold'>Social Media</h2>
           <div className='mt-1'>
             <Link
@@ -131,7 +124,7 @@ export default async function page({}: Props) {
           </div>
         </div>
 
-        <div className='w-full bg-white rounded-lg px-4 pb-4 mt-4'>
+        <div className='w-full bg-white rounded-lg p-4 pb-4 mt-4'>
           <h2 className='font-bold'>Account</h2>
           <div className='mt-1'>
             <Link
