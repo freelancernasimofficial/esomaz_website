@@ -1,6 +1,10 @@
+import IconBank from "@/components/icons/IconBank";
 import IconBriefcase from "@/components/icons/IconBriefcase";
+import IconCashPlus from "@/components/icons/IconCashPlus";
 import IconChat from "@/components/icons/IconChat";
+import IconCreditCard from "@/components/icons/IconCreditCard";
 import IconLogout from "@/components/icons/IconLogout";
+import IconMoneyDollarCircleLine from "@/components/icons/IconMoneyDollarCircleLine";
 import IconPersonWorkspace from "@/components/icons/IconPersonWorkspace";
 import IconProject from "@/components/icons/IconProject";
 import IconRss from "@/components/icons/IconRss";
@@ -78,6 +82,38 @@ export default async function page({}: Props) {
               <IconProject className='w-6 h-6' />{" "}
               <span className='ml-3.5 block mt-0.5 font-medium text-sm2'>
                 Post A Job
+              </span>
+            </Link>
+          </div>
+        </div>
+        <div className='w-full bg-white rounded-lg p-4 my-4'>
+          <h2 className='font-bold'>Payments</h2>
+          <div className='mt-1'>
+            <Link
+              href='#'
+              className='flex items-center w-full  py-2 hover:text-primary-main'
+            >
+              <IconCashPlus className='w-7 h-7' />{" "}
+              <span className='ml-3.5 block mt-0.5 font-medium text-sm2'>
+                Deposit Money
+              </span>
+            </Link>
+            <Link
+              href='#'
+              className='flex items-center w-full  py-2 hover:text-primary-main'
+            >
+              <IconMoneyDollarCircleLine className='w-7 h-7' />{" "}
+              <span className='ml-3.5 block mt-0.5 font-medium text-sm2'>
+                Withdraw Money
+              </span>
+            </Link>
+            <Link
+              href='#'
+              className='flex items-center w-full  py-2 hover:text-primary-main'
+            >
+              <IconBank className='w-6 h-6' />{" "}
+              <span className='ml-3.5 block mt-0.5 font-medium text-sm2'>
+                Payment Methods
               </span>
             </Link>
           </div>
