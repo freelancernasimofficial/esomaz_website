@@ -13,7 +13,7 @@ type Props = {
 };
 
 export default async function FriendsCard({ user }: Props) {
-  const friends = await getFriendsByUserIdAction(user?.id);
+  const friends = await getFriendsByUserIdAction(user?.id, 5);
 
   return (
     <div className='w-full p-4 my-4 rounded-lg bg-white shadow hidden md:block'>
