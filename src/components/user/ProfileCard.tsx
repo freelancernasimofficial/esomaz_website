@@ -17,6 +17,7 @@ import auth from "@/library/auth";
 import UserStatistics from "./UserStatistics";
 import getSubtitle from "@/library/getSubtitle";
 import getUsername from "@/library/getUsername";
+import Avatar from "./Avatar";
 type Props = {
   user: any;
 };
@@ -158,7 +159,7 @@ export default async function ProfileCard({ user }: Props) {
         className='md:max-h-80 md:min-h-80 max-h-72 min-h-72  rounded-t-lg bg-no-repeat bg-cover relative'
       >
         <div className='w-48 h-48 overflow-hidden rounded-full absolute left-2/4 -translate-x-2/4 bottom-0  border-8 translate-y-2/4 border-white'>
-          {user?.avatar ? (
+          {/* {user?.avatar ? (
             <Image
               width={200}
               height={200}
@@ -174,7 +175,8 @@ export default async function ProfileCard({ user }: Props) {
               alt='avatar'
               src='/images/static/avatars/default-avatar.jpg'
             />
-          )}
+          )} */}
+          <Avatar className='w-full h-full' user={user} />
         </div>
       </div>
 

@@ -6,12 +6,13 @@ import React, { HTMLAttributes } from "react";
 type Props = {
   user: any;
   className?: HTMLAttributes<HTMLDivElement>["className"];
+  href?: string;
 };
 
-export default function Avatar({ user, className }: Props) {
+export default function Avatar({ user, className, href }: Props) {
   return (
     <Link
-      href={`/user/${getUsername(user)}`}
+      href={href?.length ? href : `/user/${getUsername(user)}`}
       className={`w-10 block h-10 overflow-hidden shrink-0  rounded-full bg-primary-main ${
         className ?? ""
       }`}
@@ -19,17 +20,17 @@ export default function Avatar({ user, className }: Props) {
       {user?.avatar ? (
         <Image
           className='w-full h-full bg-primary-main'
-          height={40}
-          width={40}
-          alt='user avatar'
-          src={`/uploads/photos/${user?.avatar?.filename}`}
+          height={500}
+          width={500}
+          alt='user'
+          src={`/uploads/photos/${user?.avatar}`}
         />
       ) : (
         <Image
           className='w-full h-full bg-primary-main'
-          height={40}
-          width={40}
-          alt='user avatar'
+          height={500}
+          width={500}
+          alt='user'
           src={`/images/static/avatars/default-avatar.jpg`}
         />
       )}

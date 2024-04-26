@@ -1,14 +1,7 @@
 import Model from "@/model/Model";
 import React from "react";
 import getUserByObjectQuery from "@/library/getUserByObjectQuery";
-import getFullName from "@/library/getFullName";
-import getRelativeTime from "@/library/getRelativeTime";
-import getUsername from "@/library/getUsername";
-import Link from "next/link";
-import Avatar from "../user/Avatar";
-import DropdownMenu from "../dropdown/DropdownMenu";
 import auth from "@/library/auth";
-import ReactionCard from "./ReactionCard";
 import SingleReplyComment from "./SingleReplyComment";
 
 type Props = {

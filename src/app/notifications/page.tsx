@@ -9,9 +9,12 @@ import Link from "next/link";
 
 import React from "react";
 
-type Props = {};
+type Props = {
+  params: any;
+  searchParams: any;
+};
 
-export default async function page({}: Props) {
+export default async function page(props: Props) {
   await seenAllNotificationsAction();
   const notif = await getNotificationsAction();
 

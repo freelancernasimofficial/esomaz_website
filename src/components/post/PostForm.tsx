@@ -1,5 +1,4 @@
 import IconImagesOutline from "@/components/icons/IconImagesOutline";
-import IconVideo from "@/components/icons/IconVideo";
 import React, { HTMLAttributes } from "react";
 
 type Props = {

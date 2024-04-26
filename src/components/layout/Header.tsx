@@ -6,6 +6,7 @@ import IconChat from "../icons/IconChat";
 import Link from "next/link";
 import auth from "@/library/auth";
 import notificationsCountAction from "@/actions/notificationCountAction";
+import Avatar from "../user/Avatar";
 
 type Props = {};
 
@@ -51,18 +52,9 @@ export default async function Header({}: Props) {
                 <IconChat />
               </button>
             </Link>
-            <Link
-              href='/account'
-              className='p-0 ml-4 h-10 w-10 overflow-hidden rounded-full'
-            >
-              <Image
-                className='w-full !h-full'
-                height={40}
-                width={40}
-                alt='avatar'
-                src={`/uploads/photos/${currentUser?.avatar}`}
-              />
-            </Link>
+            <div className='p-0 ml-4 h-10 w-10 overflow-hidden rounded-full'>
+              <Avatar href='/account' user={currentUser} />
+            </div>
           </div>
         </div>
       </div>
