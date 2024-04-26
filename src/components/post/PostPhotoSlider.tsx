@@ -4,6 +4,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Image from "next/image";
+import { AWS_S3_PHOTO_API_URL } from "@/library/constants";
 
 type PostPhotosType = {
   photos: any;
@@ -17,7 +18,7 @@ const PostPhotos = ({ photos }: PostPhotosType) => {
           height={photos[0].height}
           width={photos[0].width}
           alt='post image'
-          src={`/uploads/photos/${photos[0]?.filename}`}
+          src={AWS_S3_PHOTO_API_URL + photos[0]?.filename}
         />
       );
     } else {
@@ -40,7 +41,7 @@ const PostPhotos = ({ photos }: PostPhotosType) => {
                 height={photo?.height}
                 width={photo?.width}
                 alt='post image'
-                src={`/uploads/photos/${photo?.filename}`}
+                src={AWS_S3_PHOTO_API_URL + photo?.filename}
               />
             );
           })}

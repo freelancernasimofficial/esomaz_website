@@ -40,11 +40,19 @@ export default async function PostCard({ item, fullText }: Props) {
             <Avatar user={item?.User} />
           </div>
           <div className='ml-2'>
-            <Link href={`/user/${getUsername(item?.User)}`} className='block'>
-              <h4 className='font-semibold capitalize'>
+            <div className='inline-block leading-5'>
+              <Link
+                href={`/user/${getUsername(item?.User)}`}
+                className='font-semibold capitalize inline'
+              >
                 {getFullName(item?.User)}
-              </h4>
-            </Link>
+              </Link>
+              {item?.type === "AVATAR" ? (
+                <span> changed profile picture</span>
+              ) : item?.type === "COVERPHOTO" ? (
+                <span> changed cover photo</span>
+              ) : null}
+            </div>
             <div className='flex items-center'>
               <IconEarth className='w-3.5 h-3.5 mr-1 text-gray-500' />
               <Link

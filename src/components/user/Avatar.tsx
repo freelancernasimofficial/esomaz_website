@@ -1,3 +1,4 @@
+import { AWS_S3_PHOTO_API_URL } from "@/library/constants";
 import getUsername from "@/library/getUsername";
 import Image from "next/image";
 import Link from "next/link";
@@ -23,7 +24,7 @@ export default function Avatar({ user, className, href }: Props) {
           height={500}
           width={500}
           alt='user'
-          src={`/uploads/photos/${user?.avatar}`}
+          src={AWS_S3_PHOTO_API_URL + user?.avatar}
         />
       ) : (
         <Image

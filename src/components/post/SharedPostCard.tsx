@@ -40,12 +40,16 @@ export default async function SharedPostCard({ item, fullText }: Props) {
             <Avatar user={item?.User} />
           </div>
           <div className='ml-2'>
-            <Link href={`/user/${getUsername(item?.User)}`} className='block'>
-              <h4 className='font-semibold capitalize'>
-                {getFullName(item?.User)}{" "}
-                <span className='font-normal lowercase'>shared a post</span>
-              </h4>
-            </Link>
+            <div className='inline-block'>
+              {" "}
+              <Link
+                href={`/user/${getUsername(item?.User)}`}
+                className='font-semibold capitalize inline'
+              >
+                {getFullName(item?.User)}
+              </Link>
+              <span className='font-normal lowercase'> shared a post</span>
+            </div>
             <div className='flex items-center'>
               <IconEarth className='w-3.5 h-3.5 mr-1 text-gray-500' />
               <Link
