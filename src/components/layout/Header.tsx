@@ -31,7 +31,8 @@ export default async function Header({}: Props) {
           <div className='flex-1 md:block hidden relative'>
             <IconSearch className='absolute left-3 top-2/4 -translate-y-2/4 text-gray-400 w-5 h-5' />
             <input
-              placeholder='Search Friends, Videos...'
+              id='search-friends'
+              placeholder='Search Friends...'
               type='text'
               className='w-full pl-9 rounded-full focus:border-transparent'
             />

@@ -78,9 +78,12 @@ export default async function SingleReplyComment({ item, params }: Props) {
                 currentReaction={item?.myReactionType}
               />{" "}
               {item?.totalReactions > 0 ? (
-                <div className='text-sm4 ml-1.5 font-medium'>
+                <Link
+                  href={`/posts/${params?.postId}/comment_reactions/${item?.id}`}
+                  className='text-sm4 ml-1.5 font-medium'
+                >
                   {getCompactNumber(item?.totalReactions)} People
-                </div>
+                </Link>
               ) : null}
               <form action={bindReplyCommentReplyButton} className='ml-6'>
                 <button

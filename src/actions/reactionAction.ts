@@ -95,7 +95,6 @@ export default async function reactionAction(
               reactComment.insertId,
             ],
           );
-          console.log(n);
         }
       }
     }
