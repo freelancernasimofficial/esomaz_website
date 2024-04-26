@@ -28,7 +28,7 @@ export default async function RightSidebar({}: Props) {
                   </div>
                   <div className='ml-2'>
                     <Link href={`/user/${getUsername(user)}`} className='block'>
-                      <h4 className='font-medium text-sm2'>
+                      <h4 className='font-medium text-sm2 capitalize'>
                         {getFullName(user)}
                       </h4>
                     </Link>
