@@ -1,4 +1,4 @@
-import getFollowersByUserIdAction from "@/actions/getFollowersByUserIdAction";
+import getFollowingsByUserIdAction from "@/actions/getFollowingsByUserIdAction";
 import getSingleUserByuuId from "@/actions/getSingleUserByuuId";
 import Avatar from "@/components/user/Avatar";
 import getFullName from "@/library/getFullName";
@@ -15,19 +15,18 @@ type Props = {
 
 export default async function page({ params }: Props) {
   const user = await getSingleUserByuuId(params.userId);
-
-  const Followers = await getFollowersByUserIdAction(user?.id);
+  const following = await getFollowingsByUserIdAction(user?.id);
 
   return (
     <div className='centerCard'>
       <div className='bg-white shadow p-4 rounded-lg mb-8'>
         <div className='flex justify-between'>
           <h2 className='font-bold text-xl'>
-            Followers ({Followers?.length ? Followers?.length : 0})
+            Following ({following?.length ? following?.length : 0})
           </h2>
         </div>
         <div className='flex flex-col w-full'>
-          {Followers?.map((item: any, index: number) => {
+          {following?.map((item: any, index: number) => {
             return (
               <div
                 key={item?.id?.toString()}

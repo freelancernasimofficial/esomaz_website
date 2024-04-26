@@ -11,6 +11,7 @@ type SessionType =
       subtitle: string;
       email: string;
       avatar: string;
+      totalNotifications: number;
     }
   | undefined;
 
@@ -20,7 +21,7 @@ export default async function auth(): Promise<SessionType> {
     //@ts-ignore
     const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
     const user = await Model.prepare(
-      "SELECT id,uuId,username,firstName,lastName,subtitle,email,(SELECT filename FROM Photos AV WHERE AV.id=avatarId) AS avatar FROM Users WHERE id=?",
+      "SELECT U.id,U.uuId,U.username,U.firstName,U.lastName,U.subtitle,U.email,(SELECT filename FROM Photos AV WHERE AV.id=U.avatarId) AS avatar,(SELECT COUNT(*) FROM Notifications N WHERE N.isSeen=false AND N.receiverUserId=U.id) AS totalNotifications FROM Users U WHERE U.id=?",
       [decoded.id],
     );
 

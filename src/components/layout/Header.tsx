@@ -5,14 +5,12 @@ import IconBell from "../icons/IconBell";
 import IconChat from "../icons/IconChat";
 import Link from "next/link";
 import auth from "@/library/auth";
-import notificationsCountAction from "@/actions/notificationCountAction";
 import Avatar from "../user/Avatar";
 
 type Props = {};
 
 export default async function Header({}: Props) {
   const currentUser = await auth();
-  const notificationCount = await notificationsCountAction();
 
   return currentUser ? (
     <header className='h-16 bg-white border-b border-b-gray-200 sticky top-0 z-10'>
@@ -39,9 +37,9 @@ export default async function Header({}: Props) {
           </div>
           <div className='flex-1 flex items-center justify-end'>
             <Link className='block relative' href='/notifications'>
-              {notificationCount?.total > 0 ? (
+              {currentUser?.totalNotifications > 0 ? (
                 <div className=' bg-rose-600 text-white text-sm7 absolute -top-1 p-1 rounded-full w-5 h-5 flex items-center justify-center'>
-                  {notificationCount?.total}
+                  {currentUser?.totalNotifications}
                 </div>
               ) : null}
               <button className='svgCircleButton bg-gray-100'>

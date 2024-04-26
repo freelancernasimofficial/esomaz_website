@@ -19,9 +19,7 @@ type Props = {
 export default async function page({ params }: Props) {
   const user = await getSingleUserByuuId(params.userId);
 
-  const friends = await Model.query(
-    `SELECT *,(SELECT JSON_OBJECT('id',U.id,'uuId',U.uuId,'firstName',U.firstName,'lastName',U.lastName,'avatar',(SELECT AV.filename FROM Photos AV WHERE AV.id=U.avatarId)) FROM Users U WHERE U.id=IF(F.senderUserId=${user?.id},F.receiverUserId,F.senderUserId)) AS Friend FROM Friends F WHERE F.senderUserId=${user.id} OR F.receiverUserId=${user?.id} AND F.isAccepted=true ORDER BY F.id DESC`,
-  );
+  const friends = await getFriendsByUserIdAction(user?.id);
 
   return (
     <div className='centerCard'>

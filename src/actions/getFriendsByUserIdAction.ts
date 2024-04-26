@@ -1,6 +1,4 @@
 "use server";
-
-import getUserByObjectQuery from "@/library/getUserByObjectQuery";
 import Model from "@/model/Model";
 
 export default async function getFriendsByUserIdAction(
