@@ -6,19 +6,14 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import Avatar from "./Avatar";
+import getFriendsByUserIdAction from "@/actions/getFriendsByUserIdAction";
 
 type Props = {
   user: any;
 };
 
 export default async function FriendsCard({ user }: Props) {
-  const getFriends = await Model.query(
-    `SELECT *,(${getUserByObjectQuery(
-      "F.senderUserId",
-    )}) AS Friend FROM Friends F WHERE F.receiverUserId=${
-      user?.id
-    } AND F.isAccepted=${true} ORDER BY F.id DESC LIMIT 5`,
-  );
+  const friends = await getFriendsByUserIdAction(user?.id);
 
   return (
     <div className='w-full p-4 my-4 rounded-lg bg-white shadow hidden md:block'>
@@ -32,7 +27,7 @@ export default async function FriendsCard({ user }: Props) {
         </Link>
       </div>
       <div className='flex flex-col w-full'>
-        {getFriends?.map((item: any, index: number) => {
+        {friends?.map((item: any, index: number) => {
           return (
             <div key={item?.id.toString()} className='flex my-2'>
               <Avatar user={item?.Friend} />

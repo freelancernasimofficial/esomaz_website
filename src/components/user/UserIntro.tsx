@@ -6,15 +6,14 @@ import IconRss from "../icons/IconRss";
 import IconSchoolOutline from "../icons/IconSchoolOutline";
 import Model from "@/model/Model";
 import getCompactNumber from "@/library/getCompactNumber";
+import getUserInformationAction from "@/actions/getUserInformationAction";
 
 type Props = {
   userId: number;
 };
 
 export default async function UserIntro({ userId }: Props) {
-  const [userInfos] = await Model.query(
-    `SELECT *,(SELECT name FROM Countries WHERE id=UF.countryId) AS country,(SELECT COUNT(*) FROM Followers FL WHERE FL.userId=UF.userId) AS totalFollowers FROM UserInfos UF WHERE UF.userId=${userId}`,
-  );
+  const userInfos = await getUserInformationAction(userId);
 
   return (
     <div className='w-full p-4 rounded-lg bg-white shadow my-4'>
