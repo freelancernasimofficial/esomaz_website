@@ -14,9 +14,9 @@ const initialState = {
 
 export default function NewPostForm({}: Props) {
   const [state, formAction] = useFormState(addNewPostAction, initialState);
-  //   if (state.status === true) {
-  //     location.href = "/";
-  //   }
+  if (state.status === true) {
+    location.href = "/";
+  }
   return (
     <form action={formAction}>
       <textarea

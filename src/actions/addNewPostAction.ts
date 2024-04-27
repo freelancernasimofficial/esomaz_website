@@ -5,6 +5,7 @@ import makeUniqueId from "@/library/makeUniqueId";
 import Model from "@/model/Model";
 import { revalidatePath } from "next/cache";
 import crypto from "crypto";
+import sharp from "sharp";
 export default async function addNewPostAction(prevState: any, formData: any) {
   try {
     const currentUser = await auth();
@@ -21,23 +22,34 @@ export default async function addNewPostAction(prevState: any, formData: any) {
 
     //create the post
 
-    // const makeuuId = await makeUniqueId("Posts");
-    // const addPost = await Model.prepare(
-    //   `INSERT INTO Posts (uuId,text,userId)VALUES(?,?,?)`,
-    //   [makeuuId, text, currentUser?.id],
-    // );
+    const makeuuId = await makeUniqueId("Posts");
+    const addPost = await Model.prepare(
+      `INSERT INTO Posts (uuId,text,userId)VALUES(?,?,?)`,
+      [makeuuId, text, currentUser?.id],
+    );
 
     // if there is any file then upload the files
 
     for (let file of files) {
       if (file.size > 0) {
-        //   const fileBuffer = Buffer.from(await file.arrayBuffer());
-        //   const formatFileName = file.name.split(" ").join("_").toLowerCase();
-        //   const randomName = crypto.randomBytes(16).toString("hex");
-        //   const fileName = currentUser?.uuId + randomName + formatFileName;
-        //   const fileType = file.type;
-        //   const uploadNow = await uploadFileToS3(fileBuffer, fileName, fileType);
-        //   console.log(uploadNow);
+        const kbs = file.size / 1000;
+        let fileBuffer = Buffer.from(await file.arrayBuffer());
+        if (kbs > 500) {
+          fileBuffer = await sharp(fileBuffer)
+            .resize({ width: 1080 })
+            .jpeg({ quality: 70 })
+            .toBuffer();
+        }
+        const formatFileName = file.name.split(" ").join("_").toLowerCase();
+        const randomName = crypto.randomBytes(16).toString("hex");
+        const fileName = currentUser?.uuId + randomName + formatFileName;
+        const fileType = file.type;
+        await uploadFileToS3(fileBuffer, fileName, fileType);
+        //add image name to database
+        await Model.prepare(
+          `INSERT INTO Photos (userId,postId,filename)VALUES(?,?,?)`,
+          [currentUser?.id, addPost?.insertId, fileName],
+        );
       }
     }
 
