@@ -10,6 +10,7 @@
     "push": "/usr/bin/git add . && /usr/bin/git commit -m 'update' && /usr/bin/git push"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.564.0",
     "@aws-sdk/client-ses": "^3.499.0",
     "@types/bcrypt": "^5.0.2",
     "@types/jsonwebtoken": "^9.0.5",

@@ -11,7 +11,12 @@ export default function SubmitButton({ className, title }: Props) {
   const { pending } = useFormStatus();
 
   return (
-    <button type='submit' disabled={pending} className={className}>
+    <button
+      type='submit'
+      aria-disabled={pending}
+      disabled={pending}
+      className={className}
+    >
       {pending ? (
         <svg
           aria-hidden='true'
