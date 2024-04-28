@@ -3,6 +3,7 @@ import getUserPhotosAction, {
   getUserTotalPhotoCountAction,
 } from "@/actions/getUserPhotosAction";
 import { AWS_S3_PHOTO_API_URL } from "@/library/constants";
+import getUsername from "@/library/getUsername";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -31,9 +32,10 @@ export default async function page({ params }: Props) {
         <div className='md:flex md:flex-wrap justify-between w-full'>
           {photos?.map((photo: any) => {
             return (
-              <div
+              <Link
+                href={`/view_image/${photo?.filename}`}
                 key={photo?.filename}
-                className='w-full md:w-80 md2:w-56 md:h-48  mb-4 bg-gray-700  overflow-hidden rounded-lg'
+                className='w-full block md:w-80 md2:w-56 md:h-48  mb-4 bg-gray-700  overflow-hidden rounded-lg'
               >
                 <Image
                   className='w-full h-full'
@@ -43,7 +45,7 @@ export default async function page({ params }: Props) {
                   alt='profile photos'
                   src={AWS_S3_PHOTO_API_URL + photo?.filename}
                 />
-              </div>
+              </Link>
             );
           })}
         </div>
