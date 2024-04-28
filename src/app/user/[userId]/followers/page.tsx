@@ -22,7 +22,7 @@ export default async function page({ params }: Props) {
     <div className='centerCard'>
       <div className='bg-white shadow p-4 rounded-lg mb-8'>
         <div className='flex justify-between'>
-          <h2 className='font-bold text-xl'>
+          <h2 className='font-semibold text-lg'>
             Followers ({Followers?.length ? Followers?.length : 0})
           </h2>
         </div>

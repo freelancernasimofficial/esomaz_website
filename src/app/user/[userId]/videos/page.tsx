@@ -10,7 +10,7 @@ export default function page({}: Props) {
     <div className='centerCard'>
       <div className='bg-white shadow p-4 rounded-lg mb-8'>
         <div className='flex justify-between mb-4'>
-          <h2 className='font-bold text-xl'>Videos</h2>
+          <h2 className='font-semibold text-lg'>Videos</h2>
         </div>
         <div className='w-full errorCard'>
           Video Upload Is Not Available Now. Video uploading feature will be
