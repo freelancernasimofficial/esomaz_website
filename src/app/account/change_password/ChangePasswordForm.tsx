@@ -1,27 +1,39 @@
+import changePasswordAction from "@/actions/changePasswordAction";
 import SubmitButton from "@/components/button/SubmitButton";
+import CookieStore from "@/library/CookieStore";
 import React from "react";
 
 type Props = {};
 
 export default async function ChangePasswordForm({}: Props) {
+  const error = CookieStore.getState("error");
+  const success = CookieStore.getState("success");
   return (
-    <form>
+    <form action={changePasswordAction}>
       <input
+        name='current_password'
         placeholder='Current Password'
-        type='text'
+        type='password'
         className='w-full block mb-4'
       />
       <input
+        name='new_password'
         placeholder='New Password'
-        type='text'
+        type='password'
         className='w-full block mb-4'
       />
       <input
+        name='confirm_password'
         placeholder='Confirm Password'
-        type='text'
+        type='password'
         className='w-full block mb-4'
       />
-      <SubmitButton title='Update' className='btn btn-primary w-full' />
+      {error && <div className='errorCard'>{error}</div>}
+      {success && <div className='successCard'>{success}</div>}
+      <SubmitButton
+        title='Change Password'
+        className='btn btn-primary w-full'
+      />
     </form>
   );
 }

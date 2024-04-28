@@ -64,10 +64,10 @@
     @apply bg-error-transparent2 hover:bg-error-transparent1 text-error-hover;
   }
   .errorCard {
-    @apply p-2 border border-error-hover bg-error-transparent1 text-error-hover rounded-lg mb-4 font-medium;
+    @apply p-2 border border-error-hover bg-error-transparent1 text-error-hover rounded-lg mb-4 font-medium text-sm4;
   }
   .successCard {
-    @apply p-2 border border-success-hover bg-success-transparent1 text-success-hover rounded-lg mb-4 font-medium;
+    @apply p-2 text-sm4 border border-success-hover bg-success-transparent1 text-success-hover rounded-lg mb-4 font-medium;
   }
 }
 
