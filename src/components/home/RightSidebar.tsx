@@ -1,40 +1,42 @@
 import Link from "next/link";
 import React from "react";
-import Image from "next/image";
-import getPeopleYouMayKnowAction from "@/actions/getPeopleYouMayKnowAction";
-import Avatar from "../user/Avatar";
-import getFullName from "@/library/getFullName";
-import getRelativeTime from "@/library/getRelativeTime";
-import getUsername from "@/library/getUsername";
+import { dummyProjects } from "@/library/dummyProjects";
+import IconUsers from "../icons/IconUsers";
 
 type Props = {};
 
 export default async function RightSidebar({}: Props) {
-  const people = await getPeopleYouMayKnowAction();
-
   return (
     <div className='hidden lg:flex max-w-96 w-full full-height sticky top-20  flex-col pl-6'>
       <div className='bg-white shadow p-4 rounded-lg overflow-hidden '>
         <div className='flex justify-between items-center pb-2'>
-          <h2 className='font-semibold text-lg'>People You May Know</h2>
+          <h2 className='font-semibold text-base'>Latest Jobs</h2>
         </div>
-        <div className='flex-1 w-full h-full overflow-y-scroll pb-10'>
-          {people?.map((user: any, index: number) => {
+        <div className='w-full h-full overflow-x-hidden overflow-y-scroll pb-5'>
+          {dummyProjects.map((project) => {
             return (
-              <div key={user?.uuId} className='flex justify-between mb-4'>
-                <div className='flex'>
-                  <div className='w-9 h-9 overflow-hidden shrink-0 rounded-full'>
-                    <Avatar user={user} />
+              <div
+                className='mb-4 border border-gray-200 rounded-lg p-2 '
+                key={project.id}
+              >
+                <div className='text-sm font-semibold'>{project.title}</div>
+                <div className='text-gray-500'>
+                  {project.description.substring(0, 50)}{" "}
+                  <Link className='text-sm3 text-primary-main' href='#'>
+                    Read More
+                  </Link>
+                </div>
+                <div className='flex items-center justify-between mt-2'>
+                  <div className='flex items-center'>
+                    <IconUsers className='w-4 h-4' />{" "}
+                    <div className='font-medium text-sm4 ml-2 text-gray-500'>
+                      {project.totalApplications} Bids
+                    </div>
                   </div>
-                  <div className='ml-2'>
-                    <Link href={`/user/${getUsername(user)}`} className='block'>
-                      <h4 className='font-medium text-sm2 capitalize'>
-                        {getFullName(user)}
-                      </h4>
-                    </Link>
-                    <span className='block text-sm5 text-gray-500 leading-3'>
-                      Joined {getRelativeTime(user?.createdAt)}
-                    </span>
+                  <div className='flex items-center'>
+                    <div className='font-medium text-sm4 text-gray-500'>
+                      Budget: ${project.budgetFrom}-${project.budgetTo}
+                    </div>
                   </div>
                 </div>
               </div>

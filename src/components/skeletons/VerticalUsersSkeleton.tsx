@@ -4,8 +4,8 @@ type Props = {};
 
 export default function VerticalUsersSkeleton({}: Props) {
   return (
-    <div className='centerCard'>
-      <div className='bg-white shadow p-4 rounded-lg mb-8'>
+    <div className='centerCardSmall'>
+      <div className='bg-white shadow p-4 rounded-lg'>
         <div className='flex flex-col w-full'>
           {[...Array(20)]?.map((item: any, index: number) => {
             return (

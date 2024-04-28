@@ -9,6 +9,7 @@ import IconRss from "../icons/IconRss";
 import IconProject from "../icons/IconProject";
 import auth from "@/library/auth";
 import getUsername from "@/library/getUsername";
+import IconFindUser from "../icons/IconFindUser";
 
 type Props = {};
 
@@ -17,10 +18,10 @@ export default async function LeftSidebar({}: Props) {
   return (
     <div className='sm:max-w-72 md2:max-w-96  w-full full-height sticky top-20 hidden sm:flex flex-col pr-6'>
       <div className='bg-white shadow mb-4 p-4 rounded-lg h-full'>
-        <h2 className='mb-1 font-bold  text-lg'>Freelancing</h2>
+        <h2 className='mb-1 font-semibold  text-base'>Freelancing</h2>
 
         <Link
-          href='#'
+          href='/jobs'
           className='flex items-center w-full hover:text-primary-main  py-2'
         >
           <IconBriefcase className='w-5 h-5' />{" "}
@@ -48,7 +49,7 @@ export default async function LeftSidebar({}: Props) {
         </Link>
       </div>
       <div className='bg-white shadow p-4 rounded-lg h-full'>
-        <h2 className='mb-1 font-bold text-lg'>Social Media</h2>
+        <h2 className='mb-1 font-semibold text-base'>Social Media</h2>
         <Link
           href='/'
           className='flex items-center w-full hover:text-primary-main  py-2'
@@ -84,6 +85,15 @@ export default async function LeftSidebar({}: Props) {
           <IconRss className='w-6 h-6' />{" "}
           <span className='ml-3 block mt-0.5 font-medium text-sm2'>
             Followers
+          </span>
+        </Link>
+        <Link
+          href={`/people_you_may_know`}
+          className='flex items-center w-full hover:text-primary-main  py-2'
+        >
+          <IconFindUser className='w-6 h-6' />{" "}
+          <span className='ml-3 block mt-0.5 font-medium text-sm2'>
+            Find Friends
           </span>
         </Link>
       </div>
