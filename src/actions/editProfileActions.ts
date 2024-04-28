@@ -8,6 +8,7 @@ import { revalidatePath } from "next/cache";
 
 export async function changeBasicInfoAction(formData: any) {
   try {
+    const currentUser = await auth();
     const firstName = formData.get("firstName");
     const lastName = formData.get("lastName");
     const subtitle = formData.get("subtitle");
@@ -38,8 +39,8 @@ export async function changeBasicInfoAction(formData: any) {
     }
 
     await Model.prepare(
-      "UPDATE Users SET firstName=?,lastName=?,subtitle=?,phone=?",
-      [firstName, lastName, subtitle, phone],
+      "UPDATE Users SET firstName=?,lastName=?,subtitle=?,phone=? WHERE id=?",
+      [firstName, lastName, subtitle, phone, currentUser?.id],
     );
 
     CookieStore.setState("basicSuccess", "Profile Updated");

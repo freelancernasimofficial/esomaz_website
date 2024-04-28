@@ -21,7 +21,7 @@ export default function Avatar({ user, className, href }: Props) {
       {user?.avatar ? (
         <Image
           quality={100}
-          className='w-full h-full bg-primary-main'
+          className='w-full bg-primary-main'
           height={500}
           width={500}
           alt='user'
