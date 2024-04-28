@@ -1,4 +1,5 @@
 import { changeProfileInfoAction } from "@/actions/editProfileActions";
+import getCountriesAction from "@/actions/getCountriesAction";
 import getUserInformationAction from "@/actions/getUserInformationAction";
 import SubmitButton from "@/components/button/SubmitButton";
 import CookieStore from "@/library/CookieStore";
@@ -11,6 +12,7 @@ export default async function ChangeProfileInfoForm({}: Props) {
   const currentUser = await auth();
   //@ts-ignore
   const userInfos = await getUserInformationAction(currentUser?.id);
+  const countries = await getCountriesAction();
   const error = CookieStore.getState("profileError");
   const success = CookieStore.getState("profileSuccess");
 
@@ -38,13 +40,17 @@ export default async function ChangeProfileInfoForm({}: Props) {
 
       <select
         name='countryId'
-        defaultValue={userInfos.countryId}
+        defaultValue={userInfos?.countryId ? userInfos?.countryId : 18}
         id='countryId'
         className='mb-4 block w-full'
       >
-        <option value='2'>India</option>
-        <option value='3'>Pakistan</option>
-        <option value='18'>Bangladesh</option>
+        {countries?.map((country: any) => {
+          return (
+            <option key={country?.iso3} value={country?.id}>
+              {country?.name}
+            </option>
+          );
+        })}
       </select>
 
       <input
@@ -121,11 +127,10 @@ export default async function ChangeProfileInfoForm({}: Props) {
         <h1 className='text-sm3 font-medium mb-3'>Date of Birth</h1>
         <div className='flex items-center justify-between'>
           <select
-            defaultValue={userInfos?.date ? userInfos.date : "select_date"}
+            defaultValue={userInfos?.date ? userInfos.date : 1}
             name='date'
             id='date'
           >
-            <option value='select_date'>Select Date</option>
             {[...Array(31)].map((item: any, index: number) => {
               return (
                 <option key={index.toString()} value={index + 1}>
@@ -135,11 +140,10 @@ export default async function ChangeProfileInfoForm({}: Props) {
             })}
           </select>
           <select
-            defaultValue={userInfos?.month ? userInfos.month : "select_month"}
+            defaultValue={userInfos?.month ? userInfos.month : 1}
             name='month'
             id='month'
           >
-            <option value='select_month'>Select Month</option>
             {[...Array(12)].map((item: any, index: number) => {
               return (
                 <option key={index.toString()} value={index + 1}>
@@ -149,14 +153,13 @@ export default async function ChangeProfileInfoForm({}: Props) {
             })}
           </select>
           <select
-            defaultValue={userInfos?.year ? userInfos.year : "select_year"}
+            defaultValue={userInfos?.year ? userInfos.year : 1970}
             name='year'
             id='year'
           >
-            <option value='select_year'>Select Year</option>
             {[...Array(90)].map((item: any, index: number) => {
               return (
-                <option key={index.toString()} value={2024 - (index + 1)}>
+                <option key={index.toString()} value={2031 - (index + 1)}>
                   {2031 - (index + 1)}
                 </option>
               );

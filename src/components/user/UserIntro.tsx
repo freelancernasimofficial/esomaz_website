@@ -20,7 +20,10 @@ export default async function UserIntro({ userId }: Props) {
       <div className='mb-1 flex justify-between'>
         <h2 className='font-bold text-xl'>Intro</h2>
 
-        <Link className='text-primary-main  text-sm2' href='#'>
+        <Link
+          className='text-primary-main  text-sm2'
+          href='/account/edit_profile'
+        >
           Edit
         </Link>
       </div>
