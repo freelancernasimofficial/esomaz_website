@@ -1,5 +1,5 @@
 "use server";
-import uploadFileToS3 from "@/library/AwsClientS3";
+import { uploadFileToS3 } from "@/library/AwsClientS3";
 import auth from "@/library/auth";
 import makeUniqueId from "@/library/makeUniqueId";
 import Model from "@/model/Model";
@@ -20,6 +20,9 @@ export default async function addNewPostAction(prevState: any, formData: any) {
       throw new Error("Text must be less than 2000 characters");
     }
 
+    if (files.length > 5) {
+      throw new Error("Maximum 5 photos are allowed");
+    }
     //create the post
 
     const makeuuId = await makeUniqueId("Posts");

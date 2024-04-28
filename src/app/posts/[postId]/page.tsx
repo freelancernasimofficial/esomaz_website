@@ -9,6 +9,7 @@ import CookieStore from "@/library/CookieStore";
 import auth from "@/library/auth";
 import getUserByObjectQuery from "@/library/getUserByObjectQuery";
 import Model from "@/model/Model";
+import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 
 import React from "react";
@@ -30,6 +31,11 @@ export default async function page({ params }: Props) {
   const bindPostCommentAction = postCommentAction?.bind(null, post?.id);
   const error = CookieStore.getState("error");
   const success = CookieStore.getState("success");
+
+  const heads = headers();
+
+  const pathname = heads.get("x-invoke-path");
+  console.log(pathname);
 
   return (
     <div className='container pb-10'>

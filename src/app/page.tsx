@@ -1,10 +1,6 @@
-import Model from "@/model/Model";
 import LeftSidebar from "../components/home/LeftSidebar";
 import RightSidebar from "../components/home/RightSidebar";
-PostCard;
 import PostForm from "../components/post/PostForm";
-import getUserByObjectQuery from "@/library/getUserByObjectQuery";
-import auth from "@/library/auth";
 import PostCard from "@/components/post/PostCard";
 import SharedPostCard from "@/components/post/SharedPostCard";
 import getHomePagePostsAction from "@/actions/getHomePagePostsAction";

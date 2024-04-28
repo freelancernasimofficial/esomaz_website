@@ -49,7 +49,7 @@ export default async function page({ params }: Props) {
               id=''
               cols={30}
               rows={5}
-              placeholder='Edit comment...'
+              placeholder='Edit Post...'
               defaultValue={getPost?.text}
             ></textarea>
 

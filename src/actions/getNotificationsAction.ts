@@ -16,3 +16,12 @@ export default async function getNotificationsAction() {
 
   return notifications;
 }
+
+export async function getTotalNotifications() {
+  const currentUser = await auth();
+  const [countNotifications] = await Model.query(
+    `SELECT COUNT(*) AS total FROM Notifications WHERE receiverUserId=${currentUser?.id} AND isSeen=0`,
+  );
+
+  return countNotifications?.total;
+}

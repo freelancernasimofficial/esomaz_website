@@ -6,11 +6,13 @@ import IconChat from "../icons/IconChat";
 import Link from "next/link";
 import auth from "@/library/auth";
 import Avatar from "../user/Avatar";
+import { getTotalNotifications } from "@/actions/getNotificationsAction";
 
 type Props = {};
 
 export default async function Header({}: Props) {
   const currentUser = await auth();
+  const totalNotifications = await getTotalNotifications();
 
   return currentUser ? (
     <header className='h-16 bg-white border-b border-b-gray-200 sticky top-0 z-10'>
@@ -37,9 +39,9 @@ export default async function Header({}: Props) {
           </div>
           <div className='flex-1 flex items-center justify-end'>
             <Link className='block relative' href='/notifications'>
-              {currentUser?.totalNotifications > 0 ? (
+              {totalNotifications > 0 ? (
                 <div className=' bg-rose-600 text-white text-sm7 absolute -top-1 p-1 rounded-full w-5 h-5 flex items-center justify-center'>
-                  {currentUser?.totalNotifications}
+                  {totalNotifications}
                 </div>
               ) : null}
               <button className='svgCircleButton bg-gray-100'>

@@ -16,6 +16,7 @@ const PostPhotos = ({ photos }: PostPhotosType) => {
         <Image
           className='w-full'
           width={1080}
+          quality={100}
           height={1920}
           alt='post image'
           src={AWS_S3_PHOTO_API_URL + photos[0]?.filename}
@@ -39,7 +40,8 @@ const PostPhotos = ({ photos }: PostPhotosType) => {
                 key={photo?.id.toString()}
                 className='w-full'
                 width={1080}
-                height={800}
+                height={600}
+                quality={100}
                 alt='post image'
                 src={AWS_S3_PHOTO_API_URL + photo?.filename}
               />
