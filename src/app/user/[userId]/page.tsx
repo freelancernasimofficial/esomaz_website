@@ -3,11 +3,6 @@ import getSingleUserByuuId from "@/actions/getSingleUserByuuId";
 import PostCard from "@/components/post/PostCard";
 import PostForm from "@/components/post/PostForm";
 import SharedPostCard from "@/components/post/SharedPostCard";
-import FriendsCard from "@/components/user/FriendsCard";
-import UserIntro from "@/components/user/UserIntro";
-import auth from "@/library/auth";
-import getUserByObjectQuery from "@/library/getUserByObjectQuery";
-import Model from "@/model/Model";
 
 import React from "react";
 

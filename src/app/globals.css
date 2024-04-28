@@ -9,6 +9,12 @@
   input {
     @apply outline-none border-[1.9px] border-transparent bg-gray-100 h-10 rounded-lg px-2 focus:border-primary-main focus-within:border-primary-main focus:outline-none placeholder:text-slate-700 text-sm3 font-medium;
   }
+  textarea {
+    @apply bg-gray-100 p-2 rounded-lg placeholder:text-sm3 text-sm3 placeholder:text-gray-800 font-medium;
+  }
+  select {
+    @apply bg-gray-100 p-2 rounded-lg  font-medium text-sm;
+  }
   a {
     @apply text-sm2;
   }
