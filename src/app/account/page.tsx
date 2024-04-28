@@ -3,6 +3,8 @@ import IconBriefcase from "@/components/icons/IconBriefcase";
 import IconCashPlus from "@/components/icons/IconCashPlus";
 import IconChat from "@/components/icons/IconChat";
 import IconCreditCard from "@/components/icons/IconCreditCard";
+import IconImageOutline from "@/components/icons/IconImageOutline";
+import IconLockOutlined from "@/components/icons/IconLockOutlined";
 import IconLogout from "@/components/icons/IconLogout";
 import IconMoneyDollarCircleLine from "@/components/icons/IconMoneyDollarCircleLine";
 import IconPersonWorkspace from "@/components/icons/IconPersonWorkspace";
@@ -164,12 +166,30 @@ export default async function page({}: Props) {
           <h2 className='font-bold'>Account</h2>
           <div className='mt-1'>
             <Link
-              href='#'
+              href='/account/change_password'
               className='flex items-center w-full  py-2 hover:text-primary-main'
             >
-              <IconSettings className='w-5 h-5' />{" "}
+              <IconLockOutlined className='w-5 h-5' />{" "}
               <span className='ml-3.5 block mt-0.5 font-medium text-sm2'>
-                Settings
+                Change Password
+              </span>
+            </Link>
+            <Link
+              href='/account/edit_profile'
+              className='flex items-center w-full  py-2 hover:text-primary-main'
+            >
+              <IconUser className='w-5 h-5' />{" "}
+              <span className='ml-3.5 block mt-0.5 font-medium text-sm2'>
+                Edit Profile
+              </span>
+            </Link>
+            <Link
+              href='/account/change_photo'
+              className='flex items-center w-full  py-2 hover:text-primary-main'
+            >
+              <IconImageOutline className='w-5 h-5' />{" "}
+              <span className='ml-3.5 block mt-0.5 font-medium text-sm2'>
+                Change Photo
               </span>
             </Link>
             <Link
