@@ -182,7 +182,7 @@ export default async function SharedPostCard({ item, fullText }: Props) {
             </Link>
           </div>
           <div className='px-2 text-sm3'>
-            {item?.SharedPost?.text.substring(0, 50)}...{" "}
+            {item?.SharedPost?.text?.substring(0, 50)}...{" "}
             <Link
               className='text-primary-main text-sm3'
               href={`/posts/${item?.SharedPost?.uuId}`}

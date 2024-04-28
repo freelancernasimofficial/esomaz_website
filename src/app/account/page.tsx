@@ -2,7 +2,6 @@ import IconBank from "@/components/icons/IconBank";
 import IconBriefcase from "@/components/icons/IconBriefcase";
 import IconCashPlus from "@/components/icons/IconCashPlus";
 import IconChat from "@/components/icons/IconChat";
-import IconCreditCard from "@/components/icons/IconCreditCard";
 import IconImageOutline from "@/components/icons/IconImageOutline";
 import IconLockOutlined from "@/components/icons/IconLockOutlined";
 import IconLogout from "@/components/icons/IconLogout";
@@ -10,15 +9,12 @@ import IconMoneyDollarCircleLine from "@/components/icons/IconMoneyDollarCircleL
 import IconPersonWorkspace from "@/components/icons/IconPersonWorkspace";
 import IconProject from "@/components/icons/IconProject";
 import IconRss from "@/components/icons/IconRss";
-import IconSettings from "@/components/icons/IconSettings";
 import IconUser from "@/components/icons/IconUser";
 import IconUsers from "@/components/icons/IconUsers";
 import Avatar from "@/components/user/Avatar";
 import auth from "@/library/auth";
 import getFullName from "@/library/getFullName";
-import getSubtitle from "@/library/getSubtitle";
 import getUsername from "@/library/getUsername";
-import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
@@ -57,7 +53,7 @@ export default async function page({}: Props) {
           </div>
         </div>
         <div className='w-full bg-white rounded-lg p-4 my-4'>
-          <h2 className='font-bold'>Freelancing</h2>
+          <h2 className='font-bold text-base'>Freelancing</h2>
           <div className='mt-1'>
             <Link
               href='#'
@@ -89,7 +85,7 @@ export default async function page({}: Props) {
           </div>
         </div>
         <div className='w-full bg-white rounded-lg p-4 my-4'>
-          <h2 className='font-bold'>Payments</h2>
+          <h2 className='font-bold text-base'>Payments</h2>
           <div className='mt-1'>
             <Link
               href='#'
@@ -121,7 +117,7 @@ export default async function page({}: Props) {
           </div>
         </div>
         <div className='w-full bg-white rounded-lg p-4'>
-          <h2 className='font-bold'>Social Media</h2>
+          <h2 className='font-bold text-base'>Social Media</h2>
           <div className='mt-1'>
             <Link
               href={`/user/${getUsername(user)}`}
@@ -163,7 +159,7 @@ export default async function page({}: Props) {
         </div>
 
         <div className='w-full bg-white rounded-lg p-4 pb-4 mt-4'>
-          <h2 className='font-bold'>Account</h2>
+          <h2 className='font-bold text-base'>Account</h2>
           <div className='mt-1'>
             <Link
               href='/account/change_password'

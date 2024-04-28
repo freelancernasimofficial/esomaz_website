@@ -55,11 +55,11 @@ export default async function SingleReplyComment({ item, params }: Props) {
               <span className='block text-sm5 text-gray-500 leading-3'>
                 {getRelativeTime(item?.createdAt)}
               </span>
-              <div className='mt-1 text-sm3'>
+              <div className='mt-1 text-sm4'>
                 {item?.targetedComment ? (
                   <Link
                     href={`/user/${getUsername(item?.targetedComment?.User)}`}
-                    className='font-semibold mr-1 text-primary-main'
+                    className='font-semibold text-sm4 mr-1 text-primary-main'
                   >
                     {getFullName(item?.targetedComment?.User)}
                   </Link>

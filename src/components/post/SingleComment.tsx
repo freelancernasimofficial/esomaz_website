@@ -57,7 +57,7 @@ export default async function SingleComment({ params, item }: Props) {
               {getRelativeTime(item?.createdAt)}
             </span>
 
-            <div className='text-sm3 mt-1 inline-block'>{item?.text}</div>
+            <div className='text-sm4 mt-1 inline-block'>{item?.text}</div>
           </div>
 
           {activeMainCommentId === item?.id ? (
