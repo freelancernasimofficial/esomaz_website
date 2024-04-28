@@ -3,6 +3,9 @@
 @tailwind utilities;
 
 @layer base {
+  body {
+    @apply text-sm3;
+  }
   img {
     @apply h-auto;
   }
@@ -16,7 +19,7 @@
     @apply bg-gray-100 p-2 rounded-lg  font-medium text-sm;
   }
   a {
-    @apply text-sm2;
+    @apply text-sm3;
   }
 }
 

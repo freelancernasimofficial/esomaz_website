@@ -36,19 +36,20 @@ export default async function SharedPostCard({ item, fullText }: Props) {
     <div className='bg-white rounded-lg mb-4 shadow'>
       <div className='flex justify-between mb-1 px-4 pt-4'>
         <div className='flex'>
-          <div className='w-10 h-10 overflow-hidden shrink-0 rounded-full'>
-            <Avatar user={item?.User} />
-          </div>
+          <Avatar className='w-9 h-9' user={item?.User} />
           <div className='ml-2'>
             <div className='inline-block'>
               {" "}
               <Link
                 href={`/user/${getUsername(item?.User)}`}
-                className='font-semibold capitalize inline'
+                className='font-semibold capitalize inline text-sm3'
               >
                 {getFullName(item?.User)}
               </Link>
-              <span className='font-normal lowercase'> shared a post</span>
+              <span className='font-normal lowercase text-sm3'>
+                {" "}
+                shared a post
+              </span>
             </div>
             <div className='flex items-center'>
               <IconEarth className='w-3.5 h-3.5 mr-1 text-gray-500' />
@@ -133,13 +134,16 @@ export default async function SharedPostCard({ item, fullText }: Props) {
       </div>
 
       <div className='mb-1.5 px-4'>
-        <div className='text-sm2'>
+        <div className='text-sm3'>
           {fullText ? (
             item?.text
           ) : item?.text?.length > 100 ? (
             <div>
               {item.text.substring(0, 100)}...{" "}
-              <Link className='text-primary-main' href={`/posts/${item?.uuId}`}>
+              <Link
+                className='text-primary-main text-sm3'
+                href={`/posts/${item?.uuId}`}
+              >
                 See More
               </Link>
             </div>
@@ -149,20 +153,16 @@ export default async function SharedPostCard({ item, fullText }: Props) {
         </div>
       </div>
       <div className='block w-full px-4'>
-        <div className='border border-gray-200 rounded-lg'>
+        <div className='border border-gray-200 rounded-lg overflow-hidden'>
           <div className='flex justify-between'>
             <div className='flex p-2'>
-              <div className='w-10 h-10 overflow-hidden shrink-0 rounded-full'>
-                <Avatar user={item?.SharedPost?.User} />
-              </div>
+              <Avatar className='w-9 h-9' user={item?.SharedPost?.User} />
               <div className='ml-2'>
                 <Link
                   href={`/user/${getUsername(item?.SharedPost?.User)}`}
-                  className='block'
+                  className='font-semibold capitalize inline text-sm3'
                 >
-                  <h4 className='font-semibold capitalize'>
-                    {getFullName(item?.SharedPost?.User)}
-                  </h4>
+                  {getFullName(item?.SharedPost?.User)}
                 </Link>
                 <div className='flex items-center'>
                   <IconEarth className='w-3.5 h-3.5 mr-1 text-gray-500' />
@@ -176,15 +176,15 @@ export default async function SharedPostCard({ item, fullText }: Props) {
               </div>
             </div>
             <Link className='p-2' href={`/posts/${item?.SharedPost?.uuId}`}>
-              <button className='btn btn-primary-transparent !text-sm3 !p-2 !h-auto'>
+              <button className='btn btn-primary-transparent !text-sm4 !p-1.5 !h-auto'>
                 View
               </button>
             </Link>
           </div>
-          <div className='px-2'>
+          <div className='px-2 text-sm3'>
             {item?.SharedPost?.text.substring(0, 50)}...{" "}
             <Link
-              className='text-primary-main'
+              className='text-primary-main text-sm3'
               href={`/posts/${item?.SharedPost?.uuId}`}
             >
               See More
@@ -195,21 +195,39 @@ export default async function SharedPostCard({ item, fullText }: Props) {
           </Link>
         </div>
       </div>
-
-      <div className='mt-3 flex justify-between px-4 pb-3'>
+      <div className='flex items-center justify-between '>
+        {item?.Reactions > 0 && (
+          <Link
+            href={`/posts/${item?.uuId}/reactions`}
+            className='font-medium block text-slate-800 text-sm4 py-1 px-3   hover:underline'
+          >
+            {getCompactNumber(item?.Reactions)} Reactions
+          </Link>
+        )}
+        {item?.TotalComments > 0 && (
+          <Link
+            href={`/posts/${item?.uuId}`}
+            className='font-medium text-slate-800 text-sm4 py-1 px-3 hover:underline'
+          >
+            {getCompactNumber(item?.TotalComments)} Comments
+          </Link>
+        )}
+        {item?.TotalShares > 0 && (
+          <Link
+            href={`/posts/${item?.uuId}/all_shares`}
+            className='font-medium text-slate-800 text-sm4 py-1 px-3  hover:underline'
+          >
+            {" "}
+            {getCompactNumber(item?.TotalShares)} Shares
+          </Link>
+        )}
+      </div>
+      <div className='flex justify-between px-4 py-1 border-t border-t-gray-200'>
         <div className='flex items-center flex-1'>
           <ReactionCard
             currentReaction={item?.myReactionType}
             action={postReactionAction}
           />
-          {item?.Reactions > 0 && (
-            <Link
-              href={`/posts/${item?.uuId}/reactions`}
-              className='font-medium block text-slate-800 text-sm4 ml-1 mt-0.5'
-            >
-              {getCompactNumber(item?.Reactions)} People
-            </Link>
-          )}
         </div>
         <Link
           href={`/posts/${item?.uuId}`}
@@ -218,12 +236,6 @@ export default async function SharedPostCard({ item, fullText }: Props) {
           <button className='svgCircleButtonSmall'>
             <IconChat />
           </button>
-
-          {item?.TotalComments > 0 && (
-            <div className='font-medium text-slate-800 text-sm4 ml-1'>
-              {getCompactNumber(item?.TotalComments)} Comments
-            </div>
-          )}
         </Link>
 
         <div className='flex items-center flex-1 justify-end'>
@@ -233,15 +245,6 @@ export default async function SharedPostCard({ item, fullText }: Props) {
           >
             <IconShareOutline />
           </Link>
-          {item?.TotalShares > 0 && (
-            <Link
-              href={`/posts/${item?.uuId}/all_shares`}
-              className='font-medium text-slate-800 text-sm4 ml-1'
-            >
-              {" "}
-              {getCompactNumber(item?.TotalShares)} Shares
-            </Link>
-          )}
         </div>
       </div>
     </div>

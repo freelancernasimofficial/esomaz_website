@@ -34,23 +34,21 @@ export default async function PostCard({ item, fullText }: Props) {
 
   return (
     <div className='bg-white rounded-lg mb-4 shadow'>
-      <div className='flex justify-between mb-1 px-4 pt-4'>
-        <div className='flex'>
-          <div className='w-10 h-10 overflow-hidden shrink-0 rounded-full'>
-            <Avatar user={item?.User} />
-          </div>
+      <div className='flex justify-between mb-1 px-3 pt-3'>
+        <div className='flex items-center'>
+          <Avatar className='w-9 h-9' user={item?.User} />
           <div className='ml-2'>
             <div className='inline-block leading-5'>
               <Link
                 href={`/user/${getUsername(item?.User)}`}
-                className='font-semibold capitalize inline'
+                className='font-semibold capitalize inline text-sm3'
               >
                 {getFullName(item?.User)}
               </Link>
               {item?.type === "AVATAR" ? (
-                <span> changed profile picture</span>
+                <span className='text-sm3'> changed profile picture</span>
               ) : item?.type === "COVERPHOTO" ? (
-                <span> changed cover photo</span>
+                <span className='text-sm3'> changed cover photo</span>
               ) : null}
             </div>
             <div className='flex items-center'>
@@ -135,14 +133,17 @@ export default async function PostCard({ item, fullText }: Props) {
         </DropdownMenu>
       </div>
 
-      <div className='mb-1.5 px-4'>
-        <div className='text-sm2'>
+      <div className='mb-1.5 px-3'>
+        <div className='text-sm3'>
           {fullText ? (
             item?.text
           ) : item?.text?.length > 100 ? (
             <div>
               {item.text.substring(0, 100)}...{" "}
-              <Link className='text-primary-main' href={`/posts/${item?.uuId}`}>
+              <Link
+                className='text-primary-main text-sm3'
+                href={`/posts/${item?.uuId}`}
+              >
                 See More
               </Link>
             </div>
@@ -155,20 +156,39 @@ export default async function PostCard({ item, fullText }: Props) {
         <PostPhotos photos={item?.Photos} />
       </Link>
 
-      <div className='mt-3 flex justify-between px-4 pb-3'>
+      <div className='flex items-center justify-between '>
+        {item?.Reactions > 0 && (
+          <Link
+            href={`/posts/${item?.uuId}/reactions`}
+            className='font-medium block text-slate-800 text-sm4 py-1 px-3   hover:underline'
+          >
+            {getCompactNumber(item?.Reactions)} Reactions
+          </Link>
+        )}
+        {item?.TotalComments > 0 && (
+          <Link
+            href={`/posts/${item?.uuId}`}
+            className='font-medium text-slate-800 text-sm4 py-1 px-3 hover:underline'
+          >
+            {getCompactNumber(item?.TotalComments)} Comments
+          </Link>
+        )}
+        {item?.TotalShares > 0 && (
+          <Link
+            href={`/posts/${item?.uuId}/all_shares`}
+            className='font-medium text-slate-800 text-sm4 py-1 px-3  hover:underline'
+          >
+            {" "}
+            {getCompactNumber(item?.TotalShares)} Shares
+          </Link>
+        )}
+      </div>
+      <div className='flex justify-between px-4 py-1 border-t border-t-gray-200'>
         <div className='flex items-center flex-1'>
           <ReactionCard
             currentReaction={item?.myReactionType}
             action={postReactionAction}
           />
-          {item?.Reactions > 0 && (
-            <Link
-              href={`/posts/${item?.uuId}/reactions`}
-              className='font-medium block text-slate-800 text-sm4 ml-1 mt-0.5'
-            >
-              {getCompactNumber(item?.Reactions)} People
-            </Link>
-          )}
         </div>
         <Link
           href={`/posts/${item?.uuId}`}
@@ -177,12 +197,6 @@ export default async function PostCard({ item, fullText }: Props) {
           <button className='svgCircleButtonSmall'>
             <IconChat />
           </button>
-
-          {item?.TotalComments > 0 && (
-            <div className='font-medium text-slate-800 text-sm4 ml-1'>
-              {getCompactNumber(item?.TotalComments)} Comments
-            </div>
-          )}
         </Link>
 
         <div className='flex items-center flex-1 justify-end'>
@@ -192,15 +206,6 @@ export default async function PostCard({ item, fullText }: Props) {
           >
             <IconShareOutline />
           </Link>
-          {item?.TotalShares > 0 && (
-            <Link
-              href={`/posts/${item?.uuId}/all_shares`}
-              className='font-medium text-slate-800 text-sm4 ml-1'
-            >
-              {" "}
-              {getCompactNumber(item?.TotalShares)} Shares
-            </Link>
-          )}
         </div>
       </div>
     </div>

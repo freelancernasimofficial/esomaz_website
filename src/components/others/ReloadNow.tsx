@@ -3,13 +3,19 @@
 import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";
 
-type Props = {};
+type Props = {
+  url?: string;
+};
 
-export default function ReloadNow({}: Props) {
+export default function ReloadNow({ url }: Props) {
   useEffect(() => {
     if (location) {
-      location.reload();
+      if (url?.length) {
+        location.href = url;
+      } else {
+        location.reload();
+      }
     }
-  }, []);
+  }, [url]);
   return <div></div>;
 }

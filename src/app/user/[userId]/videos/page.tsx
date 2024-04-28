@@ -10,25 +10,12 @@ export default function page({}: Props) {
     <div className='centerCard'>
       <div className='bg-white shadow p-4 rounded-lg mb-8'>
         <div className='flex justify-between mb-4'>
-          <h2 className='font-bold text-xl'>Videos (424)</h2>
+          <h2 className='font-bold text-xl'>Videos</h2>
         </div>
-        <div className='md:flex md:flex-wrap justify-between w-full'>
-          {[...Array(100)].map((item, index) => {
-            return (
-              <div
-                key={index.toString()}
-                className='w-full md:w-80 md2:w-56 md:h-48  mb-4  overflow-hidden rounded-lg'
-              >
-                <Image
-                  className='w-full h-full'
-                  width={100}
-                  height={100}
-                  alt='profile photos'
-                  src='/images/static/post/img-4.jpg'
-                />
-              </div>
-            );
-          })}
+        <div className='w-full errorCard'>
+          Video Upload Is Not Available Now. Video uploading feature will be
+          added very soon. After that all the users will be able to upload
+          videos. Thank you
         </div>
       </div>
     </div>

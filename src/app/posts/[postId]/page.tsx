@@ -6,10 +6,6 @@ import PostCard from "@/components/post/PostCard";
 import SharedPostCard from "@/components/post/SharedPostCard";
 import SingleComment from "@/components/post/SingleComment";
 import CookieStore from "@/library/CookieStore";
-import auth from "@/library/auth";
-import getUserByObjectQuery from "@/library/getUserByObjectQuery";
-import Model from "@/model/Model";
-import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 
 import React from "react";
@@ -31,11 +27,6 @@ export default async function page({ params }: Props) {
   const bindPostCommentAction = postCommentAction?.bind(null, post?.id);
   const error = CookieStore.getState("error");
   const success = CookieStore.getState("success");
-
-  const heads = headers();
-
-  const pathname = heads.get("x-invoke-path");
-  console.log(pathname);
 
   return (
     <div className='container pb-10'>
@@ -77,7 +68,7 @@ export default async function page({ params }: Props) {
           <div className='bg-white rounded-lg'>
             <div className='px-4 py-2'>
               {" "}
-              <h1 className='font-bold text-lg  mb-4 mt-1'>
+              <h1 className='font-bold text-base  mb-4 mt-1'>
                 Comments ({post?.TotalComments})
               </h1>
               {comments?.map((item: any, index: number) => {
