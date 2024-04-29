@@ -13,21 +13,47 @@ import IconEarth from "../../icons/IconEarth";
 import DropdownMenu from "../../dropdown/DropdownMenu";
 import ReactionCard from "../ReactionCard";
 import reactionAction from "@/actions/reactionAction";
-import deletePostAction from "@/actions/deletePostAction";
 import PostCardSkeleton from "@/components/skeletons/PostCardSkeleton";
+import SharedPostCard from "./SharedPostCard";
 
 type Props = {
   item: any;
-  fullText?: boolean;
+  handleDelete: (postId: any) => void;
 };
 
-export default function PostCard({ item, fullText }: Props) {
+export default function PostCard({ item, handleDelete }: Props) {
   const [post, setPost] = useState<any>();
-  const bindDeletePost = deletePostAction?.bind(null, post?.id);
-  const postReactionAction = reactionAction?.bind(null, {
-    itemId: post?.id,
-    itemType: "post",
-  });
+
+  const handleReaction = (reactionType: string) => {
+    reactionAction({
+      itemId: post?.id,
+      itemType: "post",
+      reactionType,
+    })
+      .then(() => {
+        setPost((prev: any) => {
+          if (reactionType === "removeReaction") {
+            return {
+              ...prev,
+              myReactionType: null,
+              Reactions: prev.Reactions - 1,
+            };
+          } else {
+            return {
+              ...prev,
+              myReactionType: reactionType,
+              Reactions:
+                prev.myReactionType === null
+                  ? prev.Reactions + 1
+                  : prev.Reactions,
+            };
+          }
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   useEffect(() => {
     if (item?.id) {
@@ -76,14 +102,12 @@ export default function PostCard({ item, fullText }: Props) {
               >
                 Edit Post
               </Link>
-              <form action={bindDeletePost}>
-                <button
-                  type='submit'
-                  className='block text-sm3   text-error-main font-medium m-0 p-0'
-                >
-                  Delete Post
-                </button>
-              </form>
+              <button
+                onClick={() => handleDelete(post?.id)}
+                className='block text-sm3   text-error-main font-medium m-0 p-0'
+              >
+                Delete Post
+              </button>
             </React.Fragment>
           ) : null}
           {post?.userId !== post?.currentUserId ? (
@@ -97,27 +121,30 @@ export default function PostCard({ item, fullText }: Props) {
         </DropdownMenu>
       </div>
 
-      <div className='text-sm3 mb-1.5 px-3'>
-        {fullText ? (
-          post?.text
-        ) : post?.text?.length > 100 ? (
-          <div>
-            {post?.text.substring(0, 100)}...{" "}
-            <Link
-              className='text-primary-main text-sm3'
-              href={`/posts/${post?.uuId}`}
-            >
-              See More
-            </Link>
-          </div>
-        ) : (
-          post?.text
-        )}
-      </div>
+      {post?.text ? (
+        <div className='text-sm3 mb-1.5 px-3'>
+          {post?.text?.length > 100 ? (
+            <div>
+              {post?.text.substring(0, 100)}...{" "}
+              <Link
+                className='text-primary-main text-sm3'
+                href={`/posts/${post?.uuId}`}
+              >
+                See More
+              </Link>
+            </div>
+          ) : (
+            post?.text
+          )}
+        </div>
+      ) : null}
       {post?.Photos?.length ? (
         <Link href={`/posts/${post?.uuId}`} className='block w-full'>
           <PostPhotos photos={post?.Photos} />
         </Link>
+      ) : null}
+      {post?.SharedPost ? (
+        <SharedPostCard SharedPost={post?.SharedPost} />
       ) : null}
 
       <div className='flex items-center justify-between '>
@@ -150,7 +177,7 @@ export default function PostCard({ item, fullText }: Props) {
       <div className='flex justify-between px-4 py-1 border-t border-t-gray-200'>
         <ReactionCard
           currentReaction={post?.myReactionType}
-          action={postReactionAction}
+          onClick={handleReaction}
         />
         <Link
           href={`/posts/${post?.uuId}`}

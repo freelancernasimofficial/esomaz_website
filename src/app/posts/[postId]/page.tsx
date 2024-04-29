@@ -3,7 +3,7 @@ import getSinglePostAction from "@/actions/getSinglePostAction";
 import postCommentAction from "@/actions/postCommentAction";
 import SubmitButton from "@/components/button/SubmitButton";
 import PostCard from "@/components/post/card/PostCard";
-import SharedPostCard from "@/components/post/SharedPostCard";
+import SharedPostCard from "@/components/post/card/SharedPostCard";
 import SingleComment from "@/components/post/SingleComment";
 import CookieStore from "@/library/CookieStore";
 import { redirect } from "next/navigation";

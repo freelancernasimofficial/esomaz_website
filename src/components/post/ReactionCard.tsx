@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import React, { FormHTMLAttributes } from "react";
+import React from "react";
 import IconLikeOutlined from "../icons/IconLikeOutlined";
 
 type Props = {

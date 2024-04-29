@@ -4,7 +4,7 @@ import LoaderSpinnerLarge from "../others/LoaderSpinnerLarge";
 import { useInView } from "react-intersection-observer";
 import getHomePagePostsAction from "@/actions/getHomePagePostsAction";
 import PostCard from "../post/card/PostCard";
-import SharedPostCard from "../post/SharedPostCard";
+import SharedPostCard from "../post/card/SharedPostCard";
 
 type Props = {};
 

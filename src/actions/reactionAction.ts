@@ -2,21 +2,17 @@
 
 import auth from "@/library/auth";
 import Model from "@/model/Model";
-import { revalidatePath } from "next/cache";
 
-export default async function reactionAction(
-  itemInfo: {
-    itemId: number;
-    itemType: string;
-  },
-  formData: any,
-) {
+export default async function reactionAction(itemInfo: {
+  itemId: number;
+  itemType: string;
+  reactionType: string;
+}) {
   const user = await auth();
-  const reactionType = formData.get("reactionType");
 
   //if post reaction
   if (itemInfo.itemType === "post") {
-    if (reactionType === "removeReaction") {
+    if (itemInfo.reactionType === "removeReaction") {
       await Model.prepare(`DELETE FROM Reactions WHERE userId=? AND postId=?`, [
         user?.id,
         itemInfo.itemId,
@@ -29,12 +25,12 @@ export default async function reactionAction(
       if (checkReaction?.length) {
         await Model.prepare(
           "UPDATE Reactions SET type=? WHERE userId=? AND postId=?",
-          [reactionType, user?.id, itemInfo?.itemId],
+          [itemInfo.reactionType, user?.id, itemInfo?.itemId],
         );
       } else {
         const reactPost = await Model.prepare(
           "INSERT INTO Reactions (type,userId,postId) VALUES(?,?,?)",
-          [reactionType, user?.id, itemInfo?.itemId],
+          [itemInfo.reactionType, user?.id, itemInfo?.itemId],
         );
 
         const [getThePost] = await Model.prepare(
@@ -57,7 +53,7 @@ export default async function reactionAction(
       }
     }
   } else if (itemInfo.itemType === "comment") {
-    if (reactionType === "removeReaction") {
+    if (itemInfo.reactionType === "removeReaction") {
       await Model.prepare(
         `DELETE FROM Reactions WHERE userId=? AND commentId=?`,
         [user?.id, itemInfo.itemId],
@@ -70,12 +66,12 @@ export default async function reactionAction(
       if (checkReaction?.length) {
         await Model.prepare(
           "UPDATE Reactions SET type=? WHERE userId=? AND commentId=?",
-          [reactionType, user?.id, itemInfo?.itemId],
+          [itemInfo.reactionType, user?.id, itemInfo?.itemId],
         );
       } else {
         const reactComment = await Model.prepare(
           "INSERT INTO Reactions (type,userId,commentId) VALUES(?,?,?)",
-          [reactionType, user?.id, itemInfo?.itemId],
+          [itemInfo.reactionType, user?.id, itemInfo?.itemId],
         );
 
         const [getTheComment] = await Model.prepare(
@@ -99,5 +95,4 @@ export default async function reactionAction(
       }
     }
   }
-  revalidatePath("/");
 }
