@@ -5,6 +5,7 @@ import PostForm from "@/components/post/PostForm";
 import SharedPostCard from "@/components/post/card/SharedPostCard";
 
 import React from "react";
+import UserPosts from "@/components/user/UserPosts";
 
 type Props = {
   params: {
@@ -14,20 +15,13 @@ type Props = {
 
 export default async function page({ params }: Props) {
   const user = await getSingleUserByuuId(params?.userId);
-  const posts = await getProfilePostsAction(user?.id);
 
   return (
     <React.Fragment>
       <div className='mt-4 md:mt-0'>
         <PostForm />
       </div>
-      {posts?.map((item: any, index: number) => {
-        return item?.SharedPost ? (
-          <SharedPostCard key={item.uuId} item={item} />
-        ) : (
-          <PostCard key={item.uuId} item={item} />
-        );
-      })}
+      <UserPosts user={user} />
     </React.Fragment>
   );
 }

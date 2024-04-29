@@ -7,6 +7,7 @@ import IconSchoolOutline from "../icons/IconSchoolOutline";
 import Model from "@/model/Model";
 import getCompactNumber from "@/library/getCompactNumber";
 import getUserInformationAction from "@/actions/getUserInformationAction";
+import auth from "@/library/auth";
 
 type Props = {
   userId: number;
@@ -14,18 +15,20 @@ type Props = {
 
 export default async function UserIntro({ userId }: Props) {
   const userInfos = await getUserInformationAction(userId);
-
+  const currentUser = await auth();
   return (
     <div className='w-full p-4 rounded-lg bg-white shadow my-4'>
       <div className='mb-1 flex justify-between'>
         <h2 className='font-bold text-xl'>Intro</h2>
 
-        <Link
-          className='text-primary-main  text-sm2'
-          href='/account/edit_profile'
-        >
-          Edit
-        </Link>
+        {currentUser?.id === userId && (
+          <Link
+            className='text-primary-main  text-sm2'
+            href='/account/edit_profile'
+          >
+            Edit
+          </Link>
+        )}
       </div>
 
       <div className='mb-3 text-sm3 text-gray-600'>{userInfos?.shortBio}</div>
