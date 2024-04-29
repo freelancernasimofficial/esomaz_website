@@ -1,10 +1,8 @@
 "use server";
-
 import { deleteS3File } from "@/library/AwsClientS3";
 import Model from "@/model/Model";
-import { revalidatePath } from "next/cache";
 
-export default async function deletePostAction(postId: number, formData: any) {
+export default async function deletePostAction(postId: number) {
   if (postId) {
     //get photo names to delete
     const postPhotos = await Model.prepare(
@@ -19,6 +17,5 @@ export default async function deletePostAction(postId: number, formData: any) {
     }
     //delete the post also
     await Model.prepare("DELETE FROM Posts WHERE id=?", [postId]);
-    revalidatePath("/");
   }
 }
