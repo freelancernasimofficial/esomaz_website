@@ -13,7 +13,6 @@ import DropdownMenu from "../dropdown/DropdownMenu";
 import ReactionCard from "./ReactionCard";
 import reactionAction from "@/actions/reactionAction";
 import addFollowAction, { unFollowAction } from "@/actions/addFollowAction";
-import auth from "@/library/auth";
 import deletePostAction from "@/actions/deletePostAction";
 
 type Props = {
@@ -21,8 +20,7 @@ type Props = {
   fullText?: boolean;
 };
 
-export default async function SharedPostCard({ item, fullText }: Props) {
-  const currentUser = await auth();
+export default function SharedPostCard({ item, fullText }: Props) {
   const postReactionAction = reactionAction?.bind(null, {
     itemId: item?.id,
     itemType: "post",
@@ -64,7 +62,7 @@ export default async function SharedPostCard({ item, fullText }: Props) {
         </div>
 
         <DropdownMenu>
-          {item?.userId !== currentUser?.id ? (
+          {item?.userId !== item?.currentUserId ? (
             <React.Fragment>
               {item?.isHeFollowing && item?.isMeFollowing ? (
                 <form action={bindUnFollowFollowUser}>
@@ -111,7 +109,7 @@ export default async function SharedPostCard({ item, fullText }: Props) {
               </Link>
             </React.Fragment>
           ) : null}
-          {item?.userId === currentUser?.id ? (
+          {item?.userId === item?.currentUserId ? (
             <React.Fragment>
               <Link
                 prefetch={false}

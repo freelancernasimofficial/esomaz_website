@@ -2,7 +2,7 @@ import getCommentsAction from "@/actions/getCommentsAction";
 import getSinglePostAction from "@/actions/getSinglePostAction";
 import postCommentAction from "@/actions/postCommentAction";
 import SubmitButton from "@/components/button/SubmitButton";
-import PostCard from "@/components/post/PostCard";
+import PostCard from "@/components/post/card/PostCard";
 import SharedPostCard from "@/components/post/SharedPostCard";
 import SingleComment from "@/components/post/SingleComment";
 import CookieStore from "@/library/CookieStore";

@@ -1,7 +1,8 @@
+"use server";
 import jwt from "jsonwebtoken";
 import { cookies } from "next/headers";
 import Model from "../model/Model";
-type SessionType =
+export type SessionType =
   | {
       id: number;
       uuId: string;

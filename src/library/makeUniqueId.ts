@@ -1,3 +1,4 @@
+"use server";
 import Model from "@/model/Model";
 
 export default async function makeUniqueId(tableName: string) {

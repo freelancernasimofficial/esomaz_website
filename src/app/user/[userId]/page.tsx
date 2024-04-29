@@ -1,6 +1,6 @@
 import getProfilePostsAction from "@/actions/getProfilePostsAction";
 import getSingleUserByuuId from "@/actions/getSingleUserByuuId";
-import PostCard from "@/components/post/PostCard";
+import PostCard from "@/components/post/card/PostCard";
 import PostForm from "@/components/post/PostForm";
 import SharedPostCard from "@/components/post/SharedPostCard";
 

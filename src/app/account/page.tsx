@@ -2,6 +2,7 @@ import IconBank from "@/components/icons/IconBank";
 import IconBriefcase from "@/components/icons/IconBriefcase";
 import IconCashPlus from "@/components/icons/IconCashPlus";
 import IconChat from "@/components/icons/IconChat";
+import IconFindUser from "@/components/icons/IconFindUser";
 import IconImageOutline from "@/components/icons/IconImageOutline";
 import IconLockOutlined from "@/components/icons/IconLockOutlined";
 import IconLogout from "@/components/icons/IconLogout";
@@ -56,7 +57,7 @@ export default async function page({}: Props) {
           <h2 className='font-bold text-base'>Freelancing</h2>
           <div className='mt-1'>
             <Link
-              href='#'
+              href='/jobs'
               className='flex items-center w-full  py-2 hover:text-primary-main'
             >
               <IconBriefcase className='w-5 h-5' />{" "}
@@ -153,6 +154,15 @@ export default async function page({}: Props) {
               <IconRss className='w-6 h-6' />{" "}
               <span className='ml-3 block mt-0.5 font-medium text-sm2'>
                 Followers
+              </span>
+            </Link>
+            <Link
+              href={`/people_you_may_know`}
+              className='flex items-center w-full  py-2 hover:text-primary-main'
+            >
+              <IconFindUser className='w-6 h-6' />{" "}
+              <span className='ml-3 block mt-0.5 font-medium text-sm2'>
+                Find Friends
               </span>
             </Link>
           </div>
