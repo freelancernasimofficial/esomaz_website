@@ -33,7 +33,12 @@ export default function HomePagePosts({}: Props) {
   return posts?.length
     ? posts?.map((item: any, index: number) => {
         return (
-          <PostCard handleDelete={handleDelete} key={item.uuId} item={item} />
+          <PostCard
+            fullText={false}
+            handleDelete={handleDelete}
+            key={item.uuId}
+            item={item}
+          />
         );
       })
     : [...Array(5)].map((_, index: number) => {

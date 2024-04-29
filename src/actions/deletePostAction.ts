@@ -1,6 +1,8 @@
 "use server";
 import { deleteS3File } from "@/library/AwsClientS3";
 import Model from "@/model/Model";
+import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
 export default async function deletePostAction(postId: number) {
   if (postId) {
@@ -17,5 +19,7 @@ export default async function deletePostAction(postId: number) {
     }
     //delete the post also
     await Model.prepare("DELETE FROM Posts WHERE id=?", [postId]);
+    revalidatePath("/");
+    redirect("/");
   }
 }

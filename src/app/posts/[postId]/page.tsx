@@ -28,20 +28,19 @@ export default async function page({ params }: Props) {
   const error = CookieStore.getState("error");
   const success = CookieStore.getState("success");
 
-  const handleDelete = async (postId: any) => {
-    "use server";
-    await deletePostAction(postId);
-    redirect("/");
-  };
-
   return (
     <div className='container pb-10'>
-      {" "}
       <div className='md:flex centerCard'>
         <div className='centerCardMobile md:w-2/4'>
           <div className='md:pr-2'>
             {" "}
-            {<PostCard item={post} handleDelete={handleDelete} />}
+            {
+              <PostCard
+                fullText={true}
+                item={post}
+                handleDelete={deletePostAction}
+              />
+            }
             <div className='bg-white rounded-lg p-4 mb-4'>
               <form action={bindPostCommentAction} className='flex flex-col'>
                 <textarea

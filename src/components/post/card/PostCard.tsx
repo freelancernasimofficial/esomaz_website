@@ -19,9 +19,10 @@ import SharedPostCard from "./SharedPostCard";
 type Props = {
   item: any;
   handleDelete: (postId: any) => void;
+  fullText?: boolean;
 };
 
-export default function PostCard({ item, handleDelete }: Props) {
+export default function PostCard({ item, handleDelete, fullText }: Props) {
   const [post, setPost] = useState<any>();
 
   const handleReaction = (reactionType: string) => {
@@ -123,7 +124,9 @@ export default function PostCard({ item, handleDelete }: Props) {
 
       {post?.text ? (
         <div className='text-sm3 mb-1.5 px-3'>
-          {post?.text?.length > 100 ? (
+          {fullText === true ? (
+            post?.text
+          ) : post?.text?.length > 100 ? (
             <div>
               {post?.text.substring(0, 100)}...{" "}
               <Link
