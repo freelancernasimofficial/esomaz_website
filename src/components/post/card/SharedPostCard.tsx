@@ -19,12 +19,20 @@ export default function SharedPostCard({ SharedPost }: Props) {
           <div className='flex p-2'>
             <Avatar className='w-9 h-9' user={SharedPost?.User} />
             <div className='ml-2'>
-              <Link
-                href={`/user/${getUsername(SharedPost?.User)}`}
-                className='font-semibold capitalize inline text-sm3'
-              >
-                {getFullName(SharedPost?.User)}
-              </Link>
+              <div className='inline-block leading-4'>
+                {" "}
+                <Link
+                  href={`/user/${getUsername(SharedPost?.User)}`}
+                  className='font-semibold capitalize inline text-sm3'
+                >
+                  {getFullName(SharedPost?.User)}
+                </Link>
+                {SharedPost?.type === "AVATAR" ? (
+                  <span className='text-sm3'> changed profile picture</span>
+                ) : SharedPost?.type === "COVERPHOTO" ? (
+                  <span className='text-sm3'> changed cover photo</span>
+                ) : null}
+              </div>
               <div className='flex items-center'>
                 <IconEarth className='w-3.5 h-3.5 mr-1 text-gray-500' />
                 <Link
@@ -42,18 +50,22 @@ export default function SharedPostCard({ SharedPost }: Props) {
             </button>
           </Link>
         </div>
-        <div className='px-2 text-sm3'>
-          {SharedPost?.text?.substring(0, 50)}...{" "}
-          <Link
-            className='text-primary-main text-sm3'
-            href={`/posts/${SharedPost?.uuId}`}
-          >
-            See More
+        {SharedPost?.text?.length && (
+          <div className='px-2 text-sm3'>
+            {SharedPost?.text?.substring(0, 50)}...{" "}
+            <Link
+              className='text-primary-main text-sm3'
+              href={`/posts/${SharedPost?.uuId}`}
+            >
+              See More
+            </Link>
+          </div>
+        )}
+        {SharedPost?.Photos?.length && (
+          <Link href={`/posts/${SharedPost?.uuId}`}>
+            <PostPhotos photos={SharedPost?.Photos} />
           </Link>
-        </div>
-        <Link href={`/posts/${SharedPost?.uuId}`}>
-          <PostPhotos photos={SharedPost?.Photos} />
-        </Link>
+        )}
       </div>
     </div>
   );

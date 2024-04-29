@@ -71,7 +71,7 @@ export default async function page({ params }: Props) {
           <PostPhotos photos={post?.Photos} />
         </div>
         <div className='p-4'>
-          <form action={bindSharePostAction}>
+          <form className='w-full' action={bindSharePostAction}>
             <textarea
               className='mt-3 w-full rounded p-2 bg-gray-100 font-medium text-sm2'
               name='text'

@@ -7,14 +7,11 @@ import Model from "@/model/Model";
 
 export default async function sharePostAction(postId: any, formData: any) {
   const text = formData?.get("text");
-
   const user = await auth();
 
   try {
     if (text.length > 2000) {
       throw new Error("Text length is too big!");
-    } else if (!text.length) {
-      return null;
     } else {
       const mkuuId = await makeUniqueId("Posts");
       const sharePost = await Model.prepare(

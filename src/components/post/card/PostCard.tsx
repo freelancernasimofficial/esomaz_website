@@ -68,7 +68,7 @@ export default function PostCard({ item, handleDelete, fullText }: Props) {
         <div className='flex'>
           <Avatar className='w-9 h-9' user={post?.User} />
           <div className='ml-2'>
-            <div className='inline-block leading-5'>
+            <div className='inline-block leading-4'>
               <Link
                 href={`/user/${getUsername(post?.User)}`}
                 className='font-semibold capitalize inline text-sm3'
@@ -79,6 +79,8 @@ export default function PostCard({ item, handleDelete, fullText }: Props) {
                 <span className='text-sm3'> changed profile picture</span>
               ) : post?.type === "COVERPHOTO" ? (
                 <span className='text-sm3'> changed cover photo</span>
+              ) : post?.SharedPost ? (
+                <span className='text-sm3'> shared a post</span>
               ) : null}
             </div>
             <div className='flex items-center'>
