@@ -1,9 +1,9 @@
+import deletePostAction from "@/actions/deletePostAction";
 import getCommentsAction from "@/actions/getCommentsAction";
 import getSinglePostAction from "@/actions/getSinglePostAction";
 import postCommentAction from "@/actions/postCommentAction";
 import SubmitButton from "@/components/button/SubmitButton";
 import PostCard from "@/components/post/card/PostCard";
-import SharedPostCard from "@/components/post/card/SharedPostCard";
 import SingleComment from "@/components/post/SingleComment";
 import CookieStore from "@/library/CookieStore";
 import { redirect } from "next/navigation";
@@ -28,6 +28,12 @@ export default async function page({ params }: Props) {
   const error = CookieStore.getState("error");
   const success = CookieStore.getState("success");
 
+  const handleDelete = async (postId: any) => {
+    "use server";
+    await deletePostAction(postId);
+    redirect("/");
+  };
+
   return (
     <div className='container pb-10'>
       {" "}
@@ -35,11 +41,7 @@ export default async function page({ params }: Props) {
         <div className='centerCardMobile md:w-2/4'>
           <div className='md:pr-2'>
             {" "}
-            {post?.SharedPost ? (
-              <SharedPostCard fullText={true} item={post} />
-            ) : (
-              <PostCard fullText={true} item={post} />
-            )}
+            {<PostCard item={post} handleDelete={handleDelete} />}
             <div className='bg-white rounded-lg p-4 mb-4'>
               <form action={bindPostCommentAction} className='flex flex-col'>
                 <textarea
