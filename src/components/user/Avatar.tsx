@@ -14,7 +14,7 @@ export default function Avatar({ user, className, href }: Props) {
   return (
     <Link
       href={href?.length ? href : `/user/${getUsername(user)}`}
-      className={`w-10 block h-10 overflow-hidden shrink-0  rounded-full bg-primary-main ${
+      className={`w-9 block h-9 overflow-hidden shrink-0  rounded-full bg-primary-main ${
         className ?? ""
       }`}
     >

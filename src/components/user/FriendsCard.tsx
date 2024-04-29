@@ -1,8 +1,5 @@
 import getFullName from "@/library/getFullName";
-import getUserByObjectQuery from "@/library/getUserByObjectQuery";
 import getUsername from "@/library/getUsername";
-import Model from "@/model/Model";
-import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import Avatar from "./Avatar";
@@ -20,7 +17,7 @@ export default async function FriendsCard({ user }: Props) {
       <div className='mb-2 flex justify-between'>
         <h2 className='font-bold text-xl'>Friends</h2>
         <Link
-          className='text-primary-main text-sm2'
+          className='text-primary-main text-sm3'
           href={`/user/${getUsername(user)}/friends`}
         >
           View All
@@ -36,7 +33,7 @@ export default async function FriendsCard({ user }: Props) {
                   href={`/user/${getUsername(item?.Friend)}`}
                   className='block'
                 >
-                  <h4 className='font-medium text-sm2'>
+                  <h4 className='font-medium text-sm3'>
                     {getFullName(item?.Friend)}
                   </h4>
                 </Link>
