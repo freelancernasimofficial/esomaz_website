@@ -11,6 +11,7 @@ export default async function changePasswordAction(formData: any) {
     const currentPassword = formData.get("current_password");
     const newPassword = formData.get("new_password");
     const confirmPassword = formData.get("confirm_password");
+    console.log(currentPassword);
 
     if (
       !currentPassword?.length ||

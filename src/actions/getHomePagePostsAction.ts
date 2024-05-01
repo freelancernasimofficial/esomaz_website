@@ -20,5 +20,6 @@ export default async function getHomePagePostsAction(props: Props) {
       props.limitFrom
     },${props.limitTo}`,
   );
+
   return posts;
 }

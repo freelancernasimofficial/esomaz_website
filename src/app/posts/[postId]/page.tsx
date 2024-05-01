@@ -4,6 +4,7 @@ import getSinglePostAction from "@/actions/getSinglePostAction";
 import postCommentAction from "@/actions/postCommentAction";
 import SubmitButton from "@/components/button/SubmitButton";
 import PostCard from "@/components/post/card/PostCard";
+import LoadComments from "@/components/post/LoadComments";
 import SingleComment from "@/components/post/SingleComment";
 import CookieStore from "@/library/CookieStore";
 import { redirect } from "next/navigation";
@@ -22,7 +23,6 @@ export default async function page({ params }: Props) {
   if (!post?.id) {
     redirect("/");
   }
-  const comments = await getCommentsAction(post);
 
   const bindPostCommentAction = postCommentAction?.bind(null, post?.id);
   const error = CookieStore.getState("error");
@@ -72,11 +72,7 @@ export default async function page({ params }: Props) {
               <h1 className='font-bold text-base  mb-4 mt-1'>
                 Comments ({post?.TotalComments})
               </h1>
-              {comments?.map((item: any, index: number) => {
-                return (
-                  <SingleComment params={params} key={item?.uuId} item={item} />
-                );
-              })}
+              <LoadComments post={post} />
             </div>
           </div>
         </div>

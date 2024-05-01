@@ -15,11 +15,12 @@ export default function Avatar({ user, className, href }: Props) {
     <Link
       href={href?.length ? href : `/user/${getUsername(user)}`}
       className={`w-9 block h-9 overflow-hidden shrink-0  rounded-full bg-primary-main ${
-        className ?? ""
+        className ? className : ""
       }`}
     >
       {user?.avatar ? (
         <Image
+          priority={true}
           quality={100}
           className='w-full bg-primary-main'
           height={500}

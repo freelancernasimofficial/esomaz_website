@@ -1,7 +1,5 @@
 import Link from "next/link";
-import React, { use } from "react";
-import IconHorizontalDots from "../icons/IconHorizontalDots";
-import Image from "next/image";
+import React from "react";
 import getFullName from "@/library/getFullName";
 import addFriendAction, {
   acceptFriendAction,

@@ -18,6 +18,7 @@ const PostPhotos = ({ photos }: PostPhotosType) => {
           width={1080}
           quality={100}
           height={1920}
+          priority={true}
           alt='post image'
           src={AWS_S3_PHOTO_API_URL + photos[0]?.filename}
         />
@@ -37,6 +38,7 @@ const PostPhotos = ({ photos }: PostPhotosType) => {
           {photos?.map((photo: any, index: number) => {
             return (
               <Image
+                priority={true}
                 key={photo?.id.toString()}
                 className='w-full'
                 width={1080}

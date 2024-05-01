@@ -31,7 +31,7 @@ export default async function page({}: Props) {
           <div className='flex flex-col justify-center items-center'>
             {" "}
             <Avatar
-              className='w-40 h-40 border-gray-400 border-4'
+              className='!w-40 !h-40 border-gray-400 border-4'
               user={user}
             />
             <div className='mt-3'>

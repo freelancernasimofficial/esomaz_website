@@ -27,7 +27,13 @@ export default function HomePagePosts({}: Props) {
       if (inView) {
         getHomePagePostsAction({ limitFrom: posts?.length, limitTo: 5 })
           .then((data) => {
-            setPosts((prev: any) => [...prev, ...data]);
+            setPosts((prev: any) => {
+              if (!JSON.stringify(prev)?.includes(data[0]?.uuId)) {
+                return [...prev, ...data];
+              } else {
+                return prev;
+              }
+            });
           })
           .catch((err) => {
             console.log(err);

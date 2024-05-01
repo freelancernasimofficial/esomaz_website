@@ -9,15 +9,13 @@ import DropdownMenu from "../dropdown/DropdownMenu";
 import ReactionCard from "./ReactionCard";
 import getCompactNumber from "@/library/getCompactNumber";
 import reactionAction from "@/actions/reactionAction";
-import LoadCommentReplies from "./LoadCommentReplies";
 
 type Props = {
   item: any;
   handleDelete: (commentId: any) => void;
-  postId: any;
 };
 
-export default function SingleComment({ handleDelete, item, postId }: Props) {
+export default function SingleCommentReply({ handleDelete, item }: Props) {
   const [comment, setComment] = useState<any>();
 
   const handleReaction = (reactionType: string) => {
@@ -73,7 +71,7 @@ export default function SingleComment({ handleDelete, item, postId }: Props) {
             <div className='text-sm4 mt-1 inline-block'>{comment?.text}</div>
           </div>
 
-          <div className='flex items-center mb-2'>
+          {/* <div className='flex items-center'>
             <ReactionCard
               onClick={handleReaction}
               currentReaction={comment?.myReactionType}
@@ -91,11 +89,10 @@ export default function SingleComment({ handleDelete, item, postId }: Props) {
                 Reply
               </button>
             </div>
-          </div>
-          {comment?.id ? <LoadCommentReplies parentComment={comment} /> : null}
+          </div> */}
         </div>
 
-        <DropdownMenu tabIndex={comment?.id}>
+        {/* <DropdownMenu tabIndex={comment?.id}>
           {comment?.userId !== comment?.currentUserId ? (
             <Link
               href={`/posts/${postId}/report_comment/${comment?.id}`}
@@ -115,13 +112,13 @@ export default function SingleComment({ handleDelete, item, postId }: Props) {
           {comment?.userId === comment?.currentUserId ||
           comment?.postOwnerId === comment?.currentUserId ? (
             <button
-              onClick={() => handleDelete(comment?.id)}
+              onClick={handleDelete}
               className='block font-medium text-error-main text-sm3 p-0 m-0'
             >
               Delete Comment
             </button>
           ) : null}
-        </DropdownMenu>
+        </DropdownMenu> */}
       </div>
     </div>
   );

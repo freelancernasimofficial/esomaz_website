@@ -18,6 +18,7 @@ export default function ReactionCard({ currentReaction, onClick }: Props) {
             className='w-10 h-10 p-2 m-1 bg-white rounded-full overflow-hidden  hover:bg-primary-transparent2 hover:scale-110 transition-transform '
           >
             <Image
+              priority={true}
               className='w-full h-full'
               height={100}
               width={100}
@@ -30,6 +31,7 @@ export default function ReactionCard({ currentReaction, onClick }: Props) {
             className='w-10 h-10 p-2 m-1 bg-white hover:bg-primary-transparent2 hover:scale-110 transition-transform rounded-full overflow-hidden'
           >
             <Image
+              priority={true}
               className='w-full h-full'
               height={100}
               width={100}
@@ -42,6 +44,7 @@ export default function ReactionCard({ currentReaction, onClick }: Props) {
             className='w-10 h-10 p-2 m-1 bg-white rounded-full overflow-hidden  hover:bg-primary-transparent2 hover:scale-110 transition-transform '
           >
             <Image
+              priority={true}
               className='w-full h-full'
               height={100}
               width={100}
@@ -54,6 +57,7 @@ export default function ReactionCard({ currentReaction, onClick }: Props) {
             className='w-10 h-10 p-2 m-1 bg-white rounded-full overflow-hidden  hover:bg-primary-transparent2 hover:scale-110 transition-transform '
           >
             <Image
+              priority={true}
               className='w-full h-full'
               height={100}
               width={100}
@@ -68,6 +72,7 @@ export default function ReactionCard({ currentReaction, onClick }: Props) {
             className='w-10 h-10 p-2 m-1 bg-white rounded-full overflow-hidden  hover:bg-primary-transparent2 hover:scale-110 transition-transform '
           >
             <Image
+              priority={true}
               className='w-full h-full'
               height={100}
               width={100}
@@ -80,6 +85,7 @@ export default function ReactionCard({ currentReaction, onClick }: Props) {
             className='w-10 h-10 p-2 m-1 bg-white hover:bg-primary-transparent2 hover:scale-110 transition-transform rounded-full overflow-hidden'
           >
             <Image
+              priority={true}
               className='w-full h-full'
               height={100}
               width={100}
@@ -92,6 +98,7 @@ export default function ReactionCard({ currentReaction, onClick }: Props) {
             className='w-10 h-10 p-2 m-1 bg-white rounded-full overflow-hidden  hover:bg-primary-transparent2 hover:scale-110 transition-transform '
           >
             <Image
+              priority={true}
               className='w-full h-full'
               height={100}
               width={100}
@@ -104,6 +111,7 @@ export default function ReactionCard({ currentReaction, onClick }: Props) {
             className='w-10 h-10 p-2 m-1 bg-white rounded-full overflow-hidden  hover:bg-primary-transparent2 hover:scale-110 transition-transform '
           >
             <Image
+              priority={true}
               className='w-full h-full'
               height={100}
               width={100}
@@ -118,6 +126,7 @@ export default function ReactionCard({ currentReaction, onClick }: Props) {
             className='w-10 h-10 p-2 m-1 bg-white rounded-full overflow-hidden  hover:bg-primary-transparent2 hover:scale-110 transition-transform '
           >
             <Image
+              priority={true}
               className='w-full h-full'
               height={100}
               width={100}
@@ -130,6 +139,7 @@ export default function ReactionCard({ currentReaction, onClick }: Props) {
             className='w-10 h-10 p-2 m-1 bg-white hover:bg-primary-transparent2 hover:scale-110 transition-transform rounded-full overflow-hidden'
           >
             <Image
+              priority={true}
               className='w-full h-full'
               height={100}
               width={100}
@@ -142,6 +152,7 @@ export default function ReactionCard({ currentReaction, onClick }: Props) {
             className='w-10 h-10 p-2 m-1 bg-white rounded-full overflow-hidden  hover:bg-primary-transparent2 hover:scale-110 transition-transform '
           >
             <Image
+              priority={true}
               className='w-full h-full'
               height={100}
               width={100}
@@ -154,6 +165,7 @@ export default function ReactionCard({ currentReaction, onClick }: Props) {
             className='w-10 h-10 p-2 m-1 bg-white rounded-full overflow-hidden  hover:bg-primary-transparent2 hover:scale-110 transition-transform '
           >
             <Image
+              priority={true}
               className='w-full h-full'
               height={100}
               width={100}
@@ -170,6 +182,7 @@ export default function ReactionCard({ currentReaction, onClick }: Props) {
           className='svgCircleButtonSmall'
         >
           <Image
+            priority={true}
             className='w-5'
             alt='current Reaction'
             width={100}

@@ -3,7 +3,7 @@ import RightSidebar from "../components/home/RightSidebar";
 import PostForm from "../components/post/PostForm";
 import HomePagePosts from "@/components/home/HomePagePosts";
 
-export default function Home() {
+export default async function Home() {
   return (
     <div className='container'>
       <div className='flex justify-between'>
