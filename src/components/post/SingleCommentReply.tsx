@@ -54,7 +54,7 @@ export default function SingleCommentReply({
     setComment(item);
   }, [item]);
 
-  return (
+  return comment?.id ? (
     <div className='mb-3'>
       <div className='flex'>
         <Avatar className='w-8 h-8' user={comment?.User} />
@@ -73,7 +73,14 @@ export default function SingleCommentReply({
               {getRelativeTime(comment?.createdAt)}
             </span>
 
-            <div className='text-sm4 mt-1 inline-block'>{comment?.text}</div>
+            <div className='text-sm4 mt-1 inline-block'>
+              {comment?.targetedComment ? (
+                <div className='mr-1'>
+                  {getFullName(comment?.targetedComment?.User)}
+                </div>
+              ) : null}
+              {comment?.text}
+            </div>
           </div>
 
           <div className='flex items-center'>
@@ -126,5 +133,5 @@ export default function SingleCommentReply({
         </DropdownMenu>
       </div>
     </div>
-  );
+  ) : null;
 }

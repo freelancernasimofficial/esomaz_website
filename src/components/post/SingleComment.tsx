@@ -10,6 +10,7 @@ import ReactionCard from "./ReactionCard";
 import getCompactNumber from "@/library/getCompactNumber";
 import reactionAction from "@/actions/reactionAction";
 import SingleCommentReply from "./SingleCommentReply";
+import CommentSkeleton from "../skeletons/CommentSkeleton";
 
 type Props = {
   item: any;
@@ -51,7 +52,7 @@ export default function SingleComment({ handleDelete, item, postId }: Props) {
     setComment(item);
   }, [item]);
 
-  return (
+  return comment?.id ? (
     <div className='mb-3'>
       <div className='flex'>
         <Avatar className='w-8 h-8' user={comment?.User} />
@@ -136,5 +137,7 @@ export default function SingleComment({ handleDelete, item, postId }: Props) {
         </DropdownMenu>
       </div>
     </div>
+  ) : (
+    <CommentSkeleton />
   );
 }

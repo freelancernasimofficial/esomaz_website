@@ -71,20 +71,16 @@ export default function LoadComments({ post }: Props) {
 
   return (
     <React.Fragment>
-      {comments?.length
-        ? comments?.map((item: any, index: number) => {
-            return (
-              <SingleComment
-                postId={post?.uuId}
-                handleDelete={handleDelete}
-                key={item?.uuId}
-                item={item}
-              />
-            );
-          })
-        : [...Array(20)].map((_, index: number) => {
-            return <CommentSkeleton key={index.toString()} />;
-          })}
+      {comments?.map((item: any, index: number) => {
+        return (
+          <SingleComment
+            postId={post?.uuId}
+            handleDelete={handleDelete}
+            key={item?.uuId}
+            item={item}
+          />
+        );
+      })}
       <div ref={ref}>{showLoader ? <CommentSkeleton /> : null}</div>
     </React.Fragment>
   );
