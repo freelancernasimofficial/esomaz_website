@@ -1,4 +1,3 @@
-"use client";
 import getFullName from "@/library/getFullName";
 import getRelativeTime from "@/library/getRelativeTime";
 import getUsername from "@/library/getUsername";

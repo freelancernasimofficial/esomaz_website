@@ -13,6 +13,7 @@ type Props = {
 export default function LoadComments({ post }: Props) {
   const [comments, setComments] = useState<any[]>([]);
   const [showLoader, setShowLoader] = useState(true);
+  const [currentReplyCommentId, setCurrentReplyCommentId] = useState<number>();
   const { ref, inView } = useInView({ threshold: 1 });
   const handleDelete = (commentId: any) => {
     deleteCommentAction(commentId)
@@ -74,6 +75,8 @@ export default function LoadComments({ post }: Props) {
       {comments?.map((item: any, index: number) => {
         return (
           <SingleComment
+            currentReplyCommentId={currentReplyCommentId}
+            setCurrentReplyCommentId={setCurrentReplyCommentId}
             postId={post?.uuId}
             handleDelete={handleDelete}
             key={item?.uuId}

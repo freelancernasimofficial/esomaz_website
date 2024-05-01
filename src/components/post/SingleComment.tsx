@@ -1,4 +1,3 @@
-"use client";
 import getFullName from "@/library/getFullName";
 import getRelativeTime from "@/library/getRelativeTime";
 import getUsername from "@/library/getUsername";
@@ -11,18 +10,27 @@ import getCompactNumber from "@/library/getCompactNumber";
 import reactionAction from "@/actions/reactionAction";
 import SingleCommentReply from "./SingleCommentReply";
 import CommentSkeleton from "../skeletons/CommentSkeleton";
-import MainCommentReply from "./MainCommentReplyForm";
 import deleteCommentAction from "@/actions/deleteCommentAction";
+import mainCommentReplyAction from "@/actions/mainCommentReplyAction";
 
 type Props = {
   item: any;
   handleDelete: (commentId: any) => void;
   postId: any;
+  setCurrentReplyCommentId: any;
+  currentReplyCommentId: any;
 };
 
-export default function SingleComment({ handleDelete, item, postId }: Props) {
+export default function SingleComment({
+  handleDelete,
+  item,
+  postId,
+  setCurrentReplyCommentId,
+  currentReplyCommentId,
+}: Props) {
   const [comment, setComment] = useState<any>();
-
+  const [isReplying, setIsReplying] = useState(false);
+  const [replyText, setReplyText] = useState("");
   const handleReaction = (reactionType: string) => {
     reactionAction({ itemId: comment?.id, itemType: "comment", reactionType })
       .then(() => {
@@ -67,6 +75,30 @@ export default function SingleComment({ handleDelete, item, postId }: Props) {
     }
   };
 
+  const handleReplyAction = () => {
+    setIsReplying(true);
+    mainCommentReplyAction({
+      text: replyText,
+      commentId: comment?.id,
+    })
+      .then((data) => {
+        setComment((prev: any) => {
+          return {
+            ...prev,
+            Replies: prev?.Replies?.length ? [...prev?.Replies, data] : [data],
+          };
+        });
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        setIsReplying(false);
+        setReplyText("");
+      });
+  };
+
   useEffect(() => {
     setComment(item);
   }, [item]);
@@ -107,12 +139,40 @@ export default function SingleComment({ handleDelete, item, postId }: Props) {
               </Link>
             ) : null}
             <div className='ml-6'>
-              <button className='m-0 p-0 h-auto text-sm4 font-medium'>
+              <button
+                onClick={() => setCurrentReplyCommentId(comment?.id)}
+                className='m-0 p-0 h-auto text-sm4 font-medium'
+              >
                 Reply
               </button>
             </div>
           </div>
-          <MainCommentReply item={comment} />
+          {currentReplyCommentId === comment?.id ? (
+            <div className='my-2'>
+              <textarea
+                value={replyText}
+                onChange={(e) => setReplyText(e.target.value)}
+                name='comment'
+                placeholder='Enter reply'
+                id=''
+                cols={30}
+                className='w-full bg-gray-100 rounded-lg p-2 block'
+                rows={2}
+              ></textarea>
+              {isReplying === true ? (
+                <button className='btn btn-primary w-full mt-2'>
+                  Replying
+                </button>
+              ) : (
+                <button
+                  onClick={handleReplyAction}
+                  className='btn btn-primary w-full mt-2'
+                >
+                  Reply
+                </button>
+              )}
+            </div>
+          ) : null}
           <div>
             {" "}
             {comment?.Replies?.map((replyComment: any) => {

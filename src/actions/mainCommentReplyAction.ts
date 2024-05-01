@@ -4,32 +4,30 @@ import CookieStore from "@/library/CookieStore";
 import auth from "@/library/auth";
 import makeUniqueId from "@/library/makeUniqueId";
 import Model from "@/model/Model";
-import { revalidatePath } from "next/cache";
 
-export default async function mainCommentReplyAction(
-  itemInfo: {
-    postId: number;
-    commentId: number;
-  },
-  formData: any,
-) {
-  const comment = formData.get("comment");
+export default async function mainCommentReplyAction({
+  commentId,
+  text,
+}: {
+  commentId: any;
+  text: any;
+}) {
   const user = await auth();
 
   try {
-    if (comment.length > 2000) {
+    if (text.length > 2000) {
       throw new Error("Comment is too big!");
-    } else if (!comment.length) {
-      return null;
+    } else if (!text.length) {
+      throw new Error("Comment cannot be empty!");
     } else {
+      const [getTheComment] = await Model.prepare(
+        "SELECT * FROM Comments WHERE id=?",
+        [commentId],
+      );
       const mkuuId = await makeUniqueId("Comments");
       const postReply = await Model.prepare(
         "INSERT INTO Comments (uuId,text,postId,parentId,userId)VALUES(?,?,?,?,?)",
-        [mkuuId, comment, itemInfo.postId, itemInfo.commentId, user?.id],
-      );
-      const [getTheComment] = await Model.prepare(
-        "SELECT * FROM Comments WHERE id=?",
-        [itemInfo.commentId],
+        [mkuuId, text, getTheComment?.postId, commentId, user?.id],
       );
 
       if (getTheComment.userId !== user?.id) {
@@ -41,10 +39,26 @@ export default async function mainCommentReplyAction(
             getTheComment.userId,
             user?.id,
             postReply.insertId,
-            itemInfo.postId,
+            getTheComment?.postId,
           ],
         );
       }
+
+      const makeNewComment = {
+        id: postReply?.insertId,
+        User: user,
+        text: text,
+        uuId: mkuuId,
+        postId: getTheComment?.postId,
+        userId: user?.id,
+        createdAt: Date.now(),
+        postOwnerId: getTheComment?.postOwnerId,
+        currentUserId: user?.id,
+        myReactionType: null,
+        totalReactions: null,
+        targetedComment: null,
+      };
+      return makeNewComment;
     }
   } catch (error: any) {
     CookieStore.setState("error", error?.message);
