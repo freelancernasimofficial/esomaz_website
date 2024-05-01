@@ -49,6 +49,4 @@ export default async function mainCommentReplyAction(
   } catch (error: any) {
     CookieStore.setState("error", error?.message);
   }
-
-  revalidatePath("/");
 }

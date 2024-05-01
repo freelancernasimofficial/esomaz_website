@@ -75,9 +75,12 @@ export default function SingleCommentReply({
 
             <div className='text-sm4 mt-1 inline-block'>
               {comment?.targetedComment ? (
-                <div className='mr-1'>
+                <Link
+                  href={`/user/${getUsername(comment?.targetedComment?.User)}`}
+                  className='mr-1 text-primary-main text-sm3'
+                >
                   {getFullName(comment?.targetedComment?.User)}
-                </div>
+                </Link>
               ) : null}
               {comment?.text}
             </div>
@@ -124,7 +127,7 @@ export default function SingleCommentReply({
           {comment?.userId === comment?.currentUserId ||
           comment?.postOwnerId === comment?.currentUserId ? (
             <button
-              onClick={handleDelete}
+              onClick={() => handleDelete(comment?.id)}
               className='block font-medium text-error-main text-sm3 p-0 m-0'
             >
               Delete Comment

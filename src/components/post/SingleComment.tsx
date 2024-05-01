@@ -11,6 +11,8 @@ import getCompactNumber from "@/library/getCompactNumber";
 import reactionAction from "@/actions/reactionAction";
 import SingleCommentReply from "./SingleCommentReply";
 import CommentSkeleton from "../skeletons/CommentSkeleton";
+import MainCommentReply from "./MainCommentReplyForm";
+import deleteCommentAction from "@/actions/deleteCommentAction";
 
 type Props = {
   item: any;
@@ -46,6 +48,23 @@ export default function SingleComment({ handleDelete, item, postId }: Props) {
       .catch((err) => {
         console.log(err);
       });
+  };
+
+  const handleReplyCommentDelete = (commentId: number) => {
+    if (commentId) {
+      deleteCommentAction(commentId)
+        .then(() => {
+          const filterComments = comment?.Replies?.filter(
+            (reply: any) => reply?.id !== commentId,
+          );
+          setComment((prev: any) => {
+            return { ...prev, Replies: filterComments };
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   };
 
   useEffect(() => {
@@ -93,15 +112,16 @@ export default function SingleComment({ handleDelete, item, postId }: Props) {
               </button>
             </div>
           </div>
+          <MainCommentReply item={comment} />
           <div>
             {" "}
             {comment?.Replies?.map((replyComment: any) => {
               return (
                 <SingleCommentReply
-                  handleDelete={handleDelete}
-                  key={replyComment?.id}
+                  handleDelete={handleReplyCommentDelete}
                   item={replyComment}
                   postId={postId}
+                  key={replyComment?.id}
                 />
               );
             })}

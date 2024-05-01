@@ -35,6 +35,7 @@ export default async function replyCommentReplyAction(
           user?.id,
         ],
       );
+      console.log(replyTheComment);
 
       const [theTargetedComment] = await Model.prepare(
         "SELECT * FROM Comments WHERE id=?",
@@ -53,7 +54,9 @@ export default async function replyCommentReplyAction(
         );
       }
     }
+    revalidatePath("/");
   } catch (error: any) {
+    revalidatePath("/");
     CookieStore.setState("error", error?.message);
   }
 

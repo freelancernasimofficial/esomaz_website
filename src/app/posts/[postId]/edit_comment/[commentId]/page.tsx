@@ -2,11 +2,9 @@ import editCommentAction from "@/actions/editCommentAction";
 import SubmitButton from "@/components/button/SubmitButton";
 import CookieStore from "@/library/CookieStore";
 import Model from "@/model/Model";
-
 import { headers } from "next/headers";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { comment } from "postcss";
 import React from "react";
 
 type Props = {
@@ -56,7 +54,10 @@ export default async function page({ params }: Props) {
             ></textarea>
 
             {error ? <div className='errorCard mt-2 mb-2'>{error}</div> : null}
-            <SubmitButton className=' btn btn-primary' title='Edit Comment' />
+            <SubmitButton
+              className='w-full btn btn-primary'
+              title='Edit Comment'
+            />
           </form>
         )}
       </div>
