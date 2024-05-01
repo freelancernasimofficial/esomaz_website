@@ -9,7 +9,7 @@ import DropdownMenu from "../dropdown/DropdownMenu";
 import ReactionCard from "./ReactionCard";
 import getCompactNumber from "@/library/getCompactNumber";
 import reactionAction from "@/actions/reactionAction";
-import LoadCommentReplies from "./LoadCommentReplies";
+import SingleCommentReply from "./SingleCommentReply";
 
 type Props = {
   item: any;
@@ -92,7 +92,19 @@ export default function SingleComment({ handleDelete, item, postId }: Props) {
               </button>
             </div>
           </div>
-          {comment?.id ? <LoadCommentReplies parentComment={comment} /> : null}
+          <div>
+            {" "}
+            {comment?.Replies?.map((replyComment: any) => {
+              return (
+                <SingleCommentReply
+                  handleDelete={handleDelete}
+                  key={replyComment?.id}
+                  item={replyComment}
+                  postId={postId}
+                />
+              );
+            })}
+          </div>
         </div>
 
         <DropdownMenu tabIndex={comment?.id}>

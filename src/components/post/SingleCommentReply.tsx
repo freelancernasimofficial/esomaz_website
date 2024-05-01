@@ -13,9 +13,14 @@ import reactionAction from "@/actions/reactionAction";
 type Props = {
   item: any;
   handleDelete: (commentId: any) => void;
+  postId: any;
 };
 
-export default function SingleCommentReply({ handleDelete, item }: Props) {
+export default function SingleCommentReply({
+  handleDelete,
+  item,
+  postId,
+}: Props) {
   const [comment, setComment] = useState<any>();
 
   const handleReaction = (reactionType: string) => {
@@ -71,7 +76,7 @@ export default function SingleCommentReply({ handleDelete, item }: Props) {
             <div className='text-sm4 mt-1 inline-block'>{comment?.text}</div>
           </div>
 
-          {/* <div className='flex items-center'>
+          <div className='flex items-center'>
             <ReactionCard
               onClick={handleReaction}
               currentReaction={comment?.myReactionType}
@@ -89,10 +94,10 @@ export default function SingleCommentReply({ handleDelete, item }: Props) {
                 Reply
               </button>
             </div>
-          </div> */}
+          </div>
         </div>
 
-        {/* <DropdownMenu tabIndex={comment?.id}>
+        <DropdownMenu tabIndex={comment?.id}>
           {comment?.userId !== comment?.currentUserId ? (
             <Link
               href={`/posts/${postId}/report_comment/${comment?.id}`}
@@ -118,7 +123,7 @@ export default function SingleCommentReply({ handleDelete, item }: Props) {
               Delete Comment
             </button>
           ) : null}
-        </DropdownMenu> */}
+        </DropdownMenu>
       </div>
     </div>
   );
