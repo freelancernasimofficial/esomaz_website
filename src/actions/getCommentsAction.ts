@@ -32,7 +32,7 @@ export default async function getCommentsAction({
       "RPC.userId",
     )}),'targetedComment',(SELECT JSON_OBJECT('id',TR.id,'User',(${getUserByObjectQuery(
       "TR.userId",
-    )})) FROM Comments TR WHERE TR.id=RPC.targetedCommentId AND TR.id!=${
+    )})) FROM Comments TR WHERE TR.id=RPC.targetedCommentId AND TR.userId!=${
       user?.id
     }))) FROM Comments AS RPC WHERE RPC.parentId=CMT.id) AS Replies FROM Comments CMT WHERE CMT.postId=${postId} AND CMT.parentId IS NULL ORDER BY CMT.id DESC LIMIT ${limitFrom},${limitTo}`,
   );
