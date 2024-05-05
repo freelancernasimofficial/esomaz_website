@@ -59,6 +59,7 @@ export default function SingleCommentReply({
   };
 
   const handleReplyAction = () => {
+    setIsReplying(true);
     replyCommentReplyAction({
       text: replyText,
       commentId: currentReplyComment?.id,
@@ -67,12 +68,16 @@ export default function SingleCommentReply({
         setMainComment((prev: any) => {
           return {
             ...prev,
-            Replies: prev?.Replies?.length ? [...prev?.Replies, data] : [data],
+            Replies: [...prev?.Replies, data],
           };
         });
       })
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
+        setIsReplying(false);
+        setCurrentReplyComment(undefined);
       });
   };
 

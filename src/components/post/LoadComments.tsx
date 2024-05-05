@@ -72,18 +72,40 @@ export default function LoadComments({ post }: Props) {
 
   return (
     <React.Fragment>
-      {comments?.map((item: any, index: number) => {
-        return (
-          <SingleComment
-            currentReplyCommentId={currentReplyCommentId}
-            setCurrentReplyCommentId={setCurrentReplyCommentId}
-            postId={post?.uuId}
-            handleDelete={handleDelete}
-            key={item?.uuId}
-            item={item}
-          />
-        );
-      })}
+      <div className='bg-white p-4 rounded-lg  mb-4'>
+        <form className='flex flex-col'>
+          <textarea
+            placeholder='Enter comment'
+            className='w-full block bg-gray-100 rounded-lg mb-3 p-2 text-sm3'
+            name='comment'
+            id=''
+            cols={30}
+            rows={3}
+          ></textarea>
+
+          <button title='Comment' className='btn btn-primary w-full'>
+            Comment
+          </button>
+        </form>
+      </div>
+      <div className='bg-white mt-4 px-4 rounded-lg'>
+        {" "}
+        <h1 className='font-bold text-base pt-3  mb-4 mt-1'>
+          Comments ({post?.TotalComments})
+        </h1>
+        {comments?.map((item: any, index: number) => {
+          return (
+            <SingleComment
+              currentReplyCommentId={currentReplyCommentId}
+              setCurrentReplyCommentId={setCurrentReplyCommentId}
+              postId={post?.uuId}
+              handleDelete={handleDelete}
+              key={item?.uuId}
+              item={item}
+            />
+          );
+        })}
+      </div>
       <div ref={ref}>{showLoader ? <CommentSkeleton /> : null}</div>
     </React.Fragment>
   );
