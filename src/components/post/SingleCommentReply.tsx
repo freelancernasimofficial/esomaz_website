@@ -16,6 +16,7 @@ type Props = {
   postId: any;
   currentReplyComment: any;
   setCurrentReplyComment: any;
+  setMainComment: any;
 };
 
 export default function SingleCommentReply({
@@ -24,6 +25,7 @@ export default function SingleCommentReply({
   postId,
   currentReplyComment,
   setCurrentReplyComment,
+  setMainComment,
 }: Props) {
   const [comment, setComment] = useState<any>();
   const [isReplying, setIsReplying] = useState(false);
@@ -62,7 +64,12 @@ export default function SingleCommentReply({
       commentId: currentReplyComment?.id,
     })
       .then((data: any) => {
-        console.log(data);
+        setMainComment((prev: any) => {
+          return {
+            ...prev,
+            Replies: prev?.Replies?.length ? [...prev?.Replies, data] : [data],
+          };
+        });
       })
       .catch((err) => {
         console.log(err);

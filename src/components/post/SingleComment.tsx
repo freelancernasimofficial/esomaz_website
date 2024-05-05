@@ -178,6 +178,7 @@ export default function SingleComment({
             {comment?.Replies?.map((replyComment: any) => {
               return (
                 <SingleCommentReply
+                  setMainComment={setComment}
                   currentReplyComment={currentReplyComment}
                   setCurrentReplyComment={setCurrentReplyComment}
                   handleDelete={handleReplyCommentDelete}
