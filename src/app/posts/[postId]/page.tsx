@@ -1,9 +1,7 @@
 import deletePostAction from "@/actions/deletePostAction";
 import getSinglePostAction from "@/actions/getSinglePostAction";
-import postCommentAction from "@/actions/postCommentAction";
 import PostCard from "@/components/post/card/PostCard";
 import LoadComments from "@/components/post/LoadComments";
-import CookieStore from "@/library/CookieStore";
 import { redirect } from "next/navigation";
 
 import React from "react";

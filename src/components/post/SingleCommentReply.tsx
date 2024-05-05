@@ -78,6 +78,7 @@ export default function SingleCommentReply({
       .finally(() => {
         setIsReplying(false);
         setCurrentReplyComment(undefined);
+        setReplyText("");
       });
   };
 

@@ -5,12 +5,16 @@ import getCommentsAction from "@/actions/getCommentsAction";
 import CommentSkeleton from "../skeletons/CommentSkeleton";
 import SingleComment from "./SingleComment";
 import deleteCommentAction from "@/actions/deleteCommentAction";
+import LoaderSpinnerLarge from "../others/LoaderSpinnerLarge";
+import postCommentAction from "@/actions/postCommentAction";
 
 type Props = {
   post: any;
 };
 
 export default function LoadComments({ post }: Props) {
+  const [text, setText] = useState("");
+  const [isCommenting, setIsCommenting] = useState(false);
   const [comments, setComments] = useState<any[]>([]);
   const [showLoader, setShowLoader] = useState(true);
   const [currentReplyCommentId, setCurrentReplyCommentId] = useState<number>();
@@ -25,6 +29,23 @@ export default function LoadComments({ post }: Props) {
       })
       .catch((err) => {
         console.log(err);
+      });
+  };
+
+  const handleCommentAction = () => {
+    setIsCommenting(true);
+    postCommentAction({ postId: post?.id, text: text })
+      .then((data: any) => {
+        setComments((prev: any) => {
+          return prev?.length ? [data, ...prev] : [data];
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        setIsCommenting(false);
+        setText("");
       });
   };
 
@@ -73,20 +94,32 @@ export default function LoadComments({ post }: Props) {
   return (
     <React.Fragment>
       <div className='bg-white p-4 rounded-lg  mb-4'>
-        <form className='flex flex-col'>
+        <div className='flex flex-col'>
           <textarea
             placeholder='Enter comment'
             className='w-full block bg-gray-100 rounded-lg mb-3 p-2 text-sm3'
             name='comment'
             id=''
+            onChange={(e) => setText(e.target.value)}
+            value={text}
             cols={30}
             rows={3}
           ></textarea>
 
-          <button title='Comment' className='btn btn-primary w-full'>
-            Comment
-          </button>
-        </form>
+          {isCommenting ? (
+            <button title='Comment' className='btn btn-primary w-full'>
+              <LoaderSpinnerLarge className='w-4 h-4' />
+            </button>
+          ) : (
+            <button
+              onClick={handleCommentAction}
+              title='Comment'
+              className='btn btn-primary w-full'
+            >
+              Comment
+            </button>
+          )}
+        </div>
       </div>
       <div className='bg-white mt-4 px-4 rounded-lg'>
         {" "}
