@@ -8,6 +8,7 @@ import DropdownMenu from "../dropdown/DropdownMenu";
 import ReactionCard from "./ReactionCard";
 import getCompactNumber from "@/library/getCompactNumber";
 import reactionAction from "@/actions/reactionAction";
+import replyCommentReplyAction from "@/actions/replyCommentReplyAction";
 
 type Props = {
   item: any;
@@ -49,6 +50,19 @@ export default function SingleCommentReply({
             };
           }
         });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const handleReplyAction = () => {
+    replyCommentReplyAction({
+      text: replyText,
+      commentId: currentReplyComment?.id,
+    })
+      .then((data: any) => {
+        console.log(data);
       })
       .catch((err) => {
         console.log(err);
@@ -130,7 +144,12 @@ export default function SingleCommentReply({
                   Replying
                 </button>
               ) : (
-                <button className='btn btn-primary w-full mt-2'>Reply</button>
+                <button
+                  onClick={handleReplyAction}
+                  className='btn btn-primary w-full mt-2'
+                >
+                  Reply
+                </button>
               )}
             </div>
           ) : null}
