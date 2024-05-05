@@ -31,6 +31,7 @@ export default function SingleComment({
   const [comment, setComment] = useState<any>();
   const [isReplying, setIsReplying] = useState(false);
   const [replyText, setReplyText] = useState("");
+  const [currentReplyComment, setCurrentReplyComment] = useState<any>();
   const handleReaction = (reactionType: string) => {
     reactionAction({ itemId: comment?.id, itemType: "comment", reactionType })
       .then(() => {
@@ -88,7 +89,6 @@ export default function SingleComment({
             Replies: prev?.Replies?.length ? [...prev?.Replies, data] : [data],
           };
         });
-        console.log(data);
       })
       .catch((err) => {
         console.log(err);
@@ -178,6 +178,8 @@ export default function SingleComment({
             {comment?.Replies?.map((replyComment: any) => {
               return (
                 <SingleCommentReply
+                  currentReplyComment={currentReplyComment}
+                  setCurrentReplyComment={setCurrentReplyComment}
                   handleDelete={handleReplyCommentDelete}
                   item={replyComment}
                   postId={postId}

@@ -13,14 +13,20 @@ type Props = {
   item: any;
   handleDelete: (commentId: any) => void;
   postId: any;
+  currentReplyComment: any;
+  setCurrentReplyComment: any;
 };
 
 export default function SingleCommentReply({
   handleDelete,
   item,
   postId,
+  currentReplyComment,
+  setCurrentReplyComment,
 }: Props) {
   const [comment, setComment] = useState<any>();
+  const [isReplying, setIsReplying] = useState(false);
+  const [replyText, setReplyText] = useState("");
 
   const handleReaction = (reactionType: string) => {
     reactionAction({ itemId: comment?.id, itemType: "comment", reactionType })
@@ -99,11 +105,35 @@ export default function SingleCommentReply({
               </Link>
             ) : null}
             <div className='ml-6'>
-              <button className='m-0 p-0 h-auto text-sm4 font-medium'>
+              <button
+                onClick={() => setCurrentReplyComment(comment)}
+                className='m-0 p-0 h-auto text-sm4 font-medium'
+              >
                 Reply
               </button>
             </div>
           </div>
+          {currentReplyComment?.id === comment?.id ? (
+            <div className='my-2'>
+              <textarea
+                value={replyText}
+                onChange={(e) => setReplyText(e.target.value)}
+                name='comment'
+                placeholder='Enter reply'
+                id=''
+                cols={30}
+                className='w-full bg-gray-100 rounded-lg p-2 block'
+                rows={2}
+              ></textarea>
+              {isReplying === true ? (
+                <button className='btn btn-primary w-full mt-2'>
+                  Replying
+                </button>
+              ) : (
+                <button className='btn btn-primary w-full mt-2'>Reply</button>
+              )}
+            </div>
+          ) : null}
         </div>
 
         <DropdownMenu tabIndex={comment?.id}>
