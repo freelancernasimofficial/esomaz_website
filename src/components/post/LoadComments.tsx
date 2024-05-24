@@ -18,22 +18,8 @@ export default function LoadComments({ post }: Props) {
   const [isCommenting, setIsCommenting] = useState(false);
   const [comments, setComments] = useState<any[]>([]);
   const [showLoader, setShowLoader] = useState(true);
-  const [currentReplyCommentId, setCurrentReplyCommentId] = useState<number>();
 
   const { ref, inView } = useInView({ threshold: 1 });
-
-  const handleDelete = (commentId: any) => {
-    deleteComment(commentId)
-      .then(() => {
-        const filterComments = comments?.filter(
-          (comment: any) => comment?.id !== commentId,
-        );
-        setComments(filterComments);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
 
   const handleCommentAction = () => {
     setIsCommenting(true);
@@ -59,7 +45,6 @@ export default function LoadComments({ post }: Props) {
           postId: post?.id,
           limitFrom: comments?.length,
           limitTo: 20,
-          postOwnerId: post?.userId,
         })
           .then((data) => {
             if (!data?.length) {
@@ -83,7 +68,6 @@ export default function LoadComments({ post }: Props) {
         postId: post?.id,
         limitFrom: comments?.length,
         limitTo: 20,
-        postOwnerId: post?.userId,
       })
         .then((data) => {
           setComments(data);
@@ -93,7 +77,6 @@ export default function LoadComments({ post }: Props) {
         });
     }
   }, [comments?.length, inView, post?.id, post?.userId]);
-  console.log(comments[3]);
 
   return (
     <React.Fragment>
@@ -131,16 +114,7 @@ export default function LoadComments({ post }: Props) {
           Comments ({post?.TotalComments})
         </h1>
         {comments?.map((item: any, index: number) => {
-          return (
-            <SingleComment
-              currentReplyCommentId={currentReplyCommentId}
-              setCurrentReplyCommentId={setCurrentReplyCommentId}
-              postId={post?.uuId}
-              handleDelete={handleDelete}
-              key={item?.uuId}
-              item={item}
-            />
-          );
+          return <SingleComment key={item?.uuId} item={item} />;
         })}
       </div>
       {comments?.length > 15 ? (

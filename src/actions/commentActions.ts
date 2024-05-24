@@ -9,24 +9,22 @@ type Props = {
   limitTo: any;
   limitFrom: any;
   postId: any;
-  postOwnerId: any;
 };
 
 export default async function getComments({
   limitFrom,
   limitTo,
   postId,
-  postOwnerId,
 }: Props) {
   const user = await auth();
   const comments = await Model.query(
     `SELECT *,${
       user?.id
-    } AS currentUserId,${postOwnerId} AS postOwnerId,(SELECT JSON_OBJECT('id',CP.id,'uuId',CP.uuId,'userId',CP.userId) FROM Posts CP WHERE CP.id=CMT.postId) AS Post,(${getUserByObjectQuery(
+    } AS currentUserId,(SELECT JSON_OBJECT('id',CP.id,'uuId',CP.uuId,'userId',CP.userId) FROM Posts CP WHERE CP.id=CMT.postId) AS Post,(${getUserByObjectQuery(
       "CMT.userId",
     )}) AS User,(SELECT type FROM Reactions MR WHERE MR.userId=${
       user?.id
-    } AND MR.commentId=CMT.id) AS myReactionType,(SELECT COUNT(*) FROM Reactions R WHERE R.commentId=CMT.id) AS totalReactions,(SELECT JSON_ARRAYAGG(JSON_OBJECT('id',RPC.id,'uuId',RPC.uuId,'text',RPC.text,'userId',RPC.userId,'postId',RPC.postId,'Post',(SELECT JSON_OBJECT('id',CRP.id,'uuId',CRP.uuId,'userId',CRP.userId) FROM Posts AS CRP WHERE CRP.id=RPC.postId),'postOwnerId',${postOwnerId},'currentUserId',${
+    } AND MR.commentId=CMT.id) AS myReactionType,(SELECT COUNT(*) FROM Reactions R WHERE R.commentId=CMT.id) AS totalReactions,(SELECT JSON_ARRAYAGG(JSON_OBJECT('id',RPC.id,'uuId',RPC.uuId,'text',RPC.text,'userId',RPC.userId,'postId',RPC.postId,'Post',(SELECT JSON_OBJECT('id',CRP.id,'uuId',CRP.uuId,'userId',CRP.userId) FROM Posts AS CRP WHERE CRP.id=RPC.postId),'currentUserId',${
       user?.id
     },'myReactionType',(SELECT type FROM Reactions RMR WHERE RMR.userId=${
       user?.id

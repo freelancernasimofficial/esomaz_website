@@ -9,28 +9,18 @@ import ReactionCard from "./ReactionCard";
 import getCompactNumber from "@/library/getCompactNumber";
 import reactionAction from "@/actions/reactionAction";
 import SingleCommentReply from "./SingleCommentReply";
-import CommentSkeleton from "../skeletons/CommentSkeleton";
 import { addMainCommentReply, deleteComment } from "@/actions/commentActions";
 
 type Props = {
   item: any;
-  handleDelete: (commentId: any) => void;
-  postId: any;
-  setCurrentReplyCommentId: any;
-  currentReplyCommentId: any;
 };
 
-export default function SingleComment({
-  handleDelete,
-  item,
-  postId,
-  setCurrentReplyCommentId,
-  currentReplyCommentId,
-}: Props) {
+export default function SingleComment({ item }: Props) {
   const [comment, setComment] = useState<any>();
+  const [enableForm, setEnableForm] = useState(false);
   const [isReplying, setIsReplying] = useState(false);
   const [replyText, setReplyText] = useState("");
-  const [currentReplyComment, setCurrentReplyComment] = useState<any>();
+
   const handleReaction = (reactionType: string) => {
     reactionAction({ itemId: comment?.id, itemType: "comment", reactionType })
       .then(() => {
@@ -75,7 +65,7 @@ export default function SingleComment({
     }
   };
 
-  const handleReplyAction = () => {
+  const handleReply = () => {
     setIsReplying(true);
     addMainCommentReply({
       text: replyText,
@@ -95,6 +85,16 @@ export default function SingleComment({
       .finally(() => {
         setIsReplying(false);
         setReplyText("");
+      });
+  };
+
+  const handleDelete = (commentId: any) => {
+    deleteComment(commentId)
+      .then(() => {
+        setComment(null);
+      })
+      .catch((err) => {
+        console.log(err);
       });
   };
 
@@ -131,7 +131,7 @@ export default function SingleComment({
             />{" "}
             {comment?.totalReactions > 0 ? (
               <Link
-                href={`/posts/${postId}/comment_reactions/${comment?.id}`}
+                href={`/posts/${comment?.Post?.uuId}/comment_reactions/${comment?.id}`}
                 className='ml-1.5  text-sm4 font-medium'
               >
                 {getCompactNumber(comment?.totalReactions)} People
@@ -139,14 +139,14 @@ export default function SingleComment({
             ) : null}
             <div className='ml-6'>
               <button
-                onClick={() => setCurrentReplyCommentId(comment?.id)}
+                onClick={() => setEnableForm(!enableForm)}
                 className='m-0 p-0 h-auto text-sm4 font-medium'
               >
                 Reply
               </button>
             </div>
           </div>
-          {currentReplyCommentId === comment?.id ? (
+          {enableForm ? (
             <div className='my-2'>
               <textarea
                 value={replyText}
@@ -164,7 +164,7 @@ export default function SingleComment({
                 </button>
               ) : (
                 <button
-                  onClick={handleReplyAction}
+                  onClick={handleReply}
                   className='btn btn-primary w-full mt-2'
                 >
                   Reply
@@ -172,7 +172,7 @@ export default function SingleComment({
               )}
             </div>
           ) : null}
-          <div>
+          {/* <div>
             {" "}
             {comment?.Replies?.map((replyComment: any) => {
               return (
@@ -187,13 +187,13 @@ export default function SingleComment({
                 />
               );
             })}
-          </div>
+          </div> */}
         </div>
 
         <DropdownMenu tabIndex={comment?.id}>
           {comment?.userId !== comment?.currentUserId ? (
             <Link
-              href={`/posts/${postId}/report_comment/${comment?.id}`}
+              href={`/posts/${comment?.Post?.uuId}/report_comment/${comment?.id}`}
               className='block mb-2  font-medium text-sm3 text-error-main'
             >
               Report Comment
@@ -201,14 +201,14 @@ export default function SingleComment({
           ) : null}
           {comment?.userId === comment?.currentUserId ? (
             <Link
-              href={`/posts/${postId}/edit_comment/${comment?.id}`}
+              href={`/posts/${comment?.Post?.uuId}/edit_comment/${comment?.id}`}
               className='block mb-2 font-medium text-sm3'
             >
               Edit Comment
             </Link>
           ) : null}
           {comment?.userId === comment?.currentUserId ||
-          comment?.postOwnerId === comment?.currentUserId ? (
+          comment?.Post?.userId === comment?.currentUserId ? (
             <button
               onClick={() => handleDelete(comment?.id)}
               className='block font-medium text-error-main text-sm3 p-0 m-0'
@@ -219,7 +219,5 @@ export default function SingleComment({
         </DropdownMenu>
       </div>
     </div>
-  ) : (
-    <CommentSkeleton />
-  );
+  ) : null;
 }
