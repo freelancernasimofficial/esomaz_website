@@ -28,7 +28,11 @@ export default function HomePagePosts({}: Props) {
         getHomePagePostsAction({ limitFrom: posts?.length, limitTo: 5 })
           .then((data) => {
             setPosts((prev: any) => {
-              if (!JSON.stringify(prev)?.includes(data[0]?.uuId)) {
+              //filter
+              const filterArr = prev.filter(
+                (prevItem: any) => prevItem.id === data[0].id,
+              );
+              if (filterArr.length === 0) {
                 return [...prev, ...data];
               } else {
                 return prev;

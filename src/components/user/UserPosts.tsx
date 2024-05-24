@@ -13,6 +13,7 @@ type Props = {
 export default function UserPosts({ user }: Props) {
   const [posts, setPosts] = useState<any[]>();
   const [showLoader, setShowLoader] = useState(true);
+  const [firstTimeLoaded, setFirstTimeLoaded] = useState(false);
   const { ref, inView } = useInView({ threshold: 1 });
   const handleDelete = (postId: any) => {
     deletePostAction(postId)
@@ -39,7 +40,11 @@ export default function UserPosts({ user }: Props) {
             }
 
             setPosts((prev: any) => {
-              if (!JSON.stringify(prev)?.includes(data[0]?.uuId)) {
+              //filter
+              const filterArr = prev?.filter(
+                (prevItem: any) => prevItem.id === data[0]?.id,
+              );
+              if (filterArr.length === 0) {
                 return [...prev, ...data];
               } else {
                 return prev;
@@ -57,6 +62,9 @@ export default function UserPosts({ user }: Props) {
         })
         .catch((err) => {
           console.log(err);
+        })
+        .finally(() => {
+          setFirstTimeLoaded(true);
         });
     }
   }, [inView, posts?.length, user?.id]);
@@ -74,10 +82,14 @@ export default function UserPosts({ user }: Props) {
               />
             );
           })
-        : [...Array(5)].map((_, index: number) => {
+        : firstTimeLoaded === false
+        ? [...Array(5)].map((_, index: number) => {
             return <PostCardSkeleton key={index.toString()} />;
-          })}
-      <div ref={ref}>{showLoader ? <PostCardSkeleton /> : null}</div>
+          })
+        : null}
+      {posts?.length ? (
+        <div ref={ref}>{showLoader ? <PostCardSkeleton /> : null}</div>
+      ) : null}
     </React.Fragment>
   );
 }

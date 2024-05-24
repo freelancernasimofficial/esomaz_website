@@ -54,7 +54,6 @@ export default async function page({ params }: Props) {
                     </span>
                   </div>
                 </div>
-                <button className='btn btn-error-transparent'>Unfriend</button>
               </div>
             );
           })}

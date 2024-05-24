@@ -36,7 +36,7 @@ export default async function page({ params }: Props) {
         </div>
         <div className='centerCardMobile md:pl-2 md:w-2/4'>
           {" "}
-          <div className='px-4 py-2'>
+          <div className='py-2'>
             <LoadComments post={post} />
           </div>
         </div>

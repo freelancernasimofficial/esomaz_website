@@ -1,5 +1,4 @@
 import getNotificationsAction from "@/actions/getNotificationsAction";
-import seenAllNotificationsAction from "@/actions/seenAllNotificationsAction";
 import Avatar from "@/components/user/Avatar";
 import getFullName from "@/library/getFullName";
 import getNotificationMessage from "@/library/getNotificationMessage";
@@ -15,7 +14,6 @@ type Props = {
 };
 
 export default async function page(props: Props) {
-  await seenAllNotificationsAction();
   const notif = await getNotificationsAction();
 
   return (

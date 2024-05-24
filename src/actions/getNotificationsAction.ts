@@ -3,6 +3,7 @@
 import auth from "@/library/auth";
 import getUserByObjectQuery from "@/library/getUserByObjectQuery";
 import Model from "@/model/Model";
+import { revalidatePath } from "next/cache";
 
 export default async function getNotificationsAction() {
   const currentUser = await auth();
@@ -13,7 +14,11 @@ export default async function getNotificationsAction() {
       currentUser?.id
     } ORDER BY id DESC LIMIT 200`,
   );
-
+  await Model.prepare(
+    `UPDATE Notifications SET isSeen=? WHERE isSeen=? AND receiverUserId=?`,
+    [true, false, currentUser?.id],
+  );
+  revalidatePath("/");
   return notifications;
 }
 

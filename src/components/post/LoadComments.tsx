@@ -18,6 +18,7 @@ export default function LoadComments({ post }: Props) {
   const [comments, setComments] = useState<any[]>([]);
   const [showLoader, setShowLoader] = useState(true);
   const [currentReplyCommentId, setCurrentReplyCommentId] = useState<number>();
+
   const { ref, inView } = useInView({ threshold: 1 });
   const handleDelete = (commentId: any) => {
     deleteCommentAction(commentId)
@@ -123,7 +124,7 @@ export default function LoadComments({ post }: Props) {
       </div>
       <div className='bg-white mt-4 px-4 rounded-lg'>
         {" "}
-        <h1 className='font-bold text-base pt-3  mb-4 mt-1'>
+        <h1 className='font-bold text-base py-3  mb-4 mt-1'>
           Comments ({post?.TotalComments})
         </h1>
         {comments?.map((item: any, index: number) => {
@@ -139,7 +140,9 @@ export default function LoadComments({ post }: Props) {
           );
         })}
       </div>
-      <div ref={ref}>{showLoader ? <CommentSkeleton /> : null}</div>
+      {comments?.length > 15 ? (
+        <div ref={ref}>{showLoader ? <CommentSkeleton /> : null}</div>
+      ) : null}
     </React.Fragment>
   );
 }

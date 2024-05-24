@@ -18,14 +18,14 @@ export default async function ChangeProfilePictureForm({}: Props) {
   }
   return (
     <form action={changeProfilePictureAction}>
-      <div className='flex items-center justify-center mb-4'>
-        <Avatar className='w-40 h-40' user={currentUser} />
+      <div className='flex  shrink-0 items-center justify-center mb-4'>
+        <Avatar className='w-52 h-52 shrink-0' user={currentUser} />
       </div>
       <FileUploadButton multiple={false} />
-      {error && <div className='errorCard mt-2'>{error}</div>}
+      {error && <div className='errorCard mt-4'>{error}</div>}
 
       <SubmitButton
-        className='btn btn-primary w-full'
+        className='btn mt-2 btn-primary w-full'
         title='Change Profile Picture'
       />
     </form>

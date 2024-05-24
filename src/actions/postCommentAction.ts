@@ -4,6 +4,7 @@ import CookieStore from "@/library/CookieStore";
 import auth from "@/library/auth";
 import makeUniqueId from "@/library/makeUniqueId";
 import Model from "@/model/Model";
+import { revalidatePath } from "next/cache";
 
 type Props = {
   postId: any;
@@ -59,6 +60,8 @@ export default async function postCommentAction({ postId, text }: Props) {
         totalReactions: 0,
         Replies: null,
       };
+
+      revalidatePath("/");
       return makeNewComment;
     }
   } catch (error: any) {
