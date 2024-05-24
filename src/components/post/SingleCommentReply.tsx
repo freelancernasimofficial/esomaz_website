@@ -8,7 +8,7 @@ import DropdownMenu from "../dropdown/DropdownMenu";
 import ReactionCard from "./ReactionCard";
 import getCompactNumber from "@/library/getCompactNumber";
 import reactionAction from "@/actions/reactionAction";
-import replyCommentReplyAction from "@/actions/replyCommentReplyAction";
+import { addReplyCommentReply } from "@/actions/commentActions";
 
 type Props = {
   item: any;
@@ -60,7 +60,7 @@ export default function SingleCommentReply({
 
   const handleReplyAction = () => {
     setIsReplying(true);
-    replyCommentReplyAction({
+    addReplyCommentReply({
       text: replyText,
       commentId: currentReplyComment?.id,
     })

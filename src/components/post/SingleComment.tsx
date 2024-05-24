@@ -10,8 +10,7 @@ import getCompactNumber from "@/library/getCompactNumber";
 import reactionAction from "@/actions/reactionAction";
 import SingleCommentReply from "./SingleCommentReply";
 import CommentSkeleton from "../skeletons/CommentSkeleton";
-import deleteCommentAction from "@/actions/deleteCommentAction";
-import mainCommentReplyAction from "@/actions/mainCommentReplyAction";
+import { addMainCommentReply, deleteComment } from "@/actions/commentActions";
 
 type Props = {
   item: any;
@@ -61,7 +60,7 @@ export default function SingleComment({
 
   const handleReplyCommentDelete = (commentId: number) => {
     if (commentId) {
-      deleteCommentAction(commentId)
+      deleteComment(commentId)
         .then(() => {
           const filterComments = comment?.Replies?.filter(
             (reply: any) => reply?.id !== commentId,
@@ -78,7 +77,7 @@ export default function SingleComment({
 
   const handleReplyAction = () => {
     setIsReplying(true);
-    mainCommentReplyAction({
+    addMainCommentReply({
       text: replyText,
       commentId: comment?.id,
     })

@@ -1,12 +1,13 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
-import getCommentsAction from "@/actions/getCommentsAction";
+import getCommentsAction, {
+  addComment,
+  deleteComment,
+} from "@/actions/commentActions";
 import CommentSkeleton from "../skeletons/CommentSkeleton";
 import SingleComment from "./SingleComment";
-import deleteCommentAction from "@/actions/deleteCommentAction";
 import LoaderSpinnerLarge from "../others/LoaderSpinnerLarge";
-import postCommentAction from "@/actions/postCommentAction";
 
 type Props = {
   post: any;
@@ -20,8 +21,9 @@ export default function LoadComments({ post }: Props) {
   const [currentReplyCommentId, setCurrentReplyCommentId] = useState<number>();
 
   const { ref, inView } = useInView({ threshold: 1 });
+
   const handleDelete = (commentId: any) => {
-    deleteCommentAction(commentId)
+    deleteComment(commentId)
       .then(() => {
         const filterComments = comments?.filter(
           (comment: any) => comment?.id !== commentId,
@@ -35,7 +37,7 @@ export default function LoadComments({ post }: Props) {
 
   const handleCommentAction = () => {
     setIsCommenting(true);
-    postCommentAction({ postId: post?.id, text: text })
+    addComment({ postId: post?.id, text: text })
       .then((data: any) => {
         setComments((prev: any) => {
           return prev?.length ? [data, ...prev] : [data];
@@ -91,6 +93,7 @@ export default function LoadComments({ post }: Props) {
         });
     }
   }, [comments?.length, inView, post?.id, post?.userId]);
+  console.log(comments[3]);
 
   return (
     <React.Fragment>
