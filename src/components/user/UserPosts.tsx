@@ -13,7 +13,7 @@ type Props = {
 export default function UserPosts({ user }: Props) {
   const [posts, setPosts] = useState<any[]>();
   const [showLoader, setShowLoader] = useState(true);
-  const [firstTimeLoaded, setFirstTimeLoaded] = useState(false);
+
   const { ref, inView } = useInView({ threshold: 1 });
   const handleDelete = (postId: any) => {
     deletePostAction(postId)
@@ -58,13 +58,13 @@ export default function UserPosts({ user }: Props) {
     } else {
       getProfilePostsAction({ userId: user?.id, limitFrom: 0, limitTo: 5 })
         .then((data) => {
+          if (!data?.length) {
+            setShowLoader(false);
+          }
           setPosts(data);
         })
         .catch((err) => {
           console.log(err);
-        })
-        .finally(() => {
-          setFirstTimeLoaded(true);
         });
     }
   }, [inView, posts?.length, user?.id]);
@@ -82,14 +82,8 @@ export default function UserPosts({ user }: Props) {
               />
             );
           })
-        : firstTimeLoaded === false
-        ? [...Array(5)].map((_, index: number) => {
-            return <PostCardSkeleton key={index.toString()} />;
-          })
         : null}
-      {posts?.length ? (
-        <div ref={ref}>{showLoader ? <PostCardSkeleton /> : null}</div>
-      ) : null}
+      <div ref={ref}>{showLoader ? <PostCardSkeleton /> : null}</div>
     </React.Fragment>
   );
 }
