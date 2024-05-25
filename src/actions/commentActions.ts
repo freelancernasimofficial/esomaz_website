@@ -39,13 +39,12 @@ export default async function getComments({
 }
 
 export async function addComment({ postId, text }: { postId: any; text: any }) {
-  const user = await auth();
-
   try {
+    const user = await auth();
     if (text.length > 2000) {
       throw new Error("Comment is too big!");
     } else if (!text.length) {
-      return null;
+      throw new Error("Please write something");
     } else {
       const mkuuId = await makeUniqueId("Comments");
       const postComment = await Model.prepare(
@@ -88,10 +87,18 @@ export async function addComment({ postId, text }: { postId: any; text: any }) {
       };
 
       revalidatePath("/");
-      return makeNewComment;
+      return {
+        status: true,
+        message: "Comment posted successfully",
+        comment: makeNewComment,
+      };
     }
   } catch (error: any) {
-    return error?.message;
+    revalidatePath("/");
+    return {
+      status: false,
+      message: error?.message,
+    };
   }
 }
 
@@ -121,11 +128,10 @@ export async function editComment(commentId: number, formData: any) {
       revalidatePath("/");
     }
   } catch (error: any) {
+    revalidatePath("/");
     console.log(error.message);
   }
 }
-
-//
 
 export async function addMainCommentReply({
   commentId,
@@ -134,13 +140,12 @@ export async function addMainCommentReply({
   commentId: any;
   text: any;
 }) {
-  const user = await auth();
-
   try {
+    const user = await auth();
     if (text.length > 2000) {
       throw new Error("Comment is too big!");
     } else if (!text.length) {
-      throw new Error("Comment cannot be empty!");
+      throw new Error("Please write something");
     } else {
       const [getTheComment] = await Model.prepare(
         "SELECT * FROM Comments WHERE id=?",
@@ -179,9 +184,15 @@ export async function addMainCommentReply({
         totalReactions: null,
         targetedComment: null,
       };
-      return makeNewComment;
+      revalidatePath("/");
+      return {
+        status: true,
+        message: "Comment posted successfully",
+        comment: makeNewComment,
+      };
     }
   } catch (error: any) {
+    revalidatePath("/");
     return {
       status: false,
       message: error?.message,
@@ -196,9 +207,8 @@ export async function addReplyCommentReply({
   text: any;
   commentId: any;
 }) {
-  const user = await auth();
-
   try {
+    const user = await auth();
     if (text.length > 2000) {
       throw new Error("Comment is too big!");
     } else if (!text.length) {
@@ -247,9 +257,15 @@ export async function addReplyCommentReply({
         totalReactions: 0,
         targetedComment: null,
       };
-      return makeNewComment;
+      revalidatePath("/");
+      return {
+        status: true,
+        message: "Comment posted successfully",
+        comment: makeNewComment,
+      };
     }
   } catch (error: any) {
+    revalidatePath("/");
     return {
       status: false,
       message: error?.message,

@@ -9,6 +9,7 @@ import ReactionCard from "./ReactionCard";
 import getCompactNumber from "@/library/getCompactNumber";
 import reactionAction from "@/actions/reactionAction";
 import { addReplyCommentReply, deleteComment } from "@/actions/commentActions";
+import SubmitButtonClient from "../button/SubmitButtonClient";
 
 type Props = {
   item: any;
@@ -18,8 +19,12 @@ type Props = {
 export default function SingleCommentReply({ item, setMainComment }: Props) {
   const [comment, setComment] = useState<any>();
   const [enableForm, setEnableForm] = useState(false);
-  const [isReplying, setIsReplying] = useState(false);
+  const [pending, setPending] = useState(false);
   const [replyText, setReplyText] = useState("");
+  const [formStatus, setFormStatus] = useState({
+    status: false,
+    message: "",
+  });
 
   const handleReaction = (reactionType: string) => {
     reactionAction({ itemId: comment?.id, itemType: "comment", reactionType })
@@ -49,24 +54,30 @@ export default function SingleCommentReply({ item, setMainComment }: Props) {
   };
 
   const handleReplyAction = () => {
-    setIsReplying(true);
+    setPending(true);
     addReplyCommentReply({
       text: replyText,
       commentId: comment?.id,
     })
       .then((data: any) => {
-        setMainComment((prev: any) => {
-          return {
-            ...prev,
-            Replies: [...prev?.Replies, data],
-          };
-        });
-        setEnableForm(false);
-        setIsReplying(false);
-        setReplyText("");
+        if (data.status === true) {
+          setMainComment((prev: any) => {
+            return {
+              ...prev,
+              Replies: [...prev?.Replies, data.comment],
+            };
+          });
+          setEnableForm(false);
+          setReplyText("");
+        } else {
+          setFormStatus(data);
+        }
       })
       .catch((err) => {
-        console.log(err);
+        setFormStatus(err);
+      })
+      .finally(() => {
+        setPending(false);
       });
   };
 
@@ -150,18 +161,15 @@ export default function SingleCommentReply({ item, setMainComment }: Props) {
                 className='w-full bg-gray-100 rounded-lg p-2 block'
                 rows={2}
               ></textarea>
-              {isReplying === true ? (
-                <button className='btn btn-primary w-full mt-2'>
-                  Replying
-                </button>
-              ) : (
-                <button
-                  onClick={handleReplyAction}
-                  className='btn btn-primary w-full mt-2'
-                >
-                  Reply
-                </button>
+              {formStatus.status === false && formStatus.message.length > 0 && (
+                <div className='errorCard mt-2 mb-1'>{formStatus.message}</div>
               )}
+              <SubmitButtonClient
+                className='btn btn-primary w-full mt-2'
+                pending={pending}
+                title='Reply'
+                onClick={handleReplyAction}
+              />
             </div>
           ) : null}
         </div>
@@ -184,7 +192,7 @@ export default function SingleCommentReply({ item, setMainComment }: Props) {
             </Link>
           ) : null}
           {comment?.userId === comment?.currentUserId ||
-          comment?.postOwnerId === comment?.currentUserId ? (
+          comment?.Post?.userId === comment?.currentUserId ? (
             <button
               onClick={handleDelete}
               className='block font-medium text-error-main text-sm3 p-0 m-0'

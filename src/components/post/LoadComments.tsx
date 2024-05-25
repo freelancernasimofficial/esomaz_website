@@ -5,6 +5,7 @@ import getCommentsAction, { addComment } from "@/actions/commentActions";
 import CommentSkeleton from "../skeletons/CommentSkeleton";
 import SingleComment from "./SingleComment";
 import LoaderSpinnerLarge from "../others/LoaderSpinnerLarge";
+import SubmitButtonClient from "../button/SubmitButtonClient";
 
 type Props = {
   post: any;
@@ -12,26 +13,33 @@ type Props = {
 
 export default function LoadComments({ post }: Props) {
   const [text, setText] = useState("");
-  const [isCommenting, setIsCommenting] = useState(false);
+  const [pending, setPending] = useState(false);
   const [comments, setComments] = useState<any[]>([]);
   const [showLoader, setShowLoader] = useState(true);
+  const [formStatus, setFormStatus] = useState({ status: false, message: "" });
 
   const { ref, inView } = useInView({ threshold: 1 });
 
   const handleCommentAction = () => {
-    setIsCommenting(true);
+    setPending(true);
     addComment({ postId: post?.id, text: text })
       .then((data: any) => {
-        setComments((prev: any) => {
-          return prev?.length ? [data, ...prev] : [data];
-        });
+        if (data.status === true) {
+          setText("");
+          setComments((prev: any) => {
+            return prev?.length ? [data?.comment, ...prev] : [data?.comment];
+          });
+        } else {
+          setFormStatus(data);
+        }
       })
       .catch((err) => {
         console.log(err);
+
+        setFormStatus(err);
       })
       .finally(() => {
-        setIsCommenting(false);
-        setText("");
+        setPending(false);
       });
   };
 
@@ -92,20 +100,15 @@ export default function LoadComments({ post }: Props) {
             cols={30}
             rows={3}
           ></textarea>
-
-          {isCommenting ? (
-            <button title='Comment' className='btn btn-primary w-full'>
-              <LoaderSpinnerLarge className='w-4 h-4' />
-            </button>
-          ) : (
-            <button
-              onClick={handleCommentAction}
-              title='Comment'
-              className='btn btn-primary w-full'
-            >
-              Comment
-            </button>
+          {formStatus.status === false && formStatus.message.length > 0 && (
+            <div className='errorCard'>{formStatus.message}</div>
           )}
+          <SubmitButtonClient
+            className='btn btn-primary'
+            pending={pending}
+            title='Comment'
+            onClick={handleCommentAction}
+          />
         </div>
       </div>
       <div className='bg-white mt-4 px-4 rounded-lg'>

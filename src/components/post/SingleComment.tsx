@@ -10,6 +10,7 @@ import getCompactNumber from "@/library/getCompactNumber";
 import reactionAction from "@/actions/reactionAction";
 import SingleCommentReply from "./SingleCommentReply";
 import { addMainCommentReply, deleteComment } from "@/actions/commentActions";
+import SubmitButtonClient from "../button/SubmitButtonClient";
 
 type Props = {
   item: any;
@@ -18,8 +19,9 @@ type Props = {
 export default function SingleComment({ item }: Props) {
   const [comment, setComment] = useState<any>();
   const [enableForm, setEnableForm] = useState(false);
-  const [isReplying, setIsReplying] = useState(false);
+  const [pending, setPending] = useState(false);
   const [replyText, setReplyText] = useState("");
+  const [formStatus, setFormStatus] = useState({ status: false, message: "" });
 
   const handleReaction = (reactionType: string) => {
     reactionAction({ itemId: comment?.id, itemType: "comment", reactionType })
@@ -49,24 +51,33 @@ export default function SingleComment({ item }: Props) {
   };
 
   const handleReply = () => {
-    setIsReplying(true);
+    setPending(true);
     addMainCommentReply({
       text: replyText,
       commentId: comment?.id,
     })
-      .then((data) => {
-        setComment((prev: any) => {
-          return {
-            ...prev,
-            Replies: prev?.Replies?.length ? [...prev?.Replies, data] : [data],
-          };
-        });
-        setEnableForm(false);
-        setIsReplying(false);
-        setReplyText("");
+      .then((data: any) => {
+        if (data.status === true) {
+          setComment((prev: any) => {
+            return {
+              ...prev,
+              Replies:
+                prev?.Replies?.length > 0
+                  ? [...prev?.Replies, data.comment]
+                  : [data.comment],
+            };
+          });
+          setEnableForm(false);
+          setReplyText("");
+        } else {
+          setFormStatus(data);
+        }
       })
       .catch((err) => {
-        console.log(err);
+        setFormStatus(err);
+      })
+      .finally(() => {
+        setPending(false);
       });
   };
 
@@ -140,18 +151,15 @@ export default function SingleComment({ item }: Props) {
                 className='w-full bg-gray-100 rounded-lg p-2 block'
                 rows={2}
               ></textarea>
-              {isReplying === true ? (
-                <button className='btn btn-primary w-full mt-2'>
-                  Replying
-                </button>
-              ) : (
-                <button
-                  onClick={handleReply}
-                  className='btn btn-primary w-full mt-2'
-                >
-                  Reply
-                </button>
+              {formStatus.status === false && formStatus.message.length > 0 && (
+                <div className='errorCard mt-2 mb-1'>{formStatus.message}</div>
               )}
+              <SubmitButtonClient
+                className='btn btn-primary w-full mt-2'
+                pending={pending}
+                title='Reply'
+                onClick={handleReply}
+              />
             </div>
           ) : null}
           {
