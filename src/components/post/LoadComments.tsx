@@ -67,6 +67,9 @@ export default function LoadComments({ post }: Props) {
         limitTo: 20,
       })
         .then((data) => {
+          if (!data?.length) {
+            setShowLoader(false);
+          }
           setComments(data);
         })
         .catch((err) => {
@@ -114,9 +117,7 @@ export default function LoadComments({ post }: Props) {
           return <SingleComment key={item?.uuId} item={item} />;
         })}
       </div>
-      {comments?.length > 15 ? (
-        <div ref={ref}>{showLoader ? <CommentSkeleton /> : null}</div>
-      ) : null}
+      <div ref={ref}>{showLoader ? <CommentSkeleton /> : null}</div>
     </React.Fragment>
   );
 }
