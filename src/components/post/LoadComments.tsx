@@ -1,10 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
-import getCommentsAction, {
-  addComment,
-  deleteComment,
-} from "@/actions/commentActions";
+import getCommentsAction, { addComment } from "@/actions/commentActions";
 import CommentSkeleton from "../skeletons/CommentSkeleton";
 import SingleComment from "./SingleComment";
 import LoaderSpinnerLarge from "../others/LoaderSpinnerLarge";
@@ -76,7 +73,7 @@ export default function LoadComments({ post }: Props) {
           console.log(err);
         });
     }
-  }, [comments?.length, inView, post?.id, post?.userId]);
+  }, [comments?.length, inView, post?.id]);
 
   return (
     <React.Fragment>

@@ -48,23 +48,6 @@ export default function SingleComment({ item }: Props) {
       });
   };
 
-  const handleReplyCommentDelete = (commentId: number) => {
-    if (commentId) {
-      deleteComment(commentId)
-        .then(() => {
-          const filterComments = comment?.Replies?.filter(
-            (reply: any) => reply?.id !== commentId,
-          );
-          setComment((prev: any) => {
-            return { ...prev, Replies: filterComments };
-          });
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-  };
-
   const handleReply = () => {
     setIsReplying(true);
     addMainCommentReply({
@@ -78,18 +61,17 @@ export default function SingleComment({ item }: Props) {
             Replies: prev?.Replies?.length ? [...prev?.Replies, data] : [data],
           };
         });
+        setEnableForm(false);
+        setIsReplying(false);
+        setReplyText("");
       })
       .catch((err) => {
         console.log(err);
-      })
-      .finally(() => {
-        setIsReplying(false);
-        setReplyText("");
       });
   };
 
-  const handleDelete = (commentId: any) => {
-    deleteComment(commentId)
+  const handleDelete = () => {
+    deleteComment(comment?.id)
       .then(() => {
         setComment(null);
       })
@@ -172,22 +154,20 @@ export default function SingleComment({ item }: Props) {
               )}
             </div>
           ) : null}
-          {/* <div>
-            {" "}
-            {comment?.Replies?.map((replyComment: any) => {
-              return (
-                <SingleCommentReply
-                  setMainComment={setComment}
-                  currentReplyComment={currentReplyComment}
-                  setCurrentReplyComment={setCurrentReplyComment}
-                  handleDelete={handleReplyCommentDelete}
-                  item={replyComment}
-                  postId={postId}
-                  key={replyComment?.id}
-                />
-              );
-            })}
-          </div> */}
+          {
+            <div>
+              {" "}
+              {comment?.Replies?.map((replyComment: any) => {
+                return (
+                  <SingleCommentReply
+                    setMainComment={setComment}
+                    item={replyComment}
+                    key={replyComment?.id}
+                  />
+                );
+              })}
+            </div>
+          }
         </div>
 
         <DropdownMenu tabIndex={comment?.id}>
@@ -210,7 +190,7 @@ export default function SingleComment({ item }: Props) {
           {comment?.userId === comment?.currentUserId ||
           comment?.Post?.userId === comment?.currentUserId ? (
             <button
-              onClick={() => handleDelete(comment?.id)}
+              onClick={handleDelete}
               className='block font-medium text-error-main text-sm3 p-0 m-0'
             >
               Delete Comment

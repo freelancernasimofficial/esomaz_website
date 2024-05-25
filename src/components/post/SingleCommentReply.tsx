@@ -8,26 +8,16 @@ import DropdownMenu from "../dropdown/DropdownMenu";
 import ReactionCard from "./ReactionCard";
 import getCompactNumber from "@/library/getCompactNumber";
 import reactionAction from "@/actions/reactionAction";
-import { addReplyCommentReply } from "@/actions/commentActions";
+import { addReplyCommentReply, deleteComment } from "@/actions/commentActions";
 
 type Props = {
   item: any;
-  handleDelete: (commentId: any) => void;
-  postId: any;
-  currentReplyComment: any;
-  setCurrentReplyComment: any;
   setMainComment: any;
 };
 
-export default function SingleCommentReply({
-  handleDelete,
-  item,
-  postId,
-  currentReplyComment,
-  setCurrentReplyComment,
-  setMainComment,
-}: Props) {
+export default function SingleCommentReply({ item, setMainComment }: Props) {
   const [comment, setComment] = useState<any>();
+  const [enableForm, setEnableForm] = useState(false);
   const [isReplying, setIsReplying] = useState(false);
   const [replyText, setReplyText] = useState("");
 
@@ -62,7 +52,7 @@ export default function SingleCommentReply({
     setIsReplying(true);
     addReplyCommentReply({
       text: replyText,
-      commentId: currentReplyComment?.id,
+      commentId: comment?.id,
     })
       .then((data: any) => {
         setMainComment((prev: any) => {
@@ -71,14 +61,22 @@ export default function SingleCommentReply({
             Replies: [...prev?.Replies, data],
           };
         });
+        setEnableForm(false);
+        setIsReplying(false);
+        setReplyText("");
       })
       .catch((err) => {
         console.log(err);
+      });
+  };
+
+  const handleDelete = () => {
+    deleteComment(comment?.id)
+      .then(() => {
+        setComment(null);
       })
-      .finally(() => {
-        setIsReplying(false);
-        setCurrentReplyComment(undefined);
-        setReplyText("");
+      .catch((err) => {
+        console.log(err);
       });
   };
 
@@ -125,7 +123,7 @@ export default function SingleCommentReply({
             />{" "}
             {comment?.totalReactions > 0 ? (
               <Link
-                href={`/posts/${postId}/comment_reactions/${comment?.id}`}
+                href={`/posts/${comment?.Post?.uuId}/comment_reactions/${comment?.id}`}
                 className='ml-1.5  text-sm4 font-medium'
               >
                 {getCompactNumber(comment?.totalReactions)} People
@@ -133,14 +131,14 @@ export default function SingleCommentReply({
             ) : null}
             <div className='ml-6'>
               <button
-                onClick={() => setCurrentReplyComment(comment)}
+                onClick={() => setEnableForm(!enableForm)}
                 className='m-0 p-0 h-auto text-sm4 font-medium'
               >
                 Reply
               </button>
             </div>
           </div>
-          {currentReplyComment?.id === comment?.id ? (
+          {enableForm ? (
             <div className='my-2'>
               <textarea
                 value={replyText}
@@ -171,7 +169,7 @@ export default function SingleCommentReply({
         <DropdownMenu tabIndex={comment?.id}>
           {comment?.userId !== comment?.currentUserId ? (
             <Link
-              href={`/posts/${postId}/report_comment/${comment?.id}`}
+              href={`/posts/${comment?.Post?.uuId}/report_comment/${comment?.id}`}
               className='block mb-2  font-medium text-sm3 text-error-main'
             >
               Report Comment
@@ -179,7 +177,7 @@ export default function SingleCommentReply({
           ) : null}
           {comment?.userId === comment?.currentUserId ? (
             <Link
-              href={`/posts/${postId}/edit_comment/${comment?.id}`}
+              href={`/posts/${comment?.Post?.uuId}/edit_comment/${comment?.id}`}
               className='block mb-2 font-medium text-sm3'
             >
               Edit Comment
@@ -188,7 +186,7 @@ export default function SingleCommentReply({
           {comment?.userId === comment?.currentUserId ||
           comment?.postOwnerId === comment?.currentUserId ? (
             <button
-              onClick={() => handleDelete(comment?.id)}
+              onClick={handleDelete}
               className='block font-medium text-error-main text-sm3 p-0 m-0'
             >
               Delete Comment
