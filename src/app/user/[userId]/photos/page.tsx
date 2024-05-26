@@ -1,9 +1,9 @@
-import getSingleUserByuuId from "@/actions/getSingleUserByuuId";
-import getUserPhotosAction, {
-  getUserTotalPhotoCountAction,
-} from "@/actions/getUserPhotosAction";
+import {
+  getSingleUserByuuId,
+  getUserPhotos,
+  getUserPhotosCount,
+} from "@/actions/userActions";
 import { AWS_S3_PHOTO_API_URL } from "@/library/constants";
-import getUsername from "@/library/getUsername";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -16,12 +16,12 @@ type Props = {
 
 export default async function page({ params }: Props) {
   const user = await getSingleUserByuuId(params.userId);
-  const photos = await getUserPhotosAction({
+  const photos = await getUserPhotos({
     userId: user?.id,
     limitFrom: 0,
     limitTo: 50,
   });
-  const totalPhotos = await getUserTotalPhotoCountAction(user?.id);
+  const totalPhotos = await getUserPhotosCount(user?.id);
 
   return (
     <div className='centerCard'>

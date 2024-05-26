@@ -289,3 +289,24 @@ export async function addReplyCommentReply({
     };
   }
 }
+
+export async function getCommentReactions(
+  commentId: string,
+  reactionType: string,
+) {
+  if (reactionType === "all") {
+    const getReactions = await Model.query(
+      `SELECT *,(${getUserByObjectQuery(
+        "R.userId",
+      )}) AS User FROM Reactions R WHERE R.commentId=${commentId}`,
+    );
+    return getReactions;
+  } else {
+    const getReactions = await Model.query(
+      `SELECT *,(${getUserByObjectQuery(
+        "R.userId",
+      )}) AS User FROM Reactions R WHERE R.type="${reactionType}" AND R.commentId=${commentId}`,
+    );
+    return getReactions;
+  }
+}

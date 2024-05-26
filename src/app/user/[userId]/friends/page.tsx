@@ -1,12 +1,8 @@
-import getFriendsByUserIdAction from "@/actions/getFriendsByUserIdAction";
-import getSingleUserByuuId from "@/actions/getSingleUserByuuId";
+import { getFriendsByUserId, getSingleUserByuuId } from "@/actions/userActions";
 import Avatar from "@/components/user/Avatar";
-import ProfileCard from "@/components/user/ProfileCard";
 import getFullName from "@/library/getFullName";
 import getSubtitle from "@/library/getSubtitle";
 import getUsername from "@/library/getUsername";
-import Model from "@/model/Model";
-import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
@@ -19,7 +15,7 @@ type Props = {
 export default async function page({ params }: Props) {
   const user = await getSingleUserByuuId(params.userId);
 
-  const friends = await getFriendsByUserIdAction(user?.id);
+  const friends = await getFriendsByUserId(user?.id);
 
   return (
     <div className='centerCard'>

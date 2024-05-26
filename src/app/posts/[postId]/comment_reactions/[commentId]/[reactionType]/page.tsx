@@ -1,5 +1,4 @@
-import getCommentReactionAction from "@/actions/getCommentReactionAction";
-import getPostReactionAction from "@/actions/getPostReactionAction";
+import { getCommentReactions } from "@/actions/commentActions";
 import Avatar from "@/components/user/Avatar";
 import getFullName from "@/library/getFullName";
 import getUsername from "@/library/getUsername";
@@ -15,7 +14,7 @@ type Props = {
 };
 
 export default async function page({ params }: Props) {
-  const reactions = await getCommentReactionAction(
+  const reactions = await getCommentReactions(
     params?.commentId,
     params.reactionType,
   );

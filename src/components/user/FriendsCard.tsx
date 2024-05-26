@@ -3,14 +3,14 @@ import getUsername from "@/library/getUsername";
 import Link from "next/link";
 import React from "react";
 import Avatar from "./Avatar";
-import getFriendsByUserIdAction from "@/actions/getFriendsByUserIdAction";
+import { getFriendsByUserId } from "@/actions/userActions";
 
 type Props = {
   user: any;
 };
 
 export default async function FriendsCard({ user }: Props) {
-  const friends = await getFriendsByUserIdAction(user?.id, 5);
+  const friends = await getFriendsByUserId(user?.id, 5);
 
   return (
     <div className='w-full p-4 my-4 rounded-lg bg-white shadow hidden md:block'>

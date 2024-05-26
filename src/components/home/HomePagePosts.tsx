@@ -1,10 +1,9 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import PostCard from "../post/card/PostCard";
-import getHomePagePostsAction from "@/actions/getHomePagePostsAction";
 import PostCardSkeleton from "../skeletons/PostCardSkeleton";
 import { useInView } from "react-intersection-observer";
-import { deletePost } from "@/actions/postActions";
+import { deletePost, getHomePagePosts } from "@/actions/postActions";
 
 type Props = {};
 
@@ -25,7 +24,7 @@ export default function HomePagePosts({}: Props) {
   useEffect(() => {
     if (posts?.length) {
       if (inView) {
-        getHomePagePostsAction({ limitFrom: posts?.length, limitTo: 5 })
+        getHomePagePosts({ limitFrom: posts?.length, limitTo: 5 })
           .then((data) => {
             setPosts((prev: any) => {
               //filter
@@ -44,7 +43,7 @@ export default function HomePagePosts({}: Props) {
           });
       }
     } else {
-      getHomePagePostsAction({ limitFrom: 0, limitTo: 5 })
+      getHomePagePosts({ limitFrom: 0, limitTo: 5 })
         .then((data) => {
           setPosts(data);
         })
@@ -58,14 +57,7 @@ export default function HomePagePosts({}: Props) {
     <React.Fragment>
       {posts?.length
         ? posts?.map((item: any, index: number) => {
-            return (
-              <PostCard
-                fullText={false}
-                handleDelete={handleDelete}
-                key={item.uuId}
-                item={item}
-              />
-            );
+            return <PostCard fullText={false} key={item.uuId} item={item} />;
           })
         : [...Array(5)].map((_, index: number) => {
             return <PostCardSkeleton key={index.toString()} />;

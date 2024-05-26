@@ -1,5 +1,4 @@
-import getSinglePostAction from "@/actions/getSinglePostAction";
-import { deletePost } from "@/actions/postActions";
+import { deletePost, getSinglePost } from "@/actions/postActions";
 import PostCard from "@/components/post/card/PostCard";
 import LoadComments from "@/components/post/LoadComments";
 import { redirect } from "next/navigation";
@@ -13,7 +12,7 @@ type Props = {
 };
 
 export default async function page({ params }: Props) {
-  const post = await getSinglePostAction(params);
+  const post = await getSinglePost(params.postId);
 
   if (!post?.id) {
     redirect("/");

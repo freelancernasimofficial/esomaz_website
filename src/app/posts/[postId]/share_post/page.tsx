@@ -1,4 +1,4 @@
-import sharePostAction from "@/actions/sharePostAction";
+import { sharePostAction } from "@/actions/postActions";
 import SubmitButton from "@/components/button/SubmitButton";
 import IconEarth from "@/components/icons/IconEarth";
 import PostPhotos from "@/components/post/PostPhotoSlider";

@@ -4,17 +4,16 @@ import IconBriefcase from "../icons/IconBriefcase";
 import IconLocationOutline from "../icons/IconLocationOutline";
 import IconRss from "../icons/IconRss";
 import IconSchoolOutline from "../icons/IconSchoolOutline";
-import Model from "@/model/Model";
 import getCompactNumber from "@/library/getCompactNumber";
-import getUserInformationAction from "@/actions/getUserInformationAction";
 import auth from "@/library/auth";
+import { getUserInformations } from "@/actions/userActions";
 
 type Props = {
   userId: number;
 };
 
 export default async function UserIntro({ userId }: Props) {
-  const userInfos = await getUserInformationAction(userId);
+  const userInfos = await getUserInformations(userId);
   const currentUser = await auth();
   return (
     <div className='w-full p-4 rounded-lg bg-white shadow my-4'>

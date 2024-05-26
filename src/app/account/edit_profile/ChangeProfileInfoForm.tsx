@@ -1,6 +1,8 @@
-import { changeProfileInfoAction } from "@/actions/editProfileActions";
 import getCountriesAction from "@/actions/getCountriesAction";
-import getUserInformationAction from "@/actions/getUserInformationAction";
+import {
+  changeProfileInfoAction,
+  getUserInformations,
+} from "@/actions/userActions";
 import SubmitButton from "@/components/button/SubmitButton";
 import CookieStore from "@/library/CookieStore";
 import auth from "@/library/auth";
@@ -11,7 +13,7 @@ type Props = {};
 export default async function ChangeProfileInfoForm({}: Props) {
   const currentUser = await auth();
   //@ts-ignore
-  const userInfos = await getUserInformationAction(currentUser?.id);
+  const userInfos = await getUserInformations(currentUser?.id);
   const countries = await getCountriesAction();
   const error = CookieStore.getState("profileError");
   const success = CookieStore.getState("profileSuccess");

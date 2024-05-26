@@ -1,5 +1,7 @@
-import getFollowingsByUserIdAction from "@/actions/getFollowingsByUserIdAction";
-import getSingleUserByuuId from "@/actions/getSingleUserByuuId";
+import {
+  getFollowingsByUserId,
+  getSingleUserByuuId,
+} from "@/actions/userActions";
 import Avatar from "@/components/user/Avatar";
 import getFullName from "@/library/getFullName";
 import getSubtitle from "@/library/getSubtitle";
@@ -15,7 +17,7 @@ type Props = {
 
 export default async function page({ params }: Props) {
   const user = await getSingleUserByuuId(params.userId);
-  const following = await getFollowingsByUserIdAction(user?.id);
+  const following = await getFollowingsByUserId(user?.id);
 
   return (
     <div className='centerCard'>

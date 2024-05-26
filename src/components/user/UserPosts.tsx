@@ -2,9 +2,8 @@
 import React, { useEffect, useState } from "react";
 import PostCard from "../post/card/PostCard";
 import PostCardSkeleton from "../skeletons/PostCardSkeleton";
-import getProfilePostsAction from "@/actions/getProfilePostsAction";
 import { useInView } from "react-intersection-observer";
-import { deletePost } from "@/actions/postActions";
+import { deletePost, getProfilePosts } from "@/actions/postActions";
 
 type Props = {
   user: any;
@@ -29,7 +28,7 @@ export default function UserPosts({ user }: Props) {
   useEffect(() => {
     if (posts?.length) {
       if (inView) {
-        getProfilePostsAction({
+        getProfilePosts({
           userId: user?.id,
           limitFrom: posts?.length,
           limitTo: 5,
@@ -56,7 +55,7 @@ export default function UserPosts({ user }: Props) {
           });
       }
     } else {
-      getProfilePostsAction({ userId: user?.id, limitFrom: 0, limitTo: 5 })
+      getProfilePosts({ userId: user?.id, limitFrom: 0, limitTo: 5 })
         .then((data) => {
           if (!data?.length) {
             setShowLoader(false);

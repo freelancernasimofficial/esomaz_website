@@ -95,8 +95,6 @@ export default function PostCard({ item, fullText }: Props) {
           location.reload();
         }
       });
-    } else {
-      return null;
     }
   };
 

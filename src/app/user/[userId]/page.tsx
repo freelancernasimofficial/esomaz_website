@@ -1,11 +1,8 @@
-import getProfilePostsAction from "@/actions/getProfilePostsAction";
-import getSingleUserByuuId from "@/actions/getSingleUserByuuId";
-import PostCard from "@/components/post/card/PostCard";
 import PostForm from "@/components/post/PostForm";
-import SharedPostCard from "@/components/post/card/SharedPostCard";
 
 import React from "react";
 import UserPosts from "@/components/user/UserPosts";
+import { getSingleUserByuuId } from "@/actions/userActions";
 
 type Props = {
   params: {

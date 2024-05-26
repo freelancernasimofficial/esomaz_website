@@ -1,4 +1,4 @@
-import getPostReactionAction from "@/actions/getPostReactionAction";
+import { getPostReactions } from "@/actions/postActions";
 import Avatar from "@/components/user/Avatar";
 import getFullName from "@/library/getFullName";
 import getUsername from "@/library/getUsername";
@@ -14,10 +14,7 @@ type Props = {
 };
 
 export default async function page({ params }: Props) {
-  const reactions = await getPostReactionAction(
-    params.postId,
-    params.reactionType,
-  );
+  const reactions = await getPostReactions(params.postId, params.reactionType);
 
   return (
     <div className=' bg-white mt-2 rounded-lg'>

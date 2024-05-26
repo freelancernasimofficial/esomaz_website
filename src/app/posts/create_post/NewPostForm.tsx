@@ -1,5 +1,5 @@
 "use client";
-import addNewPostAction from "@/actions/addNewPostAction";
+import { addNewPostAction } from "@/actions/postActions";
 import SubmitButton from "@/components/button/SubmitButton";
 import FileUploadButton from "@/components/others/FileUploadButton";
 import React from "react";

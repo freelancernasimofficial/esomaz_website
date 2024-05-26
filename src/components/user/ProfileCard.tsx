@@ -1,22 +1,23 @@
 import Link from "next/link";
 import React from "react";
 import getFullName from "@/library/getFullName";
-import addFriendAction, {
-  acceptFriendAction,
-  cancelFriendAction,
-  rejectFriendAction,
-  unFriendAction,
-} from "@/actions/addFriendAction";
-import addFollowAction, {
-  followBackAction,
-  unFollowAction,
-} from "@/actions/addFollowAction";
+
 import auth from "@/library/auth";
 import UserStatistics from "./UserStatistics";
 import getSubtitle from "@/library/getSubtitle";
 import getUsername from "@/library/getUsername";
 import Avatar from "./Avatar";
 import { AWS_S3_PHOTO_API_URL } from "@/library/constants";
+import {
+  acceptFriendAction,
+  addFollowAction,
+  addFriendAction,
+  cancelFriendAction,
+  followBackAction,
+  rejectFriendAction,
+  unFollowAction,
+  unFriendAction,
+} from "@/actions/userActions";
 type Props = {
   user: any;
 };

@@ -1,12 +1,9 @@
 import ProfileCard from "@/components/user/ProfileCard";
-import auth from "@/library/auth";
-import Model from "@/model/Model";
-import { headers } from "next/headers";
 import React from "react";
-import bcrypt from "bcrypt";
 import FriendsCard from "@/components/user/FriendsCard";
 import UserIntro from "@/components/user/UserIntro";
-import getFullUserByUsername from "@/actions/getFullUserByUsername";
+import { getFullUserByUsername } from "@/actions/userActions";
+
 type Props = {
   children: any;
   params: {

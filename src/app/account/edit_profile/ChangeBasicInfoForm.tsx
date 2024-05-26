@@ -1,5 +1,7 @@
-import { changeBasicInfoAction } from "@/actions/editProfileActions";
-import getSingleUserByuuId from "@/actions/getSingleUserByuuId";
+import {
+  changeBasicInfoAction,
+  getSingleUserByuuId,
+} from "@/actions/userActions";
 import SubmitButton from "@/components/button/SubmitButton";
 import CookieStore from "@/library/CookieStore";
 import auth from "@/library/auth";

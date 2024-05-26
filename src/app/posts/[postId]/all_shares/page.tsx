@@ -1,4 +1,4 @@
-import getPostSharesAction from "@/actions/getPostSharesAction";
+import { getPostShares } from "@/actions/postActions";
 import Avatar from "@/components/user/Avatar";
 import getFullName from "@/library/getFullName";
 import getRelativeTime from "@/library/getRelativeTime";
@@ -13,7 +13,7 @@ type Props = {
 };
 
 export default async function page({ params }: Props) {
-  const getShared = await getPostSharesAction(params?.postId);
+  const getShared = await getPostShares(params?.postId);
 
   return (
     <div className='container'>

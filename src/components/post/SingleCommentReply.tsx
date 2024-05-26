@@ -94,13 +94,16 @@ export default function SingleCommentReply({ item, setMainComment }: Props) {
   };
 
   const handleDelete = () => {
-    deleteComment(comment?.id)
-      .then(() => {
-        setComment(null);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    const isConfirm = confirm("Are you sure?");
+    if (isConfirm) {
+      deleteComment(comment?.id)
+        .then(() => {
+          setComment(null);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   };
 
   const handleEdit = () => {
@@ -194,7 +197,7 @@ export default function SingleCommentReply({ item, setMainComment }: Props) {
             />{" "}
             {comment?.totalReactions > 0 ? (
               <Link
-                href={`/posts/${comment?.Post?.uuId}/comment_reactions/${comment?.id}`}
+                href={`/posts/${comment?.Post?.uuId}/comment_reactions/${comment?.id}/all`}
                 className='ml-1.5   font-medium'
               >
                 {getCompactNumber(comment?.totalReactions)} People
