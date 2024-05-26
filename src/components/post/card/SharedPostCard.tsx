@@ -23,21 +23,21 @@ export default function SharedPostCard({ SharedPost }: Props) {
                 {" "}
                 <Link
                   href={`/user/${getUsername(SharedPost?.User)}`}
-                  className='font-semibold capitalize inline text-sm3'
+                  className='font-semibold capitalize inline '
                 >
                   {getFullName(SharedPost?.User)}
                 </Link>
                 {SharedPost?.type === "AVATAR" ? (
-                  <span className='text-sm3'> changed profile picture</span>
+                  <span className=''> changed profile picture</span>
                 ) : SharedPost?.type === "COVERPHOTO" ? (
-                  <span className='text-sm3'> changed cover photo</span>
+                  <span className=''> changed cover photo</span>
                 ) : null}
               </div>
               <div className='flex items-center'>
                 <IconEarth className='w-3.5 h-3.5 mr-1 text-gray-500' />
                 <Link
                   href={`/posts/${SharedPost?.uuId}`}
-                  className='block text-sm5 text-gray-500 leading-4 hover:underline hover:text-gray-900'
+                  className='block text-sm  text-gray-500 leading-4 hover:underline hover:text-gray-900'
                 >
                   {getRelativeTime(SharedPost?.createdAt)}
                 </Link>
@@ -45,16 +45,16 @@ export default function SharedPostCard({ SharedPost }: Props) {
             </div>
           </div>
           <Link className='p-2' href={`/posts/${SharedPost?.uuId}`}>
-            <button className='btn btn-primary-transparent !text-sm4 !p-1.5 !h-auto'>
+            <button className='btn btn-primary-transparent ! !p-1.5 !h-auto'>
               View
             </button>
           </Link>
         </div>
         {SharedPost?.text?.length && (
-          <div className='px-2 text-sm3'>
+          <div className='px-2 '>
             {SharedPost?.text?.substring(0, 50)}...{" "}
             <Link
-              className='text-primary-main text-sm3'
+              className='text-primary-main '
               href={`/posts/${SharedPost?.uuId}`}
             >
               See More

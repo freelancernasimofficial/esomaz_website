@@ -20,7 +20,7 @@ export default function NewPostForm({}: Props) {
   return (
     <form action={formAction}>
       <textarea
-        className='p-2 rounded w-full bg-gray-100 font-medium text-sm3 text-gray-900 placeholder:text-gray-900'
+        className='p-2 rounded w-full bg-gray-100 font-medium  text-gray-900 placeholder:text-gray-900'
         placeholder="What's on your mind?"
         name='text'
         id='postText'
@@ -30,13 +30,13 @@ export default function NewPostForm({}: Props) {
 
       <FileUploadButton multiple={true} />
       {state.status === true && state.message?.length ? (
-        <div className='successCard text-sm3 mb-0 mt-2'>{state.message}</div>
+        <div className='successCard  mb-0 mt-2'>{state.message}</div>
       ) : (
         <SubmitButton className='btn btn-primary w-full mt-2' title='Post' />
       )}
 
       {state.status === false && state.message?.length ? (
-        <div className='errorCard text-sm3 mb-0 mt-2'>{state.message}</div>
+        <div className='errorCard  mb-0 mt-2'>{state.message}</div>
       ) : null}
     </form>
   );

@@ -27,11 +27,11 @@ export default async function page({}: Props) {
                   </div>
                   <div className='ml-2'>
                     <Link href={`/user/${getUsername(user)}`} className='block'>
-                      <h4 className='font-medium text-sm2 capitalize'>
+                      <h4 className='font-medium  capitalize'>
                         {getFullName(user)}
                       </h4>
                     </Link>
-                    <span className='block text-sm5 text-gray-500 leading-3'>
+                    <span className='block  text-gray-500 leading-3'>
                       Joined {getRelativeTime(user?.createdAt)}
                     </span>
                   </div>

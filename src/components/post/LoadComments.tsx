@@ -92,7 +92,7 @@ export default function LoadComments({ post }: Props) {
         <div className='flex flex-col'>
           <textarea
             placeholder='Enter comment'
-            className='w-full block bg-gray-100 rounded-lg mb-3 p-2 text-sm3'
+            className='w-full block bg-gray-100 rounded-lg mb-3 p-2 '
             name='comment'
             id=''
             onChange={(e) => setText(e.target.value)}
@@ -113,7 +113,7 @@ export default function LoadComments({ post }: Props) {
       </div>
       <div className='bg-white mt-4 px-4 rounded-lg'>
         {" "}
-        <h1 className='font-bold text-base py-3  mb-4 mt-1'>
+        <h1 className='font-bold  py-3  mb-4 mt-1'>
           Comments ({post?.TotalComments})
         </h1>
         {comments?.map((item: any, index: number) => {

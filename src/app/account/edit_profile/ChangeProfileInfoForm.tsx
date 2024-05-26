@@ -124,7 +124,7 @@ export default async function ChangeProfileInfoForm({}: Props) {
       ></textarea>
 
       <div className='mb-4 w-full'>
-        <h1 className='text-sm3 font-medium mb-3'>Date of Birth</h1>
+        <h1 className=' font-medium mb-3'>Date of Birth</h1>
         <div className='flex items-center justify-between'>
           <select
             defaultValue={userInfos?.date ? userInfos.date : 1}

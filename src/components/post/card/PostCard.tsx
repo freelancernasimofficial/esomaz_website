@@ -71,23 +71,23 @@ export default function PostCard({ item, handleDelete, fullText }: Props) {
             <div className='inline-block leading-4'>
               <Link
                 href={`/user/${getUsername(post?.User)}`}
-                className='font-semibold capitalize inline text-sm3'
+                className='font-semibold capitalize inline '
               >
                 {getFullName(post?.User)}
               </Link>
               {post?.type === "AVATAR" ? (
-                <span className='text-sm3'> changed profile picture</span>
+                <span className=''> changed profile picture</span>
               ) : post?.type === "COVERPHOTO" ? (
-                <span className='text-sm3'> changed cover photo</span>
+                <span className=''> changed cover photo</span>
               ) : post?.SharedPost ? (
-                <span className='text-sm3'> shared a post</span>
+                <span className=''> shared a post</span>
               ) : null}
             </div>
             <div className='flex items-center'>
               <IconEarth className='w-3.5 h-3.5 mr-1 text-gray-500' />
               <Link
                 href={`/posts/${post?.uuId}`}
-                className='block text-sm5 text-gray-500 leading-4 hover:underline hover:text-gray-900'
+                className='block text-sm  text-gray-500 leading-4 hover:underline hover:text-gray-900'
               >
                 {getRelativeTime(post?.createdAt)}
               </Link>
@@ -101,13 +101,13 @@ export default function PostCard({ item, handleDelete, fullText }: Props) {
               <Link
                 prefetch={false}
                 href={`/posts/${post?.uuId}/edit_post`}
-                className='block text-sm3 mb-2 font-medium'
+                className='block  mb-2 font-medium'
               >
                 Edit Post
               </Link>
               <button
                 onClick={() => handleDelete(post?.id)}
-                className='block text-sm3   text-error-main font-medium m-0 p-0'
+                className='block    text-error-main font-medium m-0 p-0'
               >
                 Delete Post
               </button>
@@ -116,7 +116,7 @@ export default function PostCard({ item, handleDelete, fullText }: Props) {
           {post?.userId !== post?.currentUserId ? (
             <Link
               href={`/posts/${post?.uuId}/report_post/${post?.id}`}
-              className='block text-sm3  font-medium  text-error-main'
+              className='block   font-medium  text-error-main'
             >
               Report Post
             </Link>
@@ -125,14 +125,14 @@ export default function PostCard({ item, handleDelete, fullText }: Props) {
       </div>
 
       {post?.text ? (
-        <div className='text-sm3 mb-1.5 px-3'>
+        <div className=' mb-1.5 px-3'>
           {fullText === true ? (
             post?.text
           ) : post?.text?.length > 100 ? (
             <div>
               {post?.text.substring(0, 100)}...{" "}
               <Link
-                className='text-primary-main text-sm3'
+                className='text-primary-main '
                 href={`/posts/${post?.uuId}`}
               >
                 See More
@@ -155,8 +155,8 @@ export default function PostCard({ item, handleDelete, fullText }: Props) {
       <div className='flex items-center justify-between '>
         {post?.Reactions > 0 && (
           <Link
-            href={`/posts/${post?.uuId}/reactions`}
-            className='font-medium block text-slate-800 text-sm4 py-1 px-3   hover:underline'
+            href={`/posts/${post?.uuId}/reactions/all`}
+            className='font-medium block text-slate-800  py-1 px-3   hover:underline'
           >
             {getCompactNumber(post?.Reactions)} Reactions
           </Link>
@@ -164,7 +164,7 @@ export default function PostCard({ item, handleDelete, fullText }: Props) {
         {post?.TotalComments > 0 && (
           <Link
             href={`/posts/${post?.uuId}`}
-            className='font-medium text-slate-800 text-sm4 py-1 px-3 hover:underline'
+            className='font-medium text-slate-800  py-1 px-3 hover:underline'
           >
             {getCompactNumber(post?.TotalComments)} Comments
           </Link>
@@ -172,7 +172,7 @@ export default function PostCard({ item, handleDelete, fullText }: Props) {
         {post?.TotalShares > 0 && (
           <Link
             href={`/posts/${post?.uuId}/all_shares`}
-            className='font-medium text-slate-800 text-sm4 py-1 px-3  hover:underline'
+            className='font-medium text-slate-800  py-1 px-3  hover:underline'
           >
             {" "}
             {getCompactNumber(post?.TotalShares)} Shares

@@ -16,7 +16,7 @@ export default function VerticalUsersSkeleton({}: Props) {
                 <div className='w-9 h-9 bg-gray-200  overflow-hidden shrink-0 rounded-full'></div>
                 <div className='ml-2 w-full'>
                   <div className='block bg-gray-200 h-2.5 w-40 rounded-lg'></div>
-                  <div className='block text-sm5 bg-gray-200 h-1.5 w-20 mt-1 rounded-lg'></div>
+                  <div className='block  bg-gray-200 h-1.5 w-20 mt-1 rounded-lg'></div>
                 </div>
               </div>
             );

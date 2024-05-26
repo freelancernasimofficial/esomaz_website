@@ -40,7 +40,7 @@ export default async function Header({}: Props) {
           <div className='flex-1 flex items-center justify-end'>
             <Link className='block relative' href='/notifications'>
               {totalNotifications > 0 ? (
-                <div className=' bg-rose-600 text-white text-sm7 absolute -top-1 p-1 rounded-full w-5 h-5 flex items-center justify-center'>
+                <div className=' bg-rose-600 text-white  absolute -top-1 p-1 rounded-full w-5 h-5 flex items-center justify-center'>
                   {totalNotifications}
                 </div>
               ) : null}

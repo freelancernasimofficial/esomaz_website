@@ -30,7 +30,7 @@ export default async function page(props: Props) {
                 </div>
                 <div className='ml-2'>
                   <div className='flex items-center justify-start'>
-                    <span className='font-medium text-sm2'>
+                    <span className='font-medium '>
                       <Link href={`/user/${getUsername(item?.SenderUser)}`}>
                         {getFullName(item?.SenderUser)}
                       </Link>{" "}
@@ -47,7 +47,7 @@ export default async function page(props: Props) {
                       ) : null}
                     </span>
                   </div>
-                  <span className='block text-sm4 text-gray-500 leading-4'>
+                  <span className='block  text-gray-500 leading-4'>
                     {moment(item?.createdAt).fromNow()}
                   </span>
                 </div>

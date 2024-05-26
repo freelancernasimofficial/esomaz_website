@@ -28,10 +28,10 @@ export default async function page({ params }: Props) {
   return (
     <div className='container'>
       <div className='centerCardSmall bg-white rounded-lg p-4'>
-        <h1 className='font-semibold text-sm2'>Edit Post</h1>
+        <h1 className='font-semibold '>Edit Post</h1>
         <form action={bindEditPost}>
           <textarea
-            className='mt-3 w-full rounded p-2 bg-gray-100 font-medium text-sm2'
+            className='mt-3 w-full rounded p-2 bg-gray-100 font-medium '
             name='text'
             id=''
             cols={30}

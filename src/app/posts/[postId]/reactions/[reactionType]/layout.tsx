@@ -6,6 +6,7 @@ type Props = {
   children: any;
   params: {
     postId: string;
+    reactionType: string;
   };
 };
 
@@ -15,9 +16,11 @@ export default function layout({ children, params }: Props) {
       <div className='centerCardSmall bg-transparent overflow-hidden'>
         <div className='flex items-center bg-white rounded px-2 py-1.5 overflow-x-scroll justify-between'>
           <Link
-            href={`/posts/${params?.postId}/reactions`}
+            href={`/posts/${params?.postId}/reactions/all`}
             tabIndex={-1}
-            className='focus:bg-gray-600 w-10 h-10 shrink-0 flex items-center justify-center  rounded-full mr-2'
+            className={`${
+              params.reactionType === "all" ? "bg-gray-200" : "bg-transparent"
+            } w-10 h-10 shrink-0 flex items-center justify-center  rounded-full mr-2`}
           >
             <Image
               className='w-7 h-7 shrink-0'
@@ -30,7 +33,11 @@ export default function layout({ children, params }: Props) {
           <Link
             href={`/posts/${params?.postId}/reactions/thumbsup`}
             tabIndex={-1}
-            className='focus:bg-gray-600 w-10 h-10 shrink-0 flex items-center justify-center  rounded-full mx-2'
+            className={`${
+              params.reactionType === "thumbsup"
+                ? "bg-gray-200"
+                : "bg-transparent"
+            } w-10 h-10 shrink-0 flex items-center justify-center  rounded-full mx-2`}
           >
             <Image
               className='w-7 h-7 shrink-0'
@@ -43,7 +50,11 @@ export default function layout({ children, params }: Props) {
           <Link
             href={`/posts/${params?.postId}/reactions/thumbsdown`}
             tabIndex={-1}
-            className='focus:bg-gray-600 w-10 h-10 shrink-0 flex items-center justify-center  rounded-full mx-2'
+            className={`${
+              params.reactionType === "thumbsdown"
+                ? "bg-gray-200"
+                : "bg-transparent"
+            } w-10 h-10 shrink-0 flex items-center justify-center  rounded-full mx-2`}
           >
             <Image
               className='w-7 h-7 shrink-0'
@@ -56,7 +67,9 @@ export default function layout({ children, params }: Props) {
           <Link
             href={`/posts/${params?.postId}/reactions/heart`}
             tabIndex={-1}
-            className='focus:bg-gray-600 w-10 h-10 shrink-0 flex items-center justify-center  rounded-full mx-2'
+            className={`${
+              params.reactionType === "heart" ? "bg-gray-200" : "bg-transparent"
+            } w-10 h-10 shrink-0 flex items-center justify-center  rounded-full mx-2`}
           >
             <Image
               className='w-7 h-7 shrink-0'
@@ -69,7 +82,9 @@ export default function layout({ children, params }: Props) {
           <Link
             href={`/posts/${params?.postId}/reactions/care`}
             tabIndex={-1}
-            className='focus:bg-gray-600 w-10 h-10 shrink-0 flex items-center justify-center  rounded-full mx-2'
+            className={`${
+              params.reactionType === "care" ? "bg-gray-200" : "bg-transparent"
+            } w-10 h-10 shrink-0 flex items-center justify-center  rounded-full mx-2`}
           >
             <Image
               className='w-7 h-7 shrink-0'
@@ -82,7 +97,9 @@ export default function layout({ children, params }: Props) {
           <Link
             href={`/posts/${params?.postId}/reactions/claps`}
             tabIndex={-1}
-            className='focus:bg-gray-600 w-10 h-10 shrink-0 flex items-center justify-center  rounded-full mx-2'
+            className={`${
+              params.reactionType === "claps" ? "bg-gray-200" : "bg-transparent"
+            } w-10 h-10 shrink-0 flex items-center justify-center  rounded-full mx-2`}
           >
             <Image
               className='w-7 h-7 shrink-0'
@@ -95,7 +112,9 @@ export default function layout({ children, params }: Props) {
           <Link
             href={`/posts/${params?.postId}/reactions/woow`}
             tabIndex={-1}
-            className='focus:bg-gray-600 w-10 h-10 shrink-0 flex items-center justify-center  rounded-full mx-2'
+            className={`${
+              params.reactionType === "woow" ? "bg-gray-200" : "bg-transparent"
+            } w-10 h-10 shrink-0 flex items-center justify-center  rounded-full mx-2`}
           >
             <Image
               className='w-7 h-7 shrink-0'
@@ -108,7 +127,11 @@ export default function layout({ children, params }: Props) {
           <Link
             href={`/posts/${params?.postId}/reactions/facepalming`}
             tabIndex={-1}
-            className='focus:bg-gray-600 w-10 h-10 shrink-0 flex items-center justify-center  rounded-full mx-2'
+            className={`${
+              params.reactionType === "facepalming"
+                ? "bg-gray-200"
+                : "bg-transparent"
+            } w-10 h-10 shrink-0 flex items-center justify-center  rounded-full mx-2`}
           >
             <Image
               className='w-7 h-7 shrink-0'
@@ -121,7 +144,11 @@ export default function layout({ children, params }: Props) {
           <Link
             href={`/posts/${params?.postId}/reactions/shrugging`}
             tabIndex={-1}
-            className='focus:bg-gray-600 w-10 h-10 shrink-0 flex items-center justify-center  rounded-full mx-2'
+            className={`${
+              params.reactionType === "shrugging"
+                ? "bg-gray-200"
+                : "bg-transparent"
+            } w-10 h-10 shrink-0 flex items-center justify-center  rounded-full mx-2`}
           >
             <Image
               className='w-7 h-7 shrink-0'
@@ -134,7 +161,11 @@ export default function layout({ children, params }: Props) {
           <Link
             href={`/posts/${params?.postId}/reactions/crying`}
             tabIndex={-1}
-            className='focus:bg-gray-600 w-10 h-10 shrink-0 flex items-center justify-center  rounded-full mx-2'
+            className={`${
+              params.reactionType === "crying"
+                ? "bg-gray-200"
+                : "bg-transparent"
+            } w-10 h-10 shrink-0 flex items-center justify-center  rounded-full mx-2`}
           >
             <Image
               className='w-7 h-7 shrink-0'
@@ -147,7 +178,9 @@ export default function layout({ children, params }: Props) {
           <Link
             href={`/posts/${params?.postId}/reactions/haha`}
             tabIndex={-1}
-            className='focus:bg-gray-600 w-10 h-10 shrink-0 flex items-center justify-center  rounded-full mx-2'
+            className={`${
+              params.reactionType === "haha" ? "bg-gray-200" : "bg-transparent"
+            } w-10 h-10 shrink-0 flex items-center justify-center  rounded-full mx-2`}
           >
             <Image
               className='w-7 h-7 shrink-0'
@@ -160,7 +193,9 @@ export default function layout({ children, params }: Props) {
           <Link
             href={`/posts/${params?.postId}/reactions/angry`}
             tabIndex={-1}
-            className='focus:bg-gray-600 w-10 h-10 shrink-0 flex items-center justify-center  rounded-full ml-2'
+            className={`${
+              params.reactionType === "angry" ? "bg-gray-200" : "bg-transparent"
+            } w-10 h-10 shrink-0 flex items-center justify-center  rounded-full ml-2`}
           >
             <Image
               className='w-7 h-7 shrink-0'

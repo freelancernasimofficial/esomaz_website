@@ -4,22 +4,25 @@
 
 @layer base {
   body {
-    @apply text-sm3;
+    @apply text-base;
   }
   img {
     @apply h-auto;
   }
+  h1 {
+    @apply text-lg;
+  }
+  h2 {
+    @apply text-md;
+  }
   input {
-    @apply outline-none border-[1.9px] border-transparent bg-gray-100 h-10 rounded-lg px-2 focus:border-primary-main focus-within:border-primary-main focus:outline-none placeholder:text-slate-700 text-sm3 font-medium;
+    @apply outline-none border-[1.9px] border-transparent bg-gray-100 h-10 rounded-lg px-2 focus:border-primary-main focus-within:border-primary-main focus:outline-none placeholder:text-slate-700  font-medium;
   }
   textarea {
-    @apply bg-gray-100 p-2 rounded-lg placeholder:text-sm3 text-sm3 placeholder:text-gray-800 font-medium;
+    @apply bg-gray-100 p-2 rounded-lg  placeholder:text-gray-800 font-medium;
   }
   select {
     @apply bg-gray-100 p-2 rounded-lg  font-medium text-sm;
-  }
-  a {
-    @apply text-sm3;
   }
 }
 
@@ -46,7 +49,7 @@
     @apply max-w-screen-sm2 mx-auto  rounded-lg;
   }
   .btn {
-    @apply h-10 px-3 rounded-md bg-gray-100 hover:bg-gray-300 font-semibold text-sm3 active:scale-95 transition-transform cursor-pointer;
+    @apply h-10 px-3 rounded-md bg-gray-100 hover:bg-gray-300 font-semibold  active:scale-95 transition-transform cursor-pointer;
   }
   .btn-primary {
     @apply bg-primary-main text-white hover:bg-primary-hover;
@@ -73,10 +76,10 @@
     @apply bg-error-transparent2 hover:bg-error-transparent1 text-error-hover;
   }
   .errorCard {
-    @apply p-2 border border-error-hover bg-error-transparent1 text-error-hover rounded-lg mb-2 font-medium text-sm4;
+    @apply p-2 border border-error-hover bg-error-transparent1 text-error-hover rounded-lg mb-2 font-medium;
   }
   .successCard {
-    @apply p-2 text-sm4 border border-success-hover bg-success-transparent1 text-success-hover rounded-lg mb-2 font-medium;
+    @apply p-2  border border-success-hover bg-success-transparent1 text-success-hover rounded-lg mb-2 font-medium;
   }
 }
 

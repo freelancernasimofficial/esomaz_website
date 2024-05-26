@@ -15,7 +15,7 @@ export default function PostForm({ className }: Props) {
       }`}
     >
       <Link href='/posts/create_post' className='flex-1 block'>
-        <div className='bg-gray-100 rounded-full text-sm3 font-medium p-2.5'>
+        <div className='bg-gray-100 rounded-full  font-medium p-2.5'>
           What's on your mind?
         </div>
       </Link>

@@ -71,13 +71,13 @@ const config: Config = {
         },
       },
       fontSize: {
-        sm2: "15px",
-        sm3: "14px",
-        sm4: "13px",
-        sm5: "12px",
-        sm6: "11px",
-        sm7: "10px",
+        base: "13.5px",
+        xs: "11px",
+        sm: "12px",
+        md: "14.5px",
+        lg: "16px",
       },
+
       screens: {
         xs: "420px",
         // => @media (min-width: 420px) { ... }

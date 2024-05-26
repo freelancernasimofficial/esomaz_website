@@ -22,18 +22,15 @@ export default async function UserIntro({ userId }: Props) {
         <h2 className='font-bold text-xl'>Intro</h2>
 
         {currentUser?.id === userId && (
-          <Link
-            className='text-primary-main  text-sm3'
-            href='/account/edit_profile'
-          >
+          <Link className='text-primary-main  ' href='/account/edit_profile'>
             Edit
           </Link>
         )}
       </div>
 
-      <div className='mb-3 text-sm3 text-gray-600'>{userInfos?.shortBio}</div>
+      <div className='mb-3  text-gray-600'>{userInfos?.shortBio}</div>
 
-      <div className='text-sm3 flex items-center'>
+      <div className=' flex items-center'>
         <IconLocationOutline className='w-5 h-5 mr-1 shrink-0' />{" "}
         <span className='mr-2'>
           Lives In{" "}
@@ -46,7 +43,7 @@ export default async function UserIntro({ userId }: Props) {
           </span>
         </span>{" "}
       </div>
-      <div className='text-sm3 flex items-center mt-3'>
+      <div className=' flex items-center mt-3'>
         <IconSchoolOutline className='w-5 h-5 mr-2 shrink-0' />{" "}
         <span className='mr-2'>
           Studied at{" "}
@@ -55,7 +52,7 @@ export default async function UserIntro({ userId }: Props) {
           </span>
         </span>{" "}
       </div>
-      <div className='text-sm3 flex items-center mt-3'>
+      <div className=' flex items-center mt-3'>
         <IconBriefcase className='w-4 h-4 mr-2 ml-0.5 shrink-0' />{" "}
         <span className='mr-2'>
           Works at{" "}
@@ -65,7 +62,7 @@ export default async function UserIntro({ userId }: Props) {
           </span>
         </span>{" "}
       </div>
-      <div className='text-sm3 flex items-center mt-3'>
+      <div className=' flex items-center mt-3'>
         <IconRss className='w-4 h-4 mr-2 ml-0.5 shrink-0' />{" "}
         <span className='mr-2'>
           Followed by{" "}

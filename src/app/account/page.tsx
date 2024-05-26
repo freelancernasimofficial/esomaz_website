@@ -44,24 +44,21 @@ export default async function page({}: Props) {
             </div>
           </div>
           <div className='flex items-center mt-2'>
-            <h2 className='font-medium text-base text-slate-400 mr-2'>
-              Balance:
-            </h2>
-            <div className='font-medium text-base text-green-600'>
-              $25820.00{" "}
-              <span className='text-black text-base font-medium'>USD</span>
+            <h2 className='font-medium  text-slate-400 mr-2'>Balance:</h2>
+            <div className='font-medium  text-green-600'>
+              $25820.00 <span className='text-black  font-medium'>USD</span>
             </div>
           </div>
         </div>
         <div className='w-full bg-white rounded-lg p-4 my-4'>
-          <h2 className='font-bold text-base'>Freelancing</h2>
+          <h2 className='font-bold '>Freelancing</h2>
           <div className='mt-1'>
             <Link
               href='/jobs'
               className='flex items-center w-full  py-2 hover:text-primary-main'
             >
               <IconBriefcase className='w-5 h-5' />{" "}
-              <span className='ml-3.5 block mt-0.5 font-medium text-sm2'>
+              <span className='ml-3.5 block mt-0.5 font-medium '>
                 Find Jobs
               </span>
             </Link>
@@ -70,7 +67,7 @@ export default async function page({}: Props) {
               className='flex items-center w-full  py-2 hover:text-primary-main'
             >
               <IconPersonWorkspace className='w-5 h-5' />{" "}
-              <span className='ml-3.5 block mt-0.5 font-medium text-sm2'>
+              <span className='ml-3.5 block mt-0.5 font-medium '>
                 Running Jobs
               </span>
             </Link>
@@ -79,21 +76,21 @@ export default async function page({}: Props) {
               className='flex items-center w-full  py-2 hover:text-primary-main'
             >
               <IconProject className='w-6 h-6' />{" "}
-              <span className='ml-3.5 block mt-0.5 font-medium text-sm2'>
+              <span className='ml-3.5 block mt-0.5 font-medium '>
                 Post A Job
               </span>
             </Link>
           </div>
         </div>
         <div className='w-full bg-white rounded-lg p-4 my-4'>
-          <h2 className='font-bold text-base'>Payments</h2>
+          <h2 className='font-bold '>Payments</h2>
           <div className='mt-1'>
             <Link
               href='#'
               className='flex items-center w-full  py-2 hover:text-primary-main'
             >
               <IconCashPlus className='w-7 h-7' />{" "}
-              <span className='ml-3.5 block mt-0.5 font-medium text-sm2'>
+              <span className='ml-3.5 block mt-0.5 font-medium '>
                 Deposit Money
               </span>
             </Link>
@@ -102,7 +99,7 @@ export default async function page({}: Props) {
               className='flex items-center w-full  py-2 hover:text-primary-main'
             >
               <IconMoneyDollarCircleLine className='w-7 h-7' />{" "}
-              <span className='ml-3.5 block mt-0.5 font-medium text-sm2'>
+              <span className='ml-3.5 block mt-0.5 font-medium '>
                 Withdraw Money
               </span>
             </Link>
@@ -111,57 +108,49 @@ export default async function page({}: Props) {
               className='flex items-center w-full  py-2 hover:text-primary-main'
             >
               <IconBank className='w-6 h-6' />{" "}
-              <span className='ml-3.5 block mt-0.5 font-medium text-sm2'>
+              <span className='ml-3.5 block mt-0.5 font-medium '>
                 Payment Methods
               </span>
             </Link>
           </div>
         </div>
         <div className='w-full bg-white rounded-lg p-4'>
-          <h2 className='font-bold text-base'>Social Media</h2>
+          <h2 className='font-bold '>Social Media</h2>
           <div className='mt-1'>
             <Link
               href={`/user/${getUsername(user)}`}
               className='flex items-center w-full  py-2 hover:text-primary-main'
             >
               <IconUser className='w-6 h-6' />{" "}
-              <span className='ml-3 block mt-0.5 font-medium text-sm2'>
-                My Profile
-              </span>
+              <span className='ml-3 block mt-0.5 font-medium '>My Profile</span>
             </Link>
             <Link
               href='/messages'
               className='flex items-center w-full  py-2 hover:text-primary-main'
             >
               <IconChat className='w-6 h-6' />{" "}
-              <span className='ml-3 block mt-0.5 font-medium text-sm2'>
-                Messages
-              </span>
+              <span className='ml-3 block mt-0.5 font-medium '>Messages</span>
             </Link>
             <Link
               href={`/user/${getUsername(user)}/friends`}
               className='flex items-center w-full  py-2 hover:text-primary-main'
             >
               <IconUsers className='w-6 h-6' />{" "}
-              <span className='ml-3 block mt-0.5 font-medium text-sm2'>
-                Friends
-              </span>
+              <span className='ml-3 block mt-0.5 font-medium '>Friends</span>
             </Link>
             <Link
               href={`/user/${getUsername(user)}/followers`}
               className='flex items-center w-full  py-2 hover:text-primary-main'
             >
               <IconRss className='w-6 h-6' />{" "}
-              <span className='ml-3 block mt-0.5 font-medium text-sm2'>
-                Followers
-              </span>
+              <span className='ml-3 block mt-0.5 font-medium '>Followers</span>
             </Link>
             <Link
               href={`/people_you_may_know`}
               className='flex items-center w-full  py-2 hover:text-primary-main'
             >
               <IconFindUser className='w-6 h-6' />{" "}
-              <span className='ml-3 block mt-0.5 font-medium text-sm2'>
+              <span className='ml-3 block mt-0.5 font-medium '>
                 Find Friends
               </span>
             </Link>
@@ -169,14 +158,14 @@ export default async function page({}: Props) {
         </div>
 
         <div className='w-full bg-white rounded-lg p-4 pb-4 mt-4'>
-          <h2 className='font-bold text-base'>Account</h2>
+          <h2 className='font-bold '>Account</h2>
           <div className='mt-1'>
             <Link
               href='/account/change_password'
               className='flex items-center w-full  py-2 hover:text-primary-main'
             >
               <IconLockOutlined className='w-5 h-5' />{" "}
-              <span className='ml-3.5 block mt-0.5 font-medium text-sm2'>
+              <span className='ml-3.5 block mt-0.5 font-medium '>
                 Change Password
               </span>
             </Link>
@@ -185,7 +174,7 @@ export default async function page({}: Props) {
               className='flex items-center w-full  py-2 hover:text-primary-main'
             >
               <IconUser className='w-5 h-5' />{" "}
-              <span className='ml-3.5 block mt-0.5 font-medium text-sm2'>
+              <span className='ml-3.5 block mt-0.5 font-medium '>
                 Edit Profile
               </span>
             </Link>
@@ -194,7 +183,7 @@ export default async function page({}: Props) {
               className='flex items-center w-full  py-2 hover:text-primary-main'
             >
               <IconImageOutline className='w-5 h-5' />{" "}
-              <span className='ml-3.5 block mt-0.5 font-medium text-sm2'>
+              <span className='ml-3.5 block mt-0.5 font-medium '>
                 Change Photo
               </span>
             </Link>
@@ -204,9 +193,7 @@ export default async function page({}: Props) {
               className='flex items-center w-full  py-2 hover:text-primary-main'
             >
               <IconLogout className='w-5 h-5' />{" "}
-              <span className='ml-3.5 block mt-0.5 font-medium text-sm2'>
-                Sign Out
-              </span>
+              <span className='ml-3.5 block mt-0.5 font-medium '>Sign Out</span>
             </Link>
           </div>
         </div>

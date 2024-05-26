@@ -56,7 +56,7 @@ export default async function page({ params }: Props) {
               </Link>
               <div className='flex items-center'>
                 <IconEarth className='w-3.5 h-3.5 mr-1 text-gray-500' />
-                <div className='block text-sm5 text-gray-500 leading-4 '>
+                <div className='block  text-gray-500 leading-4 '>
                   {getRelativeTime(post?.createdAt)}
                 </div>
               </div>
@@ -65,7 +65,7 @@ export default async function page({ params }: Props) {
         </div>
 
         <div className='mb-1.5 px-4'>
-          <div className='text-sm2'>{post?.text}</div>
+          <div className=''>{post?.text}</div>
         </div>
         <div className='block w-full'>
           <PostPhotos photos={post?.Photos} />
@@ -73,7 +73,7 @@ export default async function page({ params }: Props) {
         <div className='p-4'>
           <form className='w-full' action={bindSharePostAction}>
             <textarea
-              className='mt-3 w-full rounded p-2 bg-gray-100 font-medium text-sm2'
+              className='mt-3 w-full rounded p-2 bg-gray-100 font-medium '
               name='text'
               id=''
               cols={30}

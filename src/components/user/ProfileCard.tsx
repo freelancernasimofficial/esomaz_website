@@ -163,14 +163,14 @@ export default async function ProfileCard({ user }: Props) {
       </div>
 
       <div className='pt-[105px] flex flex-col items-center pb-6 border-b'>
-        <h2 className='font-semibold text-xl'>{getFullName(user)}</h2>
-        <span className='block text-base font-medium text-gray-500 leading-5'>
+        <h1 className='font-semibold'>{getFullName(user)}</h1>
+        <span className='block  font-medium text-gray-500 leading-5'>
           {getSubtitle(user)}
         </span>
 
         <div className='container mt-4'>
           <div className='flex flex-col justify-center items-center'>
-            <div className='flex items-center flex-1 text-sm2'>
+            <div className='flex items-center flex-1 '>
               <UserStatistics user={user} />
             </div>
             <div className='flex-1 flex items-center mt-4'>

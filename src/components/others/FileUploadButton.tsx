@@ -50,7 +50,7 @@ export default function FileUploadButton({ className, multiple }: Props) {
           })}
         </div>
       ) : null}
-      {error?.length ? <div className='errorCard text-sm3'>{error}</div> : null}
+      {error?.length ? <div className='errorCard '>{error}</div> : null}
       <label
         htmlFor='file'
         className='border relative border-dashed p-2 rounded-lg block cursor-pointer'
@@ -67,9 +67,7 @@ export default function FileUploadButton({ className, multiple }: Props) {
         />
         <div className='flex flex-col items-center justify-center'>
           <IconImagesOutline className='w-10 h-10 text-gray-500' />
-          <div className='font-medium text-gray-800 text-sm4 mt-2'>
-            Browse Photos
-          </div>
+          <div className='font-medium text-gray-800  mt-2'>Browse Photos</div>
         </div>
       </label>
     </div>

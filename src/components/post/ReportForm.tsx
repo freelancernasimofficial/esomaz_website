@@ -21,7 +21,7 @@ export default async function ReportForm({ title, reportType, itemId }: Props) {
 
   return (
     <div className='p-4'>
-      <h1 className='font-semibold text-sm2'>{title}</h1>
+      <h1 className='font-semibold '>{title}</h1>
 
       {success ? (
         <div>
@@ -37,7 +37,7 @@ export default async function ReportForm({ title, reportType, itemId }: Props) {
         <form action={bindAddReport}>
           <textarea
             placeholder='Enter report message...'
-            className='w-full bg-gray-100 rounded my-2 p-2 text-sm3 font-medium'
+            className='w-full bg-gray-100 rounded my-2 p-2  font-medium'
             name='message'
             id=''
             cols={30}

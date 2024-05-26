@@ -21,19 +21,19 @@ export default function page({}: Props) {
               <div className='text-sm font-semibold'>{project.title}</div>
               <div className='text-gray-500'>
                 {project.description.substring(0, 200)}...
-                <Link className='text-sm3 text-primary-main' href='#'>
+                <Link className=' text-primary-main' href='#'>
                   Read More
                 </Link>
               </div>
               <div className='flex items-center justify-between mt-2'>
                 <div className='flex items-center'>
                   <IconUsers className='w-4 h-4' />{" "}
-                  <div className='font-medium text-sm4 ml-2 text-gray-500'>
+                  <div className='font-medium  ml-2 text-gray-500'>
                     {project.totalApplications} Bids
                   </div>
                 </div>
                 <div className='flex items-center'>
-                  <div className='font-medium text-sm4 text-gray-500'>
+                  <div className='font-medium  text-gray-500'>
                     Budget: ${project.budgetFrom}-${project.budgetTo}
                   </div>
                 </div>

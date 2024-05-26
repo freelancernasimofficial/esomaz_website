@@ -31,10 +31,10 @@ export default async function page({ params }: Props) {
                 href={`/user/${getUsername(item?.User)}`}
                 className='ml-2 block'
               >
-                <h1 className='font-semibold text-sm2 leading-none capitalize'>
+                <h1 className='font-semibold  leading-none capitalize'>
                   {getFullName(item?.User)}
                 </h1>
-                <span className='font-medium text-sm4 text-gray-500'>
+                <span className='font-medium  text-gray-500'>
                   @{getUsername(item?.User)}
                 </span>
               </Link>

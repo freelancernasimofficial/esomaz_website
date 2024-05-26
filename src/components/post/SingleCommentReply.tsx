@@ -106,19 +106,19 @@ export default function SingleCommentReply({ item, setMainComment }: Props) {
               href={`/user/${getUsername(comment?.User)}`}
               className='inline-block'
             >
-              <h4 className='font-semibold inline-block text-sm4'>
+              <h4 className='font-semibold inline-block '>
                 {getFullName(comment?.User)}
               </h4>
             </Link>
-            <span className='block text-sm5 text-gray-500 leading-3'>
+            <span className='block text-sm  text-gray-500 leading-3'>
               {getRelativeTime(comment?.createdAt)}
             </span>
 
-            <div className='text-sm4 mt-1 inline-block'>
+            <div className=' mt-1 inline-block'>
               {comment?.targetedComment ? (
                 <Link
                   href={`/user/${getUsername(comment?.targetedComment?.User)}`}
-                  className='mr-1 text-primary-main text-sm3'
+                  className='mr-1 text-primary-main '
                 >
                   {getFullName(comment?.targetedComment?.User)}
                 </Link>
@@ -135,7 +135,7 @@ export default function SingleCommentReply({ item, setMainComment }: Props) {
             {comment?.totalReactions > 0 ? (
               <Link
                 href={`/posts/${comment?.Post?.uuId}/comment_reactions/${comment?.id}`}
-                className='ml-1.5  text-sm4 font-medium'
+                className='ml-1.5   font-medium'
               >
                 {getCompactNumber(comment?.totalReactions)} People
               </Link>
@@ -143,7 +143,7 @@ export default function SingleCommentReply({ item, setMainComment }: Props) {
             <div className='ml-6'>
               <button
                 onClick={() => setEnableForm(!enableForm)}
-                className='m-0 p-0 h-auto text-sm4 font-medium'
+                className='m-0 p-0 h-auto  font-medium'
               >
                 Reply
               </button>
@@ -178,7 +178,7 @@ export default function SingleCommentReply({ item, setMainComment }: Props) {
           {comment?.userId !== comment?.currentUserId ? (
             <Link
               href={`/posts/${comment?.Post?.uuId}/report_comment/${comment?.id}`}
-              className='block mb-2  font-medium text-sm3 text-error-main'
+              className='block mb-2  font-medium  text-error-main'
             >
               Report Comment
             </Link>
@@ -186,7 +186,7 @@ export default function SingleCommentReply({ item, setMainComment }: Props) {
           {comment?.userId === comment?.currentUserId ? (
             <Link
               href={`/posts/${comment?.Post?.uuId}/edit_comment/${comment?.id}`}
-              className='block mb-2 font-medium text-sm3'
+              className='block mb-2 font-medium '
             >
               Edit Comment
             </Link>
@@ -195,7 +195,7 @@ export default function SingleCommentReply({ item, setMainComment }: Props) {
           comment?.Post?.userId === comment?.currentUserId ? (
             <button
               onClick={handleDelete}
-              className='block font-medium text-error-main text-sm3 p-0 m-0'
+              className='block font-medium text-error-main  p-0 m-0'
             >
               Delete Comment
             </button>

@@ -17,7 +17,7 @@ export default async function FriendsCard({ user }: Props) {
       <div className='mb-2 flex justify-between'>
         <h2 className='font-bold text-xl'>Friends</h2>
         <Link
-          className='text-primary-main text-sm3'
+          className='text-primary-main '
           href={`/user/${getUsername(user)}/friends`}
         >
           View All
@@ -33,11 +33,9 @@ export default async function FriendsCard({ user }: Props) {
                   href={`/user/${getUsername(item?.Friend)}`}
                   className='block'
                 >
-                  <h4 className='font-medium text-sm3'>
-                    {getFullName(item?.Friend)}
-                  </h4>
+                  <h4 className='font-medium '>{getFullName(item?.Friend)}</h4>
                 </Link>
-                <span className='block text-sm5 text-gray-500 leading-3 lowercase'>
+                <span className='block  text-gray-500 leading-3 lowercase'>
                   @{getUsername(item?.Friend)}
                 </span>
               </div>

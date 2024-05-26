@@ -9,11 +9,15 @@ import React from "react";
 type Props = {
   params: {
     postId: string;
+    reactionType: string;
   };
 };
 
 export default async function page({ params }: Props) {
-  const reactions = await getPostReactionAction(params.postId, "crying");
+  const reactions = await getPostReactionAction(
+    params.postId,
+    params.reactionType,
+  );
 
   return (
     <div className=' bg-white mt-2 rounded-lg'>
@@ -30,10 +34,10 @@ export default async function page({ params }: Props) {
                 href={`/user/${getUsername(item?.User)}`}
                 className='ml-2 block'
               >
-                <h1 className='font-semibold text-sm2 leading-none capitalize'>
+                <h1 className='font-semibold  leading-none capitalize'>
                   {getFullName(item?.User)}
                 </h1>
-                <span className='font-medium text-sm4 text-gray-500'>
+                <span className='font-medium  text-gray-500'>
                   @{getUsername(item?.User)}
                 </span>
               </Link>

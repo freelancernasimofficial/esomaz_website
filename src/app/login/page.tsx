@@ -55,12 +55,9 @@ export default async function page({}: Props) {
           )}
           <SubmitButton className='btn btn-primary w-full' title='Sign In' />
           <div className='mt-3 flex justify-between items-center'>
-            <div className='text-sm2 font-medium'>Need an account?</div>
+            <div className=' font-medium'>Need an account?</div>
             <div>
-              <Link
-                className='text-sm2 font-medium text-primary-main'
-                href='/register'
-              >
+              <Link className=' font-medium text-primary-main' href='/register'>
                 Register Now
               </Link>
             </div>

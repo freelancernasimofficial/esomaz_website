@@ -45,11 +45,11 @@ export default async function page({ params }: Props) {
                       href={`/user/${getUsername(item?.Friend)}`}
                       className='block'
                     >
-                      <h4 className='font-medium text-sm2'>
+                      <h4 className='font-medium '>
                         {getFullName(item?.Friend)}
                       </h4>
                     </Link>
-                    <span className='block text-sm5 text-gray-500 leading-3'>
+                    <span className='block  text-gray-500 leading-3'>
                       {getSubtitle(item?.Friend)}
                     </span>
                   </div>
