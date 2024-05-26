@@ -8,8 +8,13 @@ import DropdownMenu from "../dropdown/DropdownMenu";
 import ReactionCard from "./ReactionCard";
 import getCompactNumber from "@/library/getCompactNumber";
 import reactionAction from "@/actions/reactionAction";
-import { addReplyCommentReply, deleteComment } from "@/actions/commentActions";
+import {
+  addReplyCommentReply,
+  deleteComment,
+  editComment,
+} from "@/actions/commentActions";
 import SubmitButtonClient from "../button/SubmitButtonClient";
+import Modal from "../others/Modal";
 
 type Props = {
   item: any;
@@ -22,6 +27,12 @@ export default function SingleCommentReply({ item, setMainComment }: Props) {
   const [pending, setPending] = useState(false);
   const [replyText, setReplyText] = useState("");
   const [formStatus, setFormStatus] = useState({
+    status: false,
+    message: "",
+  });
+  const [enableEdit, setEnableEdit] = useState(false);
+  const [editCommentText, setEditCommentText] = useState("");
+  const [editFormStatus, setEditFormStatus] = useState({
     status: false,
     message: "",
   });
@@ -91,12 +102,60 @@ export default function SingleCommentReply({ item, setMainComment }: Props) {
       });
   };
 
+  const handleEdit = () => {
+    editComment({ commentId: comment?.id, text: editCommentText })
+      .then((data) => {
+        if (data.status === true) {
+          setEnableEdit(false);
+          setComment((prev: any) => {
+            return { ...prev, text: editCommentText };
+          });
+        }
+        setEditFormStatus(data);
+      })
+      .catch((err) => {
+        setEditFormStatus(err);
+      })
+      .finally(() => {
+        setPending(false);
+      });
+  };
+
   useEffect(() => {
     setComment(item);
+    setEditCommentText(item?.text);
   }, [item]);
 
   return comment?.id ? (
     <div className='mb-3'>
+      {enableEdit === true && (
+        <Modal onClickBackdrop={() => setEnableEdit(false)}>
+          <h1 className='font-semibold'>Edit Comment</h1>
+          <textarea
+            className='mt-3 w-full rounded p-2 bg-gray-100 font-medium '
+            name='comment'
+            id=''
+            cols={30}
+            rows={5}
+            onChange={(e) => setEditCommentText(e.target.value)}
+            value={editCommentText}
+            placeholder='Edit comment...'
+          ></textarea>
+
+          {editFormStatus.status === false &&
+            editFormStatus.message.length > 0 && (
+              <div className='errorCard mt-2 mb-2'>
+                {editFormStatus.message}
+              </div>
+            )}
+          <SubmitButtonClient
+            onClick={handleEdit}
+            pending={pending}
+            className='w-full btn btn-primary mt-2'
+            title='Edit Comment'
+          />
+        </Modal>
+      )}
       <div className='flex'>
         <Avatar className='w-8 h-8' user={comment?.User} />
 
@@ -184,12 +243,12 @@ export default function SingleCommentReply({ item, setMainComment }: Props) {
             </Link>
           ) : null}
           {comment?.userId === comment?.currentUserId ? (
-            <Link
-              href={`/posts/${comment?.Post?.uuId}/edit_comment/${comment?.id}`}
+            <button
+              onClick={() => setEnableEdit(true)}
               className='block mb-2 font-medium '
             >
               Edit Comment
-            </Link>
+            </button>
           ) : null}
           {comment?.userId === comment?.currentUserId ||
           comment?.Post?.userId === comment?.currentUserId ? (

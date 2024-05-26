@@ -10,10 +10,10 @@
     @apply h-auto;
   }
   h1 {
-    @apply text-lg;
+    @apply text-lg leading-none;
   }
   h2 {
-    @apply text-md;
+    @apply text-md leading-none;
   }
   input {
     @apply outline-none border-[1.9px] border-transparent bg-gray-100 h-10 rounded-lg px-2 focus:border-primary-main focus-within:border-primary-main focus:outline-none placeholder:text-slate-700  font-medium;
@@ -131,4 +131,18 @@ button.slick-arrow {
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
+}
+
+@keyframes fadeAnimation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade {
+  animation-name: fadeAnimation;
+  animation-duration: 500ms;
 }

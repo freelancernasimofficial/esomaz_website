@@ -105,13 +105,23 @@ export async function addComment({ postId, text }: { postId: any; text: any }) {
 export async function deleteComment(commentId: number) {
   if (commentId) {
     //delete comment
-    await Model.prepare("DELETE FROM Comments WHERE id=?", [commentId]);
+    const currentUser = await auth();
+    await Model.prepare("DELETE FROM Comments WHERE id=? AND userId=?", [
+      commentId,
+      currentUser?.id,
+    ]);
     revalidatePath("/");
   }
 }
 
-export async function editComment(commentId: number, formData: any) {
-  const comment = formData.get("comment");
+export async function editComment({
+  commentId,
+  text,
+}: {
+  commentId: any;
+  text: any;
+}) {
+  const comment = text;
   const currentUser = await auth();
   try {
     if (!comment.length) {
@@ -126,10 +136,17 @@ export async function editComment(commentId: number, formData: any) {
       );
 
       revalidatePath("/");
+      return {
+        status: true,
+        message: "Comment edited successfully",
+      };
     }
   } catch (error: any) {
     revalidatePath("/");
-    console.log(error.message);
+    return {
+      status: false,
+      message: error.message,
+    };
   }
 }
 
