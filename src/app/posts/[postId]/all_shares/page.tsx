@@ -18,14 +18,14 @@ export default async function page({ params }: Props) {
   return (
     <div className='container'>
       <div className='centerCardSmall bg-white p-4'>
-        <h1 className=' font-semibold'>
+        <h2 className='font-semibold mb-2'>
           People Who Shared ({getShared?.length})
-        </h1>
+        </h2>
         {getShared?.map((item: any, index: number) => {
           return (
             <div
               key={item?.id?.toString()}
-              className='py-4 flex items-center justify-between border-b border-b-gray-100'
+              className='py-1 flex items-center justify-between border-b border-b-gray-100'
             >
               <div className='flex items-center'>
                 {" "}
@@ -34,10 +34,10 @@ export default async function page({ params }: Props) {
                   href={`/user/${getUsername(item?.User)}`}
                   className='ml-2 block'
                 >
-                  <h1 className='font-semibold  leading-none capitalize'>
+                  <h3 className='font-semibold  leading-none capitalize'>
                     {getFullName(item?.User)}
-                  </h1>
-                  <span className='font-medium  text-gray-500'>
+                  </h3>
+                  <span className=' text-sm  text-gray-500'>
                     {getRelativeTime(item?.createdAt)}
                   </span>
                 </Link>

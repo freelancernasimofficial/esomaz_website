@@ -18,12 +18,12 @@ export default async function Header({}: Props) {
     <header className='h-16 bg-white border-b border-b-gray-200 sticky top-0 z-20'>
       <div className='container h-full'>
         <div className='flex items-center justify-between h-full'>
-          <Link href='/' className='block flex-1 min-w-32 shrink-0'>
+          <Link href='/' className='block flex-1 min-w-28 shrink-0'>
             <Image
               priority={true}
               width={150}
               height={70}
-              className='w-32 invert shrink-0'
+              className='w-28 invert shrink-0'
               alt='logo'
               src='/images/static/logo.png'
             />

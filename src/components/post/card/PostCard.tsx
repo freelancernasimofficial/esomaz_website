@@ -226,7 +226,7 @@ export default function PostCard({ item, fullText }: Props) {
         {post?.Reactions > 0 && (
           <Link
             href={`/posts/${post?.uuId}/reactions/all`}
-            className='font-medium block text-slate-800  py-1 px-3   hover:underline'
+            className='text-sm block text-slate-800  py-1 px-3   hover:underline'
           >
             {getCompactNumber(post?.Reactions)} Reactions
           </Link>
@@ -234,7 +234,7 @@ export default function PostCard({ item, fullText }: Props) {
         {post?.TotalComments > 0 && (
           <Link
             href={`/posts/${post?.uuId}`}
-            className='font-medium text-slate-800  py-1 px-3 hover:underline'
+            className='text-sm text-slate-800  py-1 px-3 hover:underline'
           >
             {getCompactNumber(post?.TotalComments)} Comments
           </Link>
@@ -242,7 +242,7 @@ export default function PostCard({ item, fullText }: Props) {
         {post?.TotalShares > 0 && (
           <Link
             href={`/posts/${post?.uuId}/all_shares`}
-            className='font-medium text-slate-800  py-1 px-3  hover:underline'
+            className='text-sm text-slate-800  py-1 px-3  hover:underline'
           >
             {" "}
             {getCompactNumber(post?.TotalShares)} Shares
@@ -264,7 +264,9 @@ export default function PostCard({ item, fullText }: Props) {
         </Link>
 
         <Link
-          href={`/posts/${post?.uuId}/share_post`}
+          href={`/posts/${
+            post?.SharedPost ? post?.SharedPost?.uuId : post?.uuId
+          }/share_post`}
           className='svgCircleButtonSmall'
         >
           <IconShareOutline />

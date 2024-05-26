@@ -336,26 +336,30 @@ export async function sharePostAction(postId: any, formData: any) {
     if (text.length > 2000) {
       throw new Error("Text length is too big!");
     } else {
-      const mkuuId = await makeUniqueId("Posts");
-      const sharePost = await Model.prepare(
-        "INSERT INTO Posts (uuId,text,sharedId,userId)VALUES(?,?,?,?)",
-        [mkuuId, text, postId, user?.id],
-      );
-      //send notification
       const [getThePost] = await Model.prepare(
         "SELECT * FROM Posts WHERE id=?",
         [postId],
       );
-      await Model.prepare(
-        "INSERT INTO Notifications (actionType,receiverUserId,senderUserId,postId,sharedPostId)VALUES(?,?,?,?,?)",
-        [
-          "NEW_POST_SHARE",
-          getThePost.userId,
-          user?.id,
-          postId,
-          sharePost.insertId,
-        ],
+      const mkuuId = await makeUniqueId("Posts");
+      const sharePost = await Model.prepare(
+        "INSERT INTO Posts (uuId,text,sharedId,userId)VALUES(?,?,?,?)",
+        [mkuuId, text, getThePost?.id, user?.id],
       );
+      //send notification
+
+      if (getThePost?.userId !== user?.id) {
+        await Model.prepare(
+          "INSERT INTO Notifications (actionType,receiverUserId,senderUserId,postId,sharedPostId)VALUES(?,?,?,?,?)",
+          [
+            "NEW_POST_SHARE",
+            getThePost.userId,
+            user?.id,
+            getThePost?.id,
+            sharePost.insertId,
+          ],
+        );
+      }
+
       CookieStore.setState("success", "Post shared successfully");
     }
   } catch (error: any) {

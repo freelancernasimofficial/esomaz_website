@@ -18,7 +18,7 @@ export default async function LeftSidebar({}: Props) {
   return (
     <div className='sm:max-w-72 md2:max-w-96  w-full full-height sticky top-20 hidden sm:flex flex-col pr-6'>
       <div className='bg-white shadow mb-4 p-4 rounded-lg h-full'>
-        <h1 className='mb-1 font-semibold  '>Freelancing</h1>
+        <h2 className='mb-1 font-semibold  '>Freelancing</h2>
 
         <Link
           href='/jobs'
@@ -43,7 +43,7 @@ export default async function LeftSidebar({}: Props) {
         </Link>
       </div>
       <div className='bg-white shadow p-4 rounded-lg h-full'>
-        <h1 className='mb-1 font-semibold '>Social Media</h1>
+        <h2 className='mb-1 font-semibold '>Social Media</h2>
         <Link
           href='/'
           className='flex items-center w-full hover:text-primary-main  py-2'
