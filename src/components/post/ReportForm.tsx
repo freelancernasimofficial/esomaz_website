@@ -1,6 +1,5 @@
 import React from "react";
 import addReportAction from "@/actions/addReportAction";
-import BackButton from "../others/BackButton";
 import CookieStore from "@/library/CookieStore";
 import SubmitButton from "../button/SubmitButton";
 import { headers } from "next/headers";

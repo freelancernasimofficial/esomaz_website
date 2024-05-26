@@ -15,7 +15,7 @@ export default async function Header({}: Props) {
   const totalNotifications = await getTotalNotifications();
 
   return currentUser ? (
-    <header className='h-16 bg-white border-b border-b-gray-200 sticky top-0 z-10'>
+    <header className='h-16 bg-white border-b border-b-gray-200 sticky top-0 z-20'>
       <div className='container h-full'>
         <div className='flex items-center justify-between h-full'>
           <Link href='/' className='block flex-1 min-w-32 shrink-0'>

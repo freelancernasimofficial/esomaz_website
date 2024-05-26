@@ -5,14 +5,16 @@ type Props = {};
 
 export default function notfound({}: Props) {
   return (
-    <div className='centerCardMobile bg-white h-40 shadow flex justify-center items-center mt-10'>
-      <div className='flex flex-col items-center justify-center'>
-        {" "}
-        <div className='w-12 h-12 rounded-full overflow-hidden flex items-center justify-center bg-red-400 text-white mb-4'>
+    <div className='container'>
+      <div className='centerCardMobile bg-white h-40 shadow flex justify-center items-center mt-10'>
+        <div className='flex flex-col items-center justify-center'>
           {" "}
-          <IconX className='w-10 h-10' />
+          <div className='w-12 h-12 rounded-full overflow-hidden flex items-center justify-center bg-red-400 text-white mb-4'>
+            {" "}
+            <IconX className='w-10 h-10' />
+          </div>
+          <h1 className=' font-medium'>404 | Not Found</h1>
         </div>
-        <h1 className=' font-medium'>404 | Not Found</h1>
       </div>
     </div>
   );

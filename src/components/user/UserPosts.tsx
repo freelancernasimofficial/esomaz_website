@@ -1,10 +1,10 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import PostCard from "../post/card/PostCard";
-import deletePostAction from "@/actions/deletePostAction";
 import PostCardSkeleton from "../skeletons/PostCardSkeleton";
 import getProfilePostsAction from "@/actions/getProfilePostsAction";
 import { useInView } from "react-intersection-observer";
+import { deletePost } from "@/actions/postActions";
 
 type Props = {
   user: any;
@@ -16,7 +16,7 @@ export default function UserPosts({ user }: Props) {
 
   const { ref, inView } = useInView({ threshold: 1 });
   const handleDelete = (postId: any) => {
-    deletePostAction(postId)
+    deletePost(postId)
       .then(() => {
         const filterPosts = posts?.filter((post: any) => post?.id !== postId);
         setPosts(filterPosts);
@@ -73,14 +73,7 @@ export default function UserPosts({ user }: Props) {
     <React.Fragment>
       {posts?.length
         ? posts?.map((item: any, index: number) => {
-            return (
-              <PostCard
-                fullText={false}
-                handleDelete={handleDelete}
-                key={item.uuId}
-                item={item}
-              />
-            );
+            return <PostCard fullText={false} key={item.uuId} item={item} />;
           })
         : null}
       <div ref={ref}>{showLoader ? <PostCardSkeleton /> : null}</div>

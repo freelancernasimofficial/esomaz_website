@@ -12,18 +12,26 @@ import PostPhotos from "../PostPhotoSlider";
 import IconEarth from "../../icons/IconEarth";
 import DropdownMenu from "../../dropdown/DropdownMenu";
 import ReactionCard from "../ReactionCard";
-import reactionAction from "@/actions/reactionAction";
 import PostCardSkeleton from "@/components/skeletons/PostCardSkeleton";
 import SharedPostCard from "./SharedPostCard";
+import { deletePost, editPost, reactionAction } from "@/actions/postActions";
+import SubmitButtonClient from "@/components/button/SubmitButtonClient";
+import Modal from "@/components/others/Modal";
 
 type Props = {
   item: any;
-  handleDelete: (postId: any) => void;
   fullText?: boolean;
 };
 
-export default function PostCard({ item, handleDelete, fullText }: Props) {
+export default function PostCard({ item, fullText }: Props) {
   const [post, setPost] = useState<any>();
+  const [enableEditForm, setEnableEditForm] = useState<boolean>(false);
+  const [editText, setEditText] = useState<string>("");
+  const [editFormStatus, setEditFormStatus] = useState({
+    status: false,
+    message: "",
+  });
+  const [pending, setPending] = useState<boolean>(false);
 
   const handleReaction = (reactionType: string) => {
     reactionAction({
@@ -56,14 +64,79 @@ export default function PostCard({ item, handleDelete, fullText }: Props) {
       });
   };
 
+  const handleEdit = () => {
+    setPending(true);
+    editPost({ postId: post?.id, text: editText })
+      .then((data) => {
+        if (data.status === true) {
+          setPost((prev: any) => {
+            return {
+              ...prev,
+              text: editText,
+            };
+          });
+          setEnableEditForm(false);
+        }
+        setEditFormStatus(data);
+      })
+      .catch((err) => {
+        setEditFormStatus(err);
+      })
+      .finally(() => {
+        setPending(false);
+      });
+  };
+
+  const deleteHandler = () => {
+    const isConfirm = confirm("Are you sure?");
+    if (isConfirm) {
+      deletePost(post?.id).then((data) => {
+        if (data?.status === true) {
+          location.reload();
+        }
+      });
+    } else {
+      return null;
+    }
+  };
+
   useEffect(() => {
     if (item?.id) {
       setPost(item);
+      setEditText(item?.text);
     }
   }, [item]);
 
   return post?.id ? (
     <div className='bg-white rounded-lg mb-4 shadow'>
+      {enableEditForm === true && (
+        <Modal onClickBackdrop={() => setEnableEditForm(false)}>
+          <h3 className='font-semibold'>Edit Post</h3>
+          <textarea
+            className='mt-3 w-full rounded p-2 bg-gray-100 font-medium '
+            name='comment'
+            id=''
+            cols={30}
+            rows={5}
+            onChange={(e) => setEditText(e.target.value)}
+            value={editText}
+            placeholder='Edit post...'
+          ></textarea>
+
+          {editFormStatus.status === false &&
+            editFormStatus.message.length > 0 && (
+              <div className='errorCard mt-2 mb-2'>
+                {editFormStatus.message}
+              </div>
+            )}
+          <SubmitButtonClient
+            onClick={handleEdit}
+            pending={pending}
+            className='w-full btn btn-primary mt-2'
+            title='Edit Post'
+          />
+        </Modal>
+      )}
       <div className='flex justify-between mb-1 px-3 pt-3'>
         <div className='flex'>
           <Avatar className='w-9 h-9' user={post?.User} />
@@ -98,15 +171,14 @@ export default function PostCard({ item, handleDelete, fullText }: Props) {
         <DropdownMenu>
           {post?.userId === post?.currentUserId ? (
             <React.Fragment>
-              <Link
-                prefetch={false}
-                href={`/posts/${post?.uuId}/edit_post`}
+              <button
+                onClick={() => setEnableEditForm(true)}
                 className='block  mb-2 font-medium'
               >
                 Edit Post
-              </Link>
+              </button>
               <button
-                onClick={() => handleDelete(post?.id)}
+                onClick={deleteHandler}
                 className='block    text-error-main font-medium m-0 p-0'
               >
                 Delete Post

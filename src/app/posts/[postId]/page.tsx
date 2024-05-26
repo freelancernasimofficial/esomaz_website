@@ -1,5 +1,5 @@
-import deletePostAction from "@/actions/deletePostAction";
 import getSinglePostAction from "@/actions/getSinglePostAction";
+import { deletePost } from "@/actions/postActions";
 import PostCard from "@/components/post/card/PostCard";
 import LoadComments from "@/components/post/LoadComments";
 import { redirect } from "next/navigation";
@@ -25,13 +25,7 @@ export default async function page({ params }: Props) {
         <div className='centerCardMobile md:w-2/4'>
           <div className='md:pr-2'>
             {" "}
-            {
-              <PostCard
-                fullText={true}
-                item={post}
-                handleDelete={deletePostAction}
-              />
-            }
+            {<PostCard fullText={true} item={post} />}
           </div>
         </div>
         <div className='centerCardMobile md:pl-2 md:w-2/4'>

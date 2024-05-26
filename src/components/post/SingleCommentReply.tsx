@@ -7,7 +7,7 @@ import Avatar from "../user/Avatar";
 import DropdownMenu from "../dropdown/DropdownMenu";
 import ReactionCard from "./ReactionCard";
 import getCompactNumber from "@/library/getCompactNumber";
-import reactionAction from "@/actions/reactionAction";
+
 import {
   addReplyCommentReply,
   deleteComment,
@@ -15,6 +15,7 @@ import {
 } from "@/actions/commentActions";
 import SubmitButtonClient from "../button/SubmitButtonClient";
 import Modal from "../others/Modal";
+import { reactionAction } from "@/actions/postActions";
 
 type Props = {
   item: any;
@@ -130,7 +131,7 @@ export default function SingleCommentReply({ item, setMainComment }: Props) {
     <div className='mb-3'>
       {enableEdit === true && (
         <Modal onClickBackdrop={() => setEnableEdit(false)}>
-          <h1 className='font-semibold'>Edit Comment</h1>
+          <h3 className='font-semibold'>Edit Comment</h3>
           <textarea
             className='mt-3 w-full rounded p-2 bg-gray-100 font-medium '
             name='comment'
