@@ -19,7 +19,7 @@ export default async function page(props: Props) {
   return (
     <div className='container'>
       <div className='centerCardSmall bg-white rounded-lg p-4'>
-        <h2 className='font-bold text-xl mb-4'>Notifications</h2>
+        <h2 className='font-bold  mb-4'>Notifications</h2>
 
         <div className='flex flex-col w-full'>
           {notif?.map((item: any, index: number) => {

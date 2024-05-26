@@ -15,7 +15,7 @@ export default async function page({}: Props) {
     <div className='container mb-4'>
       <div className='centerCardSmall bg-white shadow p-4 rounded-lg overflow-hidden '>
         <div className='flex justify-between items-center pb-2'>
-          <h2 className='font-semibold text-lg'>People You May Know</h2>
+          <h2 className='font-semibold '>People You May Know</h2>
         </div>
         <div className='flex-1 w-full h-full overflow-y-scroll'>
           {people?.map((user: any, index: number) => {

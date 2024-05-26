@@ -19,7 +19,7 @@ export default async function UserIntro({ userId }: Props) {
   return (
     <div className='w-full p-4 rounded-lg bg-white shadow my-4'>
       <div className='mb-1 flex justify-between'>
-        <h2 className='font-bold text-xl'>Intro</h2>
+        <h2 className='font-bold '>Intro</h2>
 
         {currentUser?.id === userId && (
           <Link className='text-primary-main  ' href='/account/edit_profile'>

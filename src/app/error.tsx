@@ -13,7 +13,7 @@ export default function error({}: Props) {
           {" "}
           <IconX className='w-10 h-10' />
         </div>
-        <h1 className='text-xl font-medium'>Something Went Wrong</h1>
+        <h1 className=' font-medium'>Something Went Wrong</h1>
       </div>
     </div>
   );

@@ -23,7 +23,7 @@ export default async function page({}: Props) {
             alt='logo'
           />
         </div>
-        <h2 className='font-bold text-xl'>eSomaz Login</h2>
+        <h2 className='font-bold '>eSomaz Login</h2>
         <form action={loginAction} className='mt-4'>
           <input
             name='email'

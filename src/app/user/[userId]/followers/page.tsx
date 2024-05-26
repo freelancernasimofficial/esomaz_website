@@ -22,9 +22,9 @@ export default async function page({ params }: Props) {
     <div className='centerCard'>
       <div className='bg-white shadow p-4 rounded-lg mb-8'>
         <div className='flex justify-between'>
-          <h2 className='font-semibold text-lg'>
+          <h1 className='font-semibold '>
             Followers ({Followers?.length ? Followers?.length : 0})
-          </h2>
+          </h1>
         </div>
         <div className='flex flex-col w-full'>
           {Followers?.map((item: any, index: number) => {
@@ -46,7 +46,7 @@ export default async function page({ params }: Props) {
                         {getFullName(item?.User)}
                       </h4>
                     </Link>
-                    <span className='block  text-gray-500 leading-3'>
+                    <span className='block text-sm  text-gray-500 leading-3'>
                       {getSubtitle(item?.User)}
                     </span>
                   </div>

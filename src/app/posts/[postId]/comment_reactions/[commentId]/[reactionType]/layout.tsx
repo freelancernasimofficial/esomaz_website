@@ -6,6 +6,7 @@ type Props = {
   children: any;
   params: {
     postId: string;
+    commentId: string;
     reactionType: string;
   };
 };
@@ -16,7 +17,7 @@ export default function layout({ children, params }: Props) {
       <div className='centerCardMobile bg-transparent overflow-hidden'>
         <div className='flex items-center bg-white rounded px-2 py-1.5 overflow-x-scroll justify-between'>
           <Link
-            href={`/posts/${params?.postId}/reactions/all`}
+            href={`/posts/${params?.postId}/comment_reactions/${params.commentId}/all`}
             tabIndex={-1}
             className={`${
               params.reactionType === "all" ? "bg-gray-200" : "bg-transparent"
@@ -31,7 +32,7 @@ export default function layout({ children, params }: Props) {
             />
           </Link>
           <Link
-            href={`/posts/${params?.postId}/reactions/thumbsup`}
+            href={`/posts/${params?.postId}/comment_reactions/${params.commentId}/thumbsup`}
             tabIndex={-1}
             className={`${
               params.reactionType === "thumbsup"
@@ -48,7 +49,7 @@ export default function layout({ children, params }: Props) {
             />
           </Link>{" "}
           <Link
-            href={`/posts/${params?.postId}/reactions/thumbsdown`}
+            href={`/posts/${params?.postId}/comment_reactions/${params.commentId}/thumbsdown`}
             tabIndex={-1}
             className={`${
               params.reactionType === "thumbsdown"
@@ -65,7 +66,7 @@ export default function layout({ children, params }: Props) {
             />
           </Link>{" "}
           <Link
-            href={`/posts/${params?.postId}/reactions/heart`}
+            href={`/posts/${params?.postId}/comment_reactions/${params.commentId}/heart`}
             tabIndex={-1}
             className={`${
               params.reactionType === "heart" ? "bg-gray-200" : "bg-transparent"
@@ -80,7 +81,7 @@ export default function layout({ children, params }: Props) {
             />
           </Link>{" "}
           <Link
-            href={`/posts/${params?.postId}/reactions/care`}
+            href={`/posts/${params?.postId}/comment_reactions/${params.commentId}/care`}
             tabIndex={-1}
             className={`${
               params.reactionType === "care" ? "bg-gray-200" : "bg-transparent"
@@ -95,7 +96,7 @@ export default function layout({ children, params }: Props) {
             />
           </Link>{" "}
           <Link
-            href={`/posts/${params?.postId}/reactions/claps`}
+            href={`/posts/${params?.postId}/comment_reactions/${params.commentId}/claps`}
             tabIndex={-1}
             className={`${
               params.reactionType === "claps" ? "bg-gray-200" : "bg-transparent"
@@ -110,7 +111,7 @@ export default function layout({ children, params }: Props) {
             />
           </Link>{" "}
           <Link
-            href={`/posts/${params?.postId}/reactions/woow`}
+            href={`/posts/${params?.postId}/comment_reactions/${params.commentId}/woow`}
             tabIndex={-1}
             className={`${
               params.reactionType === "woow" ? "bg-gray-200" : "bg-transparent"
@@ -125,7 +126,7 @@ export default function layout({ children, params }: Props) {
             />
           </Link>{" "}
           <Link
-            href={`/posts/${params?.postId}/reactions/facepalming`}
+            href={`/posts/${params?.postId}/comment_reactions/${params.commentId}/facepalming`}
             tabIndex={-1}
             className={`${
               params.reactionType === "facepalming"
@@ -142,7 +143,7 @@ export default function layout({ children, params }: Props) {
             />
           </Link>{" "}
           <Link
-            href={`/posts/${params?.postId}/reactions/shrugging`}
+            href={`/posts/${params?.postId}/comment_reactions/${params.commentId}/shrugging`}
             tabIndex={-1}
             className={`${
               params.reactionType === "shrugging"
@@ -159,7 +160,7 @@ export default function layout({ children, params }: Props) {
             />
           </Link>{" "}
           <Link
-            href={`/posts/${params?.postId}/reactions/crying`}
+            href={`/posts/${params?.postId}/comment_reactions/${params.commentId}/crying`}
             tabIndex={-1}
             className={`${
               params.reactionType === "crying"
@@ -176,7 +177,7 @@ export default function layout({ children, params }: Props) {
             />
           </Link>{" "}
           <Link
-            href={`/posts/${params?.postId}/reactions/haha`}
+            href={`/posts/${params?.postId}/comment_reactions/${params.commentId}/haha`}
             tabIndex={-1}
             className={`${
               params.reactionType === "haha" ? "bg-gray-200" : "bg-transparent"
@@ -191,7 +192,7 @@ export default function layout({ children, params }: Props) {
             />
           </Link>{" "}
           <Link
-            href={`/posts/${params?.postId}/reactions/angry`}
+            href={`/posts/${params?.postId}/comment_reactions/${params.commentId}/angry`}
             tabIndex={-1}
             className={`${
               params.reactionType === "angry" ? "bg-gray-200" : "bg-transparent"

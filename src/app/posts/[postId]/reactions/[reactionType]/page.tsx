@@ -25,7 +25,7 @@ export default async function page({ params }: Props) {
         return (
           <div
             key={item?.id?.toString()}
-            className='p-4 flex items-center justify-between border-b border-b-gray-100'
+            className='px-2 py-1 flex items-center justify-between border-b border-b-gray-100'
           >
             <div className='flex items-center'>
               {" "}
@@ -34,10 +34,10 @@ export default async function page({ params }: Props) {
                 href={`/user/${getUsername(item?.User)}`}
                 className='ml-2 block'
               >
-                <h1 className='font-semibold  leading-none capitalize'>
+                <h4 className='font-semibold  leading-none capitalize'>
                   {getFullName(item?.User)}
-                </h1>
-                <span className='font-medium  text-gray-500'>
+                </h4>
+                <span className='font-medium text-sm  text-gray-500'>
                   @{getUsername(item?.User)}
                 </span>
               </Link>

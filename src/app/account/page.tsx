@@ -37,13 +37,13 @@ export default async function page({}: Props) {
             <div className='mt-3'>
               <Link
                 href={`/user/${getUsername(user)}`}
-                className='font-semibold leading-5 inline-block text-lg'
+                className='font-semibold text-lg leading-none inline-block '
               >
                 {getFullName(user)}
               </Link>
             </div>
           </div>
-          <div className='flex items-center mt-2'>
+          <div className='flex items-center'>
             <h2 className='font-medium  text-slate-400 mr-2'>Balance:</h2>
             <div className='font-medium  text-green-600'>
               $25820.00 <span className='text-black  font-medium'>USD</span>

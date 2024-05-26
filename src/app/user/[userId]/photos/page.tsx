@@ -27,7 +27,7 @@ export default async function page({ params }: Props) {
     <div className='centerCard'>
       <div className='bg-white shadow p-4 rounded-lg mb-8'>
         <div className='flex justify-between mb-4'>
-          <h2 className='font-semibold text-lg'>Photos ({totalPhotos})</h2>
+          <h2 className='font-semibold '>Photos ({totalPhotos})</h2>
         </div>
         <div className='md:flex md:flex-wrap justify-between w-full'>
           {photos?.map((photo: any) => {

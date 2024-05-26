@@ -18,7 +18,7 @@ export default async function page({ params }: Props) {
   return (
     <div className='container'>
       <div className='centerCardSmall bg-white p-4'>
-        <h1 className='text-lg font-semibold'>
+        <h1 className=' font-semibold'>
           People Who Shared ({getShared?.length})
         </h1>
         {getShared?.map((item: any, index: number) => {

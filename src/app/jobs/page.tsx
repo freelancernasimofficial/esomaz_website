@@ -10,7 +10,7 @@ export default function page({}: Props) {
     <div className='container mb-4'>
       <div className='centerCard p-3 shadow bg-white rounded-lg'>
         <div className='flex justify-between items-center mb-2'>
-          <h2 className='font-semibold text-lg'>Latest Jobs</h2>
+          <h2 className='font-semibold '>Latest Jobs</h2>
         </div>
         {dummyProjects.map((project) => {
           return (

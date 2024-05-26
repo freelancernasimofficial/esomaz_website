@@ -12,7 +12,7 @@ export default function notfound({}: Props) {
           {" "}
           <IconX className='w-10 h-10' />
         </div>
-        <h1 className='text-xl font-medium'>404 | Not Found</h1>
+        <h1 className=' font-medium'>404 | Not Found</h1>
       </div>
     </div>
   );
