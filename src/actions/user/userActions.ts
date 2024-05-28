@@ -93,7 +93,7 @@ export async function getTotalFollowersByUserId(userId: any) {
 
 export async function getTotalFollowingByUserId(userId: any) {
   try {
-    const following = await Model.prepare(
+    const [following] = await Model.prepare(
       "SELECT COUNT(*) AS total FROM Followers WHERE followerId=?",
       [userId],
     );
@@ -107,15 +107,6 @@ export async function getTotalFollowingByUserId(userId: any) {
 
     return 0;
   }
-}
-
-export async function getFollowingsByUserId(userId: number) {
-  const followings = await Model.query(
-    `SELECT *,(${getUserByObjectQuery(
-      "F.userId",
-    )}) AS User FROM Followers F WHERE F.followerId=${userId} ORDER BY F.id DESC`,
-  );
-  return followings;
 }
 
 export async function changeBasicInfoAction(formData: any) {

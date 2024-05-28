@@ -2,7 +2,7 @@ import {
   getSingleUserByuuId,
   getUserPhotos,
   getUserPhotosCount,
-} from "@/actions/userActions";
+} from "@/actions/user/userActions";
 import { AWS_S3_PHOTO_API_URL } from "@/library/constants";
 import Image from "next/image";
 import Link from "next/link";
