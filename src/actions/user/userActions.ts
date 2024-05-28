@@ -26,7 +26,7 @@ export async function getUserPhotos(props: {
   limitTo: any;
 }) {
   const photos = await Model.query(
-    `SELECT * FROM Photos WHERE userId=${props.userId} ORDER BY id DESC LIMIT ${props.limitFrom},${props.limitTo}`,
+    `SELECT * FROM Photos WHERE userId=${props.userId} AND postId IS NOT NULL ORDER BY id DESC LIMIT ${props.limitFrom},${props.limitTo}`,
   );
 
   return photos;
