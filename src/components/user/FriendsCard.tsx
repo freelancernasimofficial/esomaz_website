@@ -1,21 +1,23 @@
-import getFullName from "@/library/getFullName";
 import getUsername from "@/library/getUsername";
 import Link from "next/link";
 import React from "react";
-import Avatar from "./Avatar";
-import { getFriendsByUserId } from "@/actions/userActions";
+import getFriendsByUserIdAction from "@/actions/user/getFriendsAction";
 
 type Props = {
   user: any;
 };
 
 export default async function FriendsCard({ user }: Props) {
-  const friends = await getFriendsByUserId(user?.id, 5);
+  const friends = await getFriendsByUserIdAction({
+    userId: user?.id,
+    limitFrom: 0,
+    limitTo: 5,
+  });
 
   return (
     <div className='w-full p-4 my-4 rounded-lg bg-white shadow hidden md:block'>
       <div className='mb-2 flex justify-between'>
-        <h1 className='font-bold '>Friends</h1>
+        <h1 className='font-bold '>Friends </h1>
         <Link
           className='text-primary-main '
           href={`/user/${getUsername(user)}/friends`}
@@ -25,22 +27,7 @@ export default async function FriendsCard({ user }: Props) {
       </div>
       <div className='flex flex-col w-full'>
         {friends?.map((item: any, index: number) => {
-          return (
-            <div key={item?.id.toString()} className='flex my-2'>
-              <Avatar user={item?.Friend} />
-              <div className='ml-2'>
-                <Link
-                  href={`/user/${getUsername(item?.Friend)}`}
-                  className='block'
-                >
-                  <h4 className='font-medium '>{getFullName(item?.Friend)}</h4>
-                </Link>
-                <span className='block text-sm  text-gray-500 leading-3 lowercase'>
-                  @{getUsername(item?.Friend)}
-                </span>
-              </div>
-            </div>
-          );
+          return item;
         })}
       </div>
     </div>

@@ -2,7 +2,7 @@ import PostForm from "@/components/post/PostForm";
 
 import React from "react";
 import UserPosts from "@/components/user/UserPosts";
-import { getSingleUserByuuId } from "@/actions/userActions";
+import { getSingleUserByuuId } from "@/actions/user/userActions";
 
 type Props = {
   params: {

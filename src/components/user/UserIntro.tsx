@@ -6,7 +6,7 @@ import IconRss from "../icons/IconRss";
 import IconSchoolOutline from "../icons/IconSchoolOutline";
 import getCompactNumber from "@/library/getCompactNumber";
 import auth from "@/library/auth";
-import { getUserInformations } from "@/actions/userActions";
+import { getUserInformations } from "@/actions/user/userActions";
 
 type Props = {
   userId: number;

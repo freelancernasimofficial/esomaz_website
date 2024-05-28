@@ -56,13 +56,57 @@ export async function getSingleUserByuuId(uuId: any) {
   return user;
 }
 
-export async function getFriendsByUserId(userId: number, limit?: number) {
-  const friends = await Model.query(
-    `SELECT *,(SELECT JSON_OBJECT('id',U.id,'uuId',U.uuId,'firstName',U.firstName,'lastName',U.lastName,'avatar',(SELECT AV.filename FROM Photos AV WHERE AV.id=U.avatarId)) FROM Users U WHERE U.id=IF(F.senderUserId=${userId},F.receiverUserId,F.senderUserId)) AS Friend FROM Friends F WHERE F.senderUserId=${userId} OR F.receiverUserId=${userId} AND F.isAccepted=true ORDER BY F.id DESC ${
-      limit ? `LIMIT ${limit}` : ""
-    }`,
-  );
-  return friends;
+export async function getTotalFriendsByUserId(userId: any) {
+  try {
+    const [friends] = await Model.prepare(
+      "SELECT COUNT(*) AS total FROM Friends WHERE senderUserId=? OR receiverUserId=? AND isAccepted=1",
+      [userId, userId],
+    );
+
+    if (friends?.total > 0) {
+      return friends.total;
+    } else {
+      return 0;
+    }
+  } catch (error) {
+    return 0;
+  }
+}
+
+export async function getTotalFollowersByUserId(userId: any) {
+  try {
+    const [followers] = await Model.prepare(
+      "SELECT COUNT(*) AS total FROM Followers WHERE userId=?",
+      [userId],
+    );
+    if (followers?.total > 0) {
+      return followers.total;
+    } else {
+      return 0;
+    }
+  } catch (error) {
+    console.log(error);
+
+    return 0;
+  }
+}
+
+export async function getTotalFollowingByUserId(userId: any) {
+  try {
+    const following = await Model.prepare(
+      "SELECT COUNT(*) AS total FROM Followers WHERE followerId=?",
+      [userId],
+    );
+    if (following?.total > 0) {
+      return following.total;
+    } else {
+      return 0;
+    }
+  } catch (error) {
+    console.log(error);
+
+    return 0;
+  }
 }
 
 export async function getFollowingsByUserId(userId: number) {
@@ -72,15 +116,6 @@ export async function getFollowingsByUserId(userId: number) {
     )}) AS User FROM Followers F WHERE F.followerId=${userId} ORDER BY F.id DESC`,
   );
   return followings;
-}
-
-export async function getFollowersByUserId(userId: number) {
-  const followers = await Model.query(
-    `SELECT *,(${getUserByObjectQuery(
-      "F.followerId",
-    )}) AS User FROM Followers F WHERE F.userId=${userId} ORDER BY F.id DESC`,
-  );
-  return followers;
 }
 
 export async function changeBasicInfoAction(formData: any) {

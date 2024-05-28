@@ -1,13 +1,14 @@
 import {
-  getFollowersByUserId,
   getSingleUserByuuId,
-} from "@/actions/userActions";
+  getTotalFollowersByUserId,
+} from "@/actions/user/userActions";
 import Avatar from "@/components/user/Avatar";
 import getFullName from "@/library/getFullName";
 import getSubtitle from "@/library/getSubtitle";
 import getUsername from "@/library/getUsername";
 import Link from "next/link";
 import React from "react";
+import LoadFollowers from "./LoadFollowers";
 
 type Props = {
   params: {
@@ -17,45 +18,16 @@ type Props = {
 
 export default async function page({ params }: Props) {
   const user = await getSingleUserByuuId(params.userId);
-
-  const Followers = await getFollowersByUserId(user?.id);
+  const totalFollowers = await getTotalFollowersByUserId(user?.id);
 
   return (
     <div className='centerCard'>
       <div className='bg-white shadow p-4 rounded-lg mb-8'>
         <div className='flex justify-between'>
-          <h1 className='font-semibold '>
-            Followers ({Followers?.length ? Followers?.length : 0})
-          </h1>
+          <h1 className='font-semibold '>Followers ({totalFollowers})</h1>
         </div>
         <div className='flex flex-col w-full'>
-          {Followers?.map((item: any, index: number) => {
-            return (
-              <div
-                key={item?.id?.toString()}
-                className='flex justify-between mt-4'
-              >
-                <div className='flex'>
-                  <div className='w-9 h-9 overflow-hidden shrink-0 rounded-full'>
-                    <Avatar user={item?.User} />
-                  </div>
-                  <div className='ml-2'>
-                    <Link
-                      href={`/user/${getUsername(item?.User)}`}
-                      className='block'
-                    >
-                      <h4 className='font-medium '>
-                        {getFullName(item?.User)}
-                      </h4>
-                    </Link>
-                    <span className='block text-sm  text-gray-500 leading-3'>
-                      {getSubtitle(item?.User)}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
+          <LoadFollowers userId={user?.id} />
         </div>
       </div>
     </div>

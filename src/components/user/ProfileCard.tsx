@@ -17,7 +17,7 @@ import {
   rejectFriendAction,
   unFollowAction,
   unFriendAction,
-} from "@/actions/userActions";
+} from "@/actions/user/userActions";
 type Props = {
   user: any;
 };

@@ -2,7 +2,7 @@ import ProfileCard from "@/components/user/ProfileCard";
 import React from "react";
 import FriendsCard from "@/components/user/FriendsCard";
 import UserIntro from "@/components/user/UserIntro";
-import { getFullUserByUsername } from "@/actions/userActions";
+import { getFullUserByUsername } from "@/actions/user/userActions";
 
 type Props = {
   children: any;
