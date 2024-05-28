@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import PostCard from "../post/card/PostCard";
 import PostCardSkeleton from "../skeletons/PostCardSkeleton";
 import { useInView } from "react-intersection-observer";
-import { deletePost, getProfilePosts } from "@/actions/postActions";
+import { getProfilePosts } from "@/actions/postActions";
 
 type Props = {
   user: any;
@@ -14,16 +14,6 @@ export default function UserPosts({ user }: Props) {
   const [showLoader, setShowLoader] = useState(true);
 
   const { ref, inView } = useInView({ threshold: 1 });
-  const handleDelete = (postId: any) => {
-    deletePost(postId)
-      .then(() => {
-        const filterPosts = posts?.filter((post: any) => post?.id !== postId);
-        setPosts(filterPosts);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
 
   useEffect(() => {
     if (posts?.length) {

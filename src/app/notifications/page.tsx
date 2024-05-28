@@ -7,6 +7,8 @@ import moment from "moment";
 import Link from "next/link";
 
 import React from "react";
+import NotificationPagination from "./LoadNotifications";
+import LoadNotifications from "./LoadNotifications";
 
 type Props = {
   params: any;
@@ -14,46 +16,13 @@ type Props = {
 };
 
 export default async function page(props: Props) {
-  const notif = await getNotificationsAction();
-
   return (
     <div className='container'>
       <div className='centerCardSmall bg-white rounded-lg p-4'>
         <h2 className='font-bold  mb-4'>Notifications</h2>
 
         <div className='flex flex-col w-full'>
-          {notif?.map((item: any, index: number) => {
-            return (
-              <div key={item.id} className='flex items-start mb-4'>
-                <div className='w-9 h-9 overflow-hidden shrink-0 rounded-full'>
-                  <Avatar user={item?.SenderUser} />
-                </div>
-                <div className='ml-2'>
-                  <div className='flex items-center justify-start'>
-                    <span className='font-medium '>
-                      <Link href={`/user/${getUsername(item?.SenderUser)}`}>
-                        {getFullName(item?.SenderUser)}
-                      </Link>{" "}
-                      <span className='font-normal'>
-                        {getNotificationMessage(item?.actionType)}
-                      </span>{" "}
-                      {item?.Post ? (
-                        <Link
-                          className='text-primary-main !font-normal'
-                          href={`/posts/${item?.Post?.uuId}`}
-                        >
-                          post
-                        </Link>
-                      ) : null}
-                    </span>
-                  </div>
-                  <span className='block  text-gray-500 leading-4'>
-                    {moment(item?.createdAt).fromNow()}
-                  </span>
-                </div>
-              </div>
-            );
-          })}
+          <LoadNotifications />
         </div>
       </div>
     </div>

@@ -5,14 +5,20 @@ import getUserByObjectQuery from "@/library/getUserByObjectQuery";
 import Model from "@/model/Model";
 import { revalidatePath } from "next/cache";
 
-export default async function getNotificationsAction() {
+export default async function getNotificationsAction({
+  limitFrom,
+  limitTo,
+}: {
+  limitFrom: any;
+  limitTo: any;
+}) {
   const currentUser = await auth();
   const notifications = await Model.query(
     `SELECT *,(${getUserByObjectQuery(
       "N.senderUserId",
     )}) AS SenderUser,(SELECT JSON_OBJECT('id',NP.id,'uuId',NP.uuId) FROM Posts NP WHERE id=N.postId) AS Post FROM Notifications N WHERE receiverUserId=${
       currentUser?.id
-    } ORDER BY id DESC LIMIT 200`,
+    } ORDER BY id DESC LIMIT ${limitFrom},${limitTo}`,
   );
   await Model.prepare(
     `UPDATE Notifications SET isSeen=? WHERE isSeen=? AND receiverUserId=?`,

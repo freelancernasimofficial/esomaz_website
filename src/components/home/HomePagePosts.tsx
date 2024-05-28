@@ -3,23 +3,13 @@ import React, { useEffect, useState } from "react";
 import PostCard from "../post/card/PostCard";
 import PostCardSkeleton from "../skeletons/PostCardSkeleton";
 import { useInView } from "react-intersection-observer";
-import { deletePost, getHomePagePosts } from "@/actions/postActions";
+import { getHomePagePosts } from "@/actions/postActions";
 
 type Props = {};
 
 export default function HomePagePosts({}: Props) {
   const [posts, setPosts] = useState<any[]>();
   const { ref, inView } = useInView({ threshold: 1 });
-  const handleDelete = (postId: any) => {
-    deletePost(postId)
-      .then(() => {
-        const filterPosts = posts?.filter((post: any) => post?.id !== postId);
-        setPosts(filterPosts);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
 
   useEffect(() => {
     if (posts?.length) {
