@@ -211,18 +211,6 @@ export default async function ProfileCard({ user }: Props) {
           </Link>
           <Link
             className='block focus:border-b-primary-main'
-            href={`/user/${getUsername(user)}/photos`}
-          >
-            Photos
-          </Link>
-          <Link
-            className='block focus:border-b-primary-main'
-            href={`/user/${getUsername(user)}/videos`}
-          >
-            Videos
-          </Link>
-          <Link
-            className='block focus:border-b-primary-main'
             href={`/user/${getUsername(user)}/followers`}
           >
             Followers
@@ -233,6 +221,19 @@ export default async function ProfileCard({ user }: Props) {
           >
             Following
           </Link>
+          <Link
+            className='block focus:border-b-primary-main'
+            href={`/user/${getUsername(user)}/photos`}
+          >
+            Photos
+          </Link>
+          <Link
+            className='block focus:border-b-primary-main'
+            href={`/user/${getUsername(user)}/videos`}
+          >
+            Videos
+          </Link>
+
           {currentUser?.id !== user?.id ? (
             <Link
               className='block focus:border-b-primary-main text-error-main'

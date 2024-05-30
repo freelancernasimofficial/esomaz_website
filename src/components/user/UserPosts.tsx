@@ -56,7 +56,8 @@ export default function UserPosts({ user }: Props) {
           console.log(err);
         });
     }
-  }, [inView, posts?.length, user?.id]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [inView, user?.id]);
 
   return (
     <React.Fragment>

@@ -41,7 +41,8 @@ export default function HomePagePosts({}: Props) {
           console.log(err);
         });
     }
-  }, [inView, posts?.length]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [inView]);
 
   return (
     <React.Fragment>
