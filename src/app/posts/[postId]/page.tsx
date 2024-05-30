@@ -1,4 +1,4 @@
-import { deletePost, getSinglePost } from "@/actions/postActions";
+import { deletePost, getSinglePost } from "@/actions/post/postActions";
 import PostCard from "@/components/post/card/PostCard";
 import LoadComments from "@/components/post/LoadComments";
 import { redirect } from "next/navigation";

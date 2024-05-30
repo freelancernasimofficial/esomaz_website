@@ -15,7 +15,7 @@ import {
 } from "@/actions/commentActions";
 import SubmitButtonClient from "../button/SubmitButtonClient";
 import Modal from "../others/Modal";
-import { reactionAction } from "@/actions/postActions";
+import { reactionAction } from "@/actions/post/postActions";
 
 type Props = {
   item: any;

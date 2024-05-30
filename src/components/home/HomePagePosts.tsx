@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import PostCard from "../post/card/PostCard";
 import PostCardSkeleton from "../skeletons/PostCardSkeleton";
 import { useInView } from "react-intersection-observer";
-import { getHomePagePosts } from "@/actions/postActions";
+import { getHomePagePosts } from "@/actions/post/postActions";
 
 type Props = {};
 

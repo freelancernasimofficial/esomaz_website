@@ -14,7 +14,11 @@ import DropdownMenu from "../../dropdown/DropdownMenu";
 import ReactionCard from "../ReactionCard";
 import PostCardSkeleton from "@/components/skeletons/PostCardSkeleton";
 import SharedPostCard from "./SharedPostCard";
-import { deletePost, editPost, reactionAction } from "@/actions/postActions";
+import {
+  deletePost,
+  editPost,
+  reactionAction,
+} from "@/actions/post/postActions";
 import SubmitButtonClient from "@/components/button/SubmitButtonClient";
 import Modal from "@/components/others/Modal";
 
@@ -90,11 +94,15 @@ export default function PostCard({ item, fullText }: Props) {
   const deleteHandler = () => {
     const isConfirm = confirm("Are you sure?");
     if (isConfirm) {
-      deletePost(post?.id).then((data) => {
-        if (data?.status === true) {
-          location.reload();
-        }
-      });
+      deletePost(post?.id)
+        .then((data) => {
+          if (data?.status === true) {
+            location.reload();
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
   };
 

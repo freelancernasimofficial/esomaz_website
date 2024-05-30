@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import PostCard from "../post/card/PostCard";
 import PostCardSkeleton from "../skeletons/PostCardSkeleton";
 import { useInView } from "react-intersection-observer";
-import { getProfilePosts } from "@/actions/postActions";
+import { getProfilePosts } from "@/actions/post/postActions";
 
 type Props = {
   user: any;
@@ -65,7 +65,11 @@ export default function UserPosts({ user }: Props) {
             return <PostCard fullText={false} key={item.uuId} item={item} />;
           })
         : null}
-      <div ref={ref}>{showLoader ? <PostCardSkeleton /> : null}</div>
+      {showLoader ? (
+        <div ref={ref}>
+          <PostCardSkeleton />
+        </div>
+      ) : null}
     </React.Fragment>
   );
 }

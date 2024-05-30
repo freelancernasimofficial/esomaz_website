@@ -1,4 +1,4 @@
-import { getPostShares } from "@/actions/postActions";
+import { getPostShares } from "@/actions/post/postActions";
 import Avatar from "@/components/user/Avatar";
 import getFullName from "@/library/getFullName";
 import getRelativeTime from "@/library/getRelativeTime";
