@@ -16,7 +16,7 @@ export default async function page({ params }: Props) {
   const getShared = await getPostShares(params?.postId);
 
   return (
-    <div className='container'>
+    <div className='container pt-3'>
       <div className='centerCardSmall bg-white p-4'>
         <h2 className='font-semibold mb-2'>
           People Who Shared ({getShared?.length})

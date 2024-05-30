@@ -12,7 +12,7 @@ export default async function page({}: Props) {
   const people = await getPeopleYouMayKnowAction();
 
   return (
-    <div className='container mb-4'>
+    <div className='container pt-3 mb-4'>
       <div className='centerCardSmall bg-white shadow p-4 rounded-lg overflow-hidden '>
         <div className='flex justify-between items-center pb-2'>
           <h2 className='font-semibold '>People You May Know</h2>

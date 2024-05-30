@@ -43,13 +43,14 @@ export default function LoadFollowings({ userId }: Props) {
           console.log(err);
         });
     }
-  }, [followings.length, inView, userId]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [inView, userId]);
   return (
     <React.Fragment>
       {followings?.map((item: any, index: number) => {
         return item;
       })}
-      {showLoader ? (
+      {showLoader && followings.length >= 20 ? (
         <div className='mt-4' ref={ref}>
           <SingleUserSkeleton />
         </div>

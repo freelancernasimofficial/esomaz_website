@@ -10,7 +10,7 @@ type Props = {
 };
 
 export default function UserPosts({ user }: Props) {
-  const [posts, setPosts] = useState<any[]>();
+  const [posts, setPosts] = useState<any[]>([]);
   const [showLoader, setShowLoader] = useState(true);
 
   const { ref, inView } = useInView({ threshold: 1 });
@@ -65,7 +65,7 @@ export default function UserPosts({ user }: Props) {
             return <PostCard fullText={false} key={item.uuId} item={item} />;
           })
         : null}
-      {showLoader ? (
+      {showLoader && posts?.length >= 5 ? (
         <div ref={ref}>
           <PostCardSkeleton />
         </div>

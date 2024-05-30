@@ -1,16 +1,20 @@
 "use client";
 
+import getCommentReactions from "@/actions/post/getCommentReactions";
 import getPostReactions from "@/actions/post/getPostReactions";
 import SingleUserSkeleton from "@/components/skeletons/SingleUserSkeleton";
 import React, { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 
 type Props = {
-  postuuId: any;
+  commentId: any;
   reactionType: any;
 };
 
-export default function LoadPostReactions({ postuuId, reactionType }: Props) {
+export default function LoadCommentReactions({
+  commentId,
+  reactionType,
+}: Props) {
   const { inView, ref } = useInView({ threshold: 1 });
   const [reactions, setReactions] = useState<any[]>([]);
   const [showLoader, setShowLoader] = useState(true);
@@ -18,8 +22,8 @@ export default function LoadPostReactions({ postuuId, reactionType }: Props) {
   useEffect(() => {
     if (reactions.length) {
       if (inView) {
-        getPostReactions({
-          postuuId,
+        getCommentReactions({
+          commentId,
           reactionType,
           limitFrom: reactions?.length,
           limitTo: 20,
@@ -37,7 +41,12 @@ export default function LoadPostReactions({ postuuId, reactionType }: Props) {
           });
       }
     } else {
-      getPostReactions({ postuuId, reactionType, limitFrom: 0, limitTo: 20 })
+      getCommentReactions({
+        commentId,
+        reactionType,
+        limitFrom: 0,
+        limitTo: 20,
+      })
         .then((data) => {
           if (data?.length) {
             setReactions(data);
@@ -52,14 +61,14 @@ export default function LoadPostReactions({ postuuId, reactionType }: Props) {
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [inView, postuuId, reactionType]);
+  }, [inView, commentId, reactionType]);
 
   return (
     <React.Fragment>
       {reactions?.map((item) => {
         return item;
       })}
-      {showLoader && reactions.length >= 20 ? (
+      {showLoader && reactions?.length >= 20 ? (
         <div ref={ref}>
           <SingleUserSkeleton className='mt-4 mx-2' />
         </div>

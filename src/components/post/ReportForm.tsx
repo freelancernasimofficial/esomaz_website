@@ -20,7 +20,7 @@ export default async function ReportForm({ title, reportType, itemId }: Props) {
 
   return (
     <div className='p-4'>
-      <h1 className='font-semibold '>{title}</h1>
+      <h2 className='font-semibold mb-2 '>{title}</h2>
 
       {success ? (
         <div>
@@ -43,7 +43,7 @@ export default async function ReportForm({ title, reportType, itemId }: Props) {
             rows={5}
           ></textarea>
           {error ? <div className='errorCard w-full mb-4'>{error}</div> : null}
-          <SubmitButton className='btn btn-error' title={title} />
+          <SubmitButton className='btn btn-error w-full' title={title} />
         </form>
       )}
     </div>

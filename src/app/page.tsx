@@ -5,7 +5,7 @@ import HomePagePosts from "@/components/home/HomePagePosts";
 
 export default async function Home() {
   return (
-    <div className='container'>
+    <div className='container pt-3'>
       <div className='flex justify-between'>
         <LeftSidebar />
         <div className='lg2:max-w-[600px] w-full overflow-hidden'>

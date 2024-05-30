@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
-import getCommentsAction, { addComment } from "@/actions/commentActions";
+import getCommentsAction, { addComment } from "@/actions/post/commentActions";
 import CommentSkeleton from "../skeletons/CommentSkeleton";
 import SingleComment from "./SingleComment";
 import LoaderSpinnerLarge from "../others/LoaderSpinnerLarge";

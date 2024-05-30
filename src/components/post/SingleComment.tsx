@@ -12,7 +12,7 @@ import {
   addMainCommentReply,
   deleteComment,
   editComment,
-} from "@/actions/commentActions";
+} from "@/actions/post/commentActions";
 import SubmitButtonClient from "../button/SubmitButtonClient";
 import Modal from "../others/Modal";
 import { reactionAction } from "@/actions/post/postActions";

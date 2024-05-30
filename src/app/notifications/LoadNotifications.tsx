@@ -23,7 +23,7 @@ export default function LoadNotifications({}: Props) {
       if (inView) {
         getNotificationsAction({
           limitFrom: notifications?.length,
-          limitTo: 5,
+          limitTo: 20,
         })
           .then((data) => {
             if (!data?.length) {
@@ -38,7 +38,7 @@ export default function LoadNotifications({}: Props) {
           });
       }
     } else {
-      getNotificationsAction({ limitFrom: 0, limitTo: 5 })
+      getNotificationsAction({ limitFrom: 0, limitTo: 20 })
         .then((data) => {
           if (!data?.length) {
             setShowLoader(false);
@@ -49,13 +49,14 @@ export default function LoadNotifications({}: Props) {
           console.log(err);
         });
     }
-  }, [inView, notifications.length]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [inView]);
   return (
     <React.Fragment>
       {notifications?.map((item: any, index: number) => {
         return item;
       })}
-      {showLoader ? (
+      {showLoader && notifications.length >= 20 ? (
         <div ref={ref}>
           <SingleUserSkeleton />{" "}
         </div>

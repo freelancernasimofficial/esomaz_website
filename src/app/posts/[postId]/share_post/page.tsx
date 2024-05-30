@@ -41,7 +41,7 @@ export default async function page({ params }: Props) {
     redirect(`/user/${getUsername(user)}`);
   }
   return (
-    <div className='container'>
+    <div className='container pt-3'>
       <div className='centerCardSmall rounded-lg bg-white overflow-hidden shadow'>
         <div className='flex justify-between mb-1 px-4 pt-4'>
           <div className='flex'>

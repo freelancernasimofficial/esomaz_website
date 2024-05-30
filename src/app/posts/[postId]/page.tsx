@@ -19,7 +19,7 @@ export default async function page({ params }: Props) {
   }
 
   return (
-    <div className='container pb-10'>
+    <div className='container pt-3 pb-10'>
       <div className='md:flex centerCard'>
         <div className='centerCardMobile md:w-2/4'>
           <div className='md:pr-2'>

@@ -44,13 +44,14 @@ export default function LoadFriends({ userId }: Props) {
           console.log(err);
         });
     }
-  }, [friends.length, inView, userId]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [inView, userId]);
   return (
     <React.Fragment>
       {friends?.map((item: any, index: number) => {
         return item;
       })}
-      {showLoader ? (
+      {showLoader && friends.length >= 20 ? (
         <div className='mt-4' ref={ref}>
           <SingleUserSkeleton />
         </div>
