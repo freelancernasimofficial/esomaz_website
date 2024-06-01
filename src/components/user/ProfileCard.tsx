@@ -178,7 +178,12 @@ export default async function ProfileCard({ user }: Props) {
               <GetFriendButton />
               <GetFollowButton />
               {currentUser?.id !== user?.id && (
-                <button className='btn'>Message</button>
+                <Link
+                  href={`/messages/${user?.uuId}`}
+                  className='btn flex items-center'
+                >
+                  Message
+                </Link>
               )}
             </div>
           </div>
