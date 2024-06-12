@@ -8,13 +8,12 @@ type Props = {
 
 export default async function page(props: Props) {
   return (
-    <div className='container pt-3'>
-      <div className='centerCardSmall bg-white rounded-lg p-4'>
-        <h2 className='font-bold  mb-4'>Notifications</h2>
-
-        <div className='flex flex-col w-full'>
-          <LoadNotifications />
-        </div>
+    <div className='bg-white'>
+      <h2 className='font-bold  mb-4 h-12 flex items-center fixed w-full top-16 bg-white px-4 shadow'>
+        Notifications
+      </h2>
+      <div className='flex flex-col w-full px-4 mt-12'>
+        <LoadNotifications />
       </div>
     </div>
   );

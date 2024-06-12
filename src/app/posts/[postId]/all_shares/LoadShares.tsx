@@ -38,7 +38,7 @@ export default function LoadShares({ postuuId }: Props) {
       getPostShares({
         postuuId,
         limitFrom: 0,
-        limitTo: 20,
+        limitTo: 50,
       })
         .then((data) => {
           if (data?.length) {
@@ -50,6 +50,11 @@ export default function LoadShares({ postuuId }: Props) {
         .catch((err) => {
           setShowLoader(false);
           console.log(err);
+        })
+        .finally(() => {
+          if (shares.length >= 20 === false) {
+            setShowLoader(false);
+          }
         });
     }
 

@@ -10,7 +10,7 @@ type Props = {
 
 export default async function page({ params }: Props) {
   return (
-    <div className=' bg-white mt-2 rounded-lg'>
+    <div className='bg-white w-full px-2 mt-2'>
       <LoadPostReactions
         reactionType={params?.reactionType}
         postuuId={params?.postId}

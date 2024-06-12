@@ -1,4 +1,4 @@
-import { changeCoverPhotoAction } from "@/actions/userActions";
+import { changeCoverPhotoAction } from "@/actions/user/userActions";
 import SubmitButton from "@/components/button/SubmitButton";
 import FileUploadButton from "@/components/others/FileUploadButton";
 import CookieStore from "@/library/CookieStore";

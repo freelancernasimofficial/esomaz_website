@@ -15,7 +15,7 @@ export default function layout({ children, params }: Props) {
   return (
     <React.Fragment>
       {" "}
-      <div className='flex fixed w-full items-center bg-white rounded px-2 h-11 overflow-x-scroll justify-between'>
+      <div className='flex shadow fixed w-full items-center bg-white rounded px-2 h-11 overflow-x-scroll justify-between'>
         <Link
           href={`/posts/${params?.postId}/comment_reactions/${params.commentId}/all`}
           tabIndex={-1}
@@ -205,9 +205,7 @@ export default function layout({ children, params }: Props) {
           />
         </Link>
       </div>
-      <div className='container pt-11 '>
-        <div className='bg-transparent overflow-hidden'>{children}</div>
-      </div>
+      <div className='bg-white pt-11 '>{children}</div>
     </React.Fragment>
   );
 }

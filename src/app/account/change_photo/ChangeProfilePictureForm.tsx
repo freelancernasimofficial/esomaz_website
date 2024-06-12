@@ -1,4 +1,4 @@
-import { changeProfilePictureAction } from "@/actions/userActions";
+import { changeProfilePictureAction } from "@/actions/user/userActions";
 import SubmitButton from "@/components/button/SubmitButton";
 import FileUploadButton from "@/components/others/FileUploadButton";
 import Avatar from "@/components/user/Avatar";

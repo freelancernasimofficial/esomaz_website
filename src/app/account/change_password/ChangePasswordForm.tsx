@@ -1,4 +1,4 @@
-import { changePasswordAction } from "@/actions/userActions";
+import { changePasswordAction } from "@/actions/user/userActions";
 import SubmitButton from "@/components/button/SubmitButton";
 import CookieStore from "@/library/CookieStore";
 import React from "react";

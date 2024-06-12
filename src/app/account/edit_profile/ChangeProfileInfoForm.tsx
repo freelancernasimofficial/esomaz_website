@@ -2,7 +2,7 @@ import getCountriesAction from "@/actions/getCountriesAction";
 import {
   changeProfileInfoAction,
   getUserInformations,
-} from "@/actions/userActions";
+} from "@/actions/user/userActions";
 import SubmitButton from "@/components/button/SubmitButton";
 import CookieStore from "@/library/CookieStore";
 import auth from "@/library/auth";
