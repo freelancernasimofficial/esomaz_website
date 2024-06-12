@@ -111,7 +111,7 @@ export default function LoadComments({ post }: Props) {
           />
         </div>
       </div>
-      <div className='bg-white mt-4 px-4 rounded-lg'>
+      <div className='bg-white mt-4 px-2 rounded-lg'>
         {" "}
         <h1 className='font-bold  py-3  mb-4 mt-1'>
           Comments ({post?.TotalComments})
