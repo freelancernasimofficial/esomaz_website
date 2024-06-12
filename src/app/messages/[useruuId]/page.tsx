@@ -32,17 +32,23 @@ export default async function page({ params }: Props) {
 
       <div className='p-4'>
         {[...Array(50)].map((item: any, index: any) => {
-          return (
-            <div className='w-full' key={index}>
-              <div className='mb-4 bg-gray-200 rounded-lg p-2 shrink-0'>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Voluptatibus odit odio dignissimos nesciunt doloribus quibusdam
-                itaque deserunt incidunt deleniti! Reiciendis eligendi impedit
-                aut eum laudantium veritatis in dignissimos repellat illo.{" "}
-                <h1 className='font-bold'>{index}</h1>
+          if (index % 2 === 0) {
+            return (
+              <div className='w-full mb-6 flex' key={index}>
+                <div className='bg-gray-200 inline-block rounded-lg p-2 shrink-0 max-w-[70%]'>
+                  Lorem <span className='font-bold'>{index}</span>
+                </div>
               </div>
-            </div>
-          );
+            );
+          } else {
+            return (
+              <div className='w-full mb-6 flex justify-end' key={index}>
+                <div className='bg-blue-700 text-white inline-block rounded-lg p-2 shrink-0 max-w-[70%]'>
+                  Lorem <span className='font-bold'>{index}</span>
+                </div>
+              </div>
+            );
+          }
         })}
       </div>
 
