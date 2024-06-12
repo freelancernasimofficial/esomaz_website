@@ -92,20 +92,6 @@ export async function getHomePagePosts(props: {
   return posts;
 }
 
-export async function getPostShares(postuuId: string) {
-  try {
-    const querySharedPosts = await Model.query(
-      `SELECT *,(${getUserByObjectQuery(
-        "P.userId",
-      )}) AS User FROM Posts P WHERE P.sharedId=(SELECT id FROM Posts WHERE uuId=${postuuId}) ORDER BY P.id DESC`,
-    );
-
-    return querySharedPosts;
-  } catch (error) {
-    return undefined;
-  }
-}
-
 export async function getProfilePosts({
   userId,
   limitFrom,
