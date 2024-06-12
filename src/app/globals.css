@@ -34,10 +34,10 @@
     @apply w-[96%] max-w-[96%] sm2:w-[97%] sm2:max-w-[97%] 2xl:max-w-screen-xl;
   }
   .svgCircleButton {
-    @apply h-10 w-10 hover:bg-gray-100 border-2 border-transparent focus:border-blue-200 rounded-full flex justify-center items-center [&_svg]:w-6 [&_svg]:h-6  m-0 p-0 shrink-0 active:scale-95 transition-transform;
+    @apply h-8 w-8 hover:bg-gray-100 border-2 border-transparent focus:border-blue-200 rounded-full flex justify-center items-center [&_svg]:w-5 [&_svg]:h-5  m-0 p-0 shrink-0 active:scale-95 transition-transform;
   }
   .svgCircleButtonSmall {
-    @apply h-8 w-8 hover:bg-gray-100  rounded-full flex justify-center items-center [&_svg]:w-5 [&_svg]:h-5  m-0 p-0 shrink-0 active:scale-95 transition-transform;
+    @apply h-7 w-7 hover:bg-gray-100  rounded-full flex justify-center items-center [&_svg]:w-4 [&_svg]:h-4  m-0 p-0 shrink-0 active:scale-95 transition-transform;
   }
   .centerCard {
     @apply max-w-screen-lg mx-auto;

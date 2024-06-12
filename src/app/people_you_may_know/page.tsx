@@ -12,7 +12,7 @@ type Props = {};
 export default async function page({}: Props) {
   return (
     <div className='bg-white'>
-      <h1 className='font-semibold  bg-white shadow px-4 h-10 flex items-center fixed w-full'>
+      <h1 className='font-bold  bg-white shadow px-4 h-10 flex items-center fixed w-full'>
         People You May Know
       </h1>
       <div className='h-10 w-full'></div>

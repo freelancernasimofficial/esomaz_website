@@ -54,7 +54,7 @@ export default async function Header({}: Props) {
                   <IconChat />
                 </button>
               </Link>
-              <div className='p-0 ml-4 h-10 w-10 overflow-hidden rounded-full'>
+              <div className='p-0 ml-4 h-8 w-8 overflow-hidden rounded-full'>
                 <Avatar href='/account' user={currentUser} />
               </div>
             </div>
