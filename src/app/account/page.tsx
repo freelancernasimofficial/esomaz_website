@@ -25,7 +25,7 @@ export default async function page({}: Props) {
   const user = await auth();
 
   return (
-    <div className='container mt-4'>
+    <div className='px-4 mt-4'>
       <div className='centerCardSmall mb-4'>
         <div className='w-full bg-white rounded-lg p-4 flex flex-col items-center justify-center border-b border-b-gray-200'>
           <div className='flex flex-col justify-center items-center'>
