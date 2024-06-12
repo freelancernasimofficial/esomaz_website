@@ -13,9 +13,9 @@ type Props = {
 
 export default function layout({ children, params }: Props) {
   return (
-    <React.Fragment>
+    <div className='bg-white'>
       {" "}
-      <div className='flex shadow fixed w-full items-center bg-white rounded px-2 h-11 overflow-x-scroll justify-between'>
+      <div className='flex shadow fixed w-screen items-center bg-white rounded px-4 h-11 overflow-x-scroll justify-between'>
         <Link
           href={`/posts/${params?.postId}/comment_reactions/${params.commentId}/all`}
           tabIndex={-1}
@@ -205,7 +205,8 @@ export default function layout({ children, params }: Props) {
           />
         </Link>
       </div>
-      <div className='bg-white pt-11 '>{children}</div>
-    </React.Fragment>
+      <div className='w-full h-11'></div>
+      <div className='p-4'> {children}</div>
+    </div>
   );
 }

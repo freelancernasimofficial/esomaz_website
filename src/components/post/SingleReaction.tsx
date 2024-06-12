@@ -13,7 +13,7 @@ export default function SingleReaction({ item }: Props) {
   return (
     <div
       key={item?.id?.toString()}
-      className='px-2 py-1 flex items-center justify-between border-b border-b-gray-100'
+      className='w-full py-1 flex items-center justify-between border-b border-b-gray-100'
     >
       <div className='flex items-center'>
         {" "}
@@ -31,7 +31,7 @@ export default function SingleReaction({ item }: Props) {
         <Image
           width={80}
           height={80}
-          className='w-6 h-6'
+          className='w-6 h-6 mr-1'
           alt='reaction'
           src={`/reactions/${item?.type}.png`}
         />

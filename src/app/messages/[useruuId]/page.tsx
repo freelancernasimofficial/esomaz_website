@@ -16,52 +16,33 @@ export default async function page({ params }: Props) {
   const friend = await getSingleUserByuuId(params.useruuId);
 
   return (
-    <section className='bg-white'>
-      <div className='h-12 bg-blue-700 text-white border-b fixed w-full z-20 flex items-center px-3'>
-        <div className='flex items-center'>
-          <Avatar className='border border-white' user={friend} />{" "}
-          <div className='ml-2 leading-4'>
-            <div className='font-semibold text-sm'>{getFullName(friend)}</div>
-            <div className='text-xs'>Few moments ago</div>
+    <section className='bg-white w-screen'>
+      <div>
+        <div className='h-12 bg-blue-700 text-white border-b fixed left-0 top-14 w-full z-20 flex items-center px-4'>
+          <div className='flex items-center'>
+            <Avatar className='border border-white' user={friend} />{" "}
+            <div className='ml-2 leading-4'>
+              <div className='font-semibold text-sm'>{getFullName(friend)}</div>
+              <div className='text-xs'>Few moments ago</div>
+            </div>
           </div>
         </div>
+        <div className='h-12 w-full'></div>
       </div>
 
-      <div className='container pt-16 pb-10 min-h-screen flex flex-col'>
+      <div className='p-4'>
         {[...Array(50)].map((item: any, index: any) => {
-          if (index % 2 === 0) {
-            return (
-              <div className='flex w-full' key={index}>
-                {" "}
-                <div className='mr-2 shrink-0'>
-                  <Avatar className='!w-5 !h-5' user={friend} />
-                </div>
-                <div className='mb-4 w-8/12 bg-gray-200 rounded-lg p-2 shrink-0'>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Voluptatibus odit odio dignissimos nesciunt doloribus
-                  quibusdam itaque deserunt incidunt deleniti! Reiciendis
-                  eligendi impedit aut eum laudantium veritatis in dignissimos
-                  repellat illo. <h1 className='font-bold'>{index}</h1>
-                </div>
+          return (
+            <div className='w-full' key={index}>
+              <div className='mb-4 bg-gray-200 rounded-lg p-2 shrink-0'>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Voluptatibus odit odio dignissimos nesciunt doloribus quibusdam
+                itaque deserunt incidunt deleniti! Reiciendis eligendi impedit
+                aut eum laudantium veritatis in dignissimos repellat illo.{" "}
+                <h1 className='font-bold'>{index}</h1>
               </div>
-            );
-          } else {
-            return (
-              <div className='flex w-full justify-end' key={index}>
-                {" "}
-                <div className='mb-4 w-8/12 bg-gray-200 rounded-lg p-2 shrink-0'>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Voluptatibus odit odio dignissimos nesciunt doloribus
-                  quibusdam itaque deserunt incidunt deleniti! Reiciendis
-                  eligendi impedit aut eum laudantium veritatis in dignissimos
-                  repellat illo. <h1 className='font-bold'>{index}</h1>
-                </div>{" "}
-                <div className='ml-2 shrink-0'>
-                  <Avatar className='!w-5 !h-5' user={friend} />
-                </div>
-              </div>
-            );
-          }
+            </div>
+          );
         })}
       </div>
 

@@ -10,11 +10,9 @@ type Props = {
 
 export default async function page({ params }: Props) {
   return (
-    <div className=' bg-white mt-2 rounded-lg'>
-      <LoadCommentReactions
-        reactionType={params?.reactionType}
-        commentId={params?.commentId}
-      />
-    </div>
+    <LoadCommentReactions
+      reactionType={params?.reactionType}
+      commentId={params?.commentId}
+    />
   );
 }

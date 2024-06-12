@@ -15,9 +15,9 @@ export default async function Header({}: Props) {
   const totalNotifications = await getTotalNotifications();
 
   return currentUser ? (
-    <React.Fragment>
-      <header className='h-16 bg-white border-b border-b-gray-200 fixed w-full top-0 z-20'>
-        <div className='container h-full'>
+    <div className='w-screen'>
+      <header className='h-14 bg-white border-b border-b-gray-200 fixed w-full left-0 top-0 z-20'>
+        <div className='px-4 h-full'>
           <div className='flex items-center justify-between h-full'>
             <Link href='/' className='block flex-1 min-w-28 shrink-0'>
               <Image
@@ -61,7 +61,7 @@ export default async function Header({}: Props) {
           </div>
         </div>
       </header>
-      <div className='w-full h-16'></div>
-    </React.Fragment>
+      <div className='w-screen h-14'></div>
+    </div>
   ) : null;
 }

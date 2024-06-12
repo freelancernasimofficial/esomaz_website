@@ -11,11 +11,12 @@ type Props = {};
 
 export default async function page({}: Props) {
   return (
-    <div className='pt-11 bg-white'>
-      <h2 className='font-semibold  bg-white shadow px-4 h-10 flex top-16 items-center fixed w-full'>
+    <div className='bg-white'>
+      <h1 className='font-semibold  bg-white shadow px-4 h-10 flex items-center fixed w-full'>
         People You May Know
-      </h2>
-      <div className='bg-white px-4 mt-2'>
+      </h1>
+      <div className='h-10 w-full'></div>
+      <div className='p-4'>
         <LoadPeople />
       </div>
     </div>

@@ -70,7 +70,7 @@ export default function LoadCommentReactions({
       })}
       {showLoader && reactions?.length >= 20 ? (
         <div ref={ref}>
-          <SingleUserSkeleton className='mt-4 mx-2' />
+          <SingleUserSkeleton className='mt-4' />
         </div>
       ) : null}
     </React.Fragment>
