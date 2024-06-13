@@ -1,13 +1,15 @@
 "use client";
 
 import getOfficialValue from "@/actions/official/getOfficialValue";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 type Props = {};
 
 export default function DepositForm({}: Props) {
   const [number, setNumber] = useState({ wallet: "", number: "" });
-
+  const [deposit, setDeposit] = useState("");
+  const [transID, setTransId] = useState("");
+  const [receive, setReceive] = useState<any>();
   const handleCopy = (text: string) => {
     navigator.clipboard.writeText(text);
     alert("Number Copied");
@@ -18,6 +20,20 @@ export default function DepositForm({}: Props) {
 
     setNumber({ wallet: text, number: n });
   };
+
+  useEffect(() => {
+    getOfficialValue("USD_RATE")
+      .then((data) => {
+        if (deposit.length) {
+          setReceive(Number(Number(deposit) / Number(data)).toFixed(2));
+        } else {
+          setReceive(0);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [deposit]);
 
   return (
     <div className='p-3'>
@@ -70,15 +86,23 @@ export default function DepositForm({}: Props) {
         ) : null}
         <div>
           <input
+            value={deposit}
+            onChange={(e: any) => setDeposit(e.target.value)}
             type='number'
             className='w-full block mb-4'
             placeholder='Deposit Amount'
           />
           <input
+            value={transID}
+            onChange={(e) => setTransId(e.target.value)}
             type='text'
             className='w-full block mb-4'
             placeholder='Transaction ID'
           />
+
+          <div className='p-2 mb-4 rounded-lg text-center bg-gray-200 font-bold'>
+            Your Will Get: ${receive}
+          </div>
 
           <button className='btn btn-primary w-full'>
             Submit for Approval
