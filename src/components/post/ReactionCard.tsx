@@ -195,7 +195,7 @@ export default function ReactionCard({ currentReaction, onClick }: Props) {
           onClick={() => onClick("thumbsup")}
           className='svgCircleButtonSmall'
         >
-          <IconLikeOutlined />
+          <IconLikeOutlined className='!w-6 !h-5' />
         </button>
       )}
     </div>

@@ -267,7 +267,7 @@ export default function PostCard({ item, fullText }: Props) {
           className='flex items-center flex-1 justify-center'
         >
           <button className='svgCircleButtonSmall'>
-            <IconChat />
+            <IconChat className='!w-6 !h-5' />
           </button>
         </Link>
 
@@ -277,7 +277,7 @@ export default function PostCard({ item, fullText }: Props) {
           }/share_post`}
           className='svgCircleButtonSmall'
         >
-          <IconShareOutline />
+          <IconShareOutline className='!w-6 !h-5' />
         </Link>
       </div>
     </div>
