@@ -100,9 +100,11 @@ export default function DepositForm({}: Props) {
             placeholder='Transaction ID'
           />
 
-          <div className='p-2 mb-4 rounded-lg text-center bg-gray-200 font-bold'>
-            Your Will Get: ${receive}
-          </div>
+          {receive?.length ? (
+            <div className='p-2 animate-fade mb-4 rounded-lg text-center bg-gray-100 font-bold'>
+              Your Will Get: ${Number(receive)} USD
+            </div>
+          ) : null}
 
           <button className='btn btn-primary w-full'>
             Submit for Approval
