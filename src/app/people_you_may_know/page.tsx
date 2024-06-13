@@ -6,17 +6,15 @@ import getUsername from "@/library/getUsername";
 import Avatar from "@/components/user/Avatar";
 import peopleYouMayKnowAction from "@/actions/user/peopleYouMayKnowAction";
 import LoadPeople from "./LoadPeople";
+import PageTitle from "@/components/layout/PageTitle";
 
 type Props = {};
 
 export default async function page({}: Props) {
   return (
-    <div className='bg-white'>
-      <h1 className='font-bold  bg-white shadow px-4 h-10 flex items-center fixed w-full'>
-        People You May Know
-      </h1>
-      <div className='h-10 w-full'></div>
-      <div className='p-4'>
+    <div>
+      <PageTitle title='People You May Know' />
+      <div className='p-3'>
         <LoadPeople />
       </div>
     </div>

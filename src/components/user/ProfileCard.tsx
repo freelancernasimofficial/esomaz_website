@@ -2,7 +2,7 @@ import Link from "next/link";
 import React from "react";
 import getFullName from "@/library/getFullName";
 
-import auth from "@/library/auth";
+import auth from "@/actions/user/auth";
 import UserStatistics from "./UserStatistics";
 import getSubtitle from "@/library/getSubtitle";
 import getUsername from "@/library/getUsername";
@@ -169,7 +169,7 @@ export default async function ProfileCard({ user }: Props) {
           {getSubtitle(user)}
         </span>
 
-        <div className='container mt-4'>
+        <div className='p-3'>
           <div className='flex flex-col justify-center items-center'>
             <div className='flex items-center flex-1 '>
               <UserStatistics user={user} />

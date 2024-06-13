@@ -12,7 +12,7 @@ type Props = {
 
 export default function SingleNotification({ item }: Props) {
   return (
-    <div className='flex items-start py-2'>
+    <div className='flex items-start  mb-2 bg-white p-2 rounded-lg'>
       <div className='w-9 h-9 overflow-hidden shrink-0 rounded-full'>
         <Avatar user={item?.SenderUser} />
       </div>

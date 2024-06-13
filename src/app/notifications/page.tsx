@@ -1,5 +1,6 @@
 import React from "react";
 import LoadNotifications from "./LoadNotifications";
+import PageTitle from "@/components/layout/PageTitle";
 
 type Props = {
   params: any;
@@ -8,12 +9,9 @@ type Props = {
 
 export default async function page(props: Props) {
   return (
-    <div className='bg-white'>
-      <h1 className='font-bold h-10 flex items-center fixed w-full  bg-white px-4 shadow'>
-        Notifications
-      </h1>
-      <div className='w-full h-10'></div>
-      <div className='p-4'>
+    <div className=''>
+      <PageTitle title='Notifications' />
+      <div className='p-3'>
         <LoadNotifications />
       </div>
     </div>

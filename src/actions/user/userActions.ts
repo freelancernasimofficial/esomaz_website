@@ -2,7 +2,7 @@
 
 import CookieStore from "@/library/CookieStore";
 import Validations from "@/library/Validations";
-import auth from "@/library/auth";
+import auth from "@/actions/user/auth";
 import getUserByObjectQuery from "@/library/getUserByObjectQuery";
 import Model from "@/model/Model";
 import { revalidatePath } from "next/cache";

@@ -7,7 +7,7 @@ type Props = {};
 
 export default async function RightSidebar({}: Props) {
   return (
-    <div className='hidden lg:flex max-w-96 w-full full-height sticky top-20  flex-col pl-6'>
+    <div className='hidden lg:flex max-w-96 w-full full-height sticky top-18  flex-col pl-6'>
       <div className='bg-white shadow p-4 rounded-lg overflow-hidden '>
         <div className='flex justify-between items-center pb-3'>
           <h2 className='font-semibold '>Latest Jobs</h2>

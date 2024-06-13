@@ -6,7 +6,7 @@ type Props = {};
 
 export default function error({}: Props) {
   return (
-    <div className='container'>
+    <div className='p-3'>
       <div className='centerCardMobile bg-white h-40 shadow flex justify-center items-center mt-10'>
         <div className='flex flex-col items-center justify-center'>
           {" "}

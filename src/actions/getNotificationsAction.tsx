@@ -1,7 +1,7 @@
 "use server";
 
 import SingleNotification from "@/app/notifications/SingleNotification";
-import auth from "@/library/auth";
+import auth from "@/actions/user/auth";
 import getUserByObjectQuery from "@/library/getUserByObjectQuery";
 import Model from "@/model/Model";
 

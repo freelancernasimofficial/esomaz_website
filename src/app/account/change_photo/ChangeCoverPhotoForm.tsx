@@ -2,7 +2,7 @@ import { changeCoverPhotoAction } from "@/actions/user/userActions";
 import SubmitButton from "@/components/button/SubmitButton";
 import FileUploadButton from "@/components/others/FileUploadButton";
 import CookieStore from "@/library/CookieStore";
-import auth from "@/library/auth";
+import auth from "@/actions/user/auth";
 import { AWS_S3_PHOTO_API_URL } from "@/library/constants";
 import Model from "@/model/Model";
 import Image from "next/image";

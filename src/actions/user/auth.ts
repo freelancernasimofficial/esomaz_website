@@ -1,7 +1,7 @@
 "use server";
+import Model from "@/model/Model";
 import jwt from "jsonwebtoken";
 import { cookies } from "next/headers";
-import Model from "../model/Model";
 export type SessionType =
   | {
       id: number;

@@ -12,17 +12,17 @@ export default async function page({}: Props) {
   const success = cookies().get("success")?.value;
 
   return (
-    <div className='container'>
-      <div className=' max-w-screen-sm2 mx-auto bg-white rounded-lg p-6 mt-20'>
-        <div className='text-center shrink-0 w-12 h-12 mx-auto mb-4'>
-          <Image
-            className='w-full h-full'
-            src='/images/static/logo-icon.png'
-            height={80}
-            width={80}
-            alt='logo'
-          />
-        </div>
+    <div className='p-3 w-screen h-screen flex items-center flex-col justify-center'>
+      <div className='text-center shrink-0 w-12 h-12 mx-auto mb-4'>
+        <Image
+          className='w-full h-full'
+          src='/images/static/logo-icon.png'
+          height={80}
+          width={80}
+          alt='logo'
+        />
+      </div>
+      <div className='max-w-screen-sm2 w-full  mx-auto bg-white rounded-lg p-6 '>
         <h2 className='font-bold '>eSomaz Login</h2>
         <form action={loginAction} className='mt-4'>
           <input

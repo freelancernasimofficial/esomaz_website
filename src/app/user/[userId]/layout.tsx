@@ -14,7 +14,7 @@ export default async function UserLayout({ params, children }: Props) {
   const user = await getFullUserByUsername(params?.userId);
 
   return (
-    <div className='container pt-3'>
+    <div className='p-3'>
       <div className='centerCard'>
         <div className='md:flex'>
           <div className='w-full md:w-6/12 md:pr-6'>

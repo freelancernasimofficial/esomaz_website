@@ -25,7 +25,7 @@ export default async function peopleYouMayKnowAction({
     return (
       <div
         key={item?.id?.toString()}
-        className='py-1 flex items-center justify-between border-b border-b-gray-100'
+        className='p-2 flex items-center justify-between mb-3 bg-white rounded-lg'
       >
         <div className='flex items-center'>
           {" "}
@@ -35,7 +35,7 @@ export default async function peopleYouMayKnowAction({
               {getFullName(item)}
             </h3>
             <span className=' text-sm  text-gray-500'>
-              {getRelativeTime(item?.createdAt)}
+              Joined {getRelativeTime(item?.createdAt)}
             </span>
           </Link>
         </div>

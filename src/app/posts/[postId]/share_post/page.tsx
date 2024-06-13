@@ -4,7 +4,7 @@ import IconEarth from "@/components/icons/IconEarth";
 import PostPhotos from "@/components/post/PostPhotoSlider";
 import Avatar from "@/components/user/Avatar";
 import CookieStore from "@/library/CookieStore";
-import auth from "@/library/auth";
+import auth from "@/actions/user/auth";
 import getFullName from "@/library/getFullName";
 import getRelativeTime from "@/library/getRelativeTime";
 import getUserByObjectQuery from "@/library/getUserByObjectQuery";
@@ -41,7 +41,7 @@ export default async function page({ params }: Props) {
     redirect(`/user/${getUsername(user)}`);
   }
   return (
-    <div className='container pt-20'>
+    <div className='p-3'>
       <div className='centerCardSmall rounded-lg bg-white overflow-hidden shadow'>
         <div className='flex justify-between mb-1 px-4 pt-4'>
           <div className='flex'>

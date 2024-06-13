@@ -9,7 +9,7 @@ type Props = {
 
 export default async function page({ params }: Props) {
   return (
-    <div className='container mt-4'>
+    <div className='p-3'>
       <div className='centerCardSmall bg-white rounded-lg'>
         <ReportForm
           itemId={Number(params.commentId)}

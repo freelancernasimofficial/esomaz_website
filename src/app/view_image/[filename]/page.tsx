@@ -10,7 +10,7 @@ type Props = {
 
 export default function page({ params }: Props) {
   return (
-    <div className='container mb-4'>
+    <div className='p-3 mb-4'>
       <div className='centerCardSmall shadow rounded-lg overflow-hidden bg-white'>
         <Image
           priority={true}

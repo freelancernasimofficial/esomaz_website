@@ -5,8 +5,8 @@ type Props = {};
 
 export default async function pagee({}: Props) {
   return (
-    <div className='container pt-3'>
-      <div className='centerCardMobile bg-white p-2'>
+    <div className='p-3'>
+      <div className='centerCardMobile bg-white p-4'>
         <NewPostForm />
       </div>
     </div>

@@ -5,11 +5,11 @@ import HomePagePosts from "@/components/home/HomePagePosts";
 
 export default async function Home() {
   return (
-    <div className='px-4'>
+    <div className='px-3'>
       <div className='flex justify-between'>
         <LeftSidebar />
         <div className='lg2:max-w-[600px] w-full overflow-hidden'>
-          <PostForm className='mt-6' />
+          <PostForm className='mt-3.5' />
           <HomePagePosts />
         </div>
         <RightSidebar />

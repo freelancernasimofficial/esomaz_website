@@ -13,7 +13,7 @@ import IconRss from "@/components/icons/IconRss";
 import IconUser from "@/components/icons/IconUser";
 import IconUsers from "@/components/icons/IconUsers";
 import Avatar from "@/components/user/Avatar";
-import auth from "@/library/auth";
+import auth from "@/actions/user/auth";
 import getFullName from "@/library/getFullName";
 import getUsername from "@/library/getUsername";
 import Link from "next/link";
@@ -86,7 +86,7 @@ export default async function page({}: Props) {
           <h2 className='font-bold '>Payments</h2>
           <div className='mt-1'>
             <Link
-              href='#'
+              href='/account/payments/deposits'
               className='flex items-center w-full  py-2 hover:text-primary-main'
             >
               <IconCashPlus className='w-7 h-7' />{" "}
@@ -95,7 +95,7 @@ export default async function page({}: Props) {
               </span>
             </Link>
             <Link
-              href='#'
+              href='/account/payments/withdraw'
               className='flex items-center w-full  py-2 hover:text-primary-main'
             >
               <IconMoneyDollarCircleLine className='w-7 h-7' />{" "}

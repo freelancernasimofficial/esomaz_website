@@ -15,14 +15,12 @@ export default async function page({ params }: Props) {
   );
 
   return (
-    <div className='container'>
-      <div className='centerCardSmall bg-white rounded-lg'>
-        <ReportForm
-          itemId={Number(getUser.id)}
-          reportType='user'
-          title='Report User'
-        />
-      </div>
+    <div className='centerCardSmall bg-white rounded-lg'>
+      <ReportForm
+        itemId={Number(getUser.id)}
+        reportType='user'
+        title='Report User'
+      />
     </div>
   );
 }

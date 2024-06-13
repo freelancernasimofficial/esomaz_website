@@ -7,7 +7,7 @@ import React from "react";
 import IconPersonWorkspace from "../icons/IconPersonWorkspace";
 import IconRss from "../icons/IconRss";
 import IconProject from "../icons/IconProject";
-import auth from "@/library/auth";
+import auth from "@/actions/user/auth";
 import getUsername from "@/library/getUsername";
 import IconFindUser from "../icons/IconFindUser";
 
@@ -16,7 +16,7 @@ type Props = {};
 export default async function LeftSidebar({}: Props) {
   const currentUser = await auth();
   return (
-    <div className='sm:max-w-72 md2:max-w-96  w-full full-height sticky top-20 hidden sm:flex flex-col pr-6'>
+    <div className='sm:max-w-72 md2:max-w-96  w-full full-height sticky top-18 hidden sm:flex flex-col pr-6'>
       <div className='bg-white shadow mb-4 p-4 rounded-lg h-full'>
         <h2 className='mb-1 font-semibold  '>Freelancing</h2>
 

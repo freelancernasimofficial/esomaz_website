@@ -1,10 +1,9 @@
 import { getSingleUserByuuId } from "@/actions/user/userActions";
 import IconSendCircle from "@/components/icons/IconSendCircle";
-import SingleUserSkeleton from "@/components/skeletons/SingleUserSkeleton";
 import Avatar from "@/components/user/Avatar";
 import getFullName from "@/library/getFullName";
-import getUsername from "@/library/getUsername";
 import React from "react";
+import LoadMessages from "./LoadMessages";
 
 type Props = {
   params: {
@@ -30,27 +29,7 @@ export default async function page({ params }: Props) {
         <div className='h-12 w-full'></div>
       </div>
 
-      <div className='p-4'>
-        {[...Array(50)].map((item: any, index: any) => {
-          if (index % 2 === 0) {
-            return (
-              <div className='w-full mb-6 flex' key={index}>
-                <div className='bg-gray-200 inline-block rounded-lg p-2 shrink-0 max-w-[70%]'>
-                  Lorem <span className='font-bold'>{index}</span>
-                </div>
-              </div>
-            );
-          } else {
-            return (
-              <div className='w-full mb-6 flex justify-end' key={index}>
-                <div className='bg-blue-700 text-white inline-block rounded-lg p-2 shrink-0 max-w-[70%]'>
-                  Lorem <span className='font-bold'>{index}</span>
-                </div>
-              </div>
-            );
-          }
-        })}
-      </div>
+      <LoadMessages />
 
       <div>
         <div className='h-12 w-full'></div>
@@ -62,10 +41,10 @@ export default async function page({ params }: Props) {
             rows={1}
           ></textarea>
           <button
-            className='bg-blue-700 text-white flex items-center justify-center w-16 h-full active:rounded active:scale-75 
+            className='bg-blue-700 text-white flex items-center justify-center w-12 h-full active:rounded active:scale-75 
          duration-300'
           >
-            <IconSendCircle className='w-7 h-7' />
+            <IconSendCircle className='w-6 h-6' />
           </button>
         </div>
       </div>

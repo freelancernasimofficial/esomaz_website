@@ -4,7 +4,7 @@ import IconSearch from "../icons/IconSearch";
 import IconBell from "../icons/IconBell";
 import IconChat from "../icons/IconChat";
 import Link from "next/link";
-import auth from "@/library/auth";
+import auth from "@/actions/user/auth";
 import Avatar from "../user/Avatar";
 import { getTotalNotifications } from "@/actions/getNotificationsAction";
 
@@ -17,7 +17,7 @@ export default async function Header({}: Props) {
   return currentUser ? (
     <div className='w-screen'>
       <header className='h-14 bg-white border-b border-b-gray-200 fixed w-full left-0 top-0 z-20'>
-        <div className='px-4 h-full'>
+        <div className='px-3 h-full'>
           <div className='flex items-center justify-between h-full'>
             <Link href='/' className='block flex-1 min-w-28 shrink-0'>
               <Image

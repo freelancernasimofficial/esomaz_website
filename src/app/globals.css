@@ -19,7 +19,7 @@
     @apply outline-none border-[1.9px] border-transparent bg-gray-100 h-10 rounded-lg px-2 focus:border-primary-main focus-within:border-primary-main focus:outline-none placeholder:text-slate-700  font-medium;
   }
   textarea {
-    @apply bg-gray-100 p-2 rounded-lg  placeholder:text-gray-800 font-medium;
+    @apply bg-gray-100 border border-gray-200 p-2 rounded-lg  placeholder:text-gray-800 font-medium;
   }
   select {
     @apply bg-gray-100 p-2 rounded-lg  font-medium text-sm;
@@ -30,9 +30,7 @@
   .full-height {
     @apply h-[calc(100vh-100px)];
   }
-  .container {
-    @apply w-[96%] max-w-[96%] sm2:w-[97%] sm2:max-w-[97%] 2xl:max-w-screen-xl;
-  }
+
   .svgCircleButton {
     @apply h-8 w-8 hover:bg-gray-100 border-2 border-transparent focus:border-blue-200 rounded-full flex justify-center items-center [&_svg]:w-5 [&_svg]:h-5  m-0 p-0 shrink-0 active:scale-95 transition-transform;
   }

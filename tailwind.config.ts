@@ -12,6 +12,9 @@ const config: Config = {
       center: true,
     },
     extend: {
+      spacing: {
+        18: "68px",
+      },
       colors: {
         primary: {
           main: "#0B4FFF",
