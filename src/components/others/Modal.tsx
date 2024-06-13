@@ -15,7 +15,7 @@ export default function Modal({ children, onClickBackdrop, className }: Props) {
         className='bg-black bg-opacity-20 h-screen w-screen absolute left-0 top-0'
       ></div>
       <div
-        className={`centerCardSmall w-[97%] bg-white p-3 rounded-lg absolute z-50 left-2/4 -translate-x-2/4 top-2/4 -translate-y-2/4 ${
+        className={`centerCardSmall w-[94%] bg-white p-4 rounded-lg absolute z-50 left-2/4 -translate-x-2/4 top-2/4 -translate-y-2/4 ${
           className ? className : ""
         }`}
       >

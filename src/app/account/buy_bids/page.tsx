@@ -7,7 +7,6 @@ type Props = {};
 
 export default async function page({}: Props) {
   const bids = await getBidPacks();
-  console.log(bids);
 
   return (
     <section>
