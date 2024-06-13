@@ -91,7 +91,7 @@ export default function BidPackList({ bids }: Props) {
                 key={bid?.id?.toString()}
               >
                 <th>{bid?.id}</th>
-                <th>{bid?.bids}</th>
+                <th>{bid?.bids} BIDS</th>
                 <th>${Number(bid?.price).toFixed(2)} USD</th>
                 <td>
                   <button
