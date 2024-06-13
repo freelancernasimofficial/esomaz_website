@@ -47,7 +47,7 @@
     @apply max-w-screen-sm2 mx-auto  rounded-lg;
   }
   .btn {
-    @apply h-10 px-3 rounded-md bg-gray-100 hover:bg-gray-300 font-semibold  active:scale-95 transition-transform cursor-pointer;
+    @apply h-10 flex items-center justify-center px-3 rounded-md bg-gray-100 hover:bg-gray-300 font-semibold  active:scale-95 transition-transform cursor-pointer;
   }
   .btn-primary {
     @apply bg-primary-main text-white hover:bg-primary-hover;

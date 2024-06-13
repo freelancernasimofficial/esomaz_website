@@ -18,38 +18,58 @@ import getFullName from "@/library/getFullName";
 import getUsername from "@/library/getUsername";
 import Link from "next/link";
 import React from "react";
+import getUserBalance from "@/actions/user/getUserBalance";
+import getUserBidBalance from "@/actions/user/getUserBidBalance";
 
 type Props = {};
 
 export default async function page({}: Props) {
   const user = await auth();
+  //@ts-ignore
+  const userBalance = await getUserBalance(user?.id); //@ts-ignore
+  const bid = await getUserBidBalance(user?.id);
+  console.log(bid);
 
   return (
     <div className='px-4 mt-4'>
       <div className='centerCardSmall mb-4'>
-        <div className='w-full bg-white rounded-lg p-4 flex flex-col items-center justify-center border-b border-b-gray-200'>
-          <div className='flex flex-col justify-center items-center'>
-            {" "}
-            <Avatar
-              className='!w-40 !h-40 border-gray-400 border-4'
-              user={user}
-            />
-            <div className='mt-3'>
+        <div className='flex flex-col   justify-between bg-white rounded-lg p-4'>
+          <div className='flex items-center'>
+            <div className='mr-4'>
+              <Avatar
+                className='!w-12 !h-12 border-gray-400 border'
+                user={user}
+              />
+            </div>
+            <div className='flex flex-col justify-center'>
               <Link
                 href={`/user/${getUsername(user)}`}
                 className='font-semibold text-lg leading-none inline-block '
               >
                 {getFullName(user)}
               </Link>
+              <div className='flex items-center'>
+                <h2 className='font-medium  text-slate-400 mr-2'>Balance:</h2>
+                <div className='  text-green-600 font-bold'>
+                  ${Number(userBalance?.balance).toFixed(2)}{" "}
+                  <span className='text-black '>{userBalance?.currency}</span>
+                </div>
+              </div>
             </div>
           </div>
-          <div className='flex items-center'>
-            <h2 className='font-medium  text-slate-400 mr-2'>Balance:</h2>
-            <div className='font-medium  text-green-600'>
-              $25820.00 <span className='text-black  font-medium'>USD</span>
-            </div>
+          <div className='flex items-center mt-3'>
+            <div className='btn bg-gray-900 hover:bg-gray-800 h-8 text-white text-sm flex-1'>
+              Bids: 147
+            </div>{" "}
+            <Link href='' className='btn text-sm h-8 btn-success mx-3 flex-1'>
+              Add Limit
+            </Link>{" "}
+            <Link href='' className='btn text-sm h-8 btn-primary  flex-1'>
+              Deposit
+            </Link>{" "}
           </div>
         </div>
+
         <div className='w-full bg-white rounded-lg p-4 my-4'>
           <h2 className='font-bold '>Freelancing</h2>
           <div className='mt-1'>
