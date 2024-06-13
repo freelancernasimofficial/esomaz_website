@@ -27,8 +27,7 @@ export default async function page({}: Props) {
   const user = await auth();
   //@ts-ignore
   const userBalance = await getUserBalance(user?.id); //@ts-ignore
-  const bid = await getUserBidBalance(user?.id);
-  console.log(bid);
+  const bids = await getUserBidBalance(user?.id);
 
   return (
     <div className='px-4 mt-4'>
@@ -59,12 +58,18 @@ export default async function page({}: Props) {
           </div>
           <div className='flex items-center mt-3'>
             <div className='btn bg-gray-900 hover:bg-gray-800 h-8 text-white text-sm flex-1'>
-              Bids: 147
+              Bids: {bids}
             </div>{" "}
-            <Link href='' className='btn text-sm h-8 btn-success mx-3 flex-1'>
+            <Link
+              href='/account/buy_bids'
+              className='btn text-sm h-8 btn-success mx-3 flex-1'
+            >
               Add Limit
             </Link>{" "}
-            <Link href='' className='btn text-sm h-8 btn-primary  flex-1'>
+            <Link
+              href='/account/payments/deposits/deposit'
+              className='btn text-sm h-8 btn-primary  flex-1'
+            >
               Deposit
             </Link>{" "}
           </div>
