@@ -22,6 +22,7 @@ export default function DepositForm({}: Props) {
   return (
     <div className='p-3'>
       <div className='p-3 rounded-lg bg-white max-w-screen-sm w-full mx-auto'>
+        <h1 className='font-semibold mb-4'>Select Payment Method</h1>
         <div className='flex items-center justify-between mb-4'>
           <button
             onClick={() => handleGetNumber("BKASH")}
