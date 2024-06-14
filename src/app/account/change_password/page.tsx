@@ -6,11 +6,9 @@ type Props = {};
 export default function page({}: Props) {
   return (
     <div className='p-3'>
-      <div className='centerCardMobile'>
-        <div className='shadow bg-white rounded-lg p-4 mb-4'>
-          <h1 className='font-semibold  mb-4'>Change Password</h1>
-          <ChangePasswordForm />
-        </div>
+      <div className='centerCardMobile shadow bg-white rounded-lg p-4'>
+        <h1 className='font-semibold  mb-4'>Change Password</h1>
+        <ChangePasswordForm />
       </div>
     </div>
   );
