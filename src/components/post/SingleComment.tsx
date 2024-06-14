@@ -130,7 +130,7 @@ export default function SingleComment({ item }: Props) {
   }, [item]);
 
   return comment?.id ? (
-    <div className='mb-3'>
+    <div className='mb-4'>
       {enableEdit === true && (
         <Modal onClickBackdrop={() => setEnableEdit(false)}>
           <h3 className='font-semibold'>Edit Comment</h3>
@@ -163,7 +163,7 @@ export default function SingleComment({ item }: Props) {
         <Avatar className='!w-7 !h-7' user={comment?.User} />
 
         <div className='px-2 flex-1'>
-          <div className='inline-block bg-gray-100 px-2 py-1 rounded-xl'>
+          <div className='inline-block bg-gray-100 px-2 py-1 rounded-lg'>
             <Link
               href={`/user/${getUsername(comment?.User)}`}
               className='inline-block font-medium'
