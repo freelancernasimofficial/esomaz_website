@@ -12,8 +12,8 @@ export default async function page({}: Props) {
     <section>
       <PageTitle title='Recent Deposits'>
         <Link
-          className='flex justify-center items-center px-4 py-1 font-semibold bg-primary-main text-white rounded'
-          href='/account/payments/deposits/deposit'
+          className='btn-sm btn-primary'
+          href='/account/freelancing/payments/deposits/deposit'
         >
           Deposit Money
         </Link>
