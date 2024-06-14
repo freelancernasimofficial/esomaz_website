@@ -17,7 +17,7 @@ export default async function Header({}: Props) {
   return currentUser ? (
     <div className='w-screen'>
       <header className='h-14 flex items-center justify-between bg-white border-b border-b-gray-200 fixed w-screen left-0 top-0 z-20 px-3'>
-        <Link href='/' className='block flex-1 min-w-28 shrink-0'>
+        <Link href='/' className='inline-block shrink-0'>
           <Image
             priority={true}
             width={100}
@@ -28,7 +28,7 @@ export default async function Header({}: Props) {
             src='/images/logo/logo-icon.png'
           />
         </Link>
-        <div className='flex-1 md:block hidden relative'>
+        <div className='md:block hidden relative max-w-screen-xs w-full'>
           <IconSearch className='absolute left-3 top-2/4 -translate-y-2/4 text-gray-400 w-5 h-5' />
           <input
             id='search-friends'
@@ -37,7 +37,7 @@ export default async function Header({}: Props) {
             className='w-full pl-9 rounded-full focus:border-transparent'
           />
         </div>
-        <div className='flex-1 flex items-center justify-end'>
+        <div className='flex items-center justify-end'>
           <Link
             className='relative svgCircleButton bg-gray-100 '
             href='/notifications'
