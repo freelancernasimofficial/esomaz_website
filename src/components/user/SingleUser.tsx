@@ -13,14 +13,15 @@ export default function SingleUser({ user }: Props) {
   return (
     <div className='flex justify-between mt-4'>
       <div className='flex'>
-        <div className='w-9 h-9 overflow-hidden shrink-0 rounded-full'>
-          <Avatar user={user} />
-        </div>
+        <Avatar user={user} />
         <div className='ml-2'>
-          <Link href={`/user/${getUsername(user)}`} className='block'>
-            <h4 className='font-medium capitalize '>{getFullName(user)}</h4>
+          <Link
+            href={`/user/${getUsername(user)}`}
+            className='block font-medium capitalize'
+          >
+            {getFullName(user)}
           </Link>
-          <span className='block text-sm  text-gray-500 leading-3'>
+          <span className='block text-xs  text-gray-500 leading-3'>
             {getSubtitle(user)}
           </span>
         </div>

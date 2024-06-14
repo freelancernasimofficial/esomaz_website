@@ -9,7 +9,7 @@ export default async function page({}: Props) {
   const usdRate = await getOfficialValue("USD_RATE");
 
   return (
-    <section className='h-screen w-screen '>
+    <section className='w-screen '>
       <PageTitle title='Deposit Money' />
 
       <DepositForm usdRate={usdRate} />

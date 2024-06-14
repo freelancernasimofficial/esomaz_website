@@ -49,7 +49,7 @@ export default async function page({}: Props) {
                 <h2 className='font-medium  text-slate-400 mr-2'>Balance:</h2>
                 <div className='  text-green-600 font-bold'>
                   ${Number(userBalance?.balance).toFixed(2)}{" "}
-                  <span className='text-black '>{userBalance?.currency}</span>
+                  <span className='text-black'>{userBalance?.currency}</span>
                 </div>
               </div>
             </div>
@@ -65,7 +65,7 @@ export default async function page({}: Props) {
               Add Bids
             </Link>{" "}
             <Link
-              href='/account/payments/deposits/deposit'
+              href='/account/freelancing/payments/deposits/deposit'
               className='btn-sm btn-primary  flex-1'
             >
               Deposit

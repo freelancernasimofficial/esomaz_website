@@ -19,10 +19,10 @@ export default function SingleReaction({ item }: Props) {
         {" "}
         <Avatar user={item?.User} />{" "}
         <Link href={`/user/${getUsername(item?.User)}`} className='ml-2 block'>
-          <h4 className='font-semibold  leading-none capitalize'>
+          <h4 className='font-medium  leading-none capitalize'>
             {getFullName(item?.User)}
           </h4>
-          <span className='font-medium text-sm  text-gray-500'>
+          <span className='font-medium text-xs  text-gray-500'>
             @{getUsername(item?.User)}
           </span>
         </Link>
