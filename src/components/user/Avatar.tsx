@@ -34,7 +34,7 @@ export default function Avatar({ user, className, href }: Props) {
           height={500}
           width={500}
           alt='user'
-          src={`/images/static/avatars/default-avatar.jpg`}
+          src={`/images/avatars/default-avatar.jpg`}
         />
       )}
     </Link>

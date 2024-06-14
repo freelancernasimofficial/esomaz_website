@@ -14,10 +14,11 @@ export default function PostForm({ className }: Props) {
         className ?? ""
       }`}
     >
-      <Link href='/posts/create_post' className='flex-1 block'>
-        <div className='bg-gray-100 rounded-full  font-medium p-2.5'>
-          What's on your mind?
-        </div>
+      <Link
+        href='/posts/create_post'
+        className='flex-1 block bg-gray-100 rounded-full  font-medium p-2.5'
+      >
+        What's on your mind?
       </Link>
       <Link href='/posts/create_post' className='svgCircleButton ml-4'>
         <IconImagesOutline className='text-green-500' />
