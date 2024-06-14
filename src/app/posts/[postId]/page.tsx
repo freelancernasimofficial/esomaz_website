@@ -23,15 +23,11 @@ export default async function page({ params }: Props) {
       <div className='md:flex centerCard'>
         <div className='centerCardMobile md:w-2/4'>
           <div className='md:pr-2'>
-            {" "}
-            {<PostCard fullText={true} item={post} />}
+            <PostCard fullText={true} item={post} />
           </div>
         </div>
         <div className='centerCardMobile md:pl-2 md:w-2/4'>
-          {" "}
-          <div className=''>
-            <LoadComments post={post} />
-          </div>
+          <LoadComments post={post} />
         </div>
       </div>
     </div>

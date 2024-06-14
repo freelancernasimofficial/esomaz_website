@@ -44,10 +44,11 @@ export default function SharedPostCard({ SharedPost }: Props) {
               </div>
             </div>
           </div>
-          <Link className='p-2' href={`/posts/${SharedPost?.uuId}`}>
-            <button className='btn btn-primary-transparent ! !p-1.5 !h-auto'>
-              View
-            </button>
+          <Link
+            className='btn-sm btn-primary m-2'
+            href={`/posts/${SharedPost?.uuId}`}
+          >
+            View
           </Link>
         </div>
         {SharedPost?.text?.length && (

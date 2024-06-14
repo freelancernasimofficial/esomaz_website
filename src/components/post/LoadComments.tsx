@@ -89,33 +89,28 @@ export default function LoadComments({ post }: Props) {
   return (
     <React.Fragment>
       <div className='bg-white p-4 rounded-lg  mb-4'>
-        <div className='flex flex-col'>
-          <textarea
-            placeholder='Enter comment'
-            className='w-full block bg-gray-100 rounded-lg mb-3 p-2 '
-            name='comment'
-            id=''
-            onChange={(e) => setText(e.target.value)}
-            value={text}
-            cols={30}
-            rows={3}
-          ></textarea>
-          {formStatus.status === false && formStatus.message.length > 0 && (
-            <div className='errorCard'>{formStatus.message}</div>
-          )}
-          <SubmitButtonClient
-            className='btn btn-primary'
-            pending={pending}
-            title='Comment'
-            onClick={handleCommentAction}
-          />
-        </div>
+        <textarea
+          placeholder='Enter comment'
+          className='w-full block bg-gray-100 rounded-lg mb-3 p-2 '
+          name='comment'
+          id=''
+          onChange={(e) => setText(e.target.value)}
+          value={text}
+          cols={30}
+          rows={3}
+        ></textarea>
+        {formStatus.status === false && formStatus.message.length > 0 && (
+          <div className='errorCard'>{formStatus.message}</div>
+        )}
+        <SubmitButtonClient
+          className='btn btn-primary w-full'
+          pending={pending}
+          title='Comment'
+          onClick={handleCommentAction}
+        />
       </div>
-      <div className='bg-white mt-4 px-2 rounded-lg'>
-        {" "}
-        <h1 className='font-bold  py-3  mb-4 mt-1'>
-          Comments ({post?.TotalComments})
-        </h1>
+      <div className='bg-white mt-4 p-3 rounded-lg'>
+        <h1 className='font-bold mb-4'>Comments ({post?.TotalComments})</h1>
         {comments?.map((item: any, index: number) => {
           return <SingleComment key={item?.uuId} item={item} />;
         })}

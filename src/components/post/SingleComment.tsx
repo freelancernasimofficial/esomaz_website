@@ -160,19 +160,17 @@ export default function SingleComment({ item }: Props) {
         </Modal>
       )}
       <div className='flex'>
-        <Avatar className='w-8 h-8' user={comment?.User} />
+        <Avatar className='!w-7 !h-7' user={comment?.User} />
 
         <div className='px-2 flex-1'>
           <div className='inline-block bg-gray-100 px-2 py-1 rounded-xl'>
             <Link
               href={`/user/${getUsername(comment?.User)}`}
-              className='inline-block'
+              className='inline-block font-medium'
             >
-              <h4 className='font-semibold inline-block '>
-                {getFullName(comment?.User)}
-              </h4>
+              {getFullName(comment?.User)}
             </Link>
-            <span className='block text-sm  text-gray-500 leading-3'>
+            <span className='block text-xs  text-gray-500 leading-3'>
               {getRelativeTime(comment?.createdAt)}
             </span>
 
@@ -226,7 +224,6 @@ export default function SingleComment({ item }: Props) {
           ) : null}
           {
             <div>
-              {" "}
               {comment?.Replies?.map((replyComment: any) => {
                 return (
                   <SingleCommentReply
