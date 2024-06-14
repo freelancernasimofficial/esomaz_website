@@ -57,18 +57,18 @@ export default async function page({}: Props) {
             </div>
           </div>
           <div className='flex items-center mt-3'>
-            <div className='btn bg-gray-900 hover:bg-gray-800 h-8 text-white text-sm flex-1'>
+            <button className='btn-sm bg-gray-900 hover:bg-gray-800 h-8 text-white flex-1'>
               Bids: {bids}
-            </div>{" "}
+            </button>{" "}
             <Link
               href='/account/buy_bids'
-              className='btn text-sm h-8 btn-success mx-3 flex-1'
+              className='btn-sm btn-success mx-3 flex-1'
             >
-              Add Limit
+              Add Bids
             </Link>{" "}
             <Link
               href='/account/payments/deposits/deposit'
-              className='btn text-sm h-8 btn-primary  flex-1'
+              className='btn-sm btn-primary  flex-1'
             >
               Deposit
             </Link>{" "}

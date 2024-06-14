@@ -37,8 +37,6 @@ export default async function buyBidPack(bid: any) {
     revalidatePath("/");
     return { status: true, message: "Bid Pack Upgraded Successfully" };
   } catch (error: any) {
-    console.log(error);
-
     revalidatePath("/");
     return { status: false, message: error?.message };
   }

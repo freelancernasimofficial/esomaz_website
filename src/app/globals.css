@@ -49,6 +49,9 @@
   .btn {
     @apply h-10 flex items-center justify-center px-3 rounded-md bg-gray-100 hover:bg-gray-300 font-semibold  active:scale-95 transition-transform cursor-pointer;
   }
+  .btn-sm {
+    @apply h-8 text-sm flex items-center justify-center px-3 rounded-md bg-gray-100 hover:bg-gray-300 font-semibold  active:scale-95 transition-transform cursor-pointer;
+  }
   .btn-primary {
     @apply bg-primary-main text-white hover:bg-primary-hover;
   }
@@ -74,10 +77,10 @@
     @apply bg-error-transparent2 hover:bg-error-transparent1 text-error-hover;
   }
   .errorCard {
-    @apply p-2 border border-error-hover bg-error-transparent1 text-error-hover rounded-lg mb-2 font-medium;
+    @apply p-1 border text-center border-error-hover bg-error-transparent1 text-error-hover rounded-lg  font-medium;
   }
   .successCard {
-    @apply p-2  border border-success-hover bg-success-transparent1 text-success-hover rounded-lg mb-2 font-medium;
+    @apply p-1 text-center  border border-success-hover bg-success-transparent1 text-success-hover rounded-lg font-medium;
   }
 }
 

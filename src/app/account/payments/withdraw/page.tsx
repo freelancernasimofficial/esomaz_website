@@ -9,7 +9,7 @@ export default function page({}: Props) {
     <section>
       <PageTitle title='Recent Withdrawals'>
         <Link
-          className='flex justify-center items-center px-4 py-1 font-semibold bg-blue-700 text-white rounded'
+          className='flex justify-center items-center px-4 py-1 font-semibold bg-primary-main text-white rounded'
           href='/account/payments/withdraw/withdraw_now'
         >
           Withdraw Money

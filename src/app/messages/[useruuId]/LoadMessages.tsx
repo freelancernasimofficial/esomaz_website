@@ -71,7 +71,7 @@ export default function LoadMessages({}: Props) {
               <div className='w-full  flex justify-end'>
                 <div
                   onClick={() => setAction(index)}
-                  className='bg-blue-700 text-white inline-block rounded-lg p-2 shrink-0 max-w-[70%]'
+                  className='bg-primary-main text-white inline-block rounded-lg p-2 shrink-0 max-w-[70%]'
                 >
                   hm
                   <span className='font-bold'>{index}</span>

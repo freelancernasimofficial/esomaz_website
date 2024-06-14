@@ -17,7 +17,7 @@ export default async function page({ params }: Props) {
   return (
     <section className='bg-white w-screen'>
       <div>
-        <div className='h-12 bg-blue-700 text-white border-b fixed left-0 top-14 w-full z-20 flex items-center px-4'>
+        <div className='h-12 bg-primary-main text-white border-b fixed left-0 top-14 w-full z-20 flex items-center px-4'>
           <div className='flex items-center'>
             <Avatar className='border border-white' user={friend} />{" "}
             <div className='ml-2 leading-4'>
@@ -41,7 +41,7 @@ export default async function page({ params }: Props) {
             rows={1}
           ></textarea>
           <button
-            className='bg-blue-700 text-white flex items-center justify-center w-12 h-full active:rounded active:scale-75 
+            className='bg-primary-main text-white flex items-center justify-center w-12 h-full active:rounded active:scale-75 
          duration-300'
           >
             <IconSendCircle className='w-6 h-6' />
