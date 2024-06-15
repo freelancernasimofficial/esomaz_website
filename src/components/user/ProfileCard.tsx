@@ -6,7 +6,6 @@ import UserStatistics from "./UserStatistics";
 import getSubtitle from "@/library/getSubtitle";
 import getUsername from "@/library/getUsername";
 import Avatar from "./Avatar";
-import { AWS_S3_PHOTO_API_URL } from "@/library/constants";
 import {
   acceptFriendAction,
   addFollowAction,
@@ -17,6 +16,7 @@ import {
   unFollowAction,
   unFriendAction,
 } from "@/actions/user/userActions";
+import { getS3PhotoLink } from "@/library/AwsClientS3";
 type Props = {
   user: any;
 };
@@ -151,7 +151,7 @@ export default async function ProfileCard({ user }: Props) {
       <div
         style={{
           backgroundImage: user?.coverPhoto?.filename
-            ? `url(${AWS_S3_PHOTO_API_URL + user?.coverPhoto?.filename})`
+            ? `url(${getS3PhotoLink(user?.coverPhoto?.filename)})`
             : "url(/images/avatars/default-cover.webp)",
           backgroundPosition: "center center",
         }}

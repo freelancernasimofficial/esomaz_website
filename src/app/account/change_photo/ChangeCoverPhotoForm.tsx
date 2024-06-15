@@ -3,11 +3,11 @@ import SubmitButton from "@/components/button/SubmitButton";
 import FileUploadButton from "@/components/others/FileUploadButton";
 import CookieStore from "@/library/CookieStore";
 import auth from "@/actions/auth/auth";
-import { AWS_S3_PHOTO_API_URL } from "@/library/constants";
 import Model from "@/model/Model";
 import Image from "next/image";
 import { redirect } from "next/navigation";
 import React from "react";
+import { getS3PhotoLink } from "@/library/AwsClientS3";
 
 type Props = {};
 
@@ -31,8 +31,8 @@ export default async function ChangeCoverPhotoForm({}: Props) {
           alt='cover photo'
           src={
             coverPhoto?.filename
-              ? AWS_S3_PHOTO_API_URL + coverPhoto?.filename
-              : "/images/static/avatars/default-cover.jpg"
+              ? getS3PhotoLink(coverPhoto?.filename)
+              : "/images/avatars/default-cover.jpg"
           }
         />
       </div>

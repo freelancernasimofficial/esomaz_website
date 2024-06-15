@@ -1,5 +1,4 @@
 "use client";
-
 import getFriendsByUserIdAction from "@/actions/user/getFriendsAction";
 import SingleUserSkeleton from "@/components/skeletons/SingleUserSkeleton";
 import React, { useEffect, useState } from "react";

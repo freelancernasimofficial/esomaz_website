@@ -2,11 +2,6 @@ import {
   getSingleUserByuuId,
   getTotalFollowersByUserId,
 } from "@/actions/user/userActions";
-import Avatar from "@/components/user/Avatar";
-import getFullName from "@/library/getFullName";
-import getSubtitle from "@/library/getSubtitle";
-import getUsername from "@/library/getUsername";
-import Link from "next/link";
 import React from "react";
 import LoadFollowers from "./LoadFollowers";
 

@@ -2,7 +2,6 @@ import {
   getSingleUserByuuId,
   getTotalFollowingByUserId,
 } from "@/actions/user/userActions";
-
 import React from "react";
 import LoadFollowings from "./LoadFollowing";
 

@@ -3,7 +3,7 @@ import {
   getUserPhotos,
   getUserPhotosCount,
 } from "@/actions/user/userActions";
-import { AWS_S3_PHOTO_API_URL } from "@/library/constants";
+import { getS3PhotoLink } from "@/library/AwsClientS3";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -43,7 +43,7 @@ export default async function page({ params }: Props) {
                   height={200}
                   quality={100}
                   alt='profile photos'
-                  src={AWS_S3_PHOTO_API_URL + photo?.filename}
+                  src={getS3PhotoLink(photo?.filename)}
                 />
               </Link>
             );
