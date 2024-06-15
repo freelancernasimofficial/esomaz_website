@@ -13,9 +13,9 @@ export default async function page({}: Props) {
       <PageTitle title='Recent Deposits'>
         <Link
           className='btn-sm btn-primary'
-          href='/account/freelancing/payments/deposits/deposit'
+          href='/account/payments/deposits/deposit'
         >
-          Deposit Money
+          Deposit
         </Link>
       </PageTitle>
       EEEE

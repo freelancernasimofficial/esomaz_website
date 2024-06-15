@@ -7,8 +7,13 @@ export default async function makeUniqueId(tableName: string) {
       `SELECT id FROM ${tableName} ORDER BY id DESC LIMIT 1`,
     );
 
-    const makeId = Date.now().toString() + (currentRecords?.id + 1);
-    return makeId;
+    if (currentRecords?.id) {
+      const makeId = Date.now().toString() + (currentRecords?.id + 1);
+      return makeId;
+    } else {
+      const makeId = Date.now().toString() + 1;
+      return makeId;
+    }
   } catch (error: any) {
     return error?.message;
   }

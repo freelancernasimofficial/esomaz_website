@@ -1,3 +1,4 @@
+import Model from "@/model/Model";
 import LeftSidebar from "../components/home/LeftSidebar";
 import RightSidebar from "../components/home/RightSidebar";
 import PostForm from "../components/post/PostForm";

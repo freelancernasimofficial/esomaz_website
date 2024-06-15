@@ -69,7 +69,7 @@ export default function BuyButton({ bid }: Props) {
                 {" "}
                 <SubmitButtonClient
                   onClick={buyHandle}
-                  className='btn btn-primary w-full !h-8'
+                  className='btn btn-primary w-full'
                   pending={pending}
                   title='Confirm Payment'
                 />
@@ -81,7 +81,7 @@ export default function BuyButton({ bid }: Props) {
           ) : null}
         </Modal>
       ) : null}
-      <button className='btn btn-primary' onClick={() => setCurrent(bid)}>
+      <button className='btn-sm btn-primary' onClick={() => setCurrent(bid)}>
         Buy Pack
       </button>
     </React.Fragment>

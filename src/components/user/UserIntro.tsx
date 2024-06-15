@@ -7,6 +7,7 @@ import IconSchoolOutline from "../icons/IconSchoolOutline";
 import getCompactNumber from "@/library/getCompactNumber";
 import auth from "@/actions/user/auth";
 import { getUserInformations } from "@/actions/user/userActions";
+import IconMaleFemale from "../icons/IconMaleFemale";
 
 type Props = {
   userId: number;
@@ -59,6 +60,12 @@ export default async function UserIntro({ userId }: Props) {
             {" "}
             {userInfos?.workDesignation + ", " + userInfos?.workingCompany}
           </span>
+        </span>{" "}
+      </div>
+      <div className=' flex items-center mt-3'>
+        <IconMaleFemale className='w-4 h-4 mr-2 ml-0.5 shrink-0' />{" "}
+        <span className='mr-2'>
+          Gender <span className='font-semibold'> {userInfos?.gender}</span>
         </span>{" "}
       </div>
       <div className=' flex items-center mt-3'>

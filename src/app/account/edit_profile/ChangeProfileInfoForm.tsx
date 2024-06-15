@@ -41,14 +41,14 @@ export default async function ChangeProfileInfoForm({}: Props) {
       ></textarea>
 
       <select
-        name='countryId'
-        defaultValue={userInfos?.countryId ? userInfos?.countryId : 18}
+        name='countryIso3'
+        defaultValue={userInfos?.countryIso3 ? userInfos?.countryIso3 : "BGD"}
         id='countryId'
         className='mb-4 block w-full'
       >
         {countries?.map((country: any) => {
           return (
-            <option key={country?.iso3} value={country?.id}>
+            <option key={country?.iso3} value={country?.iso3}>
               {country?.name}
             </option>
           );

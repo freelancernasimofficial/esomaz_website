@@ -15,7 +15,7 @@ import makeUniqueId from "@/library/makeUniqueId";
 export async function getFullUserByUsername(username: string) {
   const currentUser = await auth();
   const [user]: any = await Model.query(
-    `SELECT *,(SELECT AV.filename FROM Photos AV WHERE AV.id=U.avatarId) AS avatar,(SELECT JSON_OBJECT('id',CV.id,'height',CV.height,'width',CV.width,'filename',CV.filename) FROM Photos CV WHERE CV.userId=U.id AND CV.id=(SELECT coverPhotoId FROM UserInfos WHERE userId=U.id)) AS coverPhoto,(SELECT COUNT(*) FROM Friends MRS WHERE MRS.senderUserId=${currentUser?.id} AND MRS.receiverUserId=U.id AND MRS.isAccepted=0) AS meRequestSent,(SELECT COUNT(*) FROM Friends HRS WHERE HRS.receiverUserId=${currentUser?.id} AND HRS.senderUserId=U.id AND isAccepted=0) AS heRequestSent,(SELECT COUNT(*) FROM Friends FR WHERE (FR.senderUserId=${currentUser?.id} AND FR.receiverUserId=U.id AND isAccepted=1) OR (FR.receiverUserId=${currentUser?.id} AND FR.senderUserId=U.id AND isAccepted=1) ) AS isFriends,(SELECT COUNT(*) FROM Followers UF WHERE UF.userId=U.id) totalFollowers,(SELECT COUNT(*) FROM Followers UFL WHERE UFL.followerId=U.id) totalFollowing,(SELECT COUNT(*) FROM Friends UFR WHERE UFR.senderUserId=U.id OR UFR.receiverUserId=U.id AND UFR.isAccepted=1) totalFriends,(SELECT COUNT(*) FROM Followers HFL WHERE HFL.userId=${currentUser?.id} AND HFL.followerId=U.id) isHeFollowing,(SELECT COUNT(*) FROM Followers MFL WHERE MFL.followerId=${currentUser?.id} AND MFL.userId=U.id) isMeFollowing FROM Users U WHERE U.username="${username}" OR U.uuId="${username}"`,
+    `SELECT *,(SELECT AV.filename FROM Photos AV WHERE AV.id=U.avatarId) AS avatar,(SELECT JSON_OBJECT('id',CV.id,'height',CV.height,'width',CV.width,'filename',CV.filename) FROM Photos CV WHERE CV.userId=U.id AND CV.id=U.coverPhotoId) AS coverPhoto,(SELECT COUNT(*) FROM Friends MRS WHERE MRS.senderUserId=${currentUser?.id} AND MRS.receiverUserId=U.id AND MRS.isAccepted=0) AS meRequestSent,(SELECT COUNT(*) FROM Friends HRS WHERE HRS.receiverUserId=${currentUser?.id} AND HRS.senderUserId=U.id AND isAccepted=0) AS heRequestSent,(SELECT COUNT(*) FROM Friends FR WHERE (FR.senderUserId=${currentUser?.id} AND FR.receiverUserId=U.id AND isAccepted=1) OR (FR.receiverUserId=${currentUser?.id} AND FR.senderUserId=U.id AND isAccepted=1) ) AS isFriends,(SELECT COUNT(*) FROM Followers UF WHERE UF.userId=U.id) totalFollowers,(SELECT COUNT(*) FROM Followers UFL WHERE UFL.followerId=U.id) totalFollowing,(SELECT COUNT(*) FROM Friends UFR WHERE UFR.senderUserId=U.id OR UFR.receiverUserId=U.id AND UFR.isAccepted=1) totalFriends,(SELECT COUNT(*) FROM Followers HFL WHERE HFL.userId=${currentUser?.id} AND HFL.followerId=U.id) isHeFollowing,(SELECT COUNT(*) FROM Followers MFL WHERE MFL.followerId=${currentUser?.id} AND MFL.userId=U.id) isMeFollowing FROM Users U WHERE U.username="${username}" OR U.uuId="${username}"`,
   );
   return user;
 }
@@ -41,7 +41,7 @@ export async function getUserPhotosCount(userId: any) {
 
 export async function getUserInformations(userId: number) {
   const [userInfos] = await Model.query(
-    `SELECT *,(SELECT name FROM Countries WHERE id=UF.countryId) AS country,(SELECT COUNT(*) FROM Followers FL WHERE FL.userId=UF.userId) AS totalFollowers FROM UserInfos UF WHERE UF.userId=${userId}`,
+    `SELECT *,(SELECT name FROM Countries WHERE iso3=U.countryIso3) AS country,(SELECT COUNT(*) FROM Followers FL WHERE FL.userId=U.id) AS totalFollowers FROM Users U WHERE U.id=${userId}`,
   );
 
   return userInfos;
@@ -160,7 +160,7 @@ export async function changeProfileInfoAction(formData: any) {
     const address = formData.get("address");
     const city = formData.get("city");
     const state = formData.get("state");
-    const countryId = formData.get("countryId");
+    const countryIso3 = formData.get("countryIso3");
     const postalCode = formData.get("postalCode");
     const shortBio = formData.get("shortBio");
     const workDesignation = formData.get("workDesignation");
@@ -177,7 +177,7 @@ export async function changeProfileInfoAction(formData: any) {
       !address?.length ||
       !city?.length ||
       !state?.length ||
-      !countryId?.length ||
+      !countryIso3?.length ||
       !postalCode?.length ||
       !shortBio?.length ||
       !workDesignation?.length ||
@@ -223,14 +223,14 @@ export async function changeProfileInfoAction(formData: any) {
     }
 
     //update now
-    await Model.prepare(
-      "UPDATE UserInfos SET gender=?,address=?,city=?,state=?,countryId=?,postalCode=?,shortBio=?,workDesignation=?,workingCompany=?,studyLevel=?,instituteName=?,skills=?,date=?,month=?,year=? WHERE userId=?",
+    const a = await Model.prepare(
+      "UPDATE Users SET gender=?,address=?,city=?,state=?,countryIso3=?,postalCode=?,shortBio=?,workDesignation=?,workingCompany=?,studyLevel=?,instituteName=?,skills=?,date=?,month=?,year=? WHERE id=?",
       [
         gender,
         address,
         city,
         state,
-        countryId,
+        countryIso3,
         postalCode,
         shortBio,
         workDesignation,
@@ -244,6 +244,7 @@ export async function changeProfileInfoAction(formData: any) {
         currentUser?.id,
       ],
     );
+    console.log(a);
 
     CookieStore.setState("profileSuccess", "Profile Updated");
     revalidatePath("/");

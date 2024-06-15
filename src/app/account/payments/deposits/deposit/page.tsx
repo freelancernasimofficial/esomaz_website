@@ -11,7 +11,6 @@ export default async function page({}: Props) {
   return (
     <section className='w-screen '>
       <PageTitle title='Deposit Money' />
-
       <DepositForm usdRate={usdRate} />
     </section>
   );

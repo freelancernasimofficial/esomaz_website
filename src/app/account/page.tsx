@@ -59,13 +59,13 @@ export default async function page({}: Props) {
               Bids: {bids}
             </button>{" "}
             <Link
-              href='/account/freelancing/buy_bids'
+              href='/account/payments/buy_bids'
               className='btn-sm btn-success mx-3 flex-1'
             >
               Add Bids
             </Link>{" "}
             <Link
-              href='/account/freelancing/payments/deposits/deposit'
+              href='/account/payments/deposits/deposit'
               className='btn-sm btn-primary  flex-1'
             >
               Deposit
@@ -103,7 +103,7 @@ export default async function page({}: Props) {
           <h2 className='font-bold mb-1'>Payments</h2>
 
           <Link
-            href='/account/freelancing/payments/deposits'
+            href='/account/payments/deposits'
             className='flex items-center w-full  py-2 hover:text-primary-main'
           >
             <IconCashPlus className='w-7 h-7' />{" "}
@@ -112,7 +112,7 @@ export default async function page({}: Props) {
             </span>
           </Link>
           <Link
-            href='/account/freelancing/payments/withdraw'
+            href='/account/payments/withdraw'
             className='flex items-center w-full  py-2 hover:text-primary-main'
           >
             <IconMoneyDollarCircleLine className='w-7 h-7' />{" "}

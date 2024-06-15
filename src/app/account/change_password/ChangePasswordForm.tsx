@@ -28,8 +28,8 @@ export default async function ChangePasswordForm({}: Props) {
         type='password'
         className='w-full block mb-4'
       />
-      {error && <div className='errorCard'>{error}</div>}
-      {success && <div className='successCard'>{success}</div>}
+      {error && <div className='errorCard mb-3'>{error}</div>}
+      {success && <div className='successCard mb-3'>{success}</div>}
       <SubmitButton
         title='Change Password'
         className='btn btn-primary w-full'

@@ -4,7 +4,6 @@ import { useInView } from "react-intersection-observer";
 import getCommentsAction, { addComment } from "@/actions/post/commentActions";
 import CommentSkeleton from "../skeletons/CommentSkeleton";
 import SingleComment from "./SingleComment";
-import LoaderSpinnerLarge from "../others/LoaderSpinnerLarge";
 import SubmitButtonClient from "../button/SubmitButtonClient";
 
 type Props = {
@@ -100,7 +99,7 @@ export default function LoadComments({ post }: Props) {
           rows={3}
         ></textarea>
         {formStatus.status === false && formStatus.message.length > 0 && (
-          <div className='errorCard'>{formStatus.message}</div>
+          <div className='errorCard mb-3'>{formStatus.message}</div>
         )}
         <SubmitButtonClient
           className='btn btn-primary w-full'
@@ -110,7 +109,7 @@ export default function LoadComments({ post }: Props) {
         />
       </div>
       <div className='bg-white mt-4 p-3 rounded-lg'>
-        <h1 className='font-bold mb-4'>Comments ({post?.TotalComments})</h1>
+        <h1 className='font-semibold mb-4'>Comments ({post?.TotalComments})</h1>
         {comments?.map((item: any, index: number) => {
           return <SingleComment key={item?.uuId} item={item} />;
         })}
