@@ -28,13 +28,13 @@ export default async function Header({}: Props) {
               src='/images/logo/logo-icon.png'
             />
           </Link>
-          <div className='md:block hidden relative max-w-screen-xs w-full'>
+          <div className='md:block overflow-hidden h-9 hidden relative max-w-screen-xs w-full'>
             <IconSearch className='absolute left-3 top-2/4 -translate-y-2/4 text-gray-400 w-5 h-5' />
             <input
               id='search-friends'
               placeholder='Search Friends...'
               type='text'
-              className='w-full pl-9 rounded-full focus:border-transparent'
+              className='w-full h-9 pl-9 rounded-full focus:border-transparent'
             />
           </div>
           <div className='flex items-center justify-end'>
