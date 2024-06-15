@@ -1,4 +1,6 @@
 "use client";
+import { initPayment } from "@/actions/payment/paymentActions";
+import SubmitButtonClient from "@/components/button/SubmitButtonClient";
 import { BDT_SIGN } from "@/library/constants";
 import React, { useEffect, useState } from "react";
 
@@ -9,6 +11,35 @@ type Props = {
 export default function DepositForm({ usdRate }: Props) {
   const [amount, setAmount] = useState("");
   const [finalAmount, setFinalAmount] = useState("");
+  const [formStatus, setFormStatus] = useState({ status: false, message: "" });
+  const [pending, setPending] = useState(false);
+
+  const initiatePayment = () => {
+    setPending(true);
+    if (Number(amount) < Number(usdRate)) {
+      setFormStatus({
+        status: false,
+        message: `Minimum Deposit Amount is ${usdRate}`,
+      });
+      setPending(false);
+    } else {
+      setFormStatus({
+        status: false,
+        message: ``,
+      });
+      initPayment({ amount: Number(amount) })
+        .then((data) => {
+          setFormStatus({ status: data.status, message: data.message });
+          location.href = data.response?.GatewayPageURL;
+        })
+        .catch((error) => {
+          setFormStatus({ status: error?.status, message: error?.message });
+        })
+        .finally(() => {
+          setPending(false);
+        });
+    }
+  };
 
   useEffect(() => {
     const userAmount = Number(amount);
@@ -47,7 +78,17 @@ export default function DepositForm({ usdRate }: Props) {
             className='w-full text-lg  pl-12 focus:border-transparent'
           />
         </div>
-        <button className='btn btn-primary mt-4 w-full'>Make Payment</button>
+
+        <SubmitButtonClient
+          title='Make Payment'
+          pending={pending}
+          onClick={initiatePayment}
+          className='btn btn-primary mt-4 w-full'
+        />
+
+        {formStatus.status === false && formStatus.message.length ? (
+          <div className='errorCard mt-2'>{formStatus.message}</div>
+        ) : null}
       </div>
     </section>
   );

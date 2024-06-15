@@ -73,6 +73,9 @@
   .btn-error {
     @apply bg-error-main hover:bg-error-hover text-white;
   }
+  .btn-warning {
+    @apply bg-warning-main hover:bg-warning-hover text-white;
+  }
   .btn-error-transparent {
     @apply bg-error-transparent2 hover:bg-error-transparent1 text-error-hover;
   }

@@ -17,7 +17,7 @@ export default function PageTitle({ backButton, title, children }: Props) {
           {backButton === false ? null : (
             <BackButton className='mr-2' title={<IconArrowBack />} />
           )}
-          <h1 className='font-semibold'>{title}</h1>
+          <h1 className='font-semibold capitalize'>{title}</h1>
         </div>
         {children}
       </div>
