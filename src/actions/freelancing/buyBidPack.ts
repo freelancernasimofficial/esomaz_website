@@ -1,7 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import auth from "../user/auth";
+import auth from "../auth/auth";
 import getUserBalance from "../user/getUserBalance";
 import Model from "@/model/Model";
 

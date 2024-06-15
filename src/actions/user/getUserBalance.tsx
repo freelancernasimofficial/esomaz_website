@@ -2,7 +2,7 @@
 
 import Model from "@/model/Model";
 import React from "react";
-import auth from "./auth";
+import auth from "../auth/auth";
 
 export default async function getUserBalance(userId: string) {
   try {

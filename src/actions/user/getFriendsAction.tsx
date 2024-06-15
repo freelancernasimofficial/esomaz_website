@@ -20,7 +20,6 @@ export default async function getFriendsByUserIdAction({
       return <SingleUser key={item?.id} user={item?.Friend} />;
     });
   } catch (error) {
-    console.log(error);
     return undefined;
   }
 }

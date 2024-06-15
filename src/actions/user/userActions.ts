@@ -2,7 +2,7 @@
 
 import CookieStore from "@/library/CookieStore";
 import Validations from "@/library/Validations";
-import auth from "@/actions/user/auth";
+import auth from "@/actions/auth/auth";
 import getUserByObjectQuery from "@/library/getUserByObjectQuery";
 import Model from "@/model/Model";
 import { revalidatePath } from "next/cache";
@@ -85,8 +85,6 @@ export async function getTotalFollowersByUserId(userId: any) {
       return 0;
     }
   } catch (error) {
-    console.log(error);
-
     return 0;
   }
 }
@@ -103,8 +101,6 @@ export async function getTotalFollowingByUserId(userId: any) {
       return 0;
     }
   } catch (error) {
-    console.log(error);
-
     return 0;
   }
 }

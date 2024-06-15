@@ -1,5 +1,5 @@
 "use server";
-import auth from "@/actions/user/auth";
+import auth from "@/actions/auth/auth";
 import getUserByObjectQuery from "@/library/getUserByObjectQuery";
 import makeUniqueId from "@/library/makeUniqueId";
 import Model from "@/model/Model";

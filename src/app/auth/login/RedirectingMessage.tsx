@@ -1,5 +1,4 @@
 "use client";
-import { redirect } from "next/navigation";
 import React, { useEffect } from "react";
 
 type Props = {
@@ -10,8 +9,8 @@ export default function RedirectingMessage({ message }: Props) {
   useEffect(() => {
     setTimeout(() => {
       location.href = "http://localhost:3000";
-    }, 2000);
+    }, 1000);
   }, []);
 
-  return <div className='successCard'>{message}</div>;
+  return <div className='successCard mb-3'>{message}</div>;
 }

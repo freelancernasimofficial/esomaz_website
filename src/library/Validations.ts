@@ -143,13 +143,6 @@ const SpecialChars = (value: string) => {
   return charsValidations.test(value);
 };
 
-const Currency = (value = "0.42") => {
-  const p =
-    /^[-]?([1-9]{1}[0-9]{0,}(\.[0-9]{0,2})?|0(\.[0-9]{0,2})?|\.[0-9]{1,2})$/;
-
-  return p.test(value?.toString());
-};
-
 const Validations = {
   LettersOnly,
   Email,
@@ -157,7 +150,6 @@ const Validations = {
   NumbersOnly,
   Phone,
   SpecialChars,
-  Currency,
   DescriptionOnly,
 };
 

@@ -13,7 +13,7 @@ import IconRss from "@/components/icons/IconRss";
 import IconUser from "@/components/icons/IconUser";
 import IconUsers from "@/components/icons/IconUsers";
 import Avatar from "@/components/user/Avatar";
-import auth from "@/actions/user/auth";
+import auth from "@/actions/auth/auth";
 import getFullName from "@/library/getFullName";
 import getUsername from "@/library/getUsername";
 import Link from "next/link";

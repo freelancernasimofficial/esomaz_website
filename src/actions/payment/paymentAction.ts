@@ -1,6 +1,6 @@
 "use server";
 import SSLCommerzPayment from "sslcommerz-lts";
-import auth from "../user/auth";
+import auth from "../auth/auth";
 import Model from "@/model/Model";
 import makeUniqueId from "@/library/makeUniqueId";
 

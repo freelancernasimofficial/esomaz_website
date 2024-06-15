@@ -1,8 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import getFullName from "@/library/getFullName";
-
-import auth from "@/actions/user/auth";
+import auth from "@/actions/auth/auth";
 import UserStatistics from "./UserStatistics";
 import getSubtitle from "@/library/getSubtitle";
 import getUsername from "@/library/getUsername";
@@ -153,7 +152,7 @@ export default async function ProfileCard({ user }: Props) {
         style={{
           backgroundImage: user?.coverPhoto?.filename
             ? `url(${AWS_S3_PHOTO_API_URL + user?.coverPhoto?.filename})`
-            : "url(/images/static/avatars/default-cover.webp)",
+            : "url(/images/avatars/default-cover.webp)",
           backgroundPosition: "center center",
         }}
         className='md:max-h-80 md:min-h-80 max-h-72 min-h-72  rounded-t-lg bg-no-repeat bg-cover relative'

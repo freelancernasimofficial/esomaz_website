@@ -22,7 +22,7 @@ const query = async (query: string) => {
       return undefined;
     }
   } catch (error: any) {
-    console.log(error.message);
+    console.log(error);
     return error.message;
   }
 };
@@ -35,6 +35,8 @@ const prepare = async (query: string, values: any[]) => {
       return undefined;
     }
   } catch (error: any) {
+    console.log(error);
+
     return error.message;
   }
 };

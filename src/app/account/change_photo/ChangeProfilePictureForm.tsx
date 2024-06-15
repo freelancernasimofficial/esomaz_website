@@ -3,7 +3,7 @@ import SubmitButton from "@/components/button/SubmitButton";
 import FileUploadButton from "@/components/others/FileUploadButton";
 import Avatar from "@/components/user/Avatar";
 import CookieStore from "@/library/CookieStore";
-import auth from "@/actions/user/auth";
+import auth from "@/actions/auth/auth";
 import { redirect } from "next/navigation";
 import React from "react";
 

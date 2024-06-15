@@ -27,8 +27,6 @@ export default async function getFollowersByUserId({
       return <SingleUser key={item?.id} user={item?.User} />;
     });
   } catch (error) {
-    console.log(error);
-
     return undefined;
   }
 }

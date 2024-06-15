@@ -77,10 +77,10 @@
     @apply bg-error-transparent2 hover:bg-error-transparent1 text-error-hover;
   }
   .errorCard {
-    @apply p-1 border text-center border-error-hover bg-error-transparent1 text-error-hover rounded-lg  font-medium;
+    @apply p-1 border text-center border-error-hover bg-error-transparent1 text-error-hover rounded  font-medium;
   }
   .successCard {
-    @apply p-1 text-center  border border-success-hover bg-success-transparent1 text-success-hover rounded-lg font-medium;
+    @apply p-1 text-center  border border-success-hover bg-success-transparent1 text-success-hover rounded font-medium;
   }
 }
 

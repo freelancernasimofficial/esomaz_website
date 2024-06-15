@@ -4,7 +4,7 @@ import {
 } from "@/actions/user/userActions";
 import SubmitButton from "@/components/button/SubmitButton";
 import CookieStore from "@/library/CookieStore";
-import auth from "@/actions/user/auth";
+import auth from "@/actions/auth/auth";
 import React from "react";
 
 type Props = {};

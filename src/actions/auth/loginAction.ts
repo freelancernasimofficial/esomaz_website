@@ -1,9 +1,9 @@
 "use server";
 import { cookies } from "next/headers";
-import Model from "../model/Model";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { ServerActionType } from "../types/types";
+import { ServerActionType } from "@/types/types";
+import Model from "@/model/Model";
 
 export default async function loginAction(
   formData: FormData,

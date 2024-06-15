@@ -4,7 +4,7 @@ import IconEarth from "@/components/icons/IconEarth";
 import PostPhotos from "@/components/post/PostPhotoSlider";
 import Avatar from "@/components/user/Avatar";
 import CookieStore from "@/library/CookieStore";
-import auth from "@/actions/user/auth";
+import auth from "@/actions/auth/auth";
 import getFullName from "@/library/getFullName";
 import getRelativeTime from "@/library/getRelativeTime";
 import getUserByObjectQuery from "@/library/getUserByObjectQuery";

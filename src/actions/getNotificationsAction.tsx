@@ -1,7 +1,7 @@
 "use server";
 
 import SingleNotification from "@/app/notifications/SingleNotification";
-import auth from "@/actions/user/auth";
+import auth from "@/actions/auth/auth";
 import getUserByObjectQuery from "@/library/getUserByObjectQuery";
 import Model from "@/model/Model";
 
@@ -30,8 +30,6 @@ export default async function getNotificationsAction({
       return <SingleNotification item={item} key={item.id} />;
     });
   } catch (error) {
-    console.log(error);
-
     return undefined;
   }
 }

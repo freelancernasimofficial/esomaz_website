@@ -109,7 +109,7 @@ export default function PostCard({ item, fullText }: Props) {
   useEffect(() => {
     if (item?.id) {
       setPost(item);
-      setEditText(item?.text);
+      setEditText(item?.text?.length ? item.text : "");
     }
   }, [item]);
 
@@ -150,7 +150,7 @@ export default function PostCard({ item, fullText }: Props) {
             <div className='inline-block leading-4'>
               <Link
                 href={`/user/${getUsername(post?.User)}`}
-                className='font-semibold capitalize inline '
+                className='font-medium capitalize inline '
               >
                 {getFullName(post?.User)}
               </Link>

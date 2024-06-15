@@ -1,10 +1,10 @@
-import loginAction from "@/actions/loginAction";
 import SubmitButton from "@/components/button/SubmitButton";
 import { cookies } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import RedirectingMessage from "./RedirectingMessage";
+import loginAction from "@/actions/auth/loginAction";
 type Props = {};
 
 export default async function page({}: Props) {
@@ -16,7 +16,7 @@ export default async function page({}: Props) {
       <div className='text-center shrink-0 w-12 h-12 mx-auto mb-4'>
         <Image
           className='w-full h-full'
-          src='/images/static/logo-icon.png'
+          src='/images/logo/logo-icon.png'
           height={80}
           width={80}
           alt='logo'
@@ -49,7 +49,7 @@ export default async function page({}: Props) {
               Forgot Password?
             </Link>
           </div>
-          {error && <div className='errorCard'>{error}</div>}
+          {error && <div className='errorCard mb-3'>{error}</div>}
           {success && (
             <RedirectingMessage message='Login Success. Redirecting...' />
           )}

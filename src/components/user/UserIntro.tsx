@@ -5,7 +5,7 @@ import IconLocationOutline from "../icons/IconLocationOutline";
 import IconRss from "../icons/IconRss";
 import IconSchoolOutline from "../icons/IconSchoolOutline";
 import getCompactNumber from "@/library/getCompactNumber";
-import auth from "@/actions/user/auth";
+import auth from "@/actions/auth/auth";
 import { getUserInformations } from "@/actions/user/userActions";
 import IconMaleFemale from "../icons/IconMaleFemale";
 

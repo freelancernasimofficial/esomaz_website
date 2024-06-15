@@ -7,7 +7,7 @@ import React from "react";
 import IconPersonWorkspace from "../icons/IconPersonWorkspace";
 import IconRss from "../icons/IconRss";
 import IconProject from "../icons/IconProject";
-import auth from "@/actions/user/auth";
+import auth from "@/actions/auth/auth";
 import getUsername from "@/library/getUsername";
 import IconFindUser from "../icons/IconFindUser";
 
