@@ -6,9 +6,10 @@ import React, { useEffect, useState } from "react";
 
 type Props = {
   usdRate: any;
+  minimum: any;
 };
 
-export default function DepositForm({ usdRate }: Props) {
+export default function DepositForm({ minimum, usdRate }: Props) {
   const [amount, setAmount] = useState("");
   const [finalAmount, setFinalAmount] = useState("");
   const [formStatus, setFormStatus] = useState({ status: false, message: "" });
@@ -16,10 +17,10 @@ export default function DepositForm({ usdRate }: Props) {
 
   const initiatePayment = () => {
     setPending(true);
-    if (Number(amount) < Number(usdRate)) {
+    if (Number(finalAmount) < Number(minimum)) {
       setFormStatus({
         status: false,
-        message: `Minimum Deposit Amount is ${usdRate}`,
+        message: `Minimum Deposit Amount is ${minimum} USD`,
       });
       setPending(false);
     } else {
