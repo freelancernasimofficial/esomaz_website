@@ -1,0 +1,158 @@
+"use client";
+
+import {
+  getInbox,
+  getInboxMessages,
+  sendFirstMessage,
+} from "@/actions/message/messageActions";
+import SubmitButtonClient from "@/components/button/SubmitButtonClient";
+import IconSendCircle from "@/components/icons/IconSendCircle";
+import Modal from "@/components/others/Modal";
+import Avatar from "@/components/user/Avatar";
+import getFullName from "@/library/getFullName";
+import getRelativeTime from "@/library/getRelativeTime";
+import React, { useEffect, useState } from "react";
+
+type Props = {
+  inbox: any;
+};
+
+export default function LoadMessages({ inbox }: Props) {
+  const [text, setText] = useState<string>("");
+  const [pending, setPending] = useState<boolean>(false);
+  const [action, setAction] = useState<any>();
+  const [messages, setMessages] = useState<any[]>([]);
+
+  const friend =
+    inbox?.currentUserId === inbox?.senderUserId
+      ? inbox?.ReceiverUser
+      : inbox?.SenderUser;
+
+  const sendMessage = () => {};
+
+  const handleEdit = () => {
+    console.log("edit");
+  };
+
+  const handleDelete = () => {
+    const ask = confirm("Are you sure you want to delete");
+    if (ask) {
+      console.log("deleted");
+    }
+  };
+
+  useEffect(() => {
+    getInboxMessages({
+      inboxId: inbox?.id,
+      limitFrom: messages?.length,
+      limitTo: 50,
+    })
+      .then((data) => {
+        setMessages(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [inbox?.id]);
+
+  return (
+    <React.Fragment>
+      <div>
+        <div className='h-12 bg-slate-800 text-white border-b fixed left-0 top-14 w-full z-20 flex items-center px-4'>
+          <div className='flex items-center'>
+            <Avatar className='border border-white' user={friend} />{" "}
+            <div className='ml-2 leading-4'>
+              <div className='font-semibold text-sm'>{getFullName(friend)}</div>
+              <div className='text-xs'>Few moments ago</div>
+            </div>
+          </div>
+        </div>
+        <div className='h-12 w-full'></div>
+      </div>
+      <div
+        id='messageBubbleContainer'
+        className='p-3 flex flex-col-reverse h-[calc(100vh-144px)] overflow-y-scroll'
+      >
+        {action ? (
+          <Modal onClickBackdrop={() => setAction(undefined)}>
+            <div>
+              <textarea
+                placeholder='Current Message'
+                className='w-full mb-2'
+                rows={2}
+                cols={10}
+                name=''
+                id=''
+              ></textarea>
+              <div className='flex justify-between'>
+                <button
+                  onClick={handleEdit}
+                  className='btn h-8 btn-success w-full mr-2'
+                >
+                  Update
+                </button>
+                <button
+                  onClick={handleDelete}
+                  className='btn h-8 btn-error w-full ml-2'
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+          </Modal>
+        ) : null}
+        {messages.map((item: any, index: any) => {
+          if (item?.userId !== item?.currentUserId) {
+            return (
+              <div className='mb-6 w-full' key={index}>
+                <div className='w-full flex'>
+                  <div className='bg-gray-200 inline-block rounded-lg p-2 shrink-0 max-w-[70%]'>
+                    {item?.text}
+                  </div>
+                </div>
+                <div className='text-gray-400 float-left text-sm'>
+                  Seen . {getRelativeTime(item?.createdAt)}
+                </div>
+              </div>
+            );
+          } else {
+            return (
+              <div className='mb-6 w-full' key={index}>
+                <div className='w-full  flex justify-end'>
+                  <div
+                    onClick={() => setAction(index)}
+                    className='bg-primary-main text-white inline-block rounded-lg p-2 shrink-0 max-w-[70%]'
+                  >
+                    {item?.text}
+                  </div>
+                </div>
+                <div className='text-gray-400 float-right text-sm'>
+                  Seen . {getRelativeTime(item?.createdAt)}
+                </div>
+              </div>
+            );
+          }
+        })}
+      </div>
+      <div>
+        <div className='h-10 w-full'></div>
+        <div className='bg-gray-300 w-full h-10 flex items-center justify-between fixed bottom-0'>
+          <textarea
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+            className='w-full rounded-none flex-1 h-full focus-visible:outline-none bg-transparent'
+            placeholder='Enter Message'
+            cols={10}
+            rows={1}
+          ></textarea>
+          <SubmitButtonClient
+            onClick={sendMessage}
+            title={<IconSendCircle className='w-6 h-6' />}
+            pending={pending}
+            className='bg-primary-main text-white flex items-center justify-center w-12 h-full active:rounded'
+          />
+        </div>
+      </div>
+    </React.Fragment>
+  );
+}

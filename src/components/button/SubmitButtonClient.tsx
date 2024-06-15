@@ -2,7 +2,7 @@
 import React, { ButtonHTMLAttributes, DOMAttributes } from "react";
 
 type Props = {
-  title: string;
+  title: any;
   className?: ButtonHTMLAttributes<HTMLButtonElement>["className"];
   pending: boolean;
   onClick?: DOMAttributes<HTMLButtonElement>["onClick"];
