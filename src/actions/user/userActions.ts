@@ -223,7 +223,7 @@ export async function changeProfileInfoAction(formData: any) {
     }
 
     //update now
-    const a = await Model.prepare(
+    await Model.prepare(
       "UPDATE Users SET gender=?,address=?,city=?,state=?,countryIso3=?,postalCode=?,shortBio=?,workDesignation=?,workingCompany=?,studyLevel=?,instituteName=?,skills=?,date=?,month=?,year=? WHERE id=?",
       [
         gender,
@@ -244,7 +244,6 @@ export async function changeProfileInfoAction(formData: any) {
         currentUser?.id,
       ],
     );
-    console.log(a);
 
     CookieStore.setState("profileSuccess", "Profile Updated");
     revalidatePath("/");
@@ -388,7 +387,7 @@ export async function changeCoverPhotoAction(formData: any) {
     );
 
     //update coverphoto ID
-    await Model.prepare("UPDATE UserInfos SET coverPhotoId=? WHERE userId=?", [
+    await Model.prepare("UPDATE Users SET coverPhotoId=? WHERE id=?", [
       savePhoto?.insertId,
       currentUser?.id,
     ]);

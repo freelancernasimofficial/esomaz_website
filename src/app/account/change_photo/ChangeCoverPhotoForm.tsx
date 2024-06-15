@@ -14,7 +14,7 @@ type Props = {};
 export default async function ChangeCoverPhotoForm({}: Props) {
   const currentUser = await auth();
   const [coverPhoto] = await Model.query(
-    `SELECT * FROM Photos WHERE id=(SELECT coverPhotoId FROM UserInfos UF WHERE UF.userId=${currentUser?.id})`,
+    `SELECT * FROM Photos WHERE id=(SELECT coverPhotoId FROM Users U WHERE U.id=${currentUser?.id})`,
   );
   const error = CookieStore.getState("coverPhotoError");
   const success = CookieStore.getState("coverPhotoSuccess");
