@@ -7,7 +7,7 @@ import Model from "@/model/Model";
 import Image from "next/image";
 import { redirect } from "next/navigation";
 import React from "react";
-import { getS3PhotoLink } from "@/library/AwsClientS3";
+import { S3_PHOTO_API_URL } from "@/library/constants";
 
 type Props = {};
 
@@ -31,7 +31,7 @@ export default async function ChangeCoverPhotoForm({}: Props) {
           alt='cover photo'
           src={
             coverPhoto?.filename
-              ? getS3PhotoLink(coverPhoto?.filename)
+              ? S3_PHOTO_API_URL + coverPhoto?.filename
               : "/images/avatars/default-cover.jpg"
           }
         />

@@ -16,7 +16,7 @@ import {
   unFollowAction,
   unFriendAction,
 } from "@/actions/user/userActions";
-import { getS3PhotoLink } from "@/library/AwsClientS3";
+import { S3_PHOTO_API_URL } from "@/library/constants";
 type Props = {
   user: any;
 };
@@ -151,7 +151,7 @@ export default async function ProfileCard({ user }: Props) {
       <div
         style={{
           backgroundImage: user?.coverPhoto?.filename
-            ? `url(${getS3PhotoLink(user?.coverPhoto?.filename)})`
+            ? `url(${S3_PHOTO_API_URL + user?.coverPhoto?.filename})`
             : "url(/images/avatars/default-cover.webp)",
           backgroundPosition: "center center",
         }}

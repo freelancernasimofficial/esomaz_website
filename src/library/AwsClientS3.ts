@@ -47,7 +47,3 @@ export const deleteS3File = async (filename: string) => {
     return err?.message;
   }
 };
-
-export const getS3PhotoLink = (filename: string) => {
-  return `https://s3.ap-south-1.amazonaws.com/esomaz.com/user_uploads/photos/${filename}`;
-};

@@ -1,4 +1,4 @@
-import { getS3PhotoLink } from "@/library/AwsClientS3";
+import { S3_PHOTO_API_URL } from "@/library/constants";
 import Image from "next/image";
 import React from "react";
 
@@ -14,7 +14,7 @@ export default function page({ params }: Props) {
       <div className='centerCardSmall shadow rounded-lg overflow-hidden bg-white'>
         <Image
           priority={true}
-          src={getS3PhotoLink(params.filename)}
+          src={S3_PHOTO_API_URL + params.filename}
           quality={100}
           width={1920}
           height={1080}

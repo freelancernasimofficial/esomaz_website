@@ -1,5 +1,5 @@
 "use client";
-import { BDT_SIGN } from "@/constants/contastants";
+import { BDT_SIGN } from "@/library/constants";
 import React, { useEffect, useState } from "react";
 
 type Props = {
