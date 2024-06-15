@@ -43,13 +43,21 @@ export default async function Header({}: Props) {
               href='/notifications'
             >
               {totalNotifications > 0 ? (
-                <div className=' bg-rose-600 text-white  absolute -top-1 p-1 rounded-full w-5 h-5 flex items-center justify-center'>
+                <div className='text-xs bg-rose-600 text-white  absolute -top-1.5 -left-1.5 p-1 rounded-full w-4 h-4 flex items-center justify-center'>
                   {totalNotifications}
                 </div>
               ) : null}
               <IconBell />
             </Link>
-            <Link className='svgCircleButton bg-gray-100 ml-4' href='/messages'>
+            <Link
+              className='svgCircleButton bg-gray-100 ml-4 relative'
+              href='/messages'
+            >
+              {totalNotifications > 0 ? (
+                <div className='text-xs bg-rose-600 text-white  absolute -top-1.5 -left-1.5 p-1 rounded-full w-4 h-4 flex items-center justify-center'>
+                  {totalNotifications}
+                </div>
+              ) : null}
               <IconChat />
             </Link>
 
