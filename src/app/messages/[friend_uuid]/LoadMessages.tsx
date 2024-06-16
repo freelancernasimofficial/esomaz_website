@@ -1,9 +1,8 @@
 "use client";
 
 import {
-  getInbox,
   getInboxMessages,
-  sendFirstMessage,
+  sendMessage,
 } from "@/actions/message/messageActions";
 import SubmitButtonClient from "@/components/button/SubmitButtonClient";
 import IconSendCircle from "@/components/icons/IconSendCircle";
@@ -20,15 +19,37 @@ type Props = {
 export default function LoadMessages({ inbox }: Props) {
   const [text, setText] = useState<string>("");
   const [pending, setPending] = useState<boolean>(false);
+  const [hideLoadMore, setHideLoadMore] = useState<boolean>(false);
+  const [loadMorePending, setLoadMorePending] = useState(false);
   const [action, setAction] = useState<any>();
   const [messages, setMessages] = useState<any[]>([]);
+  const [errorMsg, setErrorMsg] = useState("");
 
   const friend =
     inbox?.currentUserId === inbox?.senderUserId
       ? inbox?.ReceiverUser
       : inbox?.SenderUser;
 
-  const sendMessage = () => {};
+  const sendMsg = () => {
+    if (!text.length) {
+      return undefined;
+    }
+    setPending(true);
+    setErrorMsg("");
+    sendMessage({ inboxId: inbox?.id, message: text })
+      .then((data: any) => {
+        setText("");
+        if (data?.id) {
+          setMessages((prev: any) => [data, ...prev]);
+        }
+      })
+      .catch((err) => {
+        setErrorMsg(err?.message);
+      })
+      .finally(() => {
+        setPending(false);
+      });
+  };
 
   const handleEdit = () => {
     console.log("edit");
@@ -41,19 +62,45 @@ export default function LoadMessages({ inbox }: Props) {
     }
   };
 
-  useEffect(() => {
-    getInboxMessages({
-      inboxId: inbox?.id,
-      limitFrom: messages?.length,
-      limitTo: 50,
-    })
-      .then((data) => {
-        setMessages(data);
+  const loadMoreMsg = () => {
+    setLoadMorePending(true);
+    setTimeout(() => {
+      getInboxMessages({
+        inboxId: inbox?.id,
+        limitFrom: messages?.length,
+        limitTo: 50,
       })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [inbox?.id]);
+        .then((data) => {
+          if (data?.length) {
+            setMessages((prev: any) => [...prev, ...data]);
+          } else {
+            setHideLoadMore(true);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+        .finally(() => {
+          setLoadMorePending(false);
+        });
+    }, 500);
+  };
+
+  useEffect(() => {
+    if (!messages.length) {
+      getInboxMessages({
+        inboxId: inbox?.id,
+        limitFrom: 0,
+        limitTo: 50,
+      })
+        .then((data) => {
+          setMessages(data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [inbox?.id, messages.length]);
 
   return (
     <React.Fragment>
@@ -69,10 +116,7 @@ export default function LoadMessages({ inbox }: Props) {
         </div>
         <div className='h-12 w-full'></div>
       </div>
-      <div
-        id='messageBubbleContainer'
-        className='p-3 flex flex-col-reverse h-[calc(100vh-144px)] overflow-y-scroll'
-      >
+      <div className='p-3 flex flex-col-reverse h-[calc(100vh-144px)] overflow-y-scroll'>
         {action ? (
           <Modal onClickBackdrop={() => setAction(undefined)}>
             <div>
@@ -101,6 +145,7 @@ export default function LoadMessages({ inbox }: Props) {
             </div>
           </Modal>
         ) : null}
+
         {messages.map((item: any, index: any) => {
           if (item?.userId !== item?.currentUserId) {
             return (
@@ -133,23 +178,37 @@ export default function LoadMessages({ inbox }: Props) {
             );
           }
         })}
+
+        {messages?.length >= 50 && !hideLoadMore ? (
+          <SubmitButtonClient
+            pending={loadMorePending}
+            title='Load More'
+            onClick={loadMorePending ? undefined : loadMoreMsg}
+            className='btn mx-auto py-1.5 mb-4'
+          />
+        ) : null}
       </div>
       <div>
+        {errorMsg?.length ? (
+          <div className='mb-1 text-center text-sm text-error-main'>
+            {errorMsg}
+          </div>
+        ) : null}
         <div className='h-10 w-full'></div>
         <div className='bg-gray-300 w-full h-10 flex items-center justify-between fixed bottom-0'>
           <textarea
             value={text}
-            onChange={(e) => setText(e.target.value)}
+            onChange={(e) => setText(e.target.value.trimStart())}
             className='w-full rounded-none flex-1 h-full focus-visible:outline-none bg-transparent'
             placeholder='Enter Message'
             cols={10}
             rows={1}
           ></textarea>
           <SubmitButtonClient
-            onClick={sendMessage}
+            onClick={sendMsg}
             title={<IconSendCircle className='w-6 h-6' />}
             pending={pending}
-            className='bg-primary-main text-white flex items-center justify-center w-12 h-full active:rounded'
+            className='bg-primary-main text-white flex items-center justify-center w-12 h-full'
           />
         </div>
       </div>

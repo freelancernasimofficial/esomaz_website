@@ -91,10 +91,24 @@ export async function sendMessage({
   message: string;
 }) {
   try {
-    return {
-      status: true,
-      messaage: message,
+    const currentUser = await auth();
+    const createMessage = await Model.prepare(
+      "INSERT INTO InboxMessages(inboxId,userId,text,photoId)VALUES(?,?,?,?)",
+      [inboxId, currentUser?.id, message, null],
+    );
+
+    const makeMessage = {
+      id: createMessage?.insertId,
+      inboxId: inboxId,
+      userId: currentUser?.id,
+      text: message,
+      photoId: null,
+      seen: 0,
+      createdAt: Date.now(),
+      updatedAt: Date.now(),
+      currentUserId: currentUser?.id,
     };
+    return makeMessage;
   } catch (error: any) {
     return {
       status: false,
