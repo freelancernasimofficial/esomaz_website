@@ -8,6 +8,7 @@ import SubmitButtonClient from "@/components/button/SubmitButtonClient";
 import IconSendCircle from "@/components/icons/IconSendCircle";
 import Modal from "@/components/others/Modal";
 import Avatar from "@/components/user/Avatar";
+import SingleUser from "@/components/user/SingleUser";
 import getFullName from "@/library/getFullName";
 import getRelativeTime from "@/library/getRelativeTime";
 import React, { useEffect, useState } from "react";
@@ -23,7 +24,7 @@ export default function LoadMessages({ inbox }: Props) {
   const [loadMorePending, setLoadMorePending] = useState(false);
   const [action, setAction] = useState<any>();
   const [messages, setMessages] = useState<any[]>([]);
-  const [errorMsg, setErrorMsg] = useState("");
+  const [errorMsg, setErrorMsg] = useState("Something went wrong");
 
   const friend =
     inbox?.currentUserId === inbox?.senderUserId
@@ -105,14 +106,12 @@ export default function LoadMessages({ inbox }: Props) {
   return (
     <React.Fragment>
       <div>
-        <div className='h-12 bg-slate-800 text-white border-b fixed left-0 top-14 w-full z-20 flex items-center px-4'>
-          <div className='flex items-center'>
-            <Avatar className='border border-white' user={friend} />{" "}
-            <div className='ml-2 leading-4'>
-              <div className='font-semibold text-sm'>{getFullName(friend)}</div>
-              <div className='text-xs'>Few moments ago</div>
-            </div>
-          </div>
+        <div className='h-12 bg-slate-800 text-white border-b fixed left-0 top-14 w-full z-20 flex items-center px-3'>
+          <SingleUser
+            subtitleClass='text-gray-300'
+            className='!mt-0'
+            user={friend}
+          />
         </div>
         <div className='h-12 w-full'></div>
       </div>
@@ -150,20 +149,19 @@ export default function LoadMessages({ inbox }: Props) {
           if (item?.userId !== item?.currentUserId) {
             return (
               <div className='mb-6 w-full' key={index}>
-                <div className='w-full flex'>
-                  <div className='bg-gray-200 inline-block rounded-lg p-2 shrink-0 max-w-[70%]'>
-                    {item?.text}
-                  </div>
+                <div className='bg-gray-200 inline-block rounded-lg p-2 shrink-0 max-w-[70%]'>
+                  {item?.text}
                 </div>
-                <div className='text-gray-400 float-left text-sm'>
-                  Seen . {getRelativeTime(item?.createdAt)}
+                <div className='text-gray-400 text-xs'>
+                  {getRelativeTime(item?.createdAt)}
                 </div>
               </div>
             );
           } else {
             return (
-              <div className='mb-6 w-full' key={index}>
-                <div className='w-full  flex justify-end'>
+              <div className='mb-6' key={index}>
+                <div className='w-full flex justify-end'>
+                  {" "}
                   <div
                     onClick={() => setAction(index)}
                     className='bg-primary-main text-white inline-block rounded-lg p-2 shrink-0 max-w-[70%]'
@@ -171,7 +169,7 @@ export default function LoadMessages({ inbox }: Props) {
                     {item?.text}
                   </div>
                 </div>
-                <div className='text-gray-400 float-right text-sm'>
+                <div className='text-gray-400 text-xs float-right'>
                   Seen . {getRelativeTime(item?.createdAt)}
                 </div>
               </div>
