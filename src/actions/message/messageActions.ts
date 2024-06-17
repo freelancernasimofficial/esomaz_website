@@ -4,6 +4,8 @@ import Model from "@/model/Model";
 import auth from "../auth/auth";
 import makeUniqueId from "@/library/makeUniqueId";
 import getUserByObjectQuery from "@/library/getUserByObjectQuery";
+import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
 export async function getInbox(inboxuuId: any) {
   try {
@@ -17,6 +19,22 @@ export async function getInbox(inboxuuId: any) {
       )}) AS ReceiverUser,${
         currentUser?.id
       } AS currentUserId FROM Inboxes IB WHERE IB.uuId=${inboxuuId}`,
+    );
+    if (inbox?.length) {
+      return inbox[0];
+    } else {
+      throw new Error("No Inbox Found");
+    }
+  } catch (error) {
+    return undefined;
+  }
+}
+
+export async function getInboxByFriendId(friendId: any) {
+  try {
+    const currentUser = await auth();
+    const inbox = await Model.query(
+      `SELECT * FROM Inboxes WHERE (senderUserId=${friendId} AND receiverUserId=${currentUser?.id}) OR (senderUserId=${currentUser?.id} AND receiverUserId=${friendId})`,
     );
     if (inbox?.length) {
       return inbox[0];
@@ -56,6 +74,17 @@ export async function sendFirstMessage({
   message: string;
 }) {
   try {
+    if (!message.length) {
+      throw new Error("Please write something");
+    }
+
+    //CHECK EXISTING INBOX
+    const check = await getInboxByFriendId(friendId);
+
+    if (check?.uuId) {
+      throw new Error("Please refresh the page");
+    }
+
     const currentUser = await auth();
     const inboxUID = await makeUniqueId("Inboxes");
 
@@ -66,16 +95,18 @@ export async function sendFirstMessage({
     );
 
     //ADD THE MESSAGE
-    const addMessage = await Model.prepare(
+    await Model.prepare(
       "INSERT INTO InboxMessages(inboxId,userId,text,photoId)VALUES(?,?,?,?)",
       [createInbox?.insertId, currentUser?.id, message, null],
     );
 
+    revalidatePath("/");
     return {
       status: true,
-      messaage: message,
+      messaage: "Message has been sent",
     };
   } catch (error: any) {
+    revalidatePath("/");
     return {
       status: false,
       messaage: error?.message,

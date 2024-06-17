@@ -17,6 +17,8 @@ import {
   unFriendAction,
 } from "@/actions/user/userActions";
 import { S3_PHOTO_API_URL } from "@/library/constants";
+import { getInboxByFriendId } from "@/actions/message/messageActions";
+import MessageButton from "./MessageButton";
 type Props = {
   user: any;
 };
@@ -31,6 +33,7 @@ export default async function ProfileCard({ user }: Props) {
   const bindFollow = addFollowAction?.bind(null, user?.id);
   const bindUnfollow = unFollowAction?.bind(null, user?.id);
   const bindFollowBack = followBackAction?.bind(null, user?.id);
+  const getInbox = await getInboxByFriendId(user?.id);
 
   const GetFriendButton = () => {
     if (Number(currentUser?.id) === Number(user?.id)) {
@@ -177,12 +180,7 @@ export default async function ProfileCard({ user }: Props) {
               <GetFriendButton />
               <GetFollowButton />
               {currentUser?.id !== user?.id && (
-                <Link
-                  href={`/messages/${user?.uuId}`}
-                  className='btn flex items-center'
-                >
-                  Message
-                </Link>
+                <MessageButton inbox={getInbox} friend={user} />
               )}
             </div>
           </div>
