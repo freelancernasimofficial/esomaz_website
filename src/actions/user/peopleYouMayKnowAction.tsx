@@ -1,6 +1,7 @@
 "use server";
 
 import Avatar from "@/components/user/Avatar";
+import { S3_PHOTO_API_URL } from "@/library/constants";
 import getFullName from "@/library/getFullName";
 import getRelativeTime from "@/library/getRelativeTime";
 import getUsername from "@/library/getUsername";
@@ -29,7 +30,7 @@ export default async function peopleYouMayKnowAction({
       >
         <div className='flex items-center'>
           {" "}
-          <Avatar user={item?.User} />{" "}
+          <Avatar user={item} />{" "}
           <Link href={`/user/${getUsername(item)}`} className='ml-2 block'>
             <h3 className='font-semibold  leading-none capitalize'>
               {getFullName(item)}
