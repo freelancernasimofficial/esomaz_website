@@ -24,7 +24,7 @@ export default function LoadMessages({ inbox }: Props) {
   const [loadMorePending, setLoadMorePending] = useState(false);
   const [action, setAction] = useState<any>();
   const [messages, setMessages] = useState<any[]>([]);
-  const [errorMsg, setErrorMsg] = useState("Something went wrong");
+  const [errorMsg, setErrorMsg] = useState("");
 
   const friend =
     inbox?.currentUserId === inbox?.senderUserId
@@ -187,13 +187,14 @@ export default function LoadMessages({ inbox }: Props) {
         ) : null}
       </div>
       <div>
-        {errorMsg?.length ? (
-          <div className='mb-1 text-center text-sm text-error-main'>
-            {errorMsg}
-          </div>
-        ) : null}
         <div className='h-10 w-full'></div>
         <div className='bg-gray-300 w-full h-10 flex items-center justify-between fixed bottom-0'>
+          {errorMsg?.length ? (
+            <div className='absolute bottom-10 w-full h-8 bg-error-main text-white text-center flex items-center justify-center'>
+              {errorMsg}
+            </div>
+          ) : null}
+
           <textarea
             value={text}
             onChange={(e) => setText(e.target.value.trimStart())}

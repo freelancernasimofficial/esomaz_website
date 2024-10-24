@@ -1,7 +1,6 @@
 import React from "react";
 import BackButton from "../others/BackButton";
 import IconArrowBack from "../icons/IconArrowBack";
-import IconChevronLeft from "../icons/IconChevronLeft";
 
 type Props = {
   title: string;
